@@ -1,0 +1,720 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   HEXONA SYSTEMS — DESIGN TOKENS
+   Spec §4.2 (color), §4.3 (type), §4.4 (grid), §4.5 (grid field), §6.2 (motion)
+
+   The raw tokens below are declared verbatim from the specification so that a
+   reader with the spec in hand finds every name exactly where they expect.
+   The @theme block maps a subset into Tailwind's utility namespaces.
+   ========================================================================= */
+
+:root {
+  /* Canvas */
+  --void:            #06070A;   /* deepest — hero background only */
+  --base:            #0A0C10;   /* default page background */
+  --surface:         #101318;   /* cards, panels */
+  --surface-raised:  #171B22;   /* hover state, elevated panels */
+  --surface-inset:   #07080B;   /* inputs, wells */
+
+  /* Structure */
+  --hairline:        #1C212A;   /* default 1px borders */
+  --hairline-bright: #2A313D;   /* hover / active borders */
+  --grid-line:       #12161C;   /* background grid, barely visible */
+
+  /* Type */
+  --text-primary:    #F4F6F8;   /* 17.1:1 on --base  */
+  --text-secondary:  #A8B1BD;   /*  8.4:1 on --base  */
+  --text-tertiary:   #8A929E;   /*  5.6:1 on --base  */
+  --text-quaternary: #767E8A;   /*  4.5:1 on --base — AA floor. Do NOT darken. */
+  --text-decorative: #3A4149;   /* NON-TEXT ONLY: rules, dividers, inactive glyphs. */
+
+  /* Light surface — the founder / about editorial break. */
+  --light-base:      #F4F2ED;
+  --light-surface:   #EBE8E1;
+  --light-hairline:  #D6D1C6;
+  --light-primary:   #0A0C10;   /* 17.4:1 on --light-base */
+  --light-secondary: #4A4E55;   /*  8.0:1 */
+  --light-tertiary:  #5F646C;   /*  5.3:1 on --light-base, 4.9:1 on --light-surface.
+                                   The spec printed #6B7079 as "4.9:1", but it
+                                   measures 4.45:1 on the base and 4.07:1 on the
+                                   card surface — both below the AA floor.
+                                   Darkened until it passes on BOTH.
+                                   See scripts/check-contrast.mjs. */
+  --light-accent:    #0A5A6B;   /*  6.9:1 — the cyan, darkened for light ground.
+                                   The brand cyan reaches only 1.5:1 here and is
+                                   unreadable. Any cyan TEXT or rule on a light
+                                   surface uses this. */
+
+  /* Header scrim */
+  --header-scrim:    rgba(8, 9, 11, 0.72);
+
+  /* Accent — brand cyan. THE ONLY BRAND COLOR.
+     Matches the Hexona hexagon mark. Replaces the molten amber the spec
+     proposed: the mark, the existing site and the reference designs are all
+     cyan, and a brand colour that disagrees with the logo is a brand colour
+     that is wrong. */
+  --accent:          #22D3EE;
+  --accent-bright:   #67E8F9;
+  --accent-deep:     #0E7490;
+  --accent-glow:     rgba(34, 211, 238, 0.18);
+  --accent-wash:     rgba(34, 211, 238, 0.07);
+
+  /* Atmospheric glow — the deep teal bloom on cards, the CTA block, the hero
+     and the footer. Gradients ONLY: never behind text, never as a text colour.
+     §15 still holds — this is one hue at low alpha, not a rainbow. */
+  --glow-near:       rgba(30, 190, 200, 0.20);
+  --glow-mid:        rgba(16, 122, 138, 0.16);
+  --glow-far:        rgba(10, 70, 84, 0.00);
+
+  /* Signal — data-visualization colors ONLY. Never on UI chrome.
+     With a cyan accent these stay distinct precisely because they are warm:
+     a falling packet must never read as something you could click. */
+  --signal-leak:     #FF5C5C;   /* revenue escaping — 4.9:1 on --base */
+  --signal-sealed:   #2FD9A0;   /* revenue retained */
+
+  /* Focus */
+  --focus-ring:      #67E8F9;
+
+  /* Layout — §4.4 */
+  --page-max:        1280px;
+  --page-margin:     80px;
+  --gutter:          24px;
+
+  /* Motion — §6.2 */
+  --ease-out:    cubic-bezier(0.16, 1, 0.30, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-sharp:  cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-micro:      150ms;
+  --dur-fast:       240ms;
+  --dur-standard:   400ms;
+  --dur-slow:       700ms;
+  --dur-deliberate: 1400ms;
+}
+
+@media (max-width: 1024px) { :root { --page-margin: 40px; } }
+@media (max-width: 640px)  { :root { --page-margin: 20px; } }
+
+@theme inline {
+  /* Surfaces */
+  --color-void:           var(--void);
+  --color-base:           var(--base);
+  --color-surface:        var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-inset:  var(--surface-inset);
+
+  /* Structure */
+  --color-hairline:        var(--hairline);
+  --color-hairline-bright: var(--hairline-bright);
+  --color-grid-line:       var(--grid-line);
+
+  /* Type colors — deliberately NOT named --text-* so they do not collide with
+     Tailwind's font-size namespace, which uses the same --text-* prefix. */
+  --color-primary:    var(--text-primary);
+  --color-secondary:  var(--text-secondary);
+  --color-tertiary:   var(--text-tertiary);
+  --color-quaternary: var(--text-quaternary);
+  --color-decorative: var(--text-decorative);
+
+  /* Light editorial surface */
+  --color-light-base:      var(--light-base);
+  --color-light-surface:   var(--light-surface);
+  --color-light-hairline:  var(--light-hairline);
+  --color-light-primary:   var(--light-primary);
+  --color-light-secondary: var(--light-secondary);
+  --color-light-tertiary:  var(--light-tertiary);
+  --color-light-accent:    var(--light-accent);
+
+  /* Accent */
+  --color-accent:        var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-accent-deep:   var(--accent-deep);
+  --color-accent-glow:   var(--accent-glow);
+  --color-accent-wash:   var(--accent-wash);
+
+  /* Signal — data viz only */
+  --color-leak:   var(--signal-leak);
+  --color-sealed: var(--signal-sealed);
+
+  /* Fonts — §4.3 */
+  --font-display: var(--font-geist), ui-sans-serif, -apple-system, sans-serif;
+  --font-mono:    var(--font-geist-mono), "SF Mono", ui-monospace, monospace;
+  /* Figures get their own token so the numeric face is a one-line swap.
+     Point it at --font-mono to restore the spec's original treatment. */
+  --font-figure:  var(--font-geist), ui-sans-serif, -apple-system, sans-serif;
+
+  /* Fluid type scale — §4.3 */
+  --text-display-1: clamp(3.2rem, 7.5vw, 6.5rem);
+  --text-display-2: clamp(2.4rem, 5vw, 4rem);
+  --text-display-3: clamp(1.75rem, 3vw, 2.5rem);
+  --text-lead:      clamp(1.125rem, 1.6vw, 1.375rem);
+  --text-body:      1.0625rem;
+  --text-small:     0.9375rem;
+  --text-label:     0.75rem;
+  --text-micro:     0.6875rem;
+
+  /* Radius — 6px maximum across the whole site (§4.6) */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================= */
+
+@layer base {
+  * { border-color: var(--hairline); }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto; /* Lenis owns smooth scroll */
+  }
+
+  body {
+    background-color: var(--base);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    letter-spacing: -0.006em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--base);
+  }
+
+  /* Focus — §4.6. No default outline, but the ring must be at least as
+     visible as the browser default. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+/* ============================================================================
+   TYPOGRAPHIC ROLES — §4.3 treatments table
+   ========================================================================= */
+
+@layer components {
+  .type-display-1 {
+    font-size: var(--text-display-1);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+  }
+
+  .type-display-2 {
+    font-size: var(--text-display-2);
+    font-weight: 500;
+    letter-spacing: -0.028em;
+    line-height: 1.02;
+  }
+
+  .type-display-3 {
+    font-size: var(--text-display-3);
+    font-weight: 500;
+    letter-spacing: -0.022em;
+    line-height: 1.12;
+  }
+
+  .type-lead {
+    font-size: var(--text-lead);
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    line-height: 1.5;
+  }
+
+  .type-body {
+    font-size: var(--text-body);
+    font-weight: 400;
+    letter-spacing: -0.006em;
+    line-height: 1.65;
+  }
+
+  .type-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .type-micro {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+
+  /* Big numbers.
+     §4.3 specified Geist Mono here. In practice that is wrong for currency: in
+     a monospace the comma and the dollar sign are small glyphs centred inside a
+     FULL-WIDTH advance, so "$415,800" renders with a visible crater either side
+     of the comma. It reads as a bug, because it effectively is one.
+     Display figures therefore use the display sans with true tabular lining
+     figures — every digit still occupies an identical advance, so columns of
+     numbers align and the odometer roll works, but the separators take their
+     natural width and the number looks like a number.
+     Mono is retained for the small uppercase technical labels (.type-label,
+     .type-micro), which is where it earns its keep. */
+  .type-figure {
+    font-family: var(--font-figure);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+  }
+
+  /* The one place mono figures still belong: dense arithmetic where a reader is
+     checking a column by hand, and character-cell alignment beats prettiness. */
+  .type-figure-mono {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ============================================================================
+   LAYOUT PRIMITIVES — §4.4
+   ========================================================================= */
+
+@layer utilities {
+  .page-shell {
+    width: 100%;
+    max-width: calc(var(--page-max) + var(--page-margin) * 2);
+    margin-inline: auto;
+    padding-inline: var(--page-margin);
+  }
+
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+
+  @media (max-width: 900px) {
+    .grid-12 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-12 > * { grid-column: 1 / -1 !important; }
+  }
+
+  /* Section vertical rhythm — 160 / 112 / 80 (§4.4). Individual sections
+     deliberately vary from this; it is the default, not a mandate. */
+  .section-pad { padding-block: 160px; }
+  @media (max-width: 1024px) { .section-pad { padding-block: 112px; } }
+  @media (max-width: 640px)  { .section-pad { padding-block: 80px; } }
+}
+
+/* ============================================================================
+   BACKGROUND GRID FIELD — §4.5
+   72px square grid in --grid-line, fixed position so it parallaxes against
+   scrolling content. Almost invisible by design.
+   ========================================================================= */
+
+.grid-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, black 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, black 20%, transparent 75%);
+}
+
+/* ============================================================================
+   SCROLL ENTRANCE — §6.3, and the no-JS baseline (§14, Phase 4)
+
+   The no-JS default is the FINAL state: opacity 1, no transform, no blur.
+   An inline head script sets `.js-enabled` on <html> before first paint, which
+   is what arms the initial hidden state. With JS off every section renders its
+   content at full opacity and is readable — which is also what crawlers and
+   preview bots see.
+   ========================================================================= */
+
+[data-enter] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.js-enabled [data-enter] {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out),
+    filter var(--dur-slow) var(--ease-out);
+  transition-delay: var(--enter-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.js-enabled [data-enter][data-entered="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+  will-change: auto;
+}
+
+/* ============================================================================
+   ATMOSPHERIC GLOW
+
+   The teal bloom from the reference designs. Four placements only — hero,
+   cards, the CTA block, and the footer — all built from ONE hue at low alpha.
+   Gradients never sit behind body copy: every glow is either on an empty area
+   or behind a heading large enough that the shift is imperceptible, and every
+   contrast pair in scripts/check-contrast.mjs is measured against the flat
+   surface underneath.
+   ========================================================================= */
+
+.glow-hero {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 22%, var(--glow-near), var(--glow-far) 70%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, var(--glow-mid), var(--glow-far) 65%);
+}
+
+/* Corner bloom on a card — the treatment on the values and comparison blocks. */
+.glow-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 420ms var(--ease-out);
+  background: radial-gradient(
+    ellipse 70% 100% at var(--glow-x, 100%) 100%,
+    var(--glow-near),
+    var(--glow-far) 72%
+  );
+}
+
+.glow-card[data-glow='on']::after,
+.glow-card:hover::after,
+.glow-card:focus-within::after {
+  opacity: 1;
+}
+
+/* The big CTA block and the footer cap. */
+.glow-block {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.glow-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 120% at 8% 110%, var(--glow-near), var(--glow-far) 68%),
+    radial-gradient(ellipse 60% 130% at 95% -20%, var(--glow-mid), var(--glow-far) 70%);
+}
+
+.glow-footer {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 240px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 100% at 50% 0%, var(--glow-mid), var(--glow-far) 72%);
+}
+
+/* ============================================================================
+   SECTION BANDS
+
+   A page of twelve sections on one flat black ground reads as one enormous
+   block of grey text, however good the copy is. Alternating sections sit on a
+   soft tinted band so the eye gets a beat between them. The band fades in and
+   out rather than butting against a hard edge, which would read as a seam —
+   the one metaphor this site cannot afford to use accidentally.
+   ========================================================================= */
+
+.band {
+  position: relative;
+  isolation: isolate;
+}
+
+.band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(16, 19, 24, 0.75) 12%,
+    rgba(16, 19, 24, 0.75) 88%,
+    transparent 100%
+  );
+}
+
+/* A band that also carries a hint of the brand glow, for the sections that
+   should feel like a lift rather than a rest. */
+.band-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 55% at 50% 50%, var(--glow-mid), var(--glow-far) 70%);
+}
+
+/* ============================================================================
+   PILL EYEBROW — the reference designs' section cadence.
+   A small chip above every centred section heading.
+   ========================================================================= */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--hairline-bright);
+  background: var(--surface);
+  /* 6px, not a full pill. The reference chips are rounded rectangles, and §4.6
+     caps radius at 6px across the site — "sharp corners read as engineered,
+     pill shapes read as consumer app." Both agree here. */
+  border-radius: 6px;
+  padding: 7px 14px;
+}
+
+/* ============================================================================
+   SLIDER — §4.6 inputs, §8.1 audit.
+   Every slider is paired with a number input so the value is keyboard-
+   enterable, not only draggable (§10.4).
+   ========================================================================= */
+
+.hx-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  height: 28px;
+  cursor: pointer;
+}
+
+.hx-slider::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--pct, 0%),
+    var(--hairline-bright) var(--pct, 0%),
+    var(--hairline-bright) 100%
+  );
+}
+
+.hx-slider::-moz-range-track {
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--pct, 0%),
+    var(--hairline-bright) var(--pct, 0%),
+    var(--hairline-bright) 100%
+  );
+}
+
+.hx-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -6px;
+  border-radius: 3px;
+  background: var(--text-primary);
+  border: 1px solid var(--base);
+  transition: box-shadow var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+
+.hx-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--text-primary);
+  border: 1px solid var(--base);
+}
+
+.hx-slider:hover::-webkit-slider-thumb,
+.hx-slider:focus-visible::-webkit-slider-thumb {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.hx-slider:hover::-moz-range-thumb,
+.hx-slider:focus-visible::-moz-range-thumb {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.hx-slider:focus-visible {
+  outline: none;
+}
+
+/* ============================================================================
+   MOMENT 1 — HERO ORCHESTRATION. §6.4.
+
+   Total 1.4s:
+     0.00s  canvas fades in (owned by LatticeField)
+     0.15s  eyebrow          fade + slide up 16px, 0.5s
+     0.28s  H1 line 1        mask-reveal upward from a clipping container, 0.75s
+     0.40s  H1 line 2        same
+     0.58s  lead paragraph   standard entrance, 0.7s
+     0.76s  both CTAs        stagger 0.06s
+     0.90s  scroll indicator fades in at 0.5 opacity
+
+   The H1 mask-reveal animates the inner span from y:105% to y:0 inside an
+   overflow:hidden container. OPACITY IS NEVER ANIMATED ON THE H1 — the mask
+   alone is stronger and sharper.
+
+   All of it is gated on .js-enabled so the no-JS baseline renders the hero at
+   its final state (§14).
+   ========================================================================= */
+
+@keyframes hero-mask {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+@keyframes hero-cue {
+  from { opacity: 0; }
+  to   { opacity: 0.5; }
+}
+
+.js-enabled .hero-mask > span {
+  display: block;
+  animation: hero-mask 750ms var(--ease-out) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.js-enabled .hero-rise {
+  animation: hero-rise 500ms var(--ease-out) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.js-enabled .hero-enter {
+  animation: hero-enter 700ms var(--ease-out) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.js-enabled .hero-cue-wrap {
+  animation: hero-cue 500ms linear both;
+  animation-delay: 900ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-enabled .hero-mask > span,
+  .js-enabled .hero-rise,
+  .js-enabled .hero-enter,
+  .js-enabled .hero-cue-wrap {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ============================================================================
+   SEAM PACKET — §7.1 S2.
+   A small cyan packet falling out of the gap that opens in each seam bar.
+   ========================================================================= */
+
+@keyframes seam-drop {
+  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0; }
+  12%  { opacity: 1; }
+  100% { transform: translate(-50%, 34px) scale(0.7); opacity: 0; }
+}
+
+/* ============================================================================
+   SCROLL CUE — §7.1 S1.
+   A 1px vertical cyan line, 32px tall, whose opacity travels top-to-bottom
+   on a 2.4s linear loop.
+   ========================================================================= */
+
+@keyframes scroll-cue {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  20%  { opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  90%  { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+.scroll-cue {
+  width: 1px;
+  height: 32px;
+  background: var(--accent);
+  animation: scroll-cue 2.4s linear infinite;
+}
+
+/* ============================================================================
+   REDUCED MOTION — §6.5
+   Entrances become opacity-only at 200ms. Everything scrubbed, swept,
+   converged or cursor-driven is disabled at the component level.
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .js-enabled [data-enter] {
+    transform: none;
+    filter: none;
+    transition: opacity 200ms linear;
+    transition-delay: 0ms;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .motion-loop { animation: none !important; }
+}
