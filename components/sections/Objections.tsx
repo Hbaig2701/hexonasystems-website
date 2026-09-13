@@ -51,7 +51,7 @@ export function Objections() {
       <div className="page-shell">
         <SectionHeading
           eyebrow="Straight answers"
-          index="11"
+          index="10"
           sub="Including the one that disqualifies some of the people reading it."
           className="mb-16"
         >

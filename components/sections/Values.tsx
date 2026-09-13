@@ -15,13 +15,13 @@ import { VALUES } from '@/content/positioning';
  * bloom is the point, not a reward for pointing at it. Cards alternate which
  * corner it blooms from so a 2×2 does not read as four identical tiles.
  */
-export function Values() {
+export function Values({ index = '04' }: { index?: string } = {}) {
   return (
     <section className="band section-pad">
       <div className="page-shell">
         <SectionHeading
           eyebrow="Our values"
-          index="10"
+          index={index}
           sub="What we optimise for, stated plainly enough that you can hold us to it."
           className="mb-16"
         >

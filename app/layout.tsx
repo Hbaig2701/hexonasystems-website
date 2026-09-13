@@ -24,11 +24,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'Hexona Systems: Seal the gaps where your revenue leaks',
+    default: 'Hexona Systems: bespoke AI implementation for $10M+ operations',
     template: '%s · Hexona Systems',
   },
   description:
-    'Hexona builds the operating system that seals the gaps where revenue escapes: unanswered leads, manual handoffs, slow responses. Find out what yours is costing you.',
+    'Hexona designs and installs bespoke AI systems inside operations already past $10M. A high-value implementation we build, install and run, measured against the revenue it adds.',
   openGraph: {
     type: 'website',
     siteName: 'Hexona Systems',

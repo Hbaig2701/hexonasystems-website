@@ -32,14 +32,14 @@ import { JsonLd, faqPageLd, organizationLd, webSiteLd } from '@/lib/jsonld';
  */
 
 export const metadata: Metadata = {
-  title: 'Hexona Systems: Seal the gaps where your revenue leaks',
+  title: 'Hexona Systems: bespoke AI implementation for $10M+ operations',
   description:
-    'Every unanswered lead, every manual handoff, every reply that took a day instead of a minute is a gap where revenue escapes. Hexona builds the operating system that seals them. Run the Revenue Leak Audit and see what yours is costing you.',
+    'Hexona designs and installs bespoke AI systems inside operations already past $10M. Not software you configure. A high-value implementation we build, install and run, measured against the revenue it adds.',
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Your revenue isn’t lost. It’s leaking.',
+    title: 'You should be doing millions more.',
     description:
-      'Hexona builds the operating system that seals the gaps where revenue escapes. Find your leak in under a minute.',
+      'Bespoke AI implementation for operations already past $10M. Model your upside in under a minute.',
     url: '/',
     images: [{ url: '/api/og', width: 1200, height: 630 }],
   },

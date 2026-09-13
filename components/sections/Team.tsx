@@ -19,13 +19,13 @@ import { TEAM } from '@/content/team';
  * photograph exists, each card shows a plainly-labelled placeholder — the one
  * thing worse than an empty frame is a convincing fake of a real colleague.
  */
-export function Team() {
+export function Team({ index = '03' }: { index?: string } = {}) {
   return (
     <section className="section-pad">
       <div className="page-shell">
         <SectionHeading
           eyebrow="Our team"
-          index="09"
+          index={index}
           sub="We bring together technology and strategy to build automation that holds up in production."
           className="mb-16"
         >

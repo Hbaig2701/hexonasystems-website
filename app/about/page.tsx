@@ -140,17 +140,17 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <Team />
-        <Values />
-        <Comparison />
-        <Record id="the-record" index="05" />
+        <Team index="03" />
+        <Values index="04" />
+        <Comparison index="05" />
+        <Record id="the-record" index="06" />
 
         {/* --- The company, factually --- */}
         <section className="section-pad pt-0">
           <div className="page-shell">
             <SectionHeading
               eyebrow="Diligence"
-              index="06"
+              index="07"
               sub="Buyers checking us out look for this, and it takes twenty lines."
               className="mb-16"
             >

@@ -19,7 +19,7 @@ import { cn } from '@/lib/cn';
  * `aria-hidden` with the meaning carried in visually-hidden text, because
  * §10.4 forbids conveying information by icon or colour alone.
  */
-export function Comparison() {
+export function Comparison({ index = '05' }: { index?: string } = {}) {
   const [ref, inView] = useInView<HTMLDivElement>(0.25);
   const reduced = useReducedMotion();
   const on = inView || reduced;
@@ -29,7 +29,7 @@ export function Comparison() {
       <div className="page-shell">
         <SectionHeading
           eyebrow="Why us"
-          index="11"
+          index={index}
           sub="Choosing to work with Hexona should be a straightforward decision. Here is the arithmetic."
           className="mb-16"
         >

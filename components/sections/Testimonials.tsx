@@ -15,13 +15,13 @@ import { initials, TESTIMONIALS } from '@/content/testimonials';
  * monogram rather than a grey silhouette — a placeholder that looks like a
  * person is worse than one that plainly isn't.
  */
-export function Testimonials() {
+export function Testimonials({ index = '08' }: { index?: string } = {}) {
   return (
     <section className="band section-pad">
       <div className="page-shell">
         <SectionHeading
           eyebrow="Recent clients"
-          index="12"
+          index={index}
           sub="We don’t have clients. We have partners."
           className="mb-16"
         >
