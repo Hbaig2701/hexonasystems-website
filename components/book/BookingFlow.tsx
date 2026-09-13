@@ -31,7 +31,7 @@ export function BookingFlow() {
   const [submitting, setSubmitting] = useState(false);
   const mountedAt = useRef(0);
 
-  const [revenueBand, setRevenueBand] = useState('$1–5M');
+  const [revenueBand, setRevenueBand] = useState('$10–25M');
   const [monthlyLeads, setMonthlyLeads] = useState('');
   const [driver, setDriver] = useState('');
   const [fullName, setFullName] = useState('');
@@ -179,10 +179,11 @@ export function BookingFlow() {
             onChange={(e) => setRevenueBand(e.target.value)}
             error={errors.revenueBand}
           >
-            <option>&lt;$1M</option>
-            <option>$1–5M</option>
-            <option>$5–20M</option>
-            <option>$20M+</option>
+            <option>Under $10M</option>
+            <option>$10–25M</option>
+            <option>$25–50M</option>
+            <option>$50–100M</option>
+            <option>$100M+</option>
           </Select>
 
           <Input

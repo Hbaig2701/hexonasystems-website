@@ -14,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/system', priority: 0.8 },
     { path: '/work', priority: 0.8 },
     { path: '/about', priority: 0.7 },
-    { path: '/incubator', priority: 0.7 },
     { path: '/book', priority: 0.6 },
     { path: '/privacy', priority: 0.2 },
     { path: '/terms', priority: 0.2 },

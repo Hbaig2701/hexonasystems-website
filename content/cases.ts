@@ -159,6 +159,44 @@ export const CASES: CaseStudy[] = [
   },
 
   /**
+   * ⚠️ THE FLAGSHIP SLOT. Hamza is supplying this one.
+   *
+   * The site now claims it makes deca-million operations millions more. The
+   * childcare case proves the mechanism but not the scale: a buyer running
+   * $30M reads $80,000 and concludes they are not the customer. One real
+   * implementation at a $10M+ client with a seven-figure result would carry
+   * the entire positioning on its own, and nothing else on the page does that
+   * job as well.
+   *
+   * To publish: fill in the fields below, set published and featured to true,
+   * and set featured to false on childcare-response-time.
+   *
+   * Anonymised is fine and often better: "A $40M logistics operator" reads as
+   * discretion rather than evasion.
+   */
+  {
+    slug: 'enterprise-flagship',
+    index: 'CASE 00',
+    industry: 'ASSET PENDING',
+    region: 'ASSET PENDING',
+    year: '2026',
+    title: 'ASSET PENDING — the seven-figure implementation.',
+    problem: 'The deca-million case study that anchors the whole positioning.',
+    headline: null,
+    metricsPending: true,
+    published: false,
+    featured: false,
+
+    atAGlance: [],
+    situation: [],
+    whereItLeaked: [],
+    whatWeBuilt: [],
+    metrics: [],
+    outcome: null,
+    quote: null,
+  },
+
+  /**
    * POST-LAUNCH, only if real metrics exist (§3.1). An empty fourth card is
    * worse than three strong ones, so this one does not render at all.
    */

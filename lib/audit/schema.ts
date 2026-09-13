@@ -88,7 +88,12 @@ export const leadSchema = z.object({
 export type LeadPayload = z.infer<typeof leadSchema>;
 
 export const bookingSchema = z.object({
-  revenueBand: z.enum(['<$1M', '$1–5M', '$5–20M', '$20M+']),
+  /**
+   * Bands sized to the $10M+ audience. The sub-$10M option stays deliberately:
+   * it is how the disqualifier works. Someone below the floor should be able to
+   * say so and get told honestly, rather than be filtered out silently.
+   */
+  revenueBand: z.enum(['Under $10M', '$10–25M', '$25–50M', '$50–100M', '$100M+']),
   monthlyLeads: z.number().int().min(0).max(1_000_000),
   driver: z.string().trim().min(1, 'A sentence is plenty.').max(2000),
   fullName: z.string().trim().min(2).max(120),

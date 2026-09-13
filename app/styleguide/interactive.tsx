@@ -78,8 +78,8 @@ export function StyleguideInteractive() {
               <p className="type-label mt-8 text-tertiary">Annual leak</p>
             </div>
             <div>
-              <Odometer value="40,000+" play={play} className="text-[52px]" />
-              <p className="type-label mt-5 text-tertiary">Builders trained</p>
+              <Odometer value="$20,000,000+" play={play} className="text-[52px]" />
+              <p className="type-label mt-5 text-tertiary">Generated or saved</p>
             </div>
             <div>
               <Odometer value="11.55" play={play} className="text-[52px] text-sealed" />

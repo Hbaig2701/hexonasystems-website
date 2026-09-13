@@ -12,7 +12,6 @@ import { Numbers } from '@/components/sections/Numbers';
 import { Record } from '@/components/sections/Record';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Founder } from '@/components/sections/Founder';
-import { Builders } from '@/components/sections/Builders';
 import { Objections, OBJECTIONS } from '@/components/sections/Objections';
 import { Close } from '@/components/sections/Close';
 import { JsonLd, faqPageLd, organizationLd, webSiteLd } from '@/lib/jsonld';
@@ -24,7 +23,7 @@ import { JsonLd, faqPageLd, organizationLd, webSiteLd } from '@/lib/jsonld';
  * story:
  *
  *   Fracture → Diagnosis → Cost → System → Proof → Numbers
- *   → Method → Record → Founder → Builders → Objections → Close
+ *   → Method → Numbers → Record → Testimonials → Founder → Objections → Close
  *
  * The lattice (§5) runs behind all of it as one continuous spine, scrubbed to
  * scroll across the full height of #narrative, so scrolling feels like
@@ -69,7 +68,6 @@ export default function HomePage() {
           <Record />
           <Testimonials />
           <Founder />
-          <Builders />
           <Objections />
           <Close />
         </div>

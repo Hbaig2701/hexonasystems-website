@@ -28,7 +28,6 @@ const NAV = [
   { label: 'System', href: '/system' },
   { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' },
-  { label: 'Incubator', href: '/incubator' },
 ];
 
 export function Header() {
@@ -105,7 +104,7 @@ export function Header() {
 
           <div className="hidden shrink-0 items-center gap-3 lg:flex">
             <Button href="/audit" variant="secondary" className="px-5 py-3 text-[13px]">
-              Find your leak
+              Model your upside
             </Button>
             <Button
               href="/book"
@@ -177,7 +176,7 @@ export function Header() {
 
           <div className="flex flex-col gap-3">
             <Button href="/audit" variant="secondary" className="w-full">
-              Find your leak
+              Model your upside
             </Button>
             <Button href="/book" variant="primary" className="w-full" arrow>
               Book a systems review

@@ -179,9 +179,9 @@ export const PROJECTS_COMPLETED: Claim = {
  * ------------------------------------------------------------------------ */
 
 export const NUMBERS_GRID: Claim[] = [
-  BUSINESSES_POWERED,
   VALUE_GENERATED,
-  BUILDERS_TRAINED,
+  BUSINESSES_POWERED,
+  AWARDS_COUNT,
   CONTINENTS,
   COMBINED_YEARS,
   SAASPRENEUR,
@@ -282,21 +282,30 @@ export const COMPANY = {
   phone: '' as string, // [ASSET NEEDED] — public phone number. Renders only once set.
   founded: '2022',
   crm: 'app.hexonasystems.com',
-  sweetSpot: '$1M–$50M in revenue',
+  sweetSpot: '$10M+ in revenue',
+  /** Below this we say so on the call rather than sell a build. */
+  revenueFloor: '$10M',
 } as const;
 
 /* ---------------------------------------------------------------------------
  * LAUNCH GATE HELPER
  * ------------------------------------------------------------------------ */
 
+/**
+ * Claims the site actually publishes. The launch gate (§12) only checks these.
+ *
+ * BUILDERS_TRAINED, SOCIAL_FOLLOWING and MRR are deliberately absent. They
+ * argue audience size and community scale, which is the Automation Institute's
+ * pitch, not this site's. A buyer running a $10M+ operation does not care how
+ * many people were taught to start an agency, and saying it invites them to
+ * wonder whether they are the customer or the case study. The constants are
+ * kept above so the Institute can use them elsewhere.
+ */
 export const ALL_CLAIMS: Record<string, Claim> = {
   BUSINESSES_POWERED,
   VALUE_GENERATED,
-  MRR,
-  BUILDERS_TRAINED,
   CONTINENTS,
   COMBINED_YEARS,
-  SOCIAL_FOLLOWING,
   AWARDS_COUNT,
   SAASPRENEUR_DIAMOND,
   DEVELOPER_NETWORK,

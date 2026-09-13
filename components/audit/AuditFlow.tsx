@@ -37,8 +37,8 @@ const CHIP_HOLD_MS = 400;
 /* Q1 uses a log scale so the low end — where most businesses actually sit —
    gets the resolution, paired with a free number input for anything outside
    the slider's range (§8.2). */
-const Q1_MIN = 10;
-const Q1_MAX = 2000;
+const Q1_MIN = 25;
+const Q1_MAX = 5000;
 const Q1_STEPS = 1000;
 
 function q1ToSlider(value: number): number {
@@ -58,10 +58,10 @@ const Q2_CHIPS = [
 ];
 
 const Q4_CHIPS = [
-  { label: '$500', value: 500 },
-  { label: '$2,500', value: 2500 },
-  { label: '$10,000', value: 10000 },
-  { label: '$50,000', value: 50000 },
+  { label: '$10,000', value: 10_000 },
+  { label: '$25,000', value: 25_000 },
+  { label: '$100,000', value: 100_000 },
+  { label: '$500,000', value: 500_000 },
 ];
 
 const QUESTIONS = [
@@ -339,7 +339,7 @@ function StepInquiries({
       />
 
       <p className="type-micro text-quaternary">
-        The slider covers 10 to 2,000. Outside that range, type the number.
+        The slider covers 25 to 5,000. Outside that range, type the number.
       </p>
     </div>
   );

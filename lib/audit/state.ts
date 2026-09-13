@@ -22,11 +22,18 @@ export interface AuditSession extends AuditInput {
 export const AUDIT_PARAM = 's';
 const STORAGE_KEY = 'hx-audit';
 
+/**
+ * Sized for the audience the site actually targets: operations already doing
+ * $10M+. The old defaults (200 inquiries at $2,500) modelled a local services
+ * business and produced a five-figure answer, which reads as irrelevant to a
+ * buyer running an eight-figure company. These produce a seven-figure one,
+ * which is the claim the site makes.
+ */
 export const DEFAULT_SESSION: AuditSession = {
-  monthlyLeads: 200,
+  monthlyLeads: 600,
   fastResponsePct: 25,
   closeRate: 20,
-  customerValue: 2500,
+  customerValue: 25_000,
   slowResponsePenalty: MODEL.slowResponsePenalty,
   recoverabilityRate: MODEL.recoverabilityRate,
 };

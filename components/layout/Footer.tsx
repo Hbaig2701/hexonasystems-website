@@ -30,12 +30,6 @@ const PROOF_LINKS = [
   ...(INSIGHTS_LIVE ? [{ label: 'Insights', href: '/insights' }] : []),
 ];
 
-const BUILDER_LINKS = [
-  { label: 'Automation Institute', href: '/incubator' },
-  { label: 'Licensing', href: '/incubator#licensing' },
-  { label: 'Community', href: '/incubator#community' },
-];
-
 /**
  * ⚠️ [ASSET NEEDED] Social profile URLs. Left empty deliberately — a footer
  * icon linking to "#" is worse than no icon.
@@ -86,11 +80,11 @@ export function Footer({ showCta = true }: { showCta?: boolean }) {
 
       <div className="glow-footer border-t border-hairline bg-surface">
         <div className="page-shell py-16">
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-col gap-5">
               <Logo />
               <p className="text-small max-w-[30ch] text-secondary">
-                The operating system that seals the gaps where revenue escapes.
+                Bespoke AI implementation for operations already past $10M.
               </p>
               <address className="type-micro flex flex-col gap-1.5 not-italic text-quaternary">
                 <span>{COMPANY.address}</span>
@@ -107,7 +101,6 @@ export function Footer({ showCta = true }: { showCta?: boolean }) {
 
             <FooterColumn title="System" links={SYSTEM_LINKS} />
             <FooterColumn title="Proof" links={PROOF_LINKS} />
-            <FooterColumn title="Builders" links={BUILDER_LINKS} />
           </div>
         </div>
 

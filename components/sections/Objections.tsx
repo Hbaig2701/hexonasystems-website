@@ -26,7 +26,7 @@ export const OBJECTIONS = [
   {
     question: 'What does it cost?',
     answer:
-      'Implementation is scoped per engagement, with ongoing platform access on a monthly licence. We won’t publish a number that would be wrong for most of the businesses reading it. The audit will tell you what the problem is worth solving before you ever discuss what solving it costs.',
+      'This is a bespoke implementation, scoped and priced per engagement. There is no tier list and no self-serve plan, because there is no version of this that you configure yourself. We won’t publish a number that would be wrong for most of the businesses reading it, and the model on this page will tell you what the problem is worth solving before you ever discuss what solving it costs.',
   },
   {
     question: 'What if AI just replaces our team?',
@@ -39,9 +39,9 @@ export const OBJECTIONS = [
       'Because we show the arithmetic. Every assumption in the model is visible and adjustable. If you think a figure is wrong, change it, and the output changes with it. It’s a model, not a magic trick.',
   },
   {
-    question: 'We’re not big enough for this.',
+    question: 'Are we big enough for this?',
     answer:
-      'Most of our work is with companies between $1M and $50M in revenue. Below $1M the leakage usually isn’t large enough to justify the build, and we’ll tell you that on the call rather than sell you something you don’t need yet.',
+      'We work with operations already past $10M. Below that the upside rarely justifies an implementation at this level, and we will tell you so on the call rather than sell you something you don’t need yet. That is not a sales tactic. A build priced for an eight-figure operation does not pay back on a seven-figure one.',
   },
 ];
 
