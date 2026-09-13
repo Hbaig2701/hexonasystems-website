@@ -37,11 +37,26 @@
   --on-void-2:    #A8ABA6;   /*  8.39:1 */
   --on-void-3:    #7E827E;   /*  5.00:1 */
 
-  /* --- ACCENT — deep institutional green -------------------------------- */
-  --accent:         #0F3D2E; /* 11.16:1 on paper. ONLY 1.60:1 on void, so it is
-                                never used on a dark surface. See §3.5: the
-                                primary button inverts instead. */
-  --accent-on-void: #4E8F72; /*  5.10:1 on void — dark surfaces only */
+  /* --- ACCENT — Hexona blue ---------------------------------------------
+     §3.2 proposed a deep institutional green. Replaced with the brand cyan,
+     which the mark and every other Hexona property already use. It keeps the
+     spec's two-form structure exactly, because the brand cyan has the same
+     problem the green did, only mirrored: #22D3EE is superb on void (10.79:1)
+     and unusable on paper (1.66:1).
+
+     So: the true brand cyan carries the dark sections, where it reads as a
+     precise instrument mark against near-black. Paper gets it darkened into a
+     deep teal of the same hue family, which stays institutional on a warm
+     bone ground where full-strength cyan would read consumer-tech.
+
+     §3.2's discipline is unchanged and matters more here than it did with the
+     green: cyan draws far more attention, so keep it under 4% of any viewport.
+     ---------------------------------------------------------------------- */
+  --accent:         #0B5566; /*  7.69:1 on paper, 7.04:1 on paper-sunk.
+                                 ONLY 1.13:1 on void, so it is never used on a
+                                 dark surface. §3.5: the button inverts. */
+  --accent-on-void: #22D3EE; /* 10.79:1 on void, 9.98:1 on void-raised.
+                                 The brand cyan, unmodified. */
 
   /* --- SIGNAL — figures only, never chrome, always label-paired ---------- */
   --loss:         #A32A1C;   /*  6.63:1 on paper */
