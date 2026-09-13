@@ -25,7 +25,7 @@ export function DiagnosticOffer() {
             <h2 className="t-display-2 mb-8">
               The Leakage Diagnostic
               <br />
-              {DIAGNOSTIC.priceFormatted}
+              <span className="text-brand">{DIAGNOSTIC.priceFormatted}</span>
             </h2>
 
             <p className="t-body mb-10 text-fg-2">

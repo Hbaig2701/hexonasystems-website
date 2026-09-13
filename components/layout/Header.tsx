@@ -109,11 +109,17 @@ export function Header() {
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
                   className={cn(
-                    't-label transition-colors duration-[160ms]',
+                    't-label relative py-1 transition-colors duration-[160ms]',
                     active ? 'text-fg' : 'text-fg-2 hover:text-fg',
                   )}
                 >
                   {item.label}
+                  {active && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute -bottom-0.5 left-0 h-px w-full bg-brand"
+                    />
+                  )}
                 </Link>
               );
             })}

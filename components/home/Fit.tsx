@@ -1,5 +1,6 @@
 import { Surface } from '@/components/ui/Surface';
 import { SectionMarker } from '@/components/layout/SectionMarker';
+import { cn } from '@/lib/cn';
 
 /**
  * SECTION 6 — FIT. §4. PAPER.
@@ -23,10 +24,27 @@ const NOT_FIT = [
   'What’s wanted is a tool recommendation, which any consultant gives away free',
 ];
 
-function Column({ heading, items }: { heading: string; items: string[] }) {
+function Column({
+  heading,
+  items,
+  tone,
+}: {
+  heading: string;
+  items: string[];
+  tone: 'fit' | 'not';
+}) {
   return (
     <div>
-      <h3 className="t-label mb-8 border-b border-line pb-4 text-fg-3">{heading}</h3>
+      {/* Fit and Not a fit are a signal pair, so they take the signal colours.
+          Both are label-paired by definition: the heading IS the label. */}
+      <h3
+        className={cn(
+          't-label mb-8 border-b pb-4',
+          tone === 'fit' ? 'border-brand/40 text-brand' : 'border-loss/40 text-loss',
+        )}
+      >
+        {heading}
+      </h3>
       <ul className="flex flex-col">
         {items.map((item) => (
           <li key={item} className="t-body border-b border-line py-4 text-fg-2 last:border-b-0">
@@ -49,8 +67,8 @@ export function Fit() {
         </h2>
 
         <div className="grid gap-x-16 gap-y-14 md:grid-cols-2">
-          <Column heading="Fit" items={FIT} />
-          <Column heading="Not a fit" items={NOT_FIT} />
+          <Column heading="Fit" items={FIT} tone="fit" />
+          <Column heading="Not a fit" items={NOT_FIT} tone="not" />
         </div>
       </div>
     </Surface>

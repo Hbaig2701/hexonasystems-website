@@ -70,7 +70,11 @@ export function TextLink({
   const inner = (
     <>
       {children}
-      <span aria-hidden="true" className="ml-1.5">
+      {/* The arrow carries the accent, the words stay in body colour. Colouring
+          the whole link would make every inline CTA compete with the primary
+          button; colouring only the glyph marks it as a way out of the section
+          without raising its voice. */}
+      <span aria-hidden="true" className="ml-1.5 text-brand">
         →
       </span>
     </>

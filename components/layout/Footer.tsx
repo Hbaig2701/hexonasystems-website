@@ -30,7 +30,7 @@ export function Footer() {
       <div className="shell py-16">
         <div className="grid gap-12 md:grid-cols-3">
           <div className="flex flex-col gap-5">
-            <Wordmark className="text-fg" />
+            <Wordmark className="text-brand" />
             <p className="t-small max-w-[34ch] text-fg-2">{FIRM.positioning}</p>
             <address className="t-small flex flex-col gap-1 not-italic text-fg-3">
               <span>{FIRM.address}</span>

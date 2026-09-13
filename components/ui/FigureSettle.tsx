@@ -142,7 +142,7 @@ export function FigureSettle({
       {rule && (
         <span
           aria-hidden="true"
-          className="absolute -bottom-4 left-0 block h-px w-full origin-left bg-mark"
+          className="absolute -bottom-4 left-0 block h-px w-full origin-left bg-brand"
           style={{
             transform: `scaleX(${landed ? 1 : 0})`,
             transition: 'transform 400ms var(--ease)',

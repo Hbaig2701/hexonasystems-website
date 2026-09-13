@@ -20,8 +20,13 @@ export function Hero() {
         <div className="col-12">
           <div className="[grid-column:1/9]">
             <p className="t-label mb-14 text-fg-3">
-              Hexona Systems <span className="px-1.5 text-mark">·</span> Operational diligence
-              &amp; revenue recovery <span className="px-1.5 text-mark">·</span> Toronto
+              {/* The firm's name takes the accent; the descriptors stay quiet.
+                  The separators too, so the line reads as one instrument
+                  marking rather than three coloured words. */}
+              <span className="text-brand">Hexona Systems</span>
+              <span className="px-1.5 text-brand opacity-50">·</span> Operational diligence
+              &amp; revenue recovery
+              <span className="px-1.5 text-brand opacity-50">·</span> Toronto
             </p>
 
             <h1 className="t-display-1 mb-12">
@@ -49,9 +54,10 @@ export function Hero() {
       </div>
 
       <div className="shell">
-        <p className="t-label border-t border-line py-6 text-fg-3">
-          Ten business days <span className="px-1.5 text-mark">·</span> Fixed scope
-          <span className="px-1.5 text-mark">·</span> Fee credited against implementation
+        <p className="t-label border-t border-brand/30 py-6 text-fg-3">
+          Ten business days <span className="px-1.5 text-brand opacity-50">·</span> Fixed scope
+          <span className="px-1.5 text-brand opacity-50">·</span> Fee credited against
+          implementation
         </p>
       </div>
     </Surface>

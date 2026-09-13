@@ -182,7 +182,7 @@
   }
 
   ::selection { background: var(--accent); color: var(--paper); }
-  [data-surface='void'] ::selection { background: var(--on-void); color: var(--void); }
+  [data-surface='void'] ::selection { background: var(--accent-on-void); color: var(--void); }
 
   :focus-visible {
     outline: 2px solid currentColor;
@@ -319,10 +319,13 @@
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
-    text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
+    /* The rule under a link is the accent, not a tint of the text. It reads as
+       the same system as the section markers, and it means a page of links has
+       colour running through it without any of the words changing colour. */
+    text-decoration-color: color-mix(in srgb, var(--brand) 70%, transparent);
     transition: text-decoration-color 160ms var(--ease);
   }
-  .link:hover { text-decoration-color: currentColor; }
+  .link:hover { text-decoration-color: var(--brand); }
 }
 
 /* ============================================================================
@@ -354,7 +357,9 @@
     text-transform: uppercase;
     color: var(--fg-3);
     padding: 0 0 14px;
-    border-bottom: 1px solid var(--line);
+    /* The head rule is the accent at low alpha. On a page built almost
+       entirely from tables this is what stops the grid reading as newsprint. */
+    border-bottom: 1px solid color-mix(in srgb, var(--brand) 45%, var(--line));
     white-space: nowrap;
   }
 
@@ -386,7 +391,7 @@
     .record thead { display: none; }
 
     .record tr {
-      border-bottom: 2px solid var(--line-strong);
+      border-bottom: 2px solid color-mix(in srgb, var(--brand) 45%, var(--line));
       padding-block: 4px;
     }
     .record tr:last-child { border-bottom: 0; }
