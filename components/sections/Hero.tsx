@@ -36,7 +36,16 @@ export function Hero() {
             <span className="text-small text-secondary">{NEWS_BADGE.text}</span>
           </Link>
 
-          <h1 className="type-display-1 mb-9">
+          {/* Sized down from --text-display-1. That token tops out at 6.5rem,
+              which suited the old four-word headline; this one is two full
+              sentences and at that size it dominated the viewport and pushed
+              the sub-copy and CTAs below the fold. Hero-specific rather than a
+              change to the token, because the shorter page headings that also
+              use display-1 still read well large. */}
+          <h1
+            className="type-display-1 mb-9"
+            style={{ fontSize: 'clamp(2.4rem, 5.2vw, 4.25rem)' }}
+          >
             <span
               className="hero-mask block overflow-hidden pb-[0.08em]"
               style={{ ['--delay' as string]: '280ms' }}
