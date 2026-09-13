@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Newsreader } from 'next/font/google';
 import './globals.css';
 import { Header, HEADER_H } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { Entrances } from '@/components/layout/Entrances';
 import { SITE } from '@/lib/site';
 import { FIRM } from '@/content/firm';
 
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <Footer />
+        <Entrances />
       </body>
     </html>
   );

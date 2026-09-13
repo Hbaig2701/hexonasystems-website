@@ -31,9 +31,9 @@ export function Hero() {
 
             <h1 className="t-display-1 mb-12">
               The most expensive revenue
-              <br />
+              <br className="hidden sm:inline" />
               is the revenue you already
-              <br />
+              <br className="hidden sm:inline" />
               bought and never collected.
             </h1>
 

@@ -15,7 +15,7 @@ export function Close() {
           <div className="[grid-column:1/9]">
             <h2 className="t-display-1 mb-16">
               Either you have the number,
-              <br />
+              <br className="hidden sm:inline" />
               or you&apos;re guessing.
             </h2>
 
