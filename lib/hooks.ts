@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { REDUCED_MOTION_QUERY } from './motion';
 
 /**
  * Browser-state hooks.
@@ -105,8 +104,8 @@ function subscribeToQuery(query: string) {
   };
 }
 
-const subscribeToReducedMotion = subscribeToQuery(REDUCED_MOTION_QUERY);
-const getReducedMotion = () => window.matchMedia(REDUCED_MOTION_QUERY).matches;
+const subscribeToReducedMotion = subscribeToQuery('(prefers-reduced-motion: reduce)');
+const getReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /** Live reduced-motion preference. Re-renders if the user changes it mid-session. */
 export function useReducedMotion(): boolean {

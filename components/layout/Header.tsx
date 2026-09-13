@@ -3,46 +3,79 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Logo } from './Logo';
+import { Wordmark } from './Wordmark';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/cn';
-import { useScrollDepth, useScrolledPast } from '@/lib/hooks';
+import type { SurfaceName } from '@/components/ui/Surface';
 
 /**
- * Header — spec §3.2.
+ * Header — §3.1, §2.
  *
- * Desktop: fixed, 72px, backdrop-blur(24px) over rgba(8,9,11,0.72), with a 1px
- * bottom hairline that fades in only after 40px of scroll.
+ * Four links, one button. The button is the only coloured element in the
+ * header, and it inverts by surface (§3.5).
  *
- * `Book a review` is rendered at 85% opacity / scale 0.96 below 40% scroll
- * depth and animates to full presence past it — the primary CTA gets louder as
- * intent grows.
+ * SURFACE SWITCHING: the header adopts the surface of the section beneath it,
+ * switching at the boundary. Text and border colour cross-fade over 160ms; the
+ * background switch is instant, because a fading background would read as the
+ * gradient blend §3.1 explicitly forbids between sections.
  *
- * Mobile: full-screen panel that wipes up in 420ms over the background grid
- * field — NOT the lattice. The lattice is reserved for the three placements in
- * §5.5. Nav items stagger in at 50ms. Both CTAs pinned to the bottom of the
- * panel where thumbs are.
+ * The section under the header is found by hit-testing the header's own bottom
+ * edge against every [data-surface] block, rather than by observing
+ * intersections. Intersection ratios answer "how much of this is visible",
+ * which is the wrong question: the question is "what is directly behind this
+ * 64px strip", and only a point test answers that correctly when a short
+ * section passes beneath.
  */
 
 const NAV = [
-  { label: 'System', href: '/system' },
-  { label: 'Work', href: '/work' },
-  { label: 'About', href: '/about' },
+  { label: 'Diagnostic', href: '/diagnostic' },
+  { label: 'Evidence', href: '/evidence' },
+  { label: 'Method', href: '/method' },
+  { label: 'Firm', href: '/firm' },
 ];
 
+export const HEADER_H = 64;
+
 export function Header() {
-  const scrolled = useScrolledPast(40);
-  const depth = useScrollDepth();
+  const [surface, setSurface] = useState<SurfaceName>('void');
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const promoted = depth > 0.4;
-
-  // Close the mobile panel on navigation.
   // eslint-disable-next-line react-hooks/set-state-in-effect -- resetting UI state on route change
   useEffect(() => setOpen(false), [pathname]);
 
-  // Lock scroll while the panel is open.
+  useEffect(() => {
+    let frame = 0;
+
+    const read = () => {
+      frame = 0;
+      const line = HEADER_H - 1;
+      let found: SurfaceName | null = null;
+
+      for (const el of document.querySelectorAll<HTMLElement>('[data-surface]')) {
+        if (el.closest('header') || el.id === 'menu') continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) {
+          found = (el.dataset.surface as SurfaceName) ?? null;
+        }
+      }
+      if (found) setSurface(found);
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(read);
+    };
+
+    read();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -58,23 +91,16 @@ export function Header() {
   return (
     <>
       <header
-        className={cn(
-          'fixed inset-x-0 top-0 z-50 h-[72px]',
-          'border-b transition-colors duration-[400ms]',
-          scrolled ? 'border-hairline' : 'border-transparent',
-        )}
-        style={{
-          backgroundColor: 'var(--header-scrim)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-        }}
+        data-surface={surface}
+        style={{ height: HEADER_H }}
+        className="fixed inset-x-0 top-0 z-50 border-b border-line transition-[color,border-color] duration-[160ms]"
       >
-        <div className="page-shell flex h-full items-center justify-between gap-8">
-          <Link href="/" aria-label="Hexona Systems, home" className="shrink-0">
-            <Logo />
+        <div className="shell flex h-full items-center justify-between gap-8">
+          <Link href="/" aria-label="Hexona Systems, home">
+            <Wordmark />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
             {NAV.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + '/');
               return (
@@ -83,38 +109,19 @@ export function Header() {
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
                   className={cn(
-                    'group relative py-2 font-mono text-[12px] uppercase tracking-[0.08em]',
-                    'transition-colors duration-[240ms]',
-                    active ? 'text-primary' : 'text-secondary hover:text-primary',
+                    't-label transition-colors duration-[160ms]',
+                    active ? 'text-fg' : 'text-fg-2 hover:text-fg',
                   )}
                 >
                   {item.label}
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      'absolute -bottom-0.5 left-0 h-px w-full origin-left bg-accent',
-                      'transition-transform duration-[240ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
-                      active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
-                    )}
-                  />
                 </Link>
               );
             })}
           </nav>
 
-          <div className="hidden shrink-0 items-center gap-3 lg:flex">
-            <Button href="/audit" variant="secondary" className="px-5 py-3 text-[13px]">
-              Model your upside
-            </Button>
-            <Button
-              href="/book"
-              variant="primary"
-              className={cn(
-                'px-5 py-3 text-[13px] transition-[opacity,transform] duration-[400ms]',
-                promoted ? 'scale-100 opacity-100' : 'scale-[0.96] opacity-85',
-              )}
-            >
-              Book a review
+          <div className="hidden md:block">
+            <Button href="/diagnostic" className="px-5 py-2.5 text-[13px]">
+              Commission a diagnostic
             </Button>
           </div>
 
@@ -122,66 +129,37 @@ export function Header() {
             type="button"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
-            aria-controls="mobile-menu"
+            aria-controls="menu"
             onClick={() => setOpen((v) => !v)}
-            className="-mr-2 flex h-11 w-11 items-center justify-center lg:hidden"
+            className="t-label -mr-2 px-2 py-2 md:hidden"
           >
-            <span className="relative block h-3.5 w-6">
-              <span
-                className={cn(
-                  'absolute left-0 block h-px w-full bg-primary transition-all duration-[240ms] ease-[cubic-bezier(0.4,0,0.2,1)]',
-                  open ? 'top-1.5 rotate-45' : 'top-0',
-                )}
-              />
-              <span
-                className={cn(
-                  'absolute left-0 block h-px w-full bg-primary transition-all duration-[240ms] ease-[cubic-bezier(0.4,0,0.2,1)]',
-                  open ? 'top-1.5 -rotate-45' : 'top-3',
-                )}
-              />
-            </span>
+            {open ? 'Close' : 'Menu'}
           </button>
         </div>
       </header>
 
-      {/* Mobile panel — wipes up over the grid field, 420ms. */}
       <div
-        id="mobile-menu"
+        id="menu"
+        data-surface="void"
         hidden={!open}
-        className={cn(
-          'fixed inset-0 z-40 lg:hidden',
-          'transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
-          open ? 'translate-y-0' : 'translate-y-full',
-        )}
-        style={{ backgroundColor: 'var(--base)' }}
+        className="fixed inset-0 z-40 md:hidden"
+        style={{ paddingTop: HEADER_H }}
       >
-        <div className="grid-field" aria-hidden="true" />
-        <div className="page-shell relative z-10 flex h-full flex-col justify-between pb-10 pt-[104px]">
+        <div className="shell flex h-full flex-col justify-between py-10">
           <nav aria-label="Primary" className="flex flex-col">
-            {NAV.map((item, i) => (
+            {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="border-b border-hairline py-5 text-[28px] font-medium tracking-[-0.02em] text-primary transition-[opacity,transform] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-                style={{
-                  transitionDelay: open ? `${120 + i * 50}ms` : '0ms',
-                  opacity: open ? 1 : 0,
-                  transform: open ? 'translateY(0)' : 'translateY(12px)',
-                }}
+                className="t-display-2 border-b border-line py-5 text-fg"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-
-          <div className="flex flex-col gap-3">
-            <Button href="/audit" variant="secondary" className="w-full">
-              Model your upside
-            </Button>
-            <Button href="/book" variant="primary" className="w-full" arrow>
-              Book a systems review
-            </Button>
-          </div>
+          <Button href="/diagnostic" className="w-full">
+            Commission a diagnostic
+          </Button>
         </div>
       </div>
     </>

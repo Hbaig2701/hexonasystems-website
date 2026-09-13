@@ -1,144 +1,87 @@
 import Link from 'next/link';
-import { Logo } from './Logo';
-import { Button } from '@/components/ui/Button';
-import { COMPANY } from '@/content/claims';
+import { Wordmark } from './Wordmark';
+import { FIRM } from '@/content/firm';
 
 /**
- * Footer — spec §3.2.
- * Four columns on desktop, stacked on mobile, sitting on --surface with a
- * hairline top border. Above that border, a 120px band containing the final
- * CTA (§7.1 S12) — suppressed on the homepage, where S12 already is that CTA.
+ * Footer — §3.5. Always VOID, whatever surface precedes it.
  *
- * PHASE 7 GATE: the "Insights" link is only added when /insights ships.
- * Nothing in Phases 1–6 may link a route that does not exist (§14, Phase 7).
+ * Three columns desktop, stacked mobile. §10 removes what normally accumulates
+ * down here: no newsletter field, no social icons, no "back to top", no chat
+ * widget. An email address is the contact mechanism.
  */
 
-const INSIGHTS_LIVE = false;
-
-const SYSTEM_LINKS = [
-  { label: 'The Engine', href: '/system' },
-  { label: 'Embedded AI', href: '/system#embedded-ai' },
-  { label: 'Integrated Stack', href: '/system#integrated-stack' },
-  { label: 'Bespoke Development', href: '/system#bespoke-development' },
-  { label: 'Consulting', href: '/system#consulting' },
-];
-
-const PROOF_LINKS = [
-  { label: 'Case Studies', href: '/work' },
-  { label: 'The Record', href: '/about#the-record' },
-  { label: 'Press', href: '/about#the-record' },
-  ...(INSIGHTS_LIVE ? [{ label: 'Insights', href: '/insights' }] : []),
+const SITE_LINKS = [
+  { label: 'Diagnostic', href: '/diagnostic' },
+  { label: 'Evidence', href: '/evidence' },
+  { label: 'Method', href: '/method' },
+  { label: 'Firm', href: '/firm' },
 ];
 
 /**
- * ⚠️ [ASSET NEEDED] Social profile URLs. Left empty deliberately — a footer
- * icon linking to "#" is worse than no icon.
+ * §3.5: if the Institute stays under this brand at all, ONE unstyled text line
+ * pointing off-domain. §1.2 moves it to a separate property because "largest
+ * community on Skool" reads creator, not firm. Set the URL to surface it.
  */
-const SOCIAL: { label: string; href: string }[] = [];
+const INSTITUTE_URL = '';
 
-function FooterColumn({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; href: string }[];
-}) {
+export function Footer() {
   return (
-    <div>
-      <h3 className="type-label mb-5 text-quaternary">{title}</h3>
-      <ul className="flex flex-col gap-3">
-        {links.map((link) => (
-          <li key={link.label}>
-            <Link
-              href={link.href}
-              className="text-small text-secondary transition-colors duration-[240ms] hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export function Footer({ showCta = true }: { showCta?: boolean }) {
-  return (
-    <footer className="relative z-10">
-      {showCta && (
-        <div className="page-shell pb-20">
-          <div className="glow-block rounded-md border border-hairline bg-surface px-7 py-16 text-center md:px-14">
-            <p className="type-display-3 mx-auto mb-8 max-w-[22ch] text-primary">
-              Take Your First Step to Liberation
-            </p>
-            <Button href="/book" variant="primary" size="large" arrow>
-              Book a systems review
-            </Button>
-          </div>
-        </div>
-      )}
-
-      <div className="glow-footer border-t border-hairline bg-surface">
-        <div className="page-shell py-16">
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-            <div className="flex flex-col gap-5">
-              <Logo />
-              <p className="text-small max-w-[30ch] text-secondary">
-                Bespoke AI implementation for operations already past $10M.
-              </p>
-              <address className="type-micro flex flex-col gap-1.5 not-italic text-quaternary">
-                <span>{COMPANY.address}</span>
-                {COMPANY.phone && (
-                  <a href={`tel:${COMPANY.phone.replace(/\s/g, '')}`} className="hover:text-primary">
-                    {COMPANY.phone}
-                  </a>
-                )}
-                <a href={`mailto:${COMPANY.email}`} className="hover:text-primary">
-                  {COMPANY.email}
+    <footer data-surface="void" className="border-t border-line">
+      <div className="shell py-16">
+        <div className="grid gap-12 md:grid-cols-3">
+          <div className="flex flex-col gap-5">
+            <Wordmark className="text-fg" />
+            <p className="t-small max-w-[34ch] text-fg-2">{FIRM.positioning}</p>
+            <address className="t-small flex flex-col gap-1 not-italic text-fg-3">
+              <span>{FIRM.address}</span>
+              {FIRM.phone && (
+                <a href={`tel:${FIRM.phone.replace(/\s/g, '')}`} className="link">
+                  {FIRM.phone}
                 </a>
-              </address>
-            </div>
-
-            <FooterColumn title="System" links={SYSTEM_LINKS} />
-            <FooterColumn title="Proof" links={PROOF_LINKS} />
+              )}
+              <a href={`mailto:${FIRM.email}`} className="link">
+                {FIRM.email}
+              </a>
+            </address>
           </div>
-        </div>
 
-        <div className="border-t border-hairline">
-          <div className="page-shell flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="type-micro text-quaternary">
-              © {COMPANY.name} 2026
-              <span aria-hidden="true" className="px-2 text-decorative">
-                ·
-              </span>
-              <Link href="/privacy" className="hover:text-primary">
-                Privacy
-              </Link>
-              <span aria-hidden="true" className="px-2 text-decorative">
-                ·
-              </span>
-              <Link href="/terms" className="hover:text-primary">
-                Terms
-              </Link>
-            </p>
+          <nav aria-label="Footer">
+            <ul className="flex flex-col gap-3">
+              {SITE_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="t-small text-fg-2 hover:text-fg">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-            {SOCIAL.length > 0 && (
-              <ul className="flex items-center gap-5">
-                {SOCIAL.map((s) => (
-                  <li key={s.label}>
-                    <a
-                      href={s.href}
-                      className="type-micro text-quaternary hover:text-primary"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          <div className="flex flex-col gap-3">
+            <Link href="/terms" className="t-small text-fg-2 hover:text-fg">
+              Terms
+            </Link>
+            <Link href="/privacy" className="t-small text-fg-2 hover:text-fg">
+              Privacy
+            </Link>
+            {INSTITUTE_URL && (
+              <a
+                href={INSTITUTE_URL}
+                className="t-small mt-4 text-fg-3 hover:text-fg-2"
+                rel="noopener noreferrer"
+              >
+                Automation Institute →
+              </a>
             )}
           </div>
+        </div>
+      </div>
+
+      <div className="border-t border-line">
+        <div className="shell py-5">
+          <p className="t-label text-fg-3">
+            © Hexona Systems {new Date().getFullYear()}
+          </p>
         </div>
       </div>
     </footer>

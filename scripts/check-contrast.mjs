@@ -42,42 +42,36 @@ function ratio(a, b) {
 
 const T = tokens();
 
-/** [foreground, background, minimum, label] — `min` is 3.0 for large display type. */
+/** [foreground, background, minimum, label] */
 const PAIRS = [
-  // --- Dark surfaces ------------------------------------------------------
-  ['text-primary', 'base', 4.5, 'body / headings'],
-  ['text-secondary', 'base', 4.5, 'lead + body copy'],
-  ['text-tertiary', 'base', 4.5, 'labels'],
-  ['text-quaternary', 'base', 4.5, 'annotations — the AA floor'],
-  ['text-primary', 'surface', 4.5, 'card headings'],
-  ['text-secondary', 'surface', 4.5, 'card body'],
-  ['text-tertiary', 'surface', 4.5, 'card labels'],
-  ['text-quaternary', 'surface', 4.5, 'card annotations'],
-  ['text-secondary', 'surface-raised', 4.5, 'raised panel body'],
-  ['text-tertiary', 'surface-raised', 4.5, 'panel header labels'],
-  ['accent', 'base', 4.5, 'accent text on page'],
-  ['accent', 'surface', 4.5, 'accent text on cards'],
-  ['accent', 'surface-raised', 4.5, 'accent on raised panels'],
-  ['accent-bright', 'base', 4.5, 'accent hover'],
-  ['signal-leak', 'base', 4.5, 'leak figures'],
-  ['signal-leak', 'surface', 4.5, 'leak figures on cards'],
-  ['signal-sealed', 'base', 4.5, 'sealed figures'],
-  ['signal-sealed', 'surface', 4.5, 'sealed figures on cards'],
-  ['base', 'accent', 4.5, 'PRIMARY BUTTON label on accent fill'],
+  // --- PAPER --------------------------------------------------------------
+  ['ink', 'paper', 4.5, 'body and headings'],
+  ['ink-2', 'paper', 4.5, 'secondary copy'],
+  ['ink-3', 'paper', 4.5, 'smallest permitted text'],
+  ['ink', 'paper-sunk', 4.5, 'figure block figure'],
+  ['ink-2', 'paper-sunk', 4.5, 'sunk panel copy'],
+  ['ink-3', 'paper-sunk', 4.5, 'figure block annotation'],
+  ['ink', 'paper-raised', 4.5, 'text on raised white'],
+  ['accent', 'paper', 4.5, 'accent text and rules'],
+  ['paper', 'accent', 4.5, 'PRIMARY BUTTON label on paper surface'],
+  ['loss', 'paper', 4.5, 'loss figure'],
+  ['loss', 'paper-sunk', 4.5, 'loss figure on sunk panel'],
 
-  // --- Light editorial surface -------------------------------------------
-  ['light-primary', 'light-base', 4.5, 'light headings'],
-  ['light-secondary', 'light-base', 4.5, 'light body'],
-  ['light-tertiary', 'light-base', 4.5, 'light labels'],
-  ['light-accent', 'light-base', 4.5, 'accent text on light ground'],
-  ['light-primary', 'light-surface', 4.5, 'light card headings'],
-  ['light-secondary', 'light-surface', 4.5, 'light card body'],
-  ['light-tertiary', 'light-surface', 4.5, 'light card labels'],
-  ['light-accent', 'light-surface', 4.5, 'accent on light cards'],
+  // --- VOID ---------------------------------------------------------------
+  ['on-void', 'void', 4.5, 'body and headings'],
+  ['on-void-2', 'void', 4.5, 'secondary copy'],
+  ['on-void-3', 'void', 4.5, 'tertiary, table headers'],
+  ['on-void-2', 'void-raised', 4.5, 'zebra row copy'],
+  ['on-void-3', 'void-raised', 4.5, 'table header on zebra'],
+  ['accent-on-void', 'void', 4.5, 'accent text on dark'],
+  ['ink', 'paper', 4.5, 'PRIMARY BUTTON on void: paper fill, ink text'],
+  ['void', 'accent-on-void', 4.5, 'primary button hover on void'],
+  ['loss-on-void', 'void', 4.5, 'loss figure on dark'],
+  ['loss-on-void', 'void-raised', 4.5, 'loss figure on zebra'],
 ];
 
 /** Non-text tokens. Documented, never asserted — they must never carry text. */
-const NON_TEXT = ['text-decorative', 'hairline', 'hairline-bright', 'grid-line'];
+const NON_TEXT = ['ink-mark', 'rule', 'rule-strong', 'void-rule'];
 
 let failures = 0;
 const rows = [];
@@ -104,11 +98,12 @@ for (const row of rows) {
 console.log(`\nNon-text tokens (never render characters, so never asserted):`);
 for (const name of NON_TEXT) {
   if (!T[name]) continue;
-  console.log(`  ${name.padEnd(width)}  ${ratio(T[name], T.base).toFixed(2).padStart(6)}:1 on base`);
+  const ground = name.startsWith('void') ? T.void : T.paper;
+  console.log(`  ${name.padEnd(width)}  ${ratio(T[name], ground).toFixed(2).padStart(6)}:1`);
 }
 
 if (failures > 0) {
-  console.error(`\n✗ ${failures} pair(s) below the AA floor. §10.4: do not darken text tokens.`);
+  console.error(`\n✗ ${failures} pair(s) below the AA floor. §3.2: do not darken any text token.`);
   process.exit(1);
 }
 console.log(`\n✓ All ${rows.length} text pairs meet WCAG 2.2 AA on both surfaces.`);
