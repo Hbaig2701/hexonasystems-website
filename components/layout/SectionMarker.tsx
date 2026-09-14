@@ -1,4 +1,5 @@
 import { cn } from '@/lib/cn';
+import { Hex } from '@/components/ui/Hex';
 
 /**
  * SectionMarker — §3.3.
@@ -25,11 +26,11 @@ export function SectionMarker({
 }) {
   return (
     <div className={cn('flex items-center gap-4', className)}>
-      <p className="t-label shrink-0 whitespace-nowrap">
+      {/* Flex rather than inline: an inline-block SVG sits on the text baseline,
+          which drops the hexagon below the centre of a 12px uppercase label. */}
+      <p className="t-label flex shrink-0 items-center whitespace-nowrap">
         <span className="text-brand">{index}</span>
-        <span aria-hidden="true" className="px-2 text-brand opacity-45">
-          ──
-        </span>
+        <Hex size={9} className="mx-2.5 text-brand opacity-70" />
         <span className="text-fg-2">{label}</span>
       </p>
       <span aria-hidden="true" className="h-px min-w-8 flex-1 bg-brand opacity-25" />

@@ -21,6 +21,7 @@ export function Surface({
   as = 'section',
   rule = true,
   padded = true,
+  texture = false,
   children,
   className,
   id,
@@ -30,6 +31,8 @@ export function Surface({
   /** 1px rule at the top boundary. The only thing marking the transition. */
   rule?: boolean;
   padded?: boolean;
+  /** The faint hex field. VOID only, and used on the page's bookends. */
+  texture?: boolean;
   children: ReactNode;
   className?: string;
   id?: string;
@@ -39,7 +42,12 @@ export function Surface({
     {
       id,
       'data-surface': surface,
-      className: cn(rule && 'border-t border-line', padded && 'section-pad', className),
+      className: cn(
+        rule && 'border-t border-line',
+        padded && 'section-pad',
+        texture && surface === 'void' && 'hex-field',
+        className,
+      ),
     },
     children,
   );

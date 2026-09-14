@@ -259,6 +259,41 @@
 }
 
 /* ============================================================================
+   HEX FIELD
+
+   A sparse, static field of hexagon outlines in the brand cyan, at an opacity
+   low enough that it registers as texture rather than as pattern. Think the
+   engraving on a share certificate or bond paper, not wallpaper.
+
+   Deliberately NOT v1's lattice. §3.4 forbids canvas, WebGL, particles and
+   animated gradients, and this breaks none of them: it is one static SVG tile
+   set as a background-image, costs no JavaScript, and never moves. §3.2 forbids
+   gradients, and there are none here either.
+
+   Every hexagon sits wholly inside its tile, so the pattern repeats without a
+   seam at any viewport size. VOID surfaces only: the cyan needs a dark ground
+   to stay this faint and still be perceptible, and on paper it would either
+   vanish or turn muddy.
+   ========================================================================= */
+
+.hex-field {
+  position: relative;
+  isolation: isolate;
+}
+
+.hex-field::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%2322D3EE' stroke-width='1' stroke-opacity='0.13'%3E%3Cpath d='M56 28 L74 40 L74 64 L56 76 L38 64 L38 40 Z'/%3E%3Cpath d='M186 96 L198 104 L198 120 L186 128 L174 120 L174 104 Z'/%3E%3Cpath d='M104 158 L119 168 L119 188 L104 198 L89 188 L89 168 Z'/%3E%3Cpath d='M208 206 L217 212 L217 224 L208 230 L199 224 L199 212 Z'/%3E%3Cpath d='M30 140 L39 146 L39 158 L30 164 L21 158 L21 146 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  background-repeat: repeat;
+}
+
+/* ============================================================================
    BUTTONS — §3.5
 
    Two buttons, and the primary INVERTS BY SURFACE. --accent against --void is

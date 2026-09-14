@@ -1,4 +1,5 @@
 import { cn } from '@/lib/cn';
+import { Hex } from '@/components/ui/Hex';
 
 /**
  * Wordmark. Type, not a logo.
@@ -12,10 +13,11 @@ export function Wordmark({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        'font-[family-name:var(--font-figure)] text-[13px] font-medium uppercase tracking-[0.2em]',
+        'inline-flex items-center gap-2 font-[family-name:var(--font-figure)] text-[13px] font-medium uppercase tracking-[0.2em]',
         className,
       )}
     >
+      <Hex size={11} className="text-brand" />
       Hexona
     </span>
   );

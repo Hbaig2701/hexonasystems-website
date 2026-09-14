@@ -15,7 +15,7 @@ import { DIAGNOSTIC } from '@/content/firm';
  */
 export function Hero() {
   return (
-    <Surface surface="void" rule={false} padded={false} as="header">
+    <Surface surface="void" rule={false} padded={false} texture as="header">
       <div className="shell flex min-h-[calc(100svh-64px)] flex-col justify-center py-24">
         <div className="col-12">
           <div className="[grid-column:1/9]">
