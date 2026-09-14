@@ -1,4 +1,5 @@
 import { Surface } from '@/components/ui/Surface';
+import { HexMark } from '@/components/ui/HexMark';
 import { Button, TextLink } from '@/components/ui/Button';
 import { DIAGNOSTIC } from '@/content/firm';
 
@@ -16,23 +17,10 @@ import { DIAGNOSTIC } from '@/content/firm';
 export function Hero() {
   return (
     <Surface surface="void" rule={false} padded={false} as="header" className="hex-stage">
-      {/* The mark. One hexagon, same orientation as the wordmark glyph, hung
-          off the right edge behind the copy. Single stroke: at 760px wide
-          anything more becomes an illustration, and this is a watermark.
-          The slow turn and breath live in .hex-mark, not here. */}
-      <svg
-        className="hex-mark"
-        viewBox="0 0 200 173.2"
-        fill="none"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path
-          d="M150 0 L200 86.6 L150 173.2 L50 173.2 L0 86.6 L50 0 Z"
-          stroke="currentColor"
-          strokeWidth="0.5"
-        />
-      </svg>
+      {/* The mark, large and behind the copy. Same file as the wordmark, so
+          there is exactly one definition of the logo in the codebase. The slow
+          turn and breath live in .hex-mark. */}
+      <HexMark className="hex-mark" />
 
       <div className="relative shell flex min-h-[calc(100svh-64px)] flex-col justify-center py-24">
         <div className="col-12">

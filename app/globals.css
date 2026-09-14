@@ -62,6 +62,14 @@
   --loss:         #A32A1C;   /*  6.63:1 on paper */
   --loss-on-void: #D96A56;   /*  5.71:1 on void */
 
+  /* --- Logo -------------------------------------------------------------
+     The two ring colours of the mark. NOT surface tokens, and deliberately
+     outside the paper/void remapping below: a logotype that changes colour
+     with its background is not an identity. Exempt from the contrast rules
+     for the same reason (WCAG 1.4.11 excludes logotypes). */
+  --logo-slate:   #3D4B58;
+  --logo-cyan:    #35C6D1;
+
   /* --- Layout (§3.6) ---------------------------------------------------- */
   --content-max:  1280px;
   --page-margin:  80px;
@@ -292,10 +300,10 @@
   right: -14rem;
   z-index: -1;
   width: min(62vw, 760px);
-  color: var(--brand);
-  /* Turn THIS down if it is still too loud. Everything else about the mark is
-     geometry; this is the only volume control. */
-  opacity: 0.2;
+  /* The mark carries its own two colours, so this is the only volume control.
+     0.3 is where the slate ring stops disappearing into the void ground: the
+     weave has to stay readable or the shape is just a hexagon again. */
+  opacity: 0.3;
   pointer-events: none;
 
   /* Individual transform properties, not a `transform` shorthand, so the three
@@ -304,12 +312,17 @@
      first, then turn and breathe about that centre. */
   translate: 0 -50%;
   animation:
-    hex-turn 120s linear infinite,
+    hex-turn 600s linear infinite,
     hex-breathe 19s ease-in-out infinite;
 }
 
+/* A full turn, not 60deg. The bare hexagon this replaced had six-fold symmetry
+   and could cheat the loop with a sixth of a rotation; the logo's two rings are
+   offset along one diagonal, so only 360deg returns it to itself. Ten minutes
+   a revolution works out at 0.6deg per second, which is under the rate at which
+   rotation reads as motion: you notice it has moved, never that it is moving. */
 @keyframes hex-turn {
-  to { rotate: 60deg; }
+  to { rotate: 360deg; }
 }
 
 @keyframes hex-breathe {
