@@ -4,9 +4,10 @@ import { cn } from '@/lib/cn';
  * HexMark — the Hexona logo.
  *
  * Two congruent hexagonal rings of equal weight, offset along the down-right
- * diagonal and interlocked like two links of a chain. The dark ring sits up and
- * left, the cyan ring down and right, and they weave: cyan passes over dark
- * along the upper right, dark passes back over cyan along the lower left.
+ * diagonal and interlocked like two links of a chain. The deep blue ring sits
+ * up and left, the bright cyan ring down and right, and they weave: cyan passes
+ * over blue along the upper right, blue passes back over cyan along the lower
+ * left. One hue, two values.
  *
  * GEOMETRY. Circumradius 70, centres 13 units either side of (100,93) on the
  * diagonal. Each ring is ONE hexagon path carrying a stroke, not a filled
@@ -89,9 +90,9 @@ export function HexMark({
   return (
     <svg {...common}>
       <g strokeWidth="33">
-        <path d={RING_BACK} stroke="var(--logo-slate)" />
+        <path d={RING_BACK} stroke="var(--logo-blue)" />
         <path d={RING_FRONT} stroke="var(--logo-cyan)" />
-        <path d={RING_BACK} stroke="var(--logo-slate)" {...WEAVE} />
+        <path d={RING_BACK} stroke="var(--logo-blue)" {...WEAVE} />
       </g>
     </svg>
   );

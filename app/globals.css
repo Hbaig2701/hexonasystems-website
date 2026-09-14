@@ -66,8 +66,14 @@
      The two ring colours of the mark. NOT surface tokens, and deliberately
      outside the paper/void remapping below: a logotype that changes colour
      with its background is not an identity. Exempt from the contrast rules
-     for the same reason (WCAG 1.4.11 excludes logotypes). */
-  --logo-slate:   #3D4B58;
+     for the same reason (WCAG 1.4.11 excludes logotypes).
+
+     The deep ring is the site's own accent, so the mark and the page are
+     literally the same blue rather than two blues that nearly agree. It has to
+     stay well clear of the bright ring in VALUE, not only in hue: take it much
+     lighter than this and the rings stop separating, the weave closes up, and
+     the mark reads as one flat shape at wordmark size. */
+  --logo-blue:    var(--accent);
   --logo-cyan:    #35C6D1;
 
   /* --- Layout (§3.6) ---------------------------------------------------- */
