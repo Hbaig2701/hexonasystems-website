@@ -33,7 +33,7 @@ const COLUMNS: Column[] = [
 
 export function Results() {
   return (
-    <Surface surface="void">
+    <Surface surface="void" texture>
       <div className="shell">
         <SectionMarker index="02" label="Engagement record" className="mb-14" />
 

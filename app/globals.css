@@ -279,6 +279,11 @@
 .hex-field {
   position: relative;
   isolation: isolate;
+  /* The mark is deliberately hung off the right edge, so the section has to
+     clip it or the page gains a horizontal scrollbar on narrow viewports.
+     `clip` rather than `hidden`: hidden would make this a scroll container
+     and break position:sticky for anything nested inside it later. */
+  overflow-x: clip;
 }
 
 .hex-field::before {
@@ -287,10 +292,34 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%2322D3EE' stroke-width='1' stroke-opacity='0.13'%3E%3Cpath d='M56 28 L74 40 L74 64 L56 76 L38 64 L38 40 Z'/%3E%3Cpath d='M186 96 L198 104 L198 120 L186 128 L174 120 L174 104 Z'/%3E%3Cpath d='M104 158 L119 168 L119 188 L104 198 L89 188 L89 168 Z'/%3E%3Cpath d='M208 206 L217 212 L217 224 L208 230 L199 224 L199 212 Z'/%3E%3Cpath d='M30 140 L39 146 L39 158 L30 164 L21 158 L21 146 Z'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 240px 240px;
+  /* Effective stroke alpha is this times the stroke-opacity in the tile.
+     The first attempt landed at 0.065, which is below the threshold of
+     perception on most displays. ~0.22 registers as texture without
+     becoming pattern. Turn THIS down first if it is too loud. */
+  opacity: 0.85;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%2322D3EE' stroke-width='1.25' stroke-opacity='0.26'%3E%3Cpath d='M62 24 L92 42 L92 78 L62 96 L32 78 L32 42 Z'/%3E%3Cpath d='M196 74 L216 86 L216 110 L196 122 L176 110 L176 86 Z'/%3E%3Cpath d='M112 150 L140 167 L140 201 L112 218 L84 201 L84 167 Z'/%3E%3Cpath d='M224 186 L239 195 L239 213 L224 222 L209 213 L209 195 Z'/%3E%3Cpath d='M28 148 L45 158 L45 178 L28 188 L11 178 L11 158 Z'/%3E%3Cpath d='M150 28 L163 36 L163 52 L150 60 L137 52 L137 36 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 260px 260px;
   background-repeat: repeat;
+}
+
+/* A single large hexagon, set as a corner mark. One per page, on the hero.
+   This is the piece that actually reads as "the company is called Hexona" at a
+   glance; the field is texture, this is a mark. Static, no JavaScript, and it
+   sits behind the content at z-index -1 so it never touches legibility. */
+.hex-mark {
+  position: absolute;
+  top: 50%;
+  right: -6rem;
+  z-index: -1;
+  width: min(46vw, 580px);
+  translate: 0 -50%;
+  color: var(--brand);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .hex-mark { right: -12rem; opacity: 0.09; }
 }
 
 /* ============================================================================

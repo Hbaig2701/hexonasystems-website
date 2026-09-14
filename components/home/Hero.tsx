@@ -16,7 +16,35 @@ import { DIAGNOSTIC } from '@/content/firm';
 export function Hero() {
   return (
     <Surface surface="void" rule={false} padded={false} texture as="header">
-      <div className="shell flex min-h-[calc(100svh-64px)] flex-col justify-center py-24">
+      {/* The mark. One per page, behind the copy, at 14% so it reads as
+          watermark rather than illustration. */}
+      <svg
+        className="hex-mark"
+        viewBox="0 0 200 173.2"
+        fill="none"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M150 0 L200 86.6 L150 173.2 L50 173.2 L0 86.6 L50 0 Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M137.5 21.65 L175 86.6 L137.5 151.55 L62.5 151.55 L25 86.6 L62.5 21.65 Z"
+          stroke="currentColor"
+          strokeWidth="1"
+          opacity="0.6"
+        />
+        <path
+          d="M125 43.3 L150 86.6 L125 129.9 L75 129.9 L50 86.6 L75 43.3 Z"
+          stroke="currentColor"
+          strokeWidth="0.75"
+          opacity="0.35"
+        />
+      </svg>
+
+      <div className="relative shell flex min-h-[calc(100svh-64px)] flex-col justify-center py-24">
         <div className="col-12">
           <div className="[grid-column:1/9]">
             <p className="t-label mb-14 text-fg-3">
