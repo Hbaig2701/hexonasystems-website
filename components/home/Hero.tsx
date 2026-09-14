@@ -17,10 +17,12 @@ import { DIAGNOSTIC } from '@/content/firm';
 export function Hero() {
   return (
     <Surface surface="void" rule={false} padded={false} as="header" className="hex-stage">
-      {/* The mark, large and behind the copy. Same file as the wordmark, so
-          there is exactly one definition of the logo in the codebase. The slow
-          turn and breath live in .hex-mark. */}
-      <HexMark className="hex-mark" />
+      {/* The mark, in the empty right columns. The outline variant, not the
+          solid one: at this size the solid logo is a slab and fights a page
+          made of hairlines. Same component either way, so there is exactly one
+          definition of the logo in the codebase. Placement and motion are in
+          .hex-mark. */}
+      <HexMark variant="outline" className="hex-mark" />
 
       <div className="relative shell flex min-h-[calc(100svh-64px)] flex-col justify-center py-24">
         <div className="col-12">

@@ -297,47 +297,57 @@
 .hex-mark {
   position: absolute;
   top: 50%;
-  right: -14rem;
   z-index: -1;
-  width: min(62vw, 760px);
-  /* The mark carries its own two colours, so this is the only volume control.
-     0.3 is where the slate ring stops disappearing into the void ground: the
-     weave has to stay readable or the shape is just a hexagon again. */
-  opacity: 0.3;
+
+  /* Sit in the content grid's right margin, not the viewport's. The hero copy
+     occupies columns 1-8, which leaves columns 9-12 empty; at the 1280 content
+     width those four columns measure 411px, and this is sized to land in them.
+     The `right` expression resolves to the distance from the viewport edge to
+     the content edge, so the mark tracks the copy instead of the window. */
+  right: max(var(--page-margin), calc(50% - var(--content-max) / 2));
+  width: min(32vw, 410px);
+
+  /* It is a drawing, not a slab, so it can carry more opacity than the solid
+     mark could. This is the volume control. */
+  opacity: 0.6;
   pointer-events: none;
 
-  /* Individual transform properties, not a `transform` shorthand, so the three
-     compose and animate independently. They apply in the order translate,
-     rotate, scale, which is exactly what is wanted: centre it on the edge
-     first, then turn and breathe about that centre. */
+  /* Individual transform properties rather than a `transform` shorthand, so
+     the three compose and animate independently. They apply in the order
+     translate, rotate, scale: centre it on its own midline first, then sway
+     and breathe about that centre. */
   translate: 0 -50%;
   animation:
-    hex-turn 600s linear infinite,
-    hex-breathe 19s ease-in-out infinite;
+    hex-sway 34s ease-in-out infinite,
+    hex-breathe 21s ease-in-out infinite;
 }
 
-/* A full turn, not 60deg. The bare hexagon this replaced had six-fold symmetry
-   and could cheat the loop with a sixth of a rotation; the logo's two rings are
-   offset along one diagonal, so only 360deg returns it to itself. Ten minutes
-   a revolution works out at 0.6deg per second, which is under the rate at which
-   rotation reads as motion: you notice it has moved, never that it is moving. */
-@keyframes hex-turn {
-  to { rotate: 360deg; }
+/* A sway, not a revolution. The mark spent one pass as a full slow rotation and
+   the problem was that a hexagon caught at 23deg does not read as deliberate,
+   it reads as a mistake; the eye knows which way up a hexagon goes. Five
+   degrees either side never leaves upright, and the two periods are far enough
+   apart that the pair never visibly repeats. */
+@keyframes hex-sway {
+  0%, 100% { rotate: -5deg; }
+  50%      { rotate: 5deg; }
 }
 
 @keyframes hex-breathe {
-  0%, 100% { scale: 0.9; }
-  50%      { scale: 1.08; }
+  0%, 100% { scale: 0.96; }
+  50%      { scale: 1.05; }
 }
 
 @media (max-width: 900px) {
-  .hex-mark { right: -20rem; opacity: 0.14; }
+  /* Below this the copy runs full width and there is no empty column to put it
+     in, so it goes behind the text and has to drop back accordingly. */
+  .hex-mark { width: min(60vw, 360px); opacity: 0.28; }
 }
 
-/* §11. Ambient motion is the first thing to go. The mark stays, mid-breath. */
+/* §11. Ambient motion is the first thing to go. The mark stays, upright. */
 @media (prefers-reduced-motion: reduce) {
   .hex-mark {
     animation: none;
+    rotate: 0deg;
     scale: 1;
   }
 }
