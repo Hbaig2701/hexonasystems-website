@@ -15,9 +15,11 @@ import { DIAGNOSTIC } from '@/content/firm';
  */
 export function Hero() {
   return (
-    <Surface surface="void" rule={false} padded={false} texture as="header">
-      {/* The mark. One per page, behind the copy, at 14% so it reads as
-          watermark rather than illustration. */}
+    <Surface surface="void" rule={false} padded={false} as="header" className="hex-stage">
+      {/* The mark. One hexagon, same orientation as the wordmark glyph, hung
+          off the right edge behind the copy. Single stroke: at 760px wide
+          anything more becomes an illustration, and this is a watermark.
+          The slow turn and breath live in .hex-mark, not here. */}
       <svg
         className="hex-mark"
         viewBox="0 0 200 173.2"
@@ -28,19 +30,7 @@ export function Hero() {
         <path
           d="M150 0 L200 86.6 L150 173.2 L50 173.2 L0 86.6 L50 0 Z"
           stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M137.5 21.65 L175 86.6 L137.5 151.55 L62.5 151.55 L25 86.6 L62.5 21.65 Z"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.6"
-        />
-        <path
-          d="M125 43.3 L150 86.6 L125 129.9 L75 129.9 L50 86.6 L75 43.3 Z"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          opacity="0.35"
+          strokeWidth="0.5"
         />
       </svg>
 

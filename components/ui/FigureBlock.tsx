@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/cn';
-import { Hex } from '@/components/ui/Hex';
 
 /**
  * FigureBlock — §3.5.
@@ -26,10 +25,7 @@ export function FigureBlock({
 }) {
   return (
     <div className={cn('border border-line bg-bg-sunk p-6', className)}>
-      <p className="t-label mb-5 flex items-center gap-2 text-fg-3">
-        <Hex size={7} filled className="text-brand" />
-        {label}
-      </p>
+      <p className="t-label mb-5 text-fg-3">{label}</p>
       <p
         className={cn(
           't-figure-lg',

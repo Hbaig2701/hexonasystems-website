@@ -16,7 +16,7 @@ import { DIAGNOSTIC } from '@/content/firm';
  */
 export function DiagnosticOffer() {
   return (
-    <Surface surface="void" texture>
+    <Surface surface="void">
       <div className="shell">
         <SectionMarker index="04" label="The engagement" className="mb-14" />
 

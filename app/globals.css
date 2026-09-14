@@ -259,67 +259,74 @@
 }
 
 /* ============================================================================
-   HEX FIELD
+   THE MARK
 
-   A sparse, static field of hexagon outlines in the brand cyan, at an opacity
-   low enough that it registers as texture rather than as pattern. Think the
-   engraving on a share certificate or bond paper, not wallpaper.
+   One hexagon. Not a field, not a pattern, not a scattering of glyphs: a single
+   large outline hung off the right edge of the hero, behind the copy.
 
-   Deliberately NOT v1's lattice. §3.4 forbids canvas, WebGL, particles and
-   animated gradients, and this breaks none of them: it is one static SVG tile
-   set as a background-image, costs no JavaScript, and never moves. §3.2 forbids
-   gradients, and there are none here either.
+   It moves, which is a deliberate exception to §3.4's ban on ambient motion.
+   The justification is that it is one element, it never enters the reading
+   column, and both of its animations are slower than the eye tracks as motion:
+   you notice the shape has changed if you look back, not that something is
+   moving. Nothing about it is canvas, WebGL or particles.
 
-   Every hexagon sits wholly inside its tile, so the pattern repeats without a
-   seam at any viewport size. VOID surfaces only: the cyan needs a dark ground
-   to stay this faint and still be perceptible, and on paper it would either
-   vanish or turn muddy.
+   The rotation exploits the hexagon's six-fold symmetry. Turning exactly 60deg
+   returns the shape to itself, so a linear infinite loop has no snap at the
+   seam and needs no alternate direction. The breathing scale runs on a
+   different period so the two never visibly sync up.
    ========================================================================= */
 
-.hex-field {
+/* The positioning context. The mark is hung past the right edge, so its host
+   has to clip the x-axis or narrow viewports gain a horizontal scrollbar.
+   `clip` rather than `hidden`: hidden makes this a scroll container, which
+   would break position:sticky for anything nested inside it later. */
+.hex-stage {
   position: relative;
   isolation: isolate;
-  /* The mark is deliberately hung off the right edge, so the section has to
-     clip it or the page gains a horizontal scrollbar on narrow viewports.
-     `clip` rather than `hidden`: hidden would make this a scroll container
-     and break position:sticky for anything nested inside it later. */
   overflow-x: clip;
 }
 
-.hex-field::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  /* Effective stroke alpha is this times the stroke-opacity in the tile.
-     The first attempt landed at 0.065, which is below the threshold of
-     perception on most displays. ~0.22 registers as texture without
-     becoming pattern. Turn THIS down first if it is too loud. */
-  opacity: 0.85;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%2322D3EE' stroke-width='1.25' stroke-opacity='0.26'%3E%3Cpath d='M62 24 L92 42 L92 78 L62 96 L32 78 L32 42 Z'/%3E%3Cpath d='M196 74 L216 86 L216 110 L196 122 L176 110 L176 86 Z'/%3E%3Cpath d='M112 150 L140 167 L140 201 L112 218 L84 201 L84 167 Z'/%3E%3Cpath d='M224 186 L239 195 L239 213 L224 222 L209 213 L209 195 Z'/%3E%3Cpath d='M28 148 L45 158 L45 178 L28 188 L11 178 L11 158 Z'/%3E%3Cpath d='M150 28 L163 36 L163 52 L150 60 L137 52 L137 36 Z'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 260px 260px;
-  background-repeat: repeat;
-}
-
-/* A single large hexagon, set as a corner mark. One per page, on the hero.
-   This is the piece that actually reads as "the company is called Hexona" at a
-   glance; the field is texture, this is a mark. Static, no JavaScript, and it
-   sits behind the content at z-index -1 so it never touches legibility. */
 .hex-mark {
   position: absolute;
   top: 50%;
-  right: -6rem;
+  right: -14rem;
   z-index: -1;
-  width: min(46vw, 580px);
-  translate: 0 -50%;
+  width: min(62vw, 760px);
   color: var(--brand);
-  opacity: 0.14;
+  /* Turn THIS down if it is still too loud. Everything else about the mark is
+     geometry; this is the only volume control. */
+  opacity: 0.2;
   pointer-events: none;
+
+  /* Individual transform properties, not a `transform` shorthand, so the three
+     compose and animate independently. They apply in the order translate,
+     rotate, scale, which is exactly what is wanted: centre it on the edge
+     first, then turn and breathe about that centre. */
+  translate: 0 -50%;
+  animation:
+    hex-turn 120s linear infinite,
+    hex-breathe 19s ease-in-out infinite;
+}
+
+@keyframes hex-turn {
+  to { rotate: 60deg; }
+}
+
+@keyframes hex-breathe {
+  0%, 100% { scale: 0.9; }
+  50%      { scale: 1.08; }
 }
 
 @media (max-width: 900px) {
-  .hex-mark { right: -12rem; opacity: 0.09; }
+  .hex-mark { right: -20rem; opacity: 0.14; }
+}
+
+/* §11. Ambient motion is the first thing to go. The mark stays, mid-breath. */
+@media (prefers-reduced-motion: reduce) {
+  .hex-mark {
+    animation: none;
+    scale: 1;
+  }
 }
 
 /* ============================================================================

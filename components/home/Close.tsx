@@ -9,7 +9,7 @@ import { DIAGNOSTIC } from '@/content/firm';
  */
 export function Close() {
   return (
-    <Surface surface="void" texture>
+    <Surface surface="void">
       <div className="shell">
         <div className="col-12">
           <div className="[grid-column:1/9]">
