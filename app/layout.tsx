@@ -4,6 +4,7 @@ import './globals.css';
 import { Header, HEADER_H } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Entrances } from '@/components/layout/Entrances';
+import { LatticeDefs } from '@/components/ui/Lattice';
 import { SITE } from '@/lib/site';
 import { FIRM } from '@/content/firm';
 
@@ -73,6 +74,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
       </head>
       <body className="min-h-svh">
+        {/* The lattice geometry, once per document. Every <Lattice/> on the
+            page is a <use> pointing at this; without it they draw nothing. */}
+        <LatticeDefs />
+
         <a
           href="#main"
           data-surface="paper"

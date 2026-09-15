@@ -24,6 +24,20 @@ import { cn } from '@/lib/cn';
  * WHY THE DRIFT ALTERNATES rather than looping. A hex grid does tile, but these
  * per-cell displacements do not, so there is no translation that maps the field
  * back onto itself. A slow sway has no seam to get wrong.
+ *
+ * ── TWO EXPORTS, AND YOU NEED BOTH ────────────────────────────────────────
+ *
+ * <LatticeDefs/> emits the geometry ONCE per document and must be mounted in
+ * the root layout. <Lattice/> is then only a viewport onto it, via <use>, so
+ * putting the field on four sections costs four <use> elements instead of four
+ * copies of 190 paths. Without the defs, <Lattice/> draws nothing.
+ *
+ * This is also why every visual property below is a presentation attribute or
+ * an inline style rather than a class. <use> clones into a shadow tree that
+ * document stylesheets are not guaranteed to reach, but attributes and inline
+ * styles belong to the cloned element and always survive. `stroke` and `fill`
+ * stay `currentColor`, which DOES inherit across that boundary, so each
+ * instance still takes its colour from the surface it sits on.
  */
 
 const VIEW_W = 1600;
@@ -32,6 +46,12 @@ const VIEW_H = 1000;
    a viewport, which this is set to land near. Much larger and the field stops
    reading as a lattice and starts reading as a few big outlines. */
 const RADIUS = 58;
+
+/** Must match the lattice-pulse duration in globals.css. Delays are spread
+ *  across one full cycle so the nodes twinkle instead of blinking in unison. */
+const PULSE_SECONDS = 3.2;
+
+const FIELD_ID = 'hex-lattice-field';
 
 /** Deterministic PRNG, carried over from v1: the field must be identical on
  *  every render, on the server and in the browser. */
@@ -58,8 +78,8 @@ function buildField(): Cell[] {
 
   // Overscan by one ring, which is all the +-16px drift can ever expose. The
   // first cut overscanned by two and culled loosely, which put 460 paths in
-  // each instance and ~900 on the page; this lands near 200 each for a field
-  // that looks identical.
+  // each instance and ~900 on the page; this lands near 190 for a field that
+  // looks identical.
   const cols = Math.ceil(VIEW_W / stepX) + 2;
   const rows = Math.ceil(VIEW_H / stepY) + 2;
   const cells: Cell[] = [];
@@ -93,7 +113,10 @@ function buildField(): Cell[] {
         // as a starfield rather than as a structure.
         node:
           pick > 0.74
-            ? { ...pts[Math.floor(dotRand * 6)], delay: Number((dotRand * 7).toFixed(2)) }
+            ? {
+                ...pts[Math.floor(dotRand * 6)],
+                delay: Number((dotRand * PULSE_SECONDS).toFixed(2)),
+              }
             : null,
       });
     }
@@ -104,6 +127,54 @@ function buildField(): Cell[] {
 /* Built once, at module scope. Not per render, and not per mount. */
 const FIELD = buildField();
 
+/**
+ * The geometry, emitted once per document. Mount this in the root layout.
+ * It paints nothing on its own.
+ */
+export function LatticeDefs() {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      width="0"
+      height="0"
+      style={{ position: 'absolute' }}
+    >
+      <defs>
+        <g id={FIELD_ID}>
+          {FIELD.map((cell, i) => (
+            <path
+              key={i}
+              d={cell.path}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeOpacity="0.16"
+            />
+          ))}
+          {FIELD.map((cell, i) =>
+            cell.node ? (
+              <circle
+                key={`n${i}`}
+                cx={cell.node.x.toFixed(1)}
+                cy={cell.node.y.toFixed(1)}
+                r="3"
+                fill="currentColor"
+                style={{
+                  opacity: 0.18,
+                  animation: `lattice-pulse ${PULSE_SECONDS}s ease-in-out infinite`,
+                  animationDelay: `${cell.node.delay}s`,
+                }}
+              />
+            ) : null,
+          )}
+        </g>
+      </defs>
+    </svg>
+  );
+}
+
+/** One viewport onto the field. Requires <LatticeDefs/> in the document. */
 export function Lattice({ className }: { className?: string }) {
   return (
     <svg
@@ -114,21 +185,7 @@ export function Lattice({ className }: { className?: string }) {
       focusable="false"
     >
       <g className="lattice-drift">
-        {FIELD.map((cell, i) => (
-          <path key={i} className="lattice-cell" d={cell.path} />
-        ))}
-        {FIELD.map((cell, i) =>
-          cell.node ? (
-            <circle
-              key={`n${i}`}
-              className="lattice-node"
-              cx={cell.node.x.toFixed(1)}
-              cy={cell.node.y.toFixed(1)}
-              r="3"
-              style={{ animationDelay: `${cell.node.delay}s` }}
-            />
-          ) : null,
-        )}
+        <use href={`#${FIELD_ID}`} />
       </g>
     </svg>
   );

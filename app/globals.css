@@ -290,8 +290,9 @@
    different period so the two never visibly sync up.
    ========================================================================= */
 
-/* The positioning context. The mark is hung past the right edge, so its host
-   has to clip the x-axis or narrow viewports gain a horizontal scrollbar.
+/* The positioning context for both background layers, the lattice and the
+   mark. The mark is hung past the right edge, so its host has to clip the
+   x-axis or narrow viewports gain a horizontal scrollbar.
    `clip` rather than `hidden`: hidden makes this a scroll container, which
    would break position:sticky for anything nested inside it later. */
 .hex-stage {
@@ -366,6 +367,11 @@
 /* ============================================================================
    THE LATTICE
 
+   On every dark section: the hero, the engagement record, the diagnostic and
+   the close. Not the footer, which butts directly against the close, and two
+   adjacent fields restart the pattern at their shared edge in a way that reads
+   as a bug. Not the header either; it is 64px of chrome.
+
    Background only, and VOID only: the cyan needs a dark ground to stay this
    faint and still be perceptible. See components/ui/Lattice.tsx for why this
    needs no JavaScript and why the cells sit slightly off their true centres.
@@ -388,18 +394,10 @@
   pointer-events: none;
 }
 
-.lattice-cell {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1;
-  stroke-opacity: 0.16;
-}
-
-.lattice-node {
-  fill: currentColor;
-  opacity: 0.18;
-  animation: lattice-pulse 7s ease-in-out infinite;
-}
+/* The cells and nodes carry their own stroke, fill, opacity and animation as
+   attributes and inline styles rather than classes. They live inside a <use>
+   shadow tree, which document stylesheets are not guaranteed to reach. See
+   Lattice.tsx. */
 
 /* A sway, not a loop. The per-cell displacements do not tile, so no
    translation maps the field back onto itself and a looping drift would show
@@ -411,6 +409,9 @@
   50%      { transform: translate(16px, 9px); }
 }
 
+/* 3.2s. The per-node delay in Lattice.tsx is spread across exactly this
+   duration, so the field twinkles rather than blinking in unison. Change one
+   and you must change the other. */
 @keyframes lattice-pulse {
   0%, 100% { opacity: 0.1; }
   50%      { opacity: 0.55; }
@@ -424,7 +425,9 @@
    words, so under reduced motion it simply stops, assembled. */
 @media (prefers-reduced-motion: reduce) {
   .lattice-drift { animation: none; }
-  .lattice-node  { animation: none; opacity: 0.3; }
+  /* The nodes animate from an inline style, which a class cannot override, so
+     this zeroes the duration on the whole subtree instead. */
+  .lattice * { animation-duration: 0s !important; animation-delay: 0s !important; }
 }
 
 /* ============================================================================

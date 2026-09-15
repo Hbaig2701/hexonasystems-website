@@ -1,4 +1,5 @@
 import { Surface } from '@/components/ui/Surface';
+import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { RecordTable, ColumnKey, type Column } from '@/components/ui/RecordTable';
 import { TextLink } from '@/components/ui/Button';
@@ -33,7 +34,9 @@ const COLUMNS: Column[] = [
 
 export function Results() {
   return (
-    <Surface surface="void">
+    <Surface surface="void" className="hex-stage">
+      <Lattice />
+
       <div className="shell">
         <SectionMarker index="02" label="Engagement record" className="mb-14" />
 
