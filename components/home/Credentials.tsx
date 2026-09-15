@@ -1,6 +1,6 @@
 import { Surface } from '@/components/ui/Surface';
 import { SectionMarker } from '@/components/layout/SectionMarker';
-import { CREDENTIALS, ENGAGEMENT_TERMS } from '@/content/firm';
+import { CREDENTIALS, ENGAGEMENT_TERMS, TRACK_RECORD, hasTrackRecord } from '@/content/firm';
 
 /**
  * SECTION 2 — STANDING. §4. PAPER.
@@ -31,6 +31,32 @@ export function Credentials() {
 
         <div className="col-12">
           <div className="[grid-column:1/10]">
+            {/* --- Operating track record --------------------------------
+                §5-style gate: renders only with real entries, never seeded to
+                fill the space. It leads because for this reader it outranks
+                any award. See TRACK_RECORD in content/firm.ts. */}
+            {hasTrackRecord() && (
+              <ul className="mb-20 border-t border-line">
+                {TRACK_RECORD.map((e, i) => (
+                  <li
+                    key={`${e.company}-${e.period}`}
+                    data-enter=""
+                    style={{ ['--enter-delay' as string]: `${i * 60}ms` }}
+                    className="border-b border-line py-10"
+                  >
+                    <div className="flex flex-col gap-x-12 gap-y-4 md:flex-row md:items-baseline">
+                      <p className="t-label shrink-0 text-brand md:w-20">{e.period}</p>
+                      <div>
+                        <h2 className="t-display-2 mb-3">{e.company}</h2>
+                        <p className="t-label mb-4 text-fg-3">{e.role}</p>
+                        <p className="t-body text-fg-2">{e.outcome}</p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             {/* --- Credentials ------------------------------------------- */}
             <ul className="border-t border-line">
               {CREDENTIALS.map((c, i) => (
@@ -60,13 +86,20 @@ export function Credentials() {
                           </span>
                         </a>
                       ) : (
-                        /* §1.3 wants credentials third-party and VERIFIABLE. An
-                           unlinked one on a page whose whole argument is rigor
-                           is the weakest thing here. Supply the URL in
-                           content/firm.ts and this notice disappears. */
-                        <p className="t-label mt-5 text-loss">
-                          Asset pending, verification link
-                        </p>
+                        /* §1.3 wants credentials third-party and VERIFIABLE, so
+                           an unlinked one needs flagging. But this notice was
+                           SHIPPING TO VISITORS in the loss colour, which meant
+                           the standing section announced twice that nothing on
+                           it could be checked. On a page whose whole argument
+                           is that claims are verifiable, that is worse than the
+                           missing link it was reporting.
+                           It is now a development-only nag. Supply the URL in
+                           content/firm.ts and it disappears for good. */
+                        process.env.NODE_ENV !== 'production' && (
+                          <p className="t-label mt-5 text-loss">
+                            Dev only · verification link missing
+                          </p>
+                        )
                       )}
                     </div>
                   </div>

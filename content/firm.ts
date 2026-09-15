@@ -53,6 +53,41 @@ export interface Credential {
   verified: boolean;
 }
 
+/**
+ * §4 section 2 — OPERATING TRACK RECORD.
+ *
+ * What the principal has actually run, at what scale, and what changed. For a
+ * PE operating partner this outranks any award: awards say somebody liked you,
+ * a track record says you have stood inside a company this size and moved a
+ * number. It is also the one form of standing that does not need a third party
+ * to attest to it, which matters when the awards are unlinked.
+ *
+ * ⚠️ EMPTY BY DESIGN, AND GATED. The section renders this block only when it
+ * has entries, exactly as §5 gates the engagement record. Do not seed it with
+ * plausible-sounding history to fill the space: a fabricated operating record
+ * is the same offence as a fabricated engagement record, and it is the first
+ * thing a reference call would expose.
+ *
+ * `company` may be a description rather than a name where the work is covered
+ * by an NDA. "B2B logistics, $40M revenue" is verifiable in a reference call;
+ * an invented name is not.
+ */
+export interface TrackRecordEntry {
+  /** Inclusive, e.g. "2019-2023". */
+  period: string;
+  /** Named, or described with enough scale to be meaningful. */
+  company: string;
+  role: string;
+  /** What was done and what moved. One sentence, and it should carry a number. */
+  outcome: string;
+}
+
+export const TRACK_RECORD: TrackRecordEntry[] = [];
+
+export function hasTrackRecord(): boolean {
+  return TRACK_RECORD.length > 0;
+}
+
 export const CREDENTIALS: Credential[] = [
   {
     year: '2024',
