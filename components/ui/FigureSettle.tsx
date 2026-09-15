@@ -88,8 +88,15 @@ export function FigureSettle({
   const primed = phase === 'primed';
   const landed = phase === 'settled' || phase === 'idle';
 
+  /* `pb-5` is not decoration, it is what stops the rule striking through the
+     next line. The figure sets inline inside running display text, and an
+     absolutely positioned rule occupies no space, so at line-height 1.12 the
+     hairline landed on top of the following line and read as a strikethrough.
+     An inline-block's padding DOES count toward the line box it sits in, so
+     reserving the gap here pushes the next line clear of it. The rule sits at
+     bottom:0 of that padding; move one and you must move the other. */
   return (
-    <span ref={ref} className={cn('relative inline-block', className)}>
+    <span ref={ref} className={cn('relative inline-block pb-5', className)}>
       <span className="sr-only">{value}</span>
 
       <span aria-hidden="true" className="t-figure-lg inline-flex items-baseline">
@@ -142,7 +149,7 @@ export function FigureSettle({
       {rule && (
         <span
           aria-hidden="true"
-          className="absolute -bottom-4 left-0 block h-px w-full origin-left bg-brand"
+          className="absolute bottom-0 left-0 block h-px w-full origin-left bg-brand"
           style={{
             transform: `scaleX(${landed ? 1 : 0})`,
             transition: 'transform 400ms var(--ease)',
