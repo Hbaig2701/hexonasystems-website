@@ -208,3 +208,93 @@ export const PRINCIPAL = {
     { label: 'Community members trained', figure: '45,000+' },
   ],
 } as const;
+
+/* ===========================================================================
+   /firm — the About page.
+   ======================================================================== */
+
+/**
+ * ORIGIN. The old About page opened "A Tale of Inevitability" over "Change
+ * invites innovation which invites change", which is the register v1 was
+ * written in and v2 deliberately is not. The fact underneath it is genuinely
+ * strong and needs no styling: the firm predates the tools. That is a date,
+ * and a date cannot be argued with.
+ */
+export const ORIGIN = {
+  since: '2021',
+  body: [
+    'Hexona began in 2021, automating operations for local businesses. The work was unglamorous and the tools were primitive, and that turned out to be the advantage. By the time general-purpose language models arrived, the firm had already spent two years watching where operational money goes missing.',
+    'Most firms in this market started after that moment and built their practice around the tools. Hexona started before it and built the practice around the failures. The tools have changed several times since. The failures have not changed once.',
+  ],
+  figures: [
+    { label: 'Operating since', figure: '2021' },
+    { label: 'Businesses served', figure: '1,500+' },
+    { label: 'Operators trained', figure: '45,000+' },
+  ],
+};
+
+/**
+ * THE TEAM. The homepage names only the principal, by the founder's decision;
+ * this is where the rest of the firm lives.
+ *
+ * Roles are stated as they are, not inflated. "Founder & CEO" became principal
+ * to match the language the homepage and the engagement terms already use: a
+ * six-person firm with a CEO reads as a title, a six-person firm with a
+ * principal reads as a practice.
+ */
+export const TEAM = [
+  { name: 'Hamza Baig', role: 'Founder and principal' },
+  { name: 'Ayman Abdullah', role: 'Chief technology officer, lead developer' },
+  { name: 'Emaan Ali', role: 'Head of operations' },
+  { name: 'Shake Dewan', role: 'Head of AI' },
+  { name: 'Brandon Gebka', role: 'Director of business development' },
+  { name: 'Spencer Brickman', role: 'Head of partnerships' },
+];
+
+/**
+ * COMMITMENTS. The old page called this "Objective Dominance" and listed
+ * Integrity & Trust, Empowering Business Growth and Putting Customers First,
+ * which is what every agency site in the world lists.
+ *
+ * A value nobody could disagree with is not a value, it is decoration. Each of
+ * these is instead a promise the client can hold the firm to and catch it
+ * breaking, which is the only kind worth publishing on a page about diligence.
+ * Every one is already true elsewhere on the site, which is the test: if a
+ * commitment here is not enforced by the engagement terms, it does not belong.
+ */
+export const COMMITMENTS = [
+  {
+    term: 'We tell you when there is nothing to find',
+    detail:
+      'If the leakage is immaterial, the report says so in its first paragraph and we tell you not to hire us.',
+  },
+  {
+    term: 'Every figure names its source',
+    detail:
+      'Each number is published with the system it was measured in and the period it covers. A figure without both is a claim, not a measurement.',
+  },
+  {
+    term: 'Fixed scope, fixed fee',
+    detail:
+      'The fee is agreed before work begins and credited in full against implementation. Scope does not move once access is granted.',
+  },
+  {
+    term: 'The same people from access to readout',
+    detail:
+      'The team that takes your systems access is the team that presents the findings. Nobody is handed to a junior after signing.',
+  },
+];
+
+/**
+ * AWARDS. These live HERE and not on the homepage. §1.3's reasoning stands:
+ * a credential nobody can check is weaker than no credential at all on a page
+ * whose argument is rigour, and the homepage is where that argument is made.
+ * On the firm page they are biography rather than proof, which is a lower bar.
+ *
+ * ⚠️ Supply `href` for each and the verification link appears. Until then the
+ * page says nothing about it to visitors and nags in development only.
+ */
+export const AWARDS = [
+  { year: '2024', title: 'Platinum SaaSPreneur Award', href: '' },
+  { year: '2025', title: 'Diamond SaaSPreneur Award', href: '' },
+];
