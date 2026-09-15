@@ -2,6 +2,7 @@ import { Surface } from '@/components/ui/Surface';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureSettle } from '@/components/ui/FigureSettle';
 import { RecordTable } from '@/components/ui/RecordTable';
+import { InquiryLedger } from '@/components/ui/InquiryLedger';
 
 /**
  * SECTION 4 — THE ARITHMETIC. §4. PAPER.
@@ -28,6 +29,11 @@ export function Arithmetic() {
               New revenue carries acquisition cost. Recovered revenue doesn&apos;t, because you
               already spent it.
             </p>
+
+            {/* The mechanism, drawn. It sits HERE, in the argument, and not in
+                §5 beside the engagement record: it is illustrative and must
+                never be read as evidence. Its caption says so. */}
+            <InquiryLedger className="mt-12" />
           </div>
 
           <div className="[grid-column:8/13]">

@@ -1,4 +1,5 @@
 import { Surface } from '@/components/ui/Surface';
+import { Lattice } from '@/components/ui/Lattice';
 import { HexMark } from '@/components/ui/HexMark';
 import { Button, TextLink } from '@/components/ui/Button';
 import { DIAGNOSTIC } from '@/content/firm';
@@ -22,6 +23,8 @@ export function Hero() {
           made of hairlines. Same component either way, so there is exactly one
           definition of the logo in the codebase. Placement and motion are in
           .hex-mark. */}
+      <Lattice />
+
       <HexMark variant="outline" className="hex-mark" />
 
       <div className="relative shell flex min-h-[calc(100svh-64px)] flex-col justify-center py-24">
