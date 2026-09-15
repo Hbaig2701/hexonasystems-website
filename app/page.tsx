@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
 import { TrustedBy } from '@/components/home/TrustedBy';
 import { Credentials } from '@/components/home/Credentials';
-import { Results } from '@/components/home/Results';
+import { Pattern } from '@/components/home/Pattern';
 import { Arithmetic } from '@/components/home/Arithmetic';
 import { DiagnosticOffer } from '@/components/home/Diagnostic';
 import { Fit } from '@/components/home/Fit';
@@ -16,7 +16,7 @@ import { Close } from '@/components/home/Close';
  * case for anything.
  *
  * Surfaces alternate per §3.1:
- *   Hero VOID · TrustedBy VOID · Credentials PAPER · Results VOID
+ *   Hero VOID · TrustedBy VOID · Credentials PAPER · Pattern VOID
  *   · Arithmetic PAPER · Diagnostic VOID · Fit PAPER · Close VOID
  *
  * The trusted-by band is deliberately UNNUMBERED. It continues the hero's
@@ -40,7 +40,7 @@ export default function HomePage() {
       <Hero />
       <TrustedBy />
       <Credentials />
-      <Results />
+      <Pattern />
       <Arithmetic />
       <DiagnosticOffer />
       <Fit />

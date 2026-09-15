@@ -88,3 +88,52 @@ export const COLUMN_DEFINITIONS = [
 ];
 
 export const RECORD_PREAMBLE = 'Client names withheld by agreement. Figures unaltered.';
+
+/**
+ * §4 section 2 — THE PATTERN. The scale figures.
+ *
+ * ⚠️ READ THIS BEFORE CHANGING EITHER NUMBER.
+ *
+ * These two figures get divided. $6B over 500 businesses is $12M each, and the
+ * site sells to companies doing $10M-$100M, so taken naively the claim says we
+ * routinely find more unrealized revenue than a company at the bottom of our
+ * range earns in a year. An operating partner does that division on sight, and
+ * the page does not recover from it.
+ *
+ * What makes the pair survive scrutiny is the two things stated with them:
+ *
+ *   1. THE POPULATION. The 500 are not all $10M-$100M companies. Most sit well
+ *      below the diagnostic's ICP. Saying so costs nothing and removes the
+ *      implication that $12M is a typical finding at our own ICP.
+ *   2. THE MEASURE. "Unrealized revenue" is cumulative across every audit and
+ *      across the whole period, and it is not annualised. FOUND and SEALED in
+ *      an engagement record mean something narrower and stricter. Two different
+ *      measures with the same smell is precisely how a page loses a reader, so
+ *      both are defined in plain words on the page itself.
+ *
+ * This is the same rule §4 applies to record columns: an undefined column is an
+ * unfalsifiable claim. It binds harder here, because these are the largest
+ * numbers on the site.
+ */
+export const LEAKAGE_SCALE = {
+  /** ⚠️ [ASSET NEEDED] The window the 500 and the $6B were accumulated over,
+   *  e.g. "2019-2026". Without it "cumulative" is not actually a measurement,
+   *  and the section says so in dev until it is filled in. */
+  period: '',
+
+  audited: {
+    figure: '500+',
+    label: 'Businesses audited',
+    definition:
+      'Businesses taken through the full process, from systems access to written findings. Across every size, most of them smaller than the operating range this diagnostic is sold into.',
+  },
+
+  unrealized: {
+    figure: '$6B+',
+    label: 'Unrealized revenue identified',
+    definition:
+      'Demand those businesses had already paid to acquire and did not convert, totalled at the point it was lost. Cumulative across every audit and the whole period. Not annualised, and not a claim about what any single business would find.',
+  },
+} as const;
+
+export const hasScalePeriod = () => LEAKAGE_SCALE.period.length > 0;
