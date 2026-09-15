@@ -1,5 +1,4 @@
 import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { RecordTable } from '@/components/ui/RecordTable';
 import { Button, TextLink } from '@/components/ui/Button';
@@ -17,9 +16,7 @@ import { DIAGNOSTIC } from '@/content/firm';
  */
 export function DiagnosticOffer() {
   return (
-    <Surface surface="void" className="hex-stage">
-      <Lattice />
-
+    <Surface surface="paper">
       <div className="shell">
         <SectionMarker index="03" label="The engagement" className="mb-14" />
 

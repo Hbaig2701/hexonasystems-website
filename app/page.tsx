@@ -15,8 +15,20 @@ import { Close } from '@/components/home/Close';
  * case for anything.
  *
  * Surfaces alternate per §3.1:
- *   Hero VOID · TrustedBy VOID · Pattern VOID · Arithmetic PAPER
- *   · Diagnostic VOID · Fit PAPER · Close VOID
+ *   Hero VOID + TrustedBy VOID   (one opening block, the band is the hero's
+ *                                  last line and takes its ground)
+ *   01 Pattern          PAPER
+ *   02 Why this first   VOID
+ *   03 The engagement   PAPER
+ *   04 Fit              VOID
+ *   Close               PAPER
+ *   Footer              VOID
+ *
+ * ⚠️ THE FOOTER IS PERMANENTLY VOID, and that is what fixes everything above
+ * it. Alternating backwards from a dark footer makes Close paper, Fit void,
+ * The engagement paper, Why this first void and Pattern paper. Flip any one
+ * section and two neighbours collide somewhere; the only way to change one is
+ * to change all of them. Close is paper for this reason and not by preference.
  *
  * The trusted-by band is deliberately UNNUMBERED. It continues the hero's
  * ground rather than interrupting it, and numbering it would push Standing to

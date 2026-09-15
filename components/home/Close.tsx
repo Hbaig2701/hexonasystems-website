@@ -1,5 +1,4 @@
 import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
 import { Button, TextLink } from '@/components/ui/Button';
 import { DIAGNOSTIC } from '@/content/firm';
 
@@ -10,9 +9,7 @@ import { DIAGNOSTIC } from '@/content/firm';
  */
 export function Close() {
   return (
-    <Surface surface="void" className="hex-stage">
-      <Lattice />
-
+    <Surface surface="paper">
       <div className="shell">
         <div className="col-12">
           <div className="[grid-column:1/9]">
