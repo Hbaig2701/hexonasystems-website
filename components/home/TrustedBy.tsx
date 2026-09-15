@@ -26,8 +26,8 @@ import { TRUSTED_BY } from '@/content/firm';
  */
 export function TrustedBy() {
   return (
-    <section data-surface="void" className="border-t border-line py-14" aria-label="Trusted by">
-      <p className="t-label shell mb-10 text-fg-3">
+    <section data-surface="void" className="border-t border-line py-12" aria-label="Trusted by">
+      <p className="t-label shell mb-8 text-fg-3">
         Trusted by teams at
       </p>
 
