@@ -1,5 +1,4 @@
 import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
 import { PRINCIPAL } from '@/content/firm';
@@ -25,8 +24,7 @@ import { PRINCIPAL } from '@/content/firm';
  */
 export function Principal() {
   return (
-    <Surface surface="void" className="hex-stage">
-      <Lattice />
+    <Surface surface="paper">
 
       <div className="shell">
         <SectionMarker index="03" label="The principal" className="mb-14" />

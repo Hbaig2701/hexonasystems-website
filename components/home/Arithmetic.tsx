@@ -1,4 +1,5 @@
 import { Surface } from '@/components/ui/Surface';
+import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureSettle } from '@/components/ui/FigureSettle';
 import { RecordTable } from '@/components/ui/RecordTable';
@@ -16,7 +17,8 @@ import { InquiryLedger } from '@/components/ui/InquiryLedger';
  */
 export function Arithmetic() {
   return (
-    <Surface surface="paper">
+    <Surface surface="void" className="hex-stage">
+      <Lattice />
       <div className="shell">
         <SectionMarker index="02" label="Why this first" className="mb-14" />
 

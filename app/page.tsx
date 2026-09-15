@@ -16,23 +16,31 @@ import { Close } from '@/components/home/Close';
  * case for anything.
  *
  * Surfaces alternate per §3.1:
- *   Hero                VOID
- *   TrustedBy band      PAPER
- *   01 Pattern          VOID
- *   02 Why this first   PAPER
- *   03 The principal    VOID
- *   04 The engagement   PAPER
- *   05 Fit              VOID
- *   Close               PAPER
- *   Footer              VOID
+ *   Hero                VOID  ┐ one opening block. The band takes the
+ *   TrustedBy band      VOID  ┘ hero's ground and blends into it.
+ *   01 Pattern          PAPER
+ *   02 Why this first   VOID
+ *   03 The principal    PAPER
+ *   04 The engagement   VOID
+ *   05 Fit              PAPER
+ *   Close               VOID  ┐ one closing block. The page goes quiet
+ *   Footer              VOID  ┘ and stays dark into the footer.
  *
- * Every block alternates, with no exceptions. That became possible only when
- * The principal was added: the count changed parity, which freed the band to
- * take paper and stop riding on the hero's ground.
+ * ⚠️ 01 IS PAPER AND THAT IS THE FIXED POINT. Everything else is derived from
+ * it, not the other way round.
  *
- * ⚠️ THE FOOTER IS PERMANENTLY VOID and fixes everything above it. Alternating
- * backwards from it determines every ground on this list, so no section can be
- * flipped on its own. Adding or removing ANY section inverts all of them.
+ * Strict alternation cannot also hold here, and it is worth knowing why before
+ * anyone "fixes" this. The footer is permanently void. Alternating backwards
+ * from it across five numbered sections plus the close lands on 01 VOID, every
+ * time; with six sections it lands on 01 PAPER. So the ground of section 01 is
+ * decided by how many sections happen to exist below it, which is a terrible
+ * thing to let decide the top of the page.
+ *
+ * So 01 is pinned to paper and the two same-ground pairs are pushed to the
+ * ends, where they read as intent rather than error: the band belongs to the
+ * hero, and the close belongs to the footer. Everything between 01 and 05
+ * alternates strictly. ADDING OR REMOVING A SECTION no longer moves 01; it
+ * moves where the second pair sits, which is a much cheaper thing to fix.
  *
  * The trusted-by band is deliberately UNNUMBERED. It continues the hero's
  * ground rather than interrupting it, and numbering it would push Standing to

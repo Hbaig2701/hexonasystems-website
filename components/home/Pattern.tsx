@@ -1,5 +1,4 @@
 import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
 import { RecordTable, ColumnKey, type Column } from '@/components/ui/RecordTable';
@@ -66,8 +65,7 @@ const COLUMNS: Column[] = [
 
 export function Pattern() {
   return (
-    <Surface surface="void" className="hex-stage">
-      <Lattice />
+    <Surface surface="paper">
       <div className="shell">
         <SectionMarker index="01" label="The pattern" className="mb-14" />
 

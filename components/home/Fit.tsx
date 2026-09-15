@@ -1,5 +1,4 @@
 import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { cn } from '@/lib/cn';
 
@@ -59,8 +58,7 @@ function Column({
 
 export function Fit() {
   return (
-    <Surface surface="void" className="hex-stage">
-      <Lattice />
+    <Surface surface="paper">
       <div className="shell">
         <SectionMarker index="05" label="Fit" className="mb-14" />
 
