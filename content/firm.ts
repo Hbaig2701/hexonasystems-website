@@ -189,6 +189,11 @@ export const PRINCIPAL = {
   name: FIRM.principal,
   role: 'Principal',
 
+  /** Cropped from the supplied frame to chest-up and re-encoded: the original
+   *  was a wide, relaxed sitting shot at 1.8MB of PNG, which read founder-brand
+   *  rather than diligence firm and weighed more than the rest of the page. */
+  portrait: { src: '/principal.jpg', width: 776, height: 970 },
+
   bio: [
     'I have spent five years building Hexona Systems, and I was putting automation into operating companies before ChatGPT existed.',
     'A thousand client engagements have run through the firm since. That number is the reason the diagnostic works rather than a claim about volume: the same short list of failures turns up in almost every company, and I have seen each of them often enough now to know which one to look for first.',
