@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
+import { TrustedBy } from '@/components/home/TrustedBy';
 import { Credentials } from '@/components/home/Credentials';
 import { Results } from '@/components/home/Results';
 import { Arithmetic } from '@/components/home/Arithmetic';
@@ -15,8 +16,12 @@ import { Close } from '@/components/home/Close';
  * case for anything.
  *
  * Surfaces alternate per §3.1:
- *   Hero VOID · Credentials PAPER · Results VOID · Arithmetic PAPER
- *   · Diagnostic VOID · Fit PAPER · Close VOID
+ *   Hero VOID · TrustedBy VOID · Credentials PAPER · Results VOID
+ *   · Arithmetic PAPER · Diagnostic VOID · Fit PAPER · Close VOID
+ *
+ * The trusted-by band is deliberately UNNUMBERED. It continues the hero's
+ * ground rather than interrupting it, and numbering it would push Standing to
+ * 02 and the engagement record to 03.
  *
  * Exactly one figure settle on the page, on the enterprise-value line in
  * Arithmetic (§3.4, §8).
@@ -33,6 +38,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TrustedBy />
       <Credentials />
       <Results />
       <Arithmetic />

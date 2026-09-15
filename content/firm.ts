@@ -111,3 +111,32 @@ export const ENGAGEMENT_TERMS = [
   { term: 'Engagement basis', value: FIRM.engagementBasis },
   { term: 'Principal', value: FIRM.principal },
 ];
+
+/**
+ * The trusted-by band.
+ *
+ * The heading is "Trusted by teams AT", and that preposition is doing real
+ * work: it claims people at these organisations, not the organisations as
+ * clients of the firm. Keep it. Dropping the "teams at" turns seven careful
+ * statements into seven claims that a reference call could contradict.
+ *
+ * ⚠️ LOGOS PENDING. Each entry gets an optional `logo` once the files land:
+ * put an SVG in public/logos/ and set the path. The band renders the name as
+ * type until then, which is why the type treatment has to hold up on its own
+ * rather than being a placeholder for an image.
+ */
+export interface TrustedOrg {
+  name: string;
+  /** Path under /public once supplied, e.g. "/logos/gohighlevel.svg". */
+  logo?: string;
+}
+
+export const TRUSTED_BY: TrustedOrg[] = [
+  { name: 'Cardone Ventures' },
+  { name: 'GoHighLevel' },
+  { name: 'School of Hard Knocks' },
+  { name: 'Tai Lopez' },
+  { name: "Moody's Analytics" },
+  { name: 'Poppy AI' },
+  { name: 'Skool' },
+];

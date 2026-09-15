@@ -431,6 +431,55 @@
 }
 
 /* ============================================================================
+   THE TRUSTED-BY BAND
+
+   The track holds the list twice and slides exactly -50%, which puts the second
+   copy where the first started. Seamless, and it needs no JavaScript and no
+   measurement. The only rule that matters: the two lists must stay identical,
+   or the seam shows.
+   ========================================================================= */
+
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 46s linear infinite;
+}
+
+.marquee-list {
+  display: flex;
+  align-items: center;
+  /* The gap repeats between the two copies as well, because the lists are
+     siblings in the same flex row. That is what keeps the spacing even across
+     the seam instead of double-gapping there. */
+  gap: 4.5rem;
+  margin: 0;
+  padding: 0 2.25rem;
+  list-style: none;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Hover pauses. Someone who wants to read a name should not have to chase it,
+   and WCAG 2.2 wants moving content pausable. */
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+/* §11. Stopped, and scrollable by hand instead, so every name stays reachable
+   rather than the tail being cut off at the viewport edge. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; }
+  .marquee-track { animation: none; }
+}
+
+/* ============================================================================
    BUTTONS — §3.5
 
    Two buttons, and the primary INVERTS BY SURFACE. --accent against --void is
