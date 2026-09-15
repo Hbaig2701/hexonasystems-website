@@ -33,6 +33,10 @@ export function Footer() {
             <Wordmark className="text-brand" />
             <p className="t-small max-w-[34ch] text-fg-2">{FIRM.positioning}</p>
             <address className="t-small flex flex-col gap-1 not-italic text-fg-3">
+              {/* The principal was named only in the old Standing section. A
+                  firm selling diligence does not get to be anonymous, so the
+                  name moved here rather than off the site. */}
+              <span className="text-fg-2">{FIRM.principal}</span>
               <span>{FIRM.address}</span>
               {FIRM.phone && (
                 <a href={`tel:${FIRM.phone.replace(/\s/g, '')}`} className="link">

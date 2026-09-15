@@ -60,7 +60,7 @@ export function Fit() {
   return (
     <Surface surface="paper">
       <div className="shell">
-        <SectionMarker index="05" label="Fit" className="mb-14" />
+        <SectionMarker index="04" label="Fit" className="mb-14" />
 
         <h2 className="t-display-2 mb-16 max-w-[20ch]">
           We decline more of this work than we take.

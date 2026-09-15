@@ -18,7 +18,7 @@ export function Arithmetic() {
   return (
     <Surface surface="paper">
       <div className="shell">
-        <SectionMarker index="03" label="Why this first" className="mb-14" />
+        <SectionMarker index="02" label="Why this first" className="mb-14" />
 
         <div className="col-12 gap-y-14">
           <div className="[grid-column:1/7]">

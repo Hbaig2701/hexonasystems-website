@@ -14,7 +14,19 @@ import {
 } from '@/content/evidence';
 
 /**
- * SECTION 2 — THE PATTERN. VOID.
+ * SECTION 1 — THE PATTERN. VOID.
+ *
+ * This replaced STANDING, which carried two unlinked awards and three terms of
+ * engagement. The awards pointed at a software-founder history rather than an
+ * operating one and neither could be verified, and the terms were already
+ * stated in Fit and in The engagement. The trusted-by band now does the work
+ * that block was there to do, earlier and with less ceremony.
+ *
+ * It stays VOID even though it now follows the void band. Alternation is
+ * forced from the other end: Close must be void, which fixes Fit paper,
+ * The engagement void, Why this first paper, and this one void. The band is a
+ * thin strip on the hero's own ground, so the run reads as one opening block
+ * rather than three sections that forgot to change colour.
  *
  * Replaces what was an empty engagement record showing an interim notice. The
  * argument now leads with the thing that is true at scale: leakage is
@@ -47,7 +59,7 @@ export function Pattern() {
       <Lattice />
 
       <div className="shell">
-        <SectionMarker index="02" label="The pattern" className="mb-14" />
+        <SectionMarker index="01" label="The pattern" className="mb-14" />
 
         <div className="col-12 gap-y-16">
           <div className="[grid-column:1/8]">

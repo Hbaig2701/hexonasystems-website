@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
 import { TrustedBy } from '@/components/home/TrustedBy';
-import { Credentials } from '@/components/home/Credentials';
 import { Pattern } from '@/components/home/Pattern';
 import { Arithmetic } from '@/components/home/Arithmetic';
 import { DiagnosticOffer } from '@/components/home/Diagnostic';
@@ -16,8 +15,8 @@ import { Close } from '@/components/home/Close';
  * case for anything.
  *
  * Surfaces alternate per §3.1:
- *   Hero VOID · TrustedBy VOID · Credentials PAPER · Pattern VOID
- *   · Arithmetic PAPER · Diagnostic VOID · Fit PAPER · Close VOID
+ *   Hero VOID · TrustedBy VOID · Pattern VOID · Arithmetic PAPER
+ *   · Diagnostic VOID · Fit PAPER · Close VOID
  *
  * The trusted-by band is deliberately UNNUMBERED. It continues the hero's
  * ground rather than interrupting it, and numbering it would push Standing to
@@ -39,7 +38,6 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustedBy />
-      <Credentials />
       <Pattern />
       <Arithmetic />
       <DiagnosticOffer />
