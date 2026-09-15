@@ -1,5 +1,4 @@
 import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
 import { RecordTable, ColumnKey, type Column } from '@/components/ui/RecordTable';
@@ -14,7 +13,7 @@ import {
 } from '@/content/evidence';
 
 /**
- * SECTION 1 — THE PATTERN. VOID.
+ * SECTION 1 — THE PATTERN. PAPER.
  *
  * This replaced STANDING, which carried two unlinked awards and three terms of
  * engagement. The awards pointed at a software-founder history rather than an
@@ -22,11 +21,22 @@ import {
  * stated in Fit and in The engagement. The trusted-by band now does the work
  * that block was there to do, earlier and with less ceremony.
  *
- * It stays VOID even though it now follows the void band. Alternation is
- * forced from the other end: Close must be void, which fixes Fit paper,
- * The engagement void, Why this first paper, and this one void. The band is a
- * thin strip on the hero's own ground, so the run reads as one opening block
- * rather than three sections that forgot to change colour.
+ * PAPER, which deliberately breaks §3.1's strict alternation.
+ *
+ * The arithmetic of that rule: five sections, and Close has to be void, so
+ * alternating backwards from it forces Fit paper, The engagement void, Why
+ * this first paper, and this one VOID. Held to the letter, the page opened
+ * with the hero, the band and this section all on the dark ground, which is
+ * most of two screens before any relief.
+ *
+ * So this one turns white and sits next to Why this first, which is also
+ * white. The structure that produces is better than the rule it breaks: a dark
+ * opening, a light middle where the actual argument is made, and a dark close.
+ * The hairline rule and the section marker still separate the two light
+ * sections, which is all §3.1's hard edge was ever asking for.
+ *
+ * No lattice here any more. The field is cyan on near-black and needs the dark
+ * ground; on paper it either vanishes or turns muddy.
  *
  * Replaces what was an empty engagement record showing an interim notice. The
  * argument now leads with the thing that is true at scale: leakage is
@@ -55,9 +65,7 @@ const COLUMNS: Column[] = [
 
 export function Pattern() {
   return (
-    <Surface surface="void" className="hex-stage">
-      <Lattice />
-
+    <Surface surface="paper">
       <div className="shell">
         <SectionMarker index="01" label="The pattern" className="mb-14" />
 
