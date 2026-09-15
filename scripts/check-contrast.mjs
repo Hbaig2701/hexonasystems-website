@@ -42,6 +42,31 @@ function ratio(a, b) {
 
 const T = tokens();
 
+/**
+ * Derived grounds. A token is not always what text actually sits on: the
+ * lattice paints a cyan stroke over the dark surfaces at stroke-opacity 0.16
+ * inside an element at opacity 0.75, so text crossed by a lattice line is
+ * really on that blend, not on the flat token. Checking only the flat tokens
+ * is what let --on-void-3 ship at 4.10:1 against the ground it meets in
+ * practice while reporting 5.00:1 against one it never meets alone.
+ *
+ * Keep these two constants in step with .lattice / .lattice-cell in
+ * globals.css. If the lattice gets louder, this gets stricter, which is the
+ * correct direction for it to fail in.
+ */
+const LATTICE_ALPHA = 0.16 * 0.75;
+
+function over(bgHex, fgHex, alpha) {
+  const ch = (i) => {
+    const b = parseInt(bgHex.slice(1 + i * 2, 3 + i * 2), 16);
+    const f = parseInt(fgHex.slice(1 + i * 2, 3 + i * 2), 16);
+    return Math.round(b + (f - b) * alpha)
+      .toString(16)
+      .padStart(2, '0');
+  };
+  return `#${ch(0)}${ch(1)}${ch(2)}`;
+}
+
 /** [foreground, background, minimum, label] */
 const PAIRS = [
   // --- PAPER --------------------------------------------------------------
@@ -68,6 +93,14 @@ const PAIRS = [
   ['void', 'accent-on-void', 4.5, 'primary button hover on void'],
   ['loss-on-void', 'void', 4.5, 'loss figure on dark'],
   ['loss-on-void', 'void-raised', 4.5, 'loss figure on zebra'],
+
+  // --- VOID, UNDER THE LATTICE --------------------------------------------
+  // The grounds that text on a dark section actually meets.
+  ['on-void', '@lattice-void', 4.5, 'headings crossed by a lattice line'],
+  ['on-void-2', '@lattice-void', 4.5, 'body copy crossed by a lattice line'],
+  ['on-void-3', '@lattice-void', 4.5, 'SMALLEST TEXT crossed by a lattice line'],
+  ['loss-on-void', '@lattice-void', 4.5, 'loss figure crossed by a lattice line'],
+  ['accent-on-void', '@lattice-void', 4.5, 'accent text crossed by a lattice line'],
 ];
 
 /** Non-text tokens. Documented, never asserted — they must never carry text. */
@@ -75,6 +108,10 @@ const NON_TEXT = ['ink-mark', 'rule', 'rule-strong', 'void-rule'];
 
 let failures = 0;
 const rows = [];
+
+/* Derived grounds are named with a leading @ and computed, not looked up. */
+T['@lattice-void'] = over(T['void'], T['accent-on-void'], LATTICE_ALPHA);
+T['@lattice-void-raised'] = over(T['void-raised'], T['accent-on-void'], LATTICE_ALPHA);
 
 for (const [fg, bg, min, label] of PAIRS) {
   if (!T[fg] || !T[bg]) {

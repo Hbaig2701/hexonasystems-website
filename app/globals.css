@@ -35,7 +35,15 @@
   --void-rule:    #23282A;
   --on-void:      #F2F0EA;   /* 17.11:1 on void */
   --on-void-2:    #A8ABA6;   /*  8.39:1 */
-  --on-void-3:    #7E827E;   /*  5.00:1 */
+  --on-void-3:    #8E928E;   /*  6.18:1 on void, 5.72:1 on void-raised.
+                                 Was #7E827E at 5.00:1, which cleared AA on a
+                                 bare dark ground and failed on the one that
+                                 actually exists. The lattice puts a cyan
+                                 stroke at ~12% behind this text, lifting the
+                                 local background to about #0E2527 and dropping
+                                 the pair to 4.10:1. Lightened until the WORST
+                                 dark ground clears 4.5, not the best one.
+                                 See the lattice pairs in check-contrast. */
 
   /* --- ACCENT — Hexona blue ---------------------------------------------
      §3.2 proposed a deep institutional green. Replaced with the brand cyan,
