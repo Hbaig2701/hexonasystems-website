@@ -74,6 +74,7 @@ export function DiagnosticOffer() {
                   },
                 },
                 { id: 'r', cells: { term: 'Readout', value: '90 minutes, live' } },
+                { id: 'w', cells: { term: 'Who runs it', value: DIAGNOSTIC.delivery } },
                 {
                   id: 'ro',
                   cells: {

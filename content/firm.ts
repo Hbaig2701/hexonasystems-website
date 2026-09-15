@@ -32,6 +32,18 @@ export const DIAGNOSTIC = {
    */
   duration: '10 business days from systems access',
   durationShort: 'Ten business days',
+
+  /**
+   * Who is actually in the client's systems. This belongs in the ENGAGEMENT
+   * scope, not in the principal's biography: a buyer granting ten days of
+   * access to a CRM asks it here, at the point of committing, and the answer
+   * is a term of the engagement rather than a fact about anyone's career.
+   *
+   * It also stops §3 implying a one-person firm. The principal section is
+   * first person and stays that way because he leads every engagement, which
+   * is precisely what makes the personal voice honest there.
+   */
+  delivery: 'Led by the principal, with one or two operators. Same people from access to readout',
 } as const;
 
 /**
