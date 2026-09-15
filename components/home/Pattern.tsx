@@ -1,4 +1,5 @@
 import { Surface } from '@/components/ui/Surface';
+import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
 import { RecordTable, ColumnKey, type Column } from '@/components/ui/RecordTable';
@@ -13,7 +14,7 @@ import {
 } from '@/content/evidence';
 
 /**
- * SECTION 1 — THE PATTERN. PAPER.
+ * SECTION 1 — THE PATTERN. VOID.
  *
  * This replaced STANDING, which carried two unlinked awards and three terms of
  * engagement. The awards pointed at a software-founder history rather than an
@@ -65,7 +66,8 @@ const COLUMNS: Column[] = [
 
 export function Pattern() {
   return (
-    <Surface surface="paper">
+    <Surface surface="void" className="hex-stage">
+      <Lattice />
       <div className="shell">
         <SectionMarker index="01" label="The pattern" className="mb-14" />
 

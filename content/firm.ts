@@ -140,3 +140,54 @@ export const TRUSTED_BY: TrustedOrg[] = [
   { name: 'Poppy AI' },
   { name: 'Skool' },
 ];
+
+/**
+ * §4 — THE PRINCIPAL.
+ *
+ * Translated out of the founder's own telling, which was written for video and
+ * opened with "who am I, and why should you even listen to me?". That question
+ * is right and the section answers it; asking it out loud on a page selling
+ * operational diligence is not, because it concedes the doubt before answering
+ * it. The page states the facts and lets them do the work.
+ *
+ * WHAT IS DELIBERATELY NOT HERE, and why. This is the block a PE operating
+ * partner reads hardest after the record, so each omission is a judgement, not
+ * an oversight.
+ *
+ *   Yahoo Finance / NBC. content/firm.ts already carries a standing warning
+ *   about syndicated press: these are paid distribution formats and an
+ *   operating partner recognises them on sight. Citing them costs more
+ *   credibility than it buys. They belong on /firm, listed plainly, or nowhere.
+ *
+ *   "Zero to seven figures." True, and it invites exactly one comparison: the
+ *   firm is one to two orders of magnitude smaller than the companies it sells
+ *   into. That is normal for a specialist and damaging to volunteer.
+ *
+ *   Named clients. Tai Lopez, Joel Kaplan and GoHighLevel are already in the
+ *   trusted-by band, where "teams at" makes the claim precisely. Repeating
+ *   them here as personal associations weakens the careful version.
+ *
+ * WHAT CARRIES, and why it is framed the way it is. A thousand engagements
+ * reads as small fast work if left as a volume boast, and that is the same
+ * arithmetic trap as $6B over 500 businesses. Framed as pattern recognition it
+ * becomes the strongest sentence on the page, because it is the direct reason
+ * a ten-day diagnostic can work at all.
+ */
+export const PRINCIPAL = {
+  name: FIRM.principal,
+  role: 'Principal',
+
+  bio: [
+    'I have spent five years building Hexona Systems, and I was putting automation into operating companies before ChatGPT existed.',
+    'A thousand client engagements have run through the firm since. That number is the reason the diagnostic works rather than a claim about volume: the same short list of failures turns up in almost every company, and I have seen each of them often enough now to know which one to look for first.',
+    'I also run one of the largest AI automation communities in the world, at over 45,000 members. Several of the operators I trained there now do this work inside companies considerably larger than my own.',
+  ],
+
+  /** Both are checkable, which is the only reason they are figures and not
+   *  sentences. The engagements are a superset of the 500 audits in §1; if
+   *  either number moves, check they still agree. */
+  figures: [
+    { label: 'Client engagements', figure: '1,000+' },
+    { label: 'Community members trained', figure: '45,000+' },
+  ],
+} as const;

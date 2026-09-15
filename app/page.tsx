@@ -3,6 +3,7 @@ import { Hero } from '@/components/home/Hero';
 import { TrustedBy } from '@/components/home/TrustedBy';
 import { Pattern } from '@/components/home/Pattern';
 import { Arithmetic } from '@/components/home/Arithmetic';
+import { Principal } from '@/components/home/Principal';
 import { DiagnosticOffer } from '@/components/home/Diagnostic';
 import { Fit } from '@/components/home/Fit';
 import { Close } from '@/components/home/Close';
@@ -15,20 +16,23 @@ import { Close } from '@/components/home/Close';
  * case for anything.
  *
  * Surfaces alternate per §3.1:
- *   Hero VOID + TrustedBy VOID   (one opening block, the band is the hero's
- *                                  last line and takes its ground)
- *   01 Pattern          PAPER
- *   02 Why this first   VOID
- *   03 The engagement   PAPER
- *   04 Fit              VOID
+ *   Hero                VOID
+ *   TrustedBy band      PAPER
+ *   01 Pattern          VOID
+ *   02 Why this first   PAPER
+ *   03 The principal    VOID
+ *   04 The engagement   PAPER
+ *   05 Fit              VOID
  *   Close               PAPER
  *   Footer              VOID
  *
- * ⚠️ THE FOOTER IS PERMANENTLY VOID, and that is what fixes everything above
- * it. Alternating backwards from a dark footer makes Close paper, Fit void,
- * The engagement paper, Why this first void and Pattern paper. Flip any one
- * section and two neighbours collide somewhere; the only way to change one is
- * to change all of them. Close is paper for this reason and not by preference.
+ * Every block alternates, with no exceptions. That became possible only when
+ * The principal was added: the count changed parity, which freed the band to
+ * take paper and stop riding on the hero's ground.
+ *
+ * ⚠️ THE FOOTER IS PERMANENTLY VOID and fixes everything above it. Alternating
+ * backwards from it determines every ground on this list, so no section can be
+ * flipped on its own. Adding or removing ANY section inverts all of them.
  *
  * The trusted-by band is deliberately UNNUMBERED. It continues the hero's
  * ground rather than interrupting it, and numbering it would push Standing to
@@ -52,6 +56,7 @@ export default function HomePage() {
       <TrustedBy />
       <Pattern />
       <Arithmetic />
+      <Principal />
       <DiagnosticOffer />
       <Fit />
       <Close />
