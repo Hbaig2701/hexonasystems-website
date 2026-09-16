@@ -5,13 +5,15 @@ import { SectionMarker } from '@/components/layout/SectionMarker';
 import { RecordTable, ColumnKey, type Column } from '@/components/ui/RecordTable';
 import { Button, TextLink } from '@/components/ui/Button';
 import { DIAGNOSTIC } from '@/content/firm';
+import { IndustryFilter } from '@/components/ui/IndustryFilter';
 import {
   COLUMN_DEFINITIONS,
   INTERIM_NOTICE,
   PUBLICATION_STANDARD,
-  RECORDS,
   RECORD_PREAMBLE,
   hasRecords,
+  industryLabel,
+  recordsByIndustry,
 } from '@/content/evidence';
 
 /**
@@ -50,7 +52,16 @@ const COLUMNS: Column[] = [
   { key: 'payback', label: 'Payback', numeric: true },
 ];
 
-export default function EvidencePage() {
+export default async function EvidencePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ industry?: string }>;
+}) {
+  /* The filter is a URL, not component state. See IndustryFilter. */
+  const { industry } = await searchParams;
+  const shelf = industryLabel(industry ?? '') ? industry : undefined;
+  const records = recordsByIndustry(shelf);
+
   return (
     <>
       {/* --- Opening ------------------------------------------------------- */}
@@ -112,11 +123,15 @@ export default function EvidencePage() {
 
           {hasRecords() ? (
             <>
+              <IndustryFilter active={shelf} />
+
               <p className="t-lead mb-12 text-fg">{RECORD_PREAMBLE}</p>
               <RecordTable
-                caption="Engagement records"
+                caption={
+                  shelf ? `Engagement records: ${industryLabel(shelf)}` : 'Engagement records'
+                }
                 columns={COLUMNS}
-                rows={RECORDS.map((r) => ({
+                rows={records.map((r) => ({
                   id: r.slug,
                   href: `/evidence/${r.slug}`,
                   cells: {

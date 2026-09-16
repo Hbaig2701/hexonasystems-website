@@ -28,6 +28,8 @@
 export interface EngagementRecord {
   slug: string;
   index: string;
+  /** Which library shelf it sits on. Must be an INDUSTRIES id. */
+  industry: IndustryId;
   sector: string;
   region: string;
   year: string;
@@ -48,6 +50,53 @@ export interface EngagementRecord {
   /** How it was measured, over what period, in which system. Never omit. */
   verification: string;
   consentOnFile: boolean;
+}
+
+/**
+ * THE LIBRARY SHELVES.
+ *
+ * ⚠️ TWO THINGS TO SETTLE, and both are the founder's call rather than mine.
+ *
+ * 1. "Home Services & C..." was truncated in the source. Guessed as
+ *    Construction. Correct it here and every reference follows.
+ *
+ * 2. These verticals are SMB shapes. The site sells to operating companies at
+ *    $10M-$100M, and §5 refuses any record below that. Most restaurants,
+ *    medspas and coaching practices are an order of magnitude under it, so
+ *    either the library fills with work that contradicts the stated ICP, or
+ *    most of these shelves stay empty. Deciding which is a positioning call,
+ *    not a code change: EITHER these are engagement records and §5 holds and
+ *    some shelves stay bare, OR they are a separate class of case study with
+ *    its own stated bar, kept visibly apart from the engagement record. What
+ *    cannot happen is mixing the two under one heading, because the whole
+ *    argument of /evidence is that a published figure means one specific
+ *    thing.
+ */
+export const INDUSTRIES = [
+  { id: 'home-services', label: 'Home Services & Construction' },
+  { id: 'agencies', label: 'Agencies' },
+  { id: 'hospitality', label: 'Restaurant & Hospitality' },
+  { id: 'coaching', label: 'Coaching & Consultants' },
+  { id: 'health', label: 'MedSpa & Health' },
+  { id: 'automotive', label: 'Automotive' },
+] as const;
+
+export type IndustryId = (typeof INDUSTRIES)[number]['id'];
+
+export function industryLabel(id: string): string | undefined {
+  return INDUSTRIES.find((i) => i.id === id)?.label;
+}
+
+/** Records on one shelf, or all of them when the id is unknown or absent. */
+export function recordsByIndustry(id?: string): EngagementRecord[] {
+  if (!id || !industryLabel(id)) return RECORDS;
+  return RECORDS.filter((r) => r.industry === id);
+}
+
+/** Shelves that actually hold something. Empty shelves are never offered as a
+ *  filter: a button that leads to nothing is worse than no button. */
+export function populatedIndustries() {
+  return INDUSTRIES.filter((i) => RECORDS.some((r) => r.industry === i.id));
 }
 
 /**
