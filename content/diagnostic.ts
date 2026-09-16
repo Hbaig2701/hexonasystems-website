@@ -103,7 +103,7 @@ export const REQUIREMENTS = [
    -------------------------------------------------------------------------- */
 
 export const TERMS = [
-  { term: 'Fee', value: `${DIAGNOSTIC.priceFormatted}, fixed` },
+  { term: 'Fee', value: DIAGNOSTIC.priceFormatted },
   { term: 'Credit', value: 'Credited in full against implementation, if you proceed' },
   { term: 'Duration', value: DIAGNOSTIC.duration },
   { term: 'Delivered by', value: DIAGNOSTIC.delivery },

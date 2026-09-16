@@ -187,8 +187,8 @@ export default function DiagnosticPage() {
             <div id="commission" className="scroll-mt-32 [grid-column:1/7]">
               <h2 className="t-display-2 mb-8">Commission it.</h2>
               <p className="t-body mb-10 max-w-[44ch] text-fg-2">
-                {DIAGNOSTIC.priceFormatted}, fixed, credited in full against implementation. The
-                clock starts the day you grant access, not the day you pay.
+                {DIAGNOSTIC.priceFormatted}, credited in full against implementation. The clock
+                starts the day you grant access, not the day you pay.
               </p>
               <Button href={`mailto:${DISCUSS.email}?subject=Commission%20a%20diagnostic`}>
                 Commission a diagnostic <span aria-hidden="true">→</span>{' '}
