@@ -181,10 +181,15 @@ export default function FirmPage() {
         <div className="shell">
           <div className="col-12">
             <div className="[grid-column:1/9]">
+              {/* Plain and true. The line here used to be "The firm is five
+                  years old. The leak in your business is older", which asserts
+                  something about a reader the firm has never met, and reaches
+                  for a flourish this page does not need. The homepage carries
+                  the argument; this close only has to point at the next step. */}
               <h2 className="t-display-1 mb-16">
-                The firm is five years old.
+                Every engagement begins
                 <br className="hidden sm:inline" />
-                The leak in your business is older.
+                with the same ten days.
               </h2>
               <div className="flex flex-col items-start gap-8">
                 <Button href="/diagnostic">
