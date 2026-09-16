@@ -115,6 +115,35 @@ export const TERMS = [
 ];
 
 /* --------------------------------------------------------------------------
+   AFTER THE DIAGNOSTIC
+
+   The build was load-bearing across the whole site and described nowhere. The
+   hero says "seal it", the fee is credited against implementation in eleven
+   places, and SEALED is defined as recovery measured AFTER implementation. A
+   reader was being asked to buy the first half of a transaction whose second
+   half had no stated shape.
+
+   That cost lands on the DIAGNOSTIC, not on the build: a report is only worth
+   $5,000 if the follow-on is viable, and "credited against implementation" is
+   an empty promise to somebody who cannot tell whether implementation is
+   $40,000 or $400,000. Publishing a range is worth more than protecting it.
+   -------------------------------------------------------------------------- */
+
+export const IMPLEMENTATION = {
+  body: [
+    'There is no obligation. The report and the roadmap are yours whether you build with us, build it yourself, or hand the whole thing to somebody else.',
+    'If you do proceed, the roadmap prices each phase before that phase begins and the diagnostic fee comes off the first one. You approve phases one at a time and are never asked to commit to a total, because until the diagnostic is finished neither of us knows what the total is.',
+    'Recovery is then measured after each phase, in the same system the leak was found in and against the same baseline. That measurement is what produces a sealed figure, and it is why a sealed figure is always smaller than what was found.',
+  ],
+  terms: [
+    { term: 'Pricing', value: 'Fixed price per phase, agreed before the phase begins' },
+    { term: 'Typical total', value: '$25,000 to $75,000 across all phases' },
+    { term: 'Diagnostic fee', value: 'Credited in full against the first phase' },
+    { term: 'Commitment', value: 'Phase by phase. None at any point, including after the report' },
+  ],
+};
+
+/* --------------------------------------------------------------------------
    CONFIDENTIALITY AND ACCESS
 
    ⚠️ THE MOST IMPORTANT UNANSWERED QUESTION ON THE SITE, AND IT IS EMPTY.

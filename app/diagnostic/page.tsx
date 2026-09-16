@@ -7,6 +7,7 @@ import { Button, TextLink } from '@/components/ui/Button';
 import { DIAGNOSTIC } from '@/content/firm';
 import {
   CONFIDENTIALITY,
+  IMPLEMENTATION,
   DELIVERABLES,
   DISCUSS,
   REQUIREMENTS,
@@ -137,7 +138,7 @@ export default function DiagnosticPage() {
       {/* --- 03 Terms, and confidentiality --------------------------------- */}
       <Surface surface="paper">
         <div className="shell">
-          <SectionMarker index="03" label="Terms" className="mb-14" />
+          <SectionMarker index="03" label="Terms, and what follows" className="mb-14" />
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/7]">
               <RecordTable
@@ -174,6 +175,30 @@ export default function DiagnosticPage() {
                   before you commit.
                 </p>
               )}
+            </div>
+          </div>
+
+          {/* The build. A full-width block rather than a fifth section: it is
+              a commercial term and belongs with the others, and inserting a
+              section here would invert every ground below it. */}
+          <div className="col-12 mt-24 border-t border-line pt-16">
+            <div className="[grid-column:1/7]">
+              <h2 className="t-display-2 mb-8">After the diagnostic.</h2>
+              {IMPLEMENTATION.body.map((para, i) => (
+                <p key={i} className="t-body mb-6 max-w-[54ch] text-fg-2 last:mb-0">
+                  {para}
+                </p>
+              ))}
+            </div>
+            <div className="[grid-column:8/13]">
+              <dl className="m-0 border-t border-line">
+                {IMPLEMENTATION.terms.map((t) => (
+                  <div key={t.term} className="border-b border-line py-6">
+                    <dt className="t-label mb-2 text-fg-3">{t.term}</dt>
+                    <dd className="t-small m-0 max-w-[46ch] text-fg-2">{t.value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </div>
