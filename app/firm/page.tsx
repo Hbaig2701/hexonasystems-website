@@ -151,7 +151,7 @@ export default function FirmPage() {
                   >
                     <span className="t-label shrink-0 text-brand md:w-20">{a.year}</span>
                     <span className="t-body text-fg-2">{a.title}</span>
-                    {a.href ? (
+                    {a.href && (
                       <a
                         href={a.href}
                         className="link t-label md:ml-auto"
@@ -160,12 +160,6 @@ export default function FirmPage() {
                       >
                         Verify <span aria-hidden="true">→</span>
                       </a>
-                    ) : (
-                      process.env.NODE_ENV !== 'production' && (
-                        <span className="t-label text-loss md:ml-auto">
-                          Dev only · no verification link
-                        </span>
-                      )
                     )}
                   </li>
                 ))}

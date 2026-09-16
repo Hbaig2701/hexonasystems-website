@@ -172,19 +172,11 @@ export default function DiagnosticPage() {
                 /* Gated like §5. An invented security posture is worse than an
                    absent one: a vague claim is weak, a specific false one is
                    actionable. See CONFIDENTIALITY_QUESTIONS. */
-                <>
-                  <p className="t-body max-w-[44ch] text-fg-2">
-                    Access is scoped, time-limited and agreed in writing before any credential
-                    changes hands. The specifics are set out in the engagement letter, which you
-                    see before you commit.
-                  </p>
-                  {process.env.NODE_ENV !== 'production' && (
-                    <p className="t-small mt-8 max-w-[48ch] text-loss">
-                      Dev only · CONFIDENTIALITY is empty. This is the largest unanswered objection
-                      on the site. Fill it in content/diagnostic.ts.
-                    </p>
-                  )}
-                </>
+                <p className="t-body max-w-[44ch] text-fg-2">
+                  Access is scoped, time-limited and agreed in writing before any credential
+                  changes hands. The specifics are set out in the engagement letter, which you see
+                  before you commit.
+                </p>
               )}
             </div>
           </div>

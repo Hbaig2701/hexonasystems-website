@@ -106,18 +106,11 @@ export function Pattern() {
               tone="brand"
             />
 
-            {hasScalePeriod() ? (
+            {hasScalePeriod() && (
               <p className="t-small mt-6 text-fg-3">
                 Measured across {LEAKAGE_SCALE.period}, through the firm&apos;s own diagnostic
                 process.
               </p>
-            ) : (
-              process.env.NODE_ENV !== 'production' && (
-                <p className="t-small mt-6 text-loss">
-                  Dev only · LEAKAGE_SCALE.period is empty. &quot;Cumulative&quot; is not a
-                  measurement without the window it accumulated over.
-                </p>
-              )
             )}
           </div>
         </div>
