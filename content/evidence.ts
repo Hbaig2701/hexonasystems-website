@@ -63,7 +63,10 @@ export const hasRecords = () => RECORDS.length > 0;
  * RECORDS is empty. `month` is the only thing to fill in.
  */
 export const INTERIM_NOTICE = {
-  month: '[month]',
+  /** ⚠️ [ASSET NEEDED] e.g. "March 2027". The sentence closes cleanly without
+   *  it, so an unset month simply omits the date rather than printing a
+   *  placeholder at a visitor. */
+  month: '',
   body: 'Engagement records publish once the measurement period closes and the client approves the redacted version. First records publish',
   reassurance:
     'In the interim: the diagnostic is fixed-fee and fully credited, and the report will tell you if the leakage is immaterial. That is the whole risk you are taking.',
@@ -137,3 +140,50 @@ export const LEAKAGE_SCALE = {
 } as const;
 
 export const hasScalePeriod = () => LEAKAGE_SCALE.period.length > 0;
+
+/**
+ * §5's publication bar, as the page states it.
+ *
+ * This is the EngagementRecord interface written out in plain words. It is the
+ * strongest thing /evidence can say while RECORDS is empty, because it is true
+ * today: the requirements are not aspirations, they are the fields a record
+ * cannot be constructed without, and the page is empty precisely because the
+ * bar has not been cleared rather than because nothing has been done.
+ *
+ * Keep this list and the interface in step. If a field is relaxed there, the
+ * claim here becomes false.
+ */
+export const PUBLICATION_STANDARD = [
+  {
+    term: 'Scale',
+    detail:
+      'The engagement was at $10M to $100M in revenue, the range this firm operates in. A smaller company rounded up would discredit every record beside it.',
+  },
+  {
+    term: 'A named sector',
+    detail: 'Specific enough to be recognised. "Specialty industrial distribution", not "B2B".',
+  },
+  {
+    term: 'Found',
+    detail: 'Annualised leakage identified during the diagnostic.',
+  },
+  {
+    term: 'Sealed',
+    detail:
+      'Annualised recovery actually measured after implementation, and always less than what was found. A complete seal is not credible and would read as fabrication.',
+  },
+  {
+    term: 'A measurement window',
+    detail: 'The period the recovery was measured over, stated rather than implied.',
+  },
+  {
+    term: 'A verification method',
+    detail:
+      'The system the figure was measured in and the metric it was measured as, both named. A number without them is a claim.',
+  },
+  {
+    term: 'Written consent',
+    detail:
+      'The client has approved the anonymised version exactly as it is published here.',
+  },
+];
