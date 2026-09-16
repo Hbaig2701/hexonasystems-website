@@ -150,9 +150,11 @@ export default async function EvidencePage({
                caught exaggeration, recoverable. */
             <div className="col-12">
               <div className="[grid-column:1/9]">
+                {/* One expression, not two. On separate lines JSX inserts a
+                    space between them, which rendered "publish ." with the
+                    stop floating off the end of the sentence. */}
                 <p className="t-display-2 mb-10">
-                  {INTERIM_NOTICE.body}
-                  {INTERIM_NOTICE.month ? ` ${INTERIM_NOTICE.month}.` : '.'}
+                  {`${INTERIM_NOTICE.body}${INTERIM_NOTICE.month ? ` ${INTERIM_NOTICE.month}` : ''}.`}
                 </p>
                 <p className="t-body max-w-[62ch] text-fg-2">{INTERIM_NOTICE.reassurance}</p>
               </div>
