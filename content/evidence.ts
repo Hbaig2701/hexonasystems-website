@@ -99,11 +99,17 @@ export function populatedIndustries() {
   return INDUSTRIES.filter((i) => RECORDS.some((r) => r.industry === i.id));
 }
 
+/* ⚠️ TEMPORARY. Delete this import and the spread below, and delete
+   content/evidence.samples.ts, before launch. They are placeholder records so
+   the library and its shelves can be reviewed; a Vercel build throws rather
+   than publishing them. */
+import { SAMPLE_RECORDS } from './evidence.samples';
+
 /**
  * Empty until §5 is satisfied. Add records here and /evidence switches from the
  * interim notice to the record table automatically.
  */
-export const RECORDS: EngagementRecord[] = [];
+export const RECORDS: EngagementRecord[] = [...SAMPLE_RECORDS];
 
 export const hasRecords = () => RECORDS.length > 0;
 
