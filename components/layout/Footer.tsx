@@ -12,6 +12,7 @@ import { FIRM } from '@/content/firm';
 
 const SITE_LINKS = [
   { label: 'Diagnostic', href: '/diagnostic' },
+  { label: 'Implementation', href: '/implementation' },
   { label: 'Evidence', href: '/evidence' },
   { label: 'Method', href: '/method' },
   { label: 'Firm', href: '/firm' },

@@ -189,6 +189,9 @@ export default function DiagnosticPage() {
                   {para}
                 </p>
               ))}
+              <p className="mt-8">
+                <TextLink href="/implementation">What gets built, and who builds it</TextLink>
+              </p>
             </div>
             <div className="[grid-column:8/13]">
               <dl className="m-0 border-t border-line">

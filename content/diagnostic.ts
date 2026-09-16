@@ -191,3 +191,75 @@ export const DISCUSS = {
   email: FIRM.email,
   body: 'Thirty minutes, with the principal, and no deck. Bring the part of the operation you already suspect. If it is not worth commissioning we will say so on the call rather than in a report you paid for.',
 };
+
+/* ==========================================================================
+   /implementation — the build.
+   ========================================================================= */
+
+/**
+ * WHAT GETS BUILT.
+ *
+ * The founder's own description ended "we'll build whatever needs to get
+ * done", which is true and is the weakest possible way to say it. On a site
+ * that promises fixed scope in six places, open-endedness reads as a warning
+ * rather than as flexibility, and to an operating partner a firm that builds
+ * anything is a generalist, which is worth less than a specialist.
+ *
+ * So the framing is inverted: the work is always the same KIND of work,
+ * closing the specific gaps the diagnostic priced, and only its form varies.
+ * That is what turns a list of six capabilities into a coherent practice
+ * instead of a menu.
+ */
+export const BUILDS = [
+  {
+    term: 'Process automation',
+    detail:
+      'Lead capture, routing, conversion and follow-up. The most common build, because the most common leaks live here: work that depends on a person remembering to do it.',
+  },
+  {
+    term: 'CRM',
+    detail:
+      'Rebuilt or replaced, where the system of record is itself the reason the leak exists. A CRM nobody trusts gets worked around, and the workarounds are where revenue disappears.',
+  },
+  {
+    term: 'Custom software',
+    detail:
+      'Dashboards and internal tools, up to enterprise scale, where nothing off the shelf fits the way the business actually runs.',
+  },
+  {
+    term: 'Reporting',
+    detail:
+      'So the figure the diagnostic produced stays visible after we leave. A leak that was closed and is not watched reopens.',
+  },
+  {
+    term: 'Communication and routing',
+    detail:
+      'Getting the right thing to the right person without a human deciding each time. Most response-time leakage is a routing problem wearing a staffing problem costume.',
+  },
+  {
+    term: 'Operational structure',
+    detail:
+      'Ownership and workflow around the systems. A tool nobody owns leaks again within a quarter, which is the most expensive way to learn this.',
+  },
+];
+
+/**
+ * WHO BUILDS IT.
+ *
+ * ⚠️ TWO THINGS FROM THE FOUNDER'S DESCRIPTION ARE DELIBERATELY ABSENT.
+ *
+ * "At the most affordable rates." This firm sells a $5,000 diagnostic and
+ * $25k-$75k builds to operating partners at $10M-$100M companies. To that
+ * buyer cheap is not an attraction, it is a risk signal, and a claim about
+ * your own affordability invites a comparison you do not want. Price is
+ * already stated plainly; it does not need an adjective defending it.
+ *
+ * "FANG companies" as a category, and the rocket-ship line. Amazon is named
+ * because it is specific and checkable. The acronym is neither.
+ */
+export const BUILD_TEAM = {
+  body: [
+    'Four engineers deliver the builds. They come from Amazon and comparable engineering organisations, and from founders who built and ran their own companies before joining this one.',
+    'None of them bills by the hour. Phases are priced before they start, so the incentive is to finish rather than to extend, and the people who scoped the work are the people who do it.',
+  ],
+};
