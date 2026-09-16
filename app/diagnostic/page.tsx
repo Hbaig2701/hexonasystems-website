@@ -79,9 +79,9 @@ export default function DiagnosticPage() {
           <SectionMarker index="01" label="What arrives" className="mb-14" />
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">Three things, and you keep all of them.</h2>
+              <h2 className="t-display-2 mb-6">A report, a readout, and a roadmap.</h2>
               <p className="t-body max-w-[36ch] text-fg-2">
-                Whether or not you ever hire us to build anything.
+                All three are yours to keep, whether or not you ever hire us to build anything.
               </p>
             </div>
             <dl className="[grid-column:6/13] m-0 border-t border-line">
