@@ -7,7 +7,7 @@ import { DIAGNOSTIC, FIRM } from './firm';
  * it has to close on its own rather than assume the visitor read the homepage.
  * Facts already committed elsewhere are imported or restated verbatim here and
  * MUST NOT drift: the fee, the credit, and above all the clock, which reads
- * ten business days FROM SYSTEMS ACCESS everywhere it appears.
+ * a two week intensive ANCHORED TO SYSTEMS ACCESS everywhere it appears.
  */
 
 /* --------------------------------------------------------------------------
@@ -65,7 +65,7 @@ export const SEQUENCE = [
   {
     step: 'Readout',
     detail:
-      'The report lands, then the ninety minutes. Ten business days from access, end to end.',
+      'The report lands, then the ninety minutes. Two weeks from access, end to end.',
   },
 ];
 

@@ -51,14 +51,10 @@ export default function DiagnosticPage() {
                 <span className="text-brand">Hexona Systems</span>
                 <span className="px-1.5 text-brand opacity-50">·</span> The engagement
               </p>
-              <h1 className="t-display-1 mb-12">
-                The Leakage Diagnostic.
-                <br className="hidden sm:inline" />
-                <span className="text-brand">{DIAGNOSTIC.priceFormatted}</span>, fixed.
-              </h1>
+              <h1 className="t-display-1 mb-12">The Leakage Diagnostic.</h1>
               <p className="t-lead mb-14 max-w-[56ch] text-fg-2">
-                Ten business days from the day you grant access. Every leak found is priced against
-                your own numbers. If the leakage is immaterial, the report says so in its first
+                A two week intensive that starts the day you grant access. Every leak found is priced
+                against your own numbers. If the leakage is immaterial, the report says so in its first
                 paragraph and we tell you not to hire us.
               </p>
               <div className="flex flex-wrap items-center gap-x-10 gap-y-5">
@@ -76,10 +72,10 @@ export default function DiagnosticPage() {
       {/* --- 01 What arrives ----------------------------------------------- */}
       <Surface surface="paper">
         <div className="shell">
-          <SectionMarker index="01" label="What arrives" className="mb-14" />
+          <SectionMarker index="01" label="The deliverable" className="mb-14" />
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">A report, a readout, and a roadmap.</h2>
+              <h2 className="t-display-2 mb-6">What you receive.</h2>
               <p className="t-body max-w-[36ch] text-fg-2">
                 All three are yours to keep, whether or not you ever hire us to build anything.
               </p>

@@ -24,18 +24,23 @@ export const DIAGNOSTIC = {
   priceFormatted: '$5,000',
   currency: 'USD',
   /**
-   * §4 warning: state the clock the same way everywhere. TEN BUSINESS DAYS FROM
-   * SYSTEMS ACCESS, never from purchase. Between purchase and access sit
+   * §4 warning: state the clock the same way everywhere, and ALWAYS ANCHORED
+   * TO SYSTEMS ACCESS, never to purchase. Between purchase and access sit
    * kickoff scheduling and credential provisioning, realistically five to ten
-   * more days. Implying delivery ten days after payment reads as a
+   * more days. Implying delivery two weeks after payment reads as a
    * bait-and-switch the first time it slips, and it will slip.
+   *
+   * "Two week intensive" is the framing; ten business days is the precision.
+   * They are the same span, and the long form carries both because two weeks
+   * invites a reader to count fourteen calendar days. Wherever only one fits,
+   * use the short form and keep the anchor.
    */
-  duration: '10 business days from systems access',
-  durationShort: 'Ten business days',
+  duration: 'A two week intensive. Ten business days, from systems access',
+  durationShort: 'Two week intensive',
 
   /**
    * Who is actually in the client's systems. This belongs in the ENGAGEMENT
-   * scope, not in the principal's biography: a buyer granting ten days of
+   * scope, not in the principal's biography: a buyer granting two weeks of
    * access to a CRM asks it here, at the point of committing, and the answer
    * is a term of the engagement rather than a fact about anyone's career.
    *

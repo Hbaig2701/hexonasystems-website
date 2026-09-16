@@ -183,7 +183,7 @@ export default function FirmPage() {
               <h2 className="t-display-1 mb-16">
                 Every engagement begins
                 <br className="hidden sm:inline" />
-                with the same ten days.
+                with the same two weeks.
               </h2>
               <div className="flex flex-col items-start gap-8">
                 <Button href="/diagnostic">

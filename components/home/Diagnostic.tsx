@@ -12,7 +12,7 @@ import { DIAGNOSTIC } from '@/content/firm';
  * also a commitment, and honouring it is not optional.
  *
  * Duration reads from DIAGNOSTIC.duration so the clock is stated identically
- * everywhere (§4 warning): ten business days FROM SYSTEMS ACCESS, never from
+ * everywhere (§4 warning): a two week intensive FROM SYSTEMS ACCESS, never from
  * purchase.
  */
 export function DiagnosticOffer() {

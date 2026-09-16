@@ -13,10 +13,10 @@ import { DIAGNOSTIC } from '@/content/firm';
  * the revenue page stays one click from the hero.
  *
  * The terms strap that used to close this section is gone. Both of its claims
- * still appear in full: the ten business days and the credited fee are stated
+ * still appear in full: the two week intensive and the credited fee are stated
  * in Diagnostic, and Close repeats them at the point of decision. §4's warning
  * still binds wherever they do appear, so the clock is defined as running FROM
- * SYSTEMS ACCESS, never "ten days from now".
+ * SYSTEMS ACCESS, never "two weeks from now".
  *
  * The min-height is short of a full screen on purpose. 100svh minus the header
  * pushed the trusted-by band entirely below the fold; 16rem is roughly the

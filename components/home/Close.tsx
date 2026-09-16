@@ -29,7 +29,7 @@ export function Close() {
             </div>
 
             <p className="t-label mt-20 border-t border-brand/30 pt-6 text-fg-3">
-              Ten business days <span className="px-1.5 text-brand opacity-50">·</span> Fixed fee
+              Two week intensive <span className="px-1.5 text-brand opacity-50">·</span> Fixed fee
               <span className="px-1.5 text-brand opacity-50">·</span> Credited against
               implementation
             </p>
