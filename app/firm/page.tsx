@@ -93,7 +93,7 @@ export default function FirmPage() {
           <SectionMarker index="02" label="Who does the work" className="mb-14" />
           <div className="col-12">
             <div className="[grid-column:1/8]">
-              <h2 className="t-display-2 mb-8">Six people, and you will meet the ones on yours.</h2>
+              <h2 className="t-display-2 mb-8">Six people. You will meet the ones on your engagement.</h2>
               <p className="t-body mb-16 max-w-[60ch] text-fg-2">
                 Engagements are led by the principal with one or two operators, and the team that
                 takes your systems access is the team that presents the findings.
@@ -121,7 +121,7 @@ export default function FirmPage() {
           <SectionMarker index="03" label="What we hold to" className="mb-14" />
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">Four promises you can catch us breaking.</h2>
+              <h2 className="t-display-2 mb-6">Four commitments you can hold us to.</h2>
               <p className="t-body max-w-[36ch] text-fg-2">
                 A value nobody could disagree with is decoration. Each of these is enforced by the
                 engagement terms.

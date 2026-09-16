@@ -257,8 +257,12 @@ export const TEAM = [
  * which is what every agency site in the world lists.
  *
  * A value nobody could disagree with is not a value, it is decoration. Each of
- * these is instead a promise the client can hold the firm to and catch it
- * breaking, which is the only kind worth publishing on a page about diligence.
+ * these is instead a commitment a client could hold the firm to, which is the
+ * only kind worth publishing on a page about diligence.
+ *
+ * The heading here first read "Four promises you can catch us breaking". It
+ * was too clever twice over: the reader has to stop and parse it, and it
+ * plants the idea that the firm expects to break them. Say the plain thing.
  * Every one is already true elsewhere on the site, which is the test: if a
  * commitment here is not enforced by the engagement terms, it does not belong.
  */
