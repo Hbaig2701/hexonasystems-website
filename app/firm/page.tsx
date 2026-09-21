@@ -93,11 +93,11 @@ export default function FirmPage() {
           <SectionMarker index="02" label="Who does the work" className="mb-14" />
           <div className="col-12">
             <div className="[grid-column:1/8]">
-              <h2 className="t-display-2 mb-8">Six run the firm. Four more build.</h2>
+              <h2 className="t-display-2 mb-8">Six run the firm, and a separate team builds.</h2>
               <p className="t-body mb-16 max-w-[60ch] text-fg-2">
                 Engagements are led by the principal with one or two operators, and the team that
                 takes your systems access is the team that presents the findings. Builds are
-                delivered by four engineers, who are listed on the{' '}
+                delivered by a separate engineering team, described on the{' '}
                 <a href="/implementation" className="link">
                   implementation page
                 </a>

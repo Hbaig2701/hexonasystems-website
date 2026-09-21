@@ -29,7 +29,7 @@ import { BUILDS, BUILD_TEAM, IMPLEMENTATION } from '@/content/diagnostic';
 export const metadata: Metadata = {
   title: 'Implementation: sealing what the diagnostic found',
   description:
-    'Fixed price per phase, typically $25,000 to $75,000 across all phases, with the diagnostic fee credited against the first. Four engineers, and recovery measured after each phase in the system the leak was found in.',
+    'Fixed price per phase, typically $25,000 to $75,000 across all phases, with the diagnostic fee credited against the first. Recovery is measured after each phase, in the system the leak was found in.',
   alternates: { canonical: '/implementation' },
 };
 
@@ -68,8 +68,8 @@ export default function ImplementationPage() {
             <div className="[grid-column:1/5]">
               <h2 className="t-display-2 mb-6">The leak decides the build.</h2>
               <p className="t-body max-w-[36ch] text-fg-2">
-                Which is why no two look alike. The work is always the same kind of work. Only its
-                form changes.
+                Which is why no two look alike. Our services are bespoke and tailored to your
+                specific problems.
               </p>
             </div>
             <dl className="[grid-column:6/13] m-0 border-t border-line">
@@ -80,6 +80,10 @@ export default function ImplementationPage() {
                 </div>
               ))}
             </dl>
+
+            <p className="[grid-column:6/13]">
+              <TextLink href="/evidence">View our recent implementations</TextLink>
+            </p>
           </div>
         </div>
       </Surface>
@@ -91,7 +95,7 @@ export default function ImplementationPage() {
           <SectionMarker index="02" label="Who builds it" className="mb-14" />
           <div className="col-12">
             <div className="[grid-column:1/8]">
-              <h2 className="t-display-2 mb-10">Four engineers, and none of them bills by the hour.</h2>
+              <h2 className="t-display-2 mb-10">A world-class team of engineers.</h2>
               {BUILD_TEAM.body.map((para, i) => (
                 <p key={i} className="t-body mb-6 max-w-[62ch] text-fg-2 last:mb-0">
                   {para}
@@ -143,9 +147,9 @@ export default function ImplementationPage() {
           <div className="col-12">
             <div className="[grid-column:1/9]">
               <h2 className="t-display-1 mb-16">
-                Nobody builds anything
+                You cannot seal a leak
                 <br className="hidden sm:inline" />
-                until the number is on paper.
+                you have not found.
               </h2>
               <div className="flex flex-col items-start gap-8">
                 <Button href="/diagnostic">

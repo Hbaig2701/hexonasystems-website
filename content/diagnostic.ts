@@ -262,7 +262,7 @@ export const BUILDS = [
  */
 export const BUILD_TEAM = {
   body: [
-    'Four engineers deliver the builds. They come from Amazon and comparable engineering organisations, and from founders who built and ran their own companies before joining this one.',
+    'The builds are delivered by engineers who came from Amazon and comparable engineering organisations, and by founders who built and ran their own companies before joining this one.',
     'None of them bills by the hour. Phases are priced before they start, so the incentive is to finish rather than to extend, and the people who scoped the work are the people who do it.',
   ],
 };
