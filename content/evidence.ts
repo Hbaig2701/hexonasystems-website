@@ -136,7 +136,7 @@ export const COLUMN_DEFINITIONS = [
   {
     term: 'Sealed',
     definition:
-      'Annualised recovery measured after implementation, over the period stated in each record. Always less than FOUND.',
+      'Annualised recovery measured after implementation, over the period stated in each record. It is always smaller than what was found.',
   },
   {
     term: 'Payback',
@@ -145,7 +145,8 @@ export const COLUMN_DEFINITIONS = [
   },
 ];
 
-export const RECORD_PREAMBLE = 'Client names withheld by agreement. Figures unaltered.';
+export const RECORD_PREAMBLE =
+  'We withhold client names by agreement, and the figures are exactly as they were measured.';
 
 /**
  * §4 section 2 — THE PATTERN. The scale figures.

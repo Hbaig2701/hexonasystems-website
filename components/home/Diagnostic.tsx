@@ -72,7 +72,7 @@ export function DiagnosticOffer() {
                   cells: {
                     term: 'Deliverable',
                     value:
-                      'Written report. Every leak quantified annually, ranked by recoverable dollars against effort',
+                      'A written report that prices every leak as an annual figure and ranks them by recoverable dollars against effort',
                   },
                 },
                 { id: 'r', cells: { term: 'Readout', value: '90 minutes, live' } },
@@ -93,7 +93,10 @@ export function DiagnosticOffer() {
                 },
                 {
                   id: 'af',
-                  cells: { term: 'Afterward', value: 'No obligation. The report is yours.' },
+                  cells: {
+                    term: 'Afterward',
+                    value: 'You are under no obligation, and the report is yours either way',
+                  },
                 },
               ]}
             />

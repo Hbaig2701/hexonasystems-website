@@ -18,7 +18,7 @@ const FIT = [
 ];
 
 const NOT_FIT = [
-  'Under $10M. Leakage rarely justifies the fee, and we will say so',
+  'Companies under $10M, where the leakage rarely justifies the fee and we will tell you so',
   'The goal is headcount reduction rather than recovered revenue',
   'Systems undocumented and nobody available to document them',
   'What’s wanted is a tool recommendation, which any consultant gives away free',

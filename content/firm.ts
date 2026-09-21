@@ -35,7 +35,7 @@ export const DIAGNOSTIC = {
    * invites a reader to count fourteen calendar days. Wherever only one fits,
    * use the short form and keep the anchor.
    */
-  duration: 'A two week intensive. Ten business days, from systems access',
+  duration: 'A two week intensive, which is ten business days from systems access',
   durationShort: 'Two week intensive',
 
   /**

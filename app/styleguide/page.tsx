@@ -168,7 +168,7 @@ function Specimens({ surface }: { surface: SurfaceName }) {
             {
               term: 'Sealed',
               definition:
-                'Annualised recovery measured after implementation, over the period stated in each record. Always less than found.',
+                'Annualised recovery measured after implementation, over the period stated in each record. It is always smaller than what was found.',
             },
             {
               term: 'Payback',

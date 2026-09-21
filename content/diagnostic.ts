@@ -28,7 +28,7 @@ export const DELIVERABLES = [
   {
     term: 'The roadmap',
     detail:
-      'A sequenced build plan with a cost and a timeline against each phase. It is written so that you can hand it to somebody else and they can execute it. That is deliberate.',
+      'A sequenced build plan with a cost and a timeline against each phase. We write it so that somebody else could execute it without us, because a roadmap you cannot take elsewhere is a hostage rather than a plan.',
   },
 ];
 
@@ -107,7 +107,7 @@ export const TERMS = [
   { term: 'Credit', value: 'Credited in full against implementation, if you proceed' },
   { term: 'Duration', value: DIAGNOSTIC.duration },
   { term: 'Delivered by', value: DIAGNOSTIC.delivery },
-  { term: 'Afterward', value: 'No obligation. The report is yours either way' },
+  { term: 'Afterward', value: 'You are under no obligation, and the report is yours either way' },
   {
     term: 'If there is nothing to find',
     value: 'The report says so in its first paragraph and we tell you not to hire us',
@@ -139,7 +139,10 @@ export const IMPLEMENTATION = {
     { term: 'Pricing', value: 'Fixed price per phase, agreed before the phase begins' },
     { term: 'Typical total', value: '$25,000 to $75,000 across all phases' },
     { term: 'Diagnostic fee', value: 'Credited in full against the first phase' },
-    { term: 'Commitment', value: 'Phase by phase. None at any point, including after the report' },
+    {
+      term: 'Commitment',
+      value: 'You commit one phase at a time, and never beyond the phase you have approved',
+    },
   ],
 };
 
