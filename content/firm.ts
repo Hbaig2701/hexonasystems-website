@@ -48,7 +48,7 @@ export const DIAGNOSTIC = {
    * first person and stays that way because he leads every engagement, which
    * is precisely what makes the personal voice honest there.
    */
-  delivery: 'Led by the principal, with one or two operators. Same people from access to readout',
+  delivery: 'Led by the principal, with one or two operators',
 } as const;
 
 /**

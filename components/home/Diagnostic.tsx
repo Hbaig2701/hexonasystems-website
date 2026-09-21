@@ -64,7 +64,7 @@ export function DiagnosticOffer() {
                   id: 'i',
                   cells: {
                     term: 'Interviews',
-                    value: '4 to 6, 45 minutes, across sales, ops, service',
+                    value: '4 to 6, 30 minutes, across sales, ops, service',
                   },
                 },
                 {

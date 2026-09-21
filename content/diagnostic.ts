@@ -55,7 +55,7 @@ export const SEQUENCE = [
   {
     step: 'Interviews',
     detail:
-      'Four to six conversations, forty-five minutes each, across sales, operations and service. We are looking for the gap between what the system records and what people actually do.',
+      'Four to six conversations, thirty minutes each, across sales, operations and service. We are looking for the gap between what the system records and what people actually do.',
   },
   {
     step: 'Quantification',
@@ -89,7 +89,7 @@ export const REQUIREMENTS = [
   },
   {
     term: 'Time from your people',
-    detail: 'Four to six people for forty-five minutes each. No preparation required of them.',
+    detail: 'Four to six people for thirty minutes each. No preparation required of them.',
   },
   {
     term: 'Twelve months of history',

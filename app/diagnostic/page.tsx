@@ -117,11 +117,7 @@ export default function DiagnosticPage() {
             </div>
 
             <div className="[grid-column:8/13]">
-              <h2 className="t-display-2 mb-8">What we need from you.</h2>
-              <p className="t-body mb-10 max-w-[44ch] text-fg-2">
-                Stated in full so you can judge whether this is feasible before you pay for it, not
-                at kickoff.
-              </p>
+              <h2 className="t-display-2 mb-10">What we need from you.</h2>
               <dl className="m-0 border-t border-line">
                 {REQUIREMENTS.map((r) => (
                   <div key={r.term} className="border-b border-line py-6">
