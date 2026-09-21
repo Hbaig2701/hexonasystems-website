@@ -143,8 +143,11 @@ export default async function EvidencePage({
         <div className="shell">
           <div className="col-12">
             <div className="[grid-column:1/9]">
+              {/* "Every one of these" had no antecedent while RECORDS is
+                  empty and the table above is an interim notice. This reads
+                  correctly in both states. */}
               <h2 className="t-display-1 mb-16">
-                Every one of these began
+                Every engagement begins
                 <br className="hidden sm:inline" />
                 with a diagnostic.
               </h2>
