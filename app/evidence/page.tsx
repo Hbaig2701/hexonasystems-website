@@ -126,7 +126,9 @@ export default async function EvidencePage({
             <div className="col-12">
               <div className="[grid-column:1/9]">
                 <p className="t-display-2 mb-10">
-                  {`${INTERIM_NOTICE.body}${INTERIM_NOTICE.month ? ` ${INTERIM_NOTICE.month}` : ''}.`}
+                  {INTERIM_NOTICE.month
+                    ? `${INTERIM_NOTICE.body} ${INTERIM_NOTICE.firstPublish(INTERIM_NOTICE.month)}`
+                    : INTERIM_NOTICE.body}
                 </p>
                 <p className="t-body max-w-[62ch] text-fg-2">{INTERIM_NOTICE.reassurance}</p>
               </div>

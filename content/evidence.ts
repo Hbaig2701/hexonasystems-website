@@ -99,17 +99,11 @@ export function populatedIndustries() {
   return INDUSTRIES.filter((i) => RECORDS.some((r) => r.industry === i.id));
 }
 
-/* ⚠️ TEMPORARY. Delete this import and the spread below, and delete
-   content/evidence.samples.ts, before launch. They are placeholder records so
-   the library and its shelves can be reviewed; a Vercel build throws rather
-   than publishing them. */
-import { SAMPLE_RECORDS } from './evidence.samples';
-
 /**
  * Empty until §5 is satisfied. Add records here and /evidence switches from the
  * interim notice to the record table automatically.
  */
-export const RECORDS: EngagementRecord[] = [...SAMPLE_RECORDS];
+export const RECORDS: EngagementRecord[] = [];
 
 export const hasRecords = () => RECORDS.length > 0;
 
@@ -118,11 +112,16 @@ export const hasRecords = () => RECORDS.length > 0;
  * RECORDS is empty. `month` is the only thing to fill in.
  */
 export const INTERIM_NOTICE = {
-  /** ⚠️ [ASSET NEEDED] e.g. "March 2027". The sentence closes cleanly without
-   *  it, so an unset month simply omits the date rather than printing a
-   *  placeholder at a visitor. */
+  /** ⚠️ [ASSET NEEDED] e.g. "March 2027".
+   *
+   *  `body` used to end with the dangling clause "First records publish", so
+   *  with no month set the page stated "First records publish." at visitors,
+   *  which is not a sentence. The date now lives in its own sentence that is
+   *  omitted entirely when the month is unset. */
   month: '',
-  body: 'Engagement records publish once the measurement period closes and the client approves the redacted version. First records publish',
+  body: 'Engagement records publish once the measurement period closes and the client approves the redacted version.',
+  /** Rendered only when `month` is set. */
+  firstPublish: (month: string) => `The first of them publish in ${month}.`,
   reassurance:
     'In the interim: the diagnostic is fixed-fee and fully credited, and the report will tell you if the leakage is immaterial. That is the whole risk you are taking.',
 } as const;
