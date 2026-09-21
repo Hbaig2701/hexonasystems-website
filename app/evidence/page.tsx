@@ -115,8 +115,10 @@ export default async function EvidencePage({
         </div>
       </Surface>
 
-      {/* --- 02 The record, or its absence --------------------------------- */}
-      <Surface surface="void" className="hex-stage">
+      {/* --- 02 The record, or its absence ---------------------------------
+          id="records" is the no-JS landing point for the industry filter. See
+          IndustryFilter. scroll-mt clears the fixed header. */}
+      <Surface surface="void" id="records" className="hex-stage scroll-mt-20">
         <Lattice />
         <div className="shell">
           <SectionMarker index="02" label="The record" className="mb-14" />

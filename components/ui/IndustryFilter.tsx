@@ -14,7 +14,21 @@ import { populatedIndustries } from '@/content/evidence';
  * Empty shelves are never rendered. A filter button that leads to an empty
  * list is worse than no button, because it reads as a fault rather than as an
  * absence, and while §5 keeps most shelves bare that would be the common case.
+ *
+ * TWO THINGS KEEP THE PAGE STILL WHEN A SHELF IS CLICKED.
+ *
+ * `scroll={false}` stops Next scrolling to the first page element. Without it
+ * the reader is thrown back to the top of the page every time they filter,
+ * which is three screens above the thing they just changed.
+ *
+ * The `#records` hash is the no-JavaScript half of the same fix. With
+ * scripting off the browser performs a full navigation and would otherwise
+ * land at the top; the hash puts it on the record section instead. Belt and
+ * braces, because the two paths fail differently.
  */
+/** Must match the id on the record section in app/evidence/page.tsx. */
+const HASH = '#records';
+
 export function IndustryFilter({ active }: { active?: string }) {
   const shelves = populatedIndustries();
 
@@ -24,11 +38,11 @@ export function IndustryFilter({ active }: { active?: string }) {
   return (
     <nav aria-label="Filter records by industry" className="mb-14">
       <ul className="flex flex-wrap items-center gap-x-3 gap-y-3">
-        <Item href="/evidence" label="All" active={!active} />
+        <Item href={`/evidence${HASH}`} label="All" active={!active} />
         {shelves.map((s) => (
           <Item
             key={s.id}
-            href={`/evidence?industry=${s.id}`}
+            href={`/evidence?industry=${s.id}${HASH}`}
             label={s.label}
             active={active === s.id}
           />
@@ -43,6 +57,7 @@ function Item({ href, label, active }: { href: string; label: string; active: bo
     <li>
       <Link
         href={href}
+        scroll={false}
         aria-current={active ? 'page' : undefined}
         className={cn(
           't-label inline-block border px-4 py-2.5 transition-colors duration-[160ms]',
