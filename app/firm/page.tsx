@@ -51,9 +51,9 @@ export default function FirmPage() {
                 <br className="hidden sm:inline" />
                 there was a name for it.
               </h1>
-              <p className="t-lead max-w-[54ch] text-fg-2">
-                Hexona has been putting automation inside operating companies since{' '}
-                {ORIGIN.since}. The tools everyone uses now arrived two years later.
+              <p className="t-lead max-w-[56ch] text-fg-2">
+                Hexona has paved the way for AI automation agencies since establishing in{' '}
+                {ORIGIN.since}, long before this AI era began.
               </p>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function FirmPage() {
           <SectionMarker index="02" label="Who does the work" className="mb-14" />
           <div className="col-12">
             <div className="[grid-column:1/8]">
-              <h2 className="t-display-2 mb-8">Six run the firm, and a separate team builds.</h2>
+              <h2 className="t-display-2 mb-8">The team behind the work.</h2>
               <p className="t-body mb-16 max-w-[60ch] text-fg-2">
                 Engagements are led by the principal with one or two operators, and the team that
                 takes your systems access is the team that presents the findings. Builds are
@@ -155,7 +155,11 @@ export default function FirmPage() {
                     className="flex flex-col gap-x-8 gap-y-1 border-b border-line py-5 md:flex-row md:items-baseline"
                   >
                     <span className="t-label shrink-0 text-brand md:w-20">{a.year}</span>
-                    <span className="t-body text-fg-2">{a.title}</span>
+                    <span className="t-body text-fg-2">
+                      {a.title}
+                      {/* Says award or nomination, every time. See AWARDS. */}
+                      {a.detail && <span className="t-small block text-fg-3">{a.detail}</span>}
+                    </span>
                     {a.href && (
                       <a
                         href={a.href}

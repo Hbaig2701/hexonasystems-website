@@ -288,9 +288,9 @@ export const COMMITMENTS = [
       'The fee is agreed before work begins and credited in full against implementation. Scope does not move once access is granted.',
   },
   {
-    term: 'The same people from access to readout',
+    term: 'The roadmap is yours, including if you leave',
     detail:
-      'The team that takes your systems access is the team that presents the findings. Nobody is handed to a junior after signing.',
+      'The report and the build plan are written so that another firm could execute them without us. You keep both whether you hire us or not, because a plan you cannot take elsewhere is a hostage rather than a plan.',
   },
 ];
 
@@ -304,6 +304,34 @@ export const COMMITMENTS = [
  * page says nothing about it to visitors and nags in development only.
  */
 export const AWARDS = [
-  { year: '2024', title: 'Platinum SaaSPreneur Award', href: '' },
-  { year: '2025', title: 'Diamond SaaSPreneur Award', href: '' },
+  {
+    year: '2026',
+    title: 'Diamond SaaSPreneur Award',
+    detail: 'Awarded to the firm',
+    href: '',
+  },
+  {
+    year: '2025',
+    title: 'Canadian Tech Business of the Year',
+    detail: 'Nominated',
+    href: '',
+  },
+  {
+    year: '2024',
+    title: 'Platinum SaaSPreneur Award',
+    detail: 'Awarded to the firm',
+    href: '',
+  },
+  {
+    year: '2024',
+    title: 'Technopreneur of the Year',
+    detail: 'Hamza Baig, nominated',
+    href: '',
+  },
+  {
+    year: '2024',
+    title: 'Young Entrepreneur of the Year',
+    detail: 'Hamza Baig, nominated',
+    href: '',
+  },
 ];
