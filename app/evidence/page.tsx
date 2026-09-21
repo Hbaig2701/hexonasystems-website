@@ -9,7 +9,6 @@ import { IndustryFilter } from '@/components/ui/IndustryFilter';
 import {
   COLUMN_DEFINITIONS,
   INTERIM_NOTICE,
-  PUBLICATION_STANDARD,
   RECORD_PREAMBLE,
   hasRecords,
   industryLabel,
@@ -17,30 +16,31 @@ import {
 } from '@/content/evidence';
 
 /**
- * /evidence — the engagement record.
+ * /evidence — the library.
  *
- * ⚠️ §5 GOVERNS THIS PAGE ABSOLUTELY. It shows real records or it shows the
- * interim notice. There is no third option, and inventing rows here would be
- * the single most damaging thing on the property, because this is the page a
- * PE operating partner checks hardest and the only one he arrives at already
- * sceptical.
+ * ⚠️ §5 STILL GOVERNS THE RECORDS THEMSELVES. Real engagements or the interim
+ * notice, never invented rows. This is the page an operating partner checks
+ * hardest and the only one he arrives at already sceptical.
  *
- * WHAT AN EMPTY EVIDENCE PAGE SHOULD DO. Not apologise, and not pad. It states
- * the bar a record has to clear before it appears, which is the strongest
- * thing available while RECORDS is empty because it is true TODAY: those
- * requirements are the fields a record cannot be built without, so the page is
- * empty precisely because the bar has not yet been cleared rather than because
- * nothing has happened. An absence with a published standard reads as
- * discipline. An absence with an excuse reads as an absence.
+ * The publication standard and the expanded column definitions were cut at the
+ * founder's request: the page led with seven requirements a record must clear
+ * before showing any, which put a page of qualifications in front of the work.
+ * The record now opens the page.
  *
- * The page strengthens on its own as records land. Nothing here needs
- * rewriting when they do.
+ * What survives of that discipline is the ColumnKey beneath the table. FOUND,
+ * SEALED and PAYBACK still carry their definitions wherever they are printed,
+ * because an undefined column is an unfalsifiable claim, and those three
+ * columns are the entire argument of the page. PUBLICATION_STANDARD is still
+ * in content/evidence.ts if it is ever wanted back.
+ *
+ * Grounds: the record is PAPER, the two ends VOID, and the close shares the
+ * footer's ground so the page goes quiet into it.
  */
 
 export const metadata: Metadata = {
   title: 'Engagement records: Hexona Systems',
   description:
-    'What every published engagement record has to prove before it appears: scale, a named sector, leakage found, recovery measured, the window it was measured over, the system it was measured in, and written client consent.',
+    'A record of recent implementations across a variety of industries. Every figure names the system it was measured in and the period it covers.',
   alternates: { canonical: '/evidence' },
 };
 
@@ -75,53 +75,24 @@ export default async function EvidencePage({
                 <span className="px-1.5 text-brand opacity-50">·</span> Engagement records
               </p>
               <h1 className="t-display-1 mb-12">
-                A number you cannot check
+                A series of transformed
                 <br className="hidden sm:inline" />
-                is not evidence.
+                organisations.
               </h1>
               <p className="t-lead max-w-[56ch] text-fg-2">
-                Every record published here names the system its figures were measured in, the
-                period they cover, and the client who approved them being shown to you.
+                Browse a record of our recent implementations across a variety of industries.
               </p>
             </div>
           </div>
         </div>
       </Surface>
 
-      {/* --- 01 The standard ----------------------------------------------- */}
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker index="01" label="The standard" className="mb-14" />
-          <div className="col-12 gap-y-16">
-            <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">
-                What has to be true before a record appears here.
-              </h2>
-              <p className="t-body max-w-[38ch] text-fg-2">
-                All seven, every time. A record that cannot clear them is not published, including
-                when that means publishing none.
-              </p>
-            </div>
-
-            <dl className="[grid-column:6/13] m-0 border-t border-line">
-              {PUBLICATION_STANDARD.map((s) => (
-                <div key={s.term} className="border-b border-line py-7">
-                  <dt className="t-body mb-2 text-fg">{s.term}</dt>
-                  <dd className="t-small m-0 max-w-[64ch] text-fg-2">{s.detail}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </Surface>
-
-      {/* --- 02 The record, or its absence ---------------------------------
+      {/* --- 01 The record -------------------------------------------------
           id="records" is the no-JS landing point for the industry filter. See
           IndustryFilter. scroll-mt clears the fixed header. */}
-      <Surface surface="void" id="records" className="hex-stage scroll-mt-20">
-        <Lattice />
+      <Surface surface="paper" id="records" className="scroll-mt-20">
         <div className="shell">
-          <SectionMarker index="02" label="The record" className="mb-14" />
+          <SectionMarker index="01" label="The record" className="mb-14" />
 
           {hasRecords() ? (
             <>
@@ -145,6 +116,8 @@ export default async function EvidencePage({
                   },
                 }))}
               />
+              {/* The last of the discipline that used to run the page. Keep it:
+                  these three columns carry the whole argument. */}
               <ColumnKey items={COLUMN_DEFINITIONS} />
             </>
           ) : (
@@ -152,9 +125,6 @@ export default async function EvidencePage({
                caught exaggeration, recoverable. */
             <div className="col-12">
               <div className="[grid-column:1/9]">
-                {/* One expression, not two. On separate lines JSX inserts a
-                    space between them, which rendered "publish ." with the
-                    stop floating off the end of the sentence. */}
                 <p className="t-display-2 mb-10">
                   {`${INTERIM_NOTICE.body}${INTERIM_NOTICE.month ? ` ${INTERIM_NOTICE.month}` : ''}.`}
                 </p>
@@ -165,40 +135,6 @@ export default async function EvidencePage({
         </div>
       </Surface>
 
-      {/* --- 03 The columns, defined --------------------------------------- */}
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker index="03" label="What the columns mean" className="mb-14" />
-          <div className="col-12 gap-y-16">
-            <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">An undefined column is an unfalsifiable claim.</h2>
-              <p className="t-body max-w-[38ch] text-fg-2">
-                So each one is defined before it is used, and the definitions do not change between
-                records.
-              </p>
-            </div>
-
-            <dl className="[grid-column:6/13] m-0 border-t border-line">
-              {COLUMN_DEFINITIONS.map((c) => (
-                <div key={c.term} className="border-b border-line py-7">
-                  <dt className="t-body mb-2 text-fg">{c.term}</dt>
-                  <dd className="t-small m-0 max-w-[64ch] text-fg-2">{c.definition}</dd>
-                </div>
-              ))}
-              <div className="border-b border-line py-7">
-                <dt className="t-body mb-2 text-fg">Why sealed is always the smaller number</dt>
-                <dd className="t-small m-0 max-w-[64ch] text-fg-2">
-                  Found is what the diagnostic identified. Sealed is what implementation actually
-                  recovered, measured afterwards in the same system against the same baseline. Some
-                  leaks are not worth the cost of closing and some close only partly. A record
-                  showing the two figures equal would mean the measurement was not real.
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </Surface>
-
       {/* --- Close ---------------------------------------------------------- */}
       <Surface surface="void" className="hex-stage">
         <Lattice />
@@ -206,9 +142,9 @@ export default async function EvidencePage({
           <div className="col-12">
             <div className="[grid-column:1/9]">
               <h2 className="t-display-1 mb-16">
-                Your own record starts
+                Every one of these began
                 <br className="hidden sm:inline" />
-                with your own number.
+                with a diagnostic.
               </h2>
               <div className="flex flex-col items-start gap-8">
                 <Button href="/diagnostic">
