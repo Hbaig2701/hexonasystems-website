@@ -10,7 +10,7 @@ export const FIRM = {
   name: 'Hexona Systems',
   positioning: 'Operational diligence and revenue recovery.',
   address: '18 Harbour Street, Toronto, ON',
-  email: 'hello@hexonasystems.com',
+  email: 'hamza@hexonasystems.com',
   /** ⚠️ [ASSET NEEDED] Public phone. The footer line hides itself until set. */
   phone: '' as string,
   principal: 'Hamza Baig',

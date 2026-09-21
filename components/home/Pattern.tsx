@@ -7,7 +7,6 @@ import {
   COLUMN_DEFINITIONS,
   LEAKAGE_SCALE,
   RECORDS,
-  RECORD_PREAMBLE,
   hasRecords,
   hasScalePeriod,
 } from '@/content/evidence';
@@ -119,7 +118,12 @@ export function Pattern() {
             ever strengthens the section above. */}
         {hasRecords() && (
           <div className="mt-28 border-t border-line pt-16">
-            <p className="t-lead mb-12 text-fg">{RECORD_PREAMBLE}</p>
+            {/* The homepage points at the library rather than explaining the
+                terms of publication. RECORD_PREAMBLE still runs on /evidence,
+                which is where a reader is actually reading the figures. */}
+            <p className="mb-12">
+              <TextLink href="/evidence">View our recent implementations</TextLink>
+            </p>
 
             <RecordTable
               caption="Engagement records"

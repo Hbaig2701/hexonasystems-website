@@ -10,9 +10,13 @@ import { cn } from '@/lib/cn';
  * ⚠️ THIS IS NOT EVIDENCE AND MUST NEVER BE MISTAKEN FOR IT. §5 gates the
  * engagement record precisely because a PE operating partner checks that block
  * hardest, and a fabricated table there would be the most damaging thing on the
- * site. This is a diagram of a mechanism, it carries a caption that says so in
- * plain words, and it lives in the ARGUMENT section rather than anywhere near
- * the record. Do not move it into Results, and do not remove the caption.
+ * site. This is a diagram of a mechanism and it lives in the ARGUMENT section,
+ * away from the record. Do not move it into §1 or anywhere near /evidence.
+ *
+ * It CARRIED a caption reading "Illustrative, not client data", removed at the
+ * founder's request. The figures are invented, so without that line the only
+ * thing separating this from a client record is its position on the page.
+ * Keep it in the argument.
  *
  * Built out of the same parts as the rest of the page: hairline rules, a mono
  * label, tabular figures. No panel chrome, no window buttons, no shadow, no
@@ -43,8 +47,6 @@ function isLive(line: Line) {
 }
 
 export function InquiryLedger({ className }: { className?: string }) {
-  const lost = LINES.filter((l) => !isLive(l)).length;
-
   return (
     <figure className={cn('m-0', className)}>
       <div className="border border-line bg-bg-sunk">
@@ -82,10 +84,6 @@ export function InquiryLedger({ className }: { className?: string }) {
         </ul>
       </div>
 
-      <figcaption className="t-small mt-5 max-w-[52ch] text-fg-3">
-        Illustrative, not client data. {lost} of {LINES.length} inquiries here were bought and
-        never answered. That is the revenue this firm looks for first.
-      </figcaption>
     </figure>
   );
 }
