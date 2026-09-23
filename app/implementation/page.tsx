@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { Faqs } from '@/components/sections/Faqs';
+import { JsonLd, breadcrumbLd, faqPageLd, implementationServiceLd } from '@/lib/jsonld';
+import { IMPLEMENTATION_FAQS } from '@/content/faqs';
 import { Surface } from '@/components/ui/Surface';
 import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
@@ -36,6 +39,14 @@ export const metadata: Metadata = {
 export default function ImplementationPage() {
   return (
     <>
+      <JsonLd data={implementationServiceLd()} />
+      <JsonLd data={faqPageLd(IMPLEMENTATION_FAQS, '/implementation')} />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: 'Home', path: '/' },
+          { name: 'Implementation', path: '/implementation' },
+        ])}
+      />
       {/* --- Opening ------------------------------------------------------- */}
       <Surface surface="void" rule={false} as="header" className="hex-stage">
         <Lattice />
@@ -139,6 +150,16 @@ export default function ImplementationPage() {
           </div>
         </div>
       </Surface>
+
+      {/* --- Ticket 7 FAQ block. Sits before the close, because a reader with
+              an unanswered objection does not act on a CTA. --- */}
+      <Faqs
+        items={IMPLEMENTATION_FAQS}
+        index="04"
+        surface="void"
+        heading="What buyers ask about the build."
+        lede="Scope, price, proof, and what happens when we leave."
+      />
 
       {/* --- Close ---------------------------------------------------------- */}
       <Surface surface="void" className="hex-stage">

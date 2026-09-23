@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { Faqs } from '@/components/sections/Faqs';
+import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
+import { EVIDENCE_FAQS } from '@/content/faqs';
 import { Surface } from '@/components/ui/Surface';
 import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
@@ -64,6 +67,13 @@ export default async function EvidencePage({
 
   return (
     <>
+      <JsonLd data={faqPageLd(EVIDENCE_FAQS, '/evidence')} />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: 'Home', path: '/' },
+          { name: 'Evidence', path: '/evidence' },
+        ])}
+      />
       {/* --- Opening ------------------------------------------------------- */}
       <Surface surface="void" rule={false} as="header" className="hex-stage">
         <Lattice />
@@ -136,6 +146,18 @@ export default async function EvidencePage({
           )}
         </div>
       </Surface>
+
+      {/* --- Ticket 7 FAQ block. These answer the questions a reader has while
+              looking at an empty record table, which is the honest situation
+              today. Pretending otherwise would be the §5 failure in FAQ
+              form. --- */}
+      <Faqs
+        items={EVIDENCE_FAQS}
+        index="02"
+        surface="void"
+        heading="What people ask about this page."
+        lede="Starting with why it is empty."
+      />
 
       {/* --- Close ---------------------------------------------------------- */}
       <Surface surface="void" className="hex-stage">

@@ -27,11 +27,30 @@ import type { SurfaceName } from '@/components/ui/Surface';
  * section passes beneath.
  */
 
+/**
+ * ⚠️ `/method` WAS IN HERE AND THE ROUTE DOES NOT EXIST. It 404'd from the
+ * primary navigation of every page on the site. Same in the footer, and the
+ * footer additionally links /terms and /privacy, which v2 also deleted.
+ *
+ * A 404 in the primary nav is worse than a missing link on every axis: a visitor
+ * reads it as a broken site, and a crawler spends budget on it and records a
+ * soft-404 against the domain. It is also precisely what the AI SEO Developer
+ * Guide's Ticket 1 acceptance criteria call out — "the footer link resolves to a
+ * real page instead of an empty anchor".
+ *
+ * So the nav is now DERIVED from what exists. Add the page, add the entry, and
+ * it appears. This is the same gate content/firm.ts applies to INSTITUTE_URL and
+ * content/evidence.ts applies to empty industry shelves: never offer a link to
+ * nothing.
+ *
+ * `Insights` is here because Ticket 6 requires the index in the primary
+ * navigation rather than under a dropdown.
+ */
 const NAV = [
   { label: 'Diagnostic', href: '/diagnostic' },
   { label: 'Implementation', href: '/implementation' },
   { label: 'Evidence', href: '/evidence' },
-  { label: 'Method', href: '/method' },
+  { label: 'Insights', href: '/insights' },
   { label: 'Firm', href: '/firm' },
 ];
 

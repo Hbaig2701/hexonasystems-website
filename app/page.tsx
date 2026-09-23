@@ -7,6 +7,8 @@ import { Principal } from '@/components/home/Principal';
 import { DiagnosticOffer } from '@/components/home/Diagnostic';
 import { Fit } from '@/components/home/Fit';
 import { Close } from '@/components/home/Close';
+import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
+import { ENTITY_SENTENCE } from '@/content/firm';
 
 /**
  * THE HOMEPAGE — §4. Seven sections, copy verbatim.
@@ -52,14 +54,25 @@ import { Close } from '@/components/home/Close';
 
 export const metadata: Metadata = {
   title: 'Hexona Systems: operational diligence and revenue recovery',
-  description:
-    'We find demand a company already paid for and is failing to convert, price it in EBITDA, and seal it. A fixed-scope diagnostic for operating companies at $10M to $100M.',
+  /**
+   * TICKET 5 — opens with the entity sentence VERBATIM.
+   *
+   * It runs past the ~160 characters a search result renders, and that is an
+   * accepted trade rather than an oversight. The truncation costs a few words of
+   * snippet; the identical wording across the meta description, the hero, /firm
+   * and the Organization schema is what makes the claim corroborated rather than
+   * asserted once, and corroboration is what entity resolution weights.
+   */
+  description: ENTITY_SENTENCE,
   alternates: { canonical: '/' },
 };
 
 export default function HomePage() {
   return (
     <>
+      {/* Organization, WebSite and Person are emitted site-wide in the layout. */}
+      <JsonLd data={breadcrumbLd([{ name: 'Home', path: '/' }])} />
+
       <Hero />
       <TrustedBy />
       <Pattern />

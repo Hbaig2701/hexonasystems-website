@@ -4,12 +4,25 @@ Everything the site is missing, in the order it hurts. Reply with any section
 and I'll wire it in. Nothing here can be invented: §11 of the spec is explicit
 about it, and a fabricated number is exactly what a $10M+ buyer checks first.
 
-Two mechanical gates enforce the important half:
+Three mechanical gates enforce the important half:
 
 ```
-npm run check:claims     fails while any published statistic is unverified
 npm run check:contrast   fails if any text drops below WCAG AA
+npm run check:seo        fails on a dead nav link, a redirect into a 404,
+                         a placeholder in structured data, a missing FAQ block,
+                         or a blocked AI crawler
+npm run verify           runs all of them, plus typecheck, tests and the build
 ```
+
+`npm run check:claims` used to be listed here and no longer exists — v2 removed
+that script along with `content/claims.ts`, because the repositioning cut almost
+every contested figure. The remaining statistics carry their own reasoning in
+`content/evidence.ts`.
+
+**See also [`SEO-IMPLEMENTATION.md`](./SEO-IMPLEMENTATION.md)** — the AI SEO
+Developer Guide tickets, all nine implemented against v2, with what is still
+blocked on you. Three items below are now owned jointly with that document: the
+confidentiality terms, `/terms` and `/privacy`, and the third-party profiles.
 
 ---
 

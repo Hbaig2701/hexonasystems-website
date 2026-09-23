@@ -4,7 +4,8 @@ import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
 import { Button, TextLink } from '@/components/ui/Button';
-import { AWARDS, COMMITMENTS, DIAGNOSTIC, ORIGIN, TEAM } from '@/content/firm';
+import { AWARDS, COMMITMENTS, DIAGNOSTIC, ENTITY_SENTENCE, ORIGIN, TEAM } from '@/content/firm';
+import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
 
 /**
  * /firm — the About page.
@@ -28,14 +29,20 @@ import { AWARDS, COMMITMENTS, DIAGNOSTIC, ORIGIN, TEAM } from '@/content/firm';
 
 export const metadata: Metadata = {
   title: 'The firm: Hexona Systems',
-  description:
-    'Hexona has been putting automation inside operating companies since 2021, two years before general-purpose language models arrived. Who runs the firm, and what it holds to.',
+  description: `${ENTITY_SENTENCE} Who runs the firm, and what it holds to.`,
   alternates: { canonical: '/firm' },
 };
 
 export default function FirmPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: 'Home', path: '/' },
+          { name: 'The firm', path: '/firm' },
+        ])}
+      />
+
       {/* --- Opening. Void, like the homepage hero. ------------------------ */}
       <Surface surface="void" rule={false} as="header" className="hex-stage">
         <Lattice />
@@ -51,10 +58,18 @@ export default function FirmPage() {
                 <br className="hidden sm:inline" />
                 there was a name for it.
               </h1>
-              <p className="t-lead max-w-[56ch] text-fg-2">
+              <p className="t-lead mb-8 max-w-[56ch] text-fg-2">
                 Hexona has paved the way for AI automation agencies since establishing in{' '}
                 {ORIGIN.since}, long before this AI era began.
               </p>
+
+              {/* TICKET 5 — the entity sentence, first paragraph of /firm, in
+                  selectable body text. Identical to the homepage hero and to the
+                  Organization schema `description`. This is the page an assistant
+                  is most likely to fetch when asked what Hexona is, so the
+                  definition belongs above the origin story rather than after
+                  it. */}
+              <p className="t-small max-w-[76ch] text-fg-3">{ENTITY_SENTENCE}</p>
             </div>
           </div>
         </div>
