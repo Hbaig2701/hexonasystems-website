@@ -447,3 +447,125 @@ export const AWARDS = [
     href: '',
   },
 ];
+
+/* ===========================================================================
+   /firm — the entity-source sections.
+
+   Added to satisfy an About-page SOP whose purpose is a single first-party
+   document a model can extract facts from. Three rules from it that shape
+   everything below:
+
+     Third person. "Hexona Systems is…", not "we are…". The existing prose on
+     the page stays first person and persuasive; these sections are the factual
+     layer beneath it. Do not merge the two registers.
+
+     Every sentence carries a fact that could be lifted as a key-value pair.
+     That is why the services each state what is delivered AND what changes,
+     rather than describing a capability.
+
+     No unprovable adjectives. Nothing here is world-class, leading or
+     best-in-class. Where a claim needs support it gets a number instead.
+
+   ⚠️ NOTHING HERE IS NEW INFORMATION. Every fact already appears somewhere on
+   the site and is being restated in one extractable place. If a figure changes,
+   it changes at its source and these read from it.
+   ======================================================================== */
+
+export const SERVICES = [
+  {
+    name: 'Leakage Diagnostic',
+    delivered:
+      'A two week intensive across every system that touches a lead, priced at $5,000 and credited in full against implementation.',
+    outcome:
+      'The client receives every leak priced as an annual figure, ranked by recoverable dollars against the effort to recover them.',
+  },
+  {
+    name: 'Process automation',
+    delivered:
+      'Lead capture, routing, conversion and follow-up rebuilt so that no step depends on a person remembering to take it.',
+    outcome:
+      'Inbound stops being lost between the form and the first human response.',
+  },
+  {
+    name: 'CRM implementation',
+    delivered:
+      'The system of record rebuilt or replaced where the CRM is itself the reason revenue is going missing.',
+    outcome:
+      'The workarounds people invented to avoid the old system stop being where deals disappear.',
+  },
+  {
+    name: 'Custom software',
+    delivered:
+      'Dashboards and internal tools, up to enterprise scale, built where nothing off the shelf matches how the business runs.',
+    outcome: 'The operation stops bending itself to fit a tool it did not choose.',
+  },
+  {
+    name: 'Reporting',
+    delivered:
+      'Measurement of the leak built into the systems it was found in, against the baseline the diagnostic established.',
+    outcome:
+      'A leak that was closed stays closed, because somebody can see it the week it reopens.',
+  },
+  {
+    name: 'Operational structure',
+    delivered:
+      'Ownership and workflow defined around the systems, so each process has a named person accountable for it.',
+    outcome: 'A tool nobody owns stops leaking again within a quarter.',
+  },
+];
+
+export const SEGMENTS = {
+  primary:
+    'Operating companies between $10M and $100M in revenue, where inbound demand already exists and is being paid for.',
+  industries: [
+    'Home services and construction',
+    'Automotive',
+    'Restaurant and hospitality',
+    'MedSpa and health',
+    'Agencies',
+    'Coaching and consultants',
+  ],
+  buyer:
+    'The engagement is bought by whoever owns operations and can grant access to the systems without escalating.',
+  notFor:
+    'Companies under $10M, where the leakage rarely justifies the fee. Hexona Systems says so rather than taking the engagement.',
+};
+
+/**
+ * KEY FACTS — the SOP's most important block, and the reason is mechanical: a
+ * model answering "when was Hexona founded" does not want to parse a paragraph,
+ * it wants a key and a value. This mirrors a Wikipedia infobox on purpose.
+ *
+ * ⚠️ ROWS WITH NO VALUE DO NOT RENDER. Social handles and anything else still
+ * missing stay out rather than shipping as a blank or a placeholder.
+ *
+ * ⚠️ NOTABLE CLIENTS IS DELIBERATELY ABSENT. The trusted-by band says "teams
+ * at", which claims people at those organisations and not the organisations as
+ * clients of the firm. Promoting those names into a row headed Notable Clients
+ * would convert a careful statement into a false one, in the most machine-
+ * readable format on the site. Add this row only with named, consenting
+ * clients.
+ *
+ * ⚠️ COMPETITORS IS ABSENT BY DECISION. The SOP recommends naming them for
+ * entity co-occurrence. The firm's position is that it does not name an
+ * opponent it will not name in person, and the FAQ answers the comparison at
+ * the category level instead.
+ */
+export const KEY_FACTS: { field: string; value: string }[] = [
+  { field: 'Company name', value: FIRM.name },
+  { field: 'Type', value: 'Operational diligence and revenue recovery firm' },
+  { field: 'Founded', value: '2021' },
+  { field: 'Founder', value: FIRM.principal },
+  { field: 'Headquarters', value: 'Toronto, Ontario, Canada' },
+  { field: 'Website', value: 'https://hexonasystems.com' },
+  { field: 'Core offering', value: 'The Leakage Diagnostic, a fixed-fee revenue leakage audit' },
+  { field: 'Pricing', value: '$5,000 for the diagnostic. $25,000 to $75,000 typical for implementation, across phases' },
+  { field: 'Contract terms', value: 'Fixed scope and fixed fee. The diagnostic fee is credited in full against implementation. No obligation at any point' },
+  { field: 'Delivery', value: 'Two week intensive, ten business days from systems access' },
+  { field: 'Services', value: 'Leakage diagnostics, process automation, CRM implementation, custom software, reporting, operational structure' },
+  { field: 'Operating range', value: FIRM.operatingRange },
+  { field: 'Businesses served', value: '1,500+' },
+  { field: 'Client engagements', value: '1,000+' },
+  { field: 'Operators trained', value: '45,000+' },
+  { field: 'Contact', value: FIRM.email },
+].filter((r) => r.value && r.value.trim().length > 0);

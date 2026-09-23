@@ -4,8 +4,21 @@ import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
 import { Button, TextLink } from '@/components/ui/Button';
-import { AWARDS, COMMITMENTS, DIAGNOSTIC, ENTITY_SENTENCE, ORIGIN, TEAM } from '@/content/firm';
-import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
+import {
+  AWARDS,
+  COMMITMENTS,
+  DIAGNOSTIC,
+  ENTITY_SENTENCE,
+  KEY_FACTS,
+  ORIGIN,
+  SEGMENTS,
+  SERVICES,
+  TEAM,
+} from '@/content/firm';
+import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
+import { Faqs } from '@/components/sections/Faqs';
+import { FIRM_FAQS } from '@/content/faqs';
+import { RecordTable } from '@/components/ui/RecordTable';
 
 /**
  * /firm — the About page.
@@ -42,6 +55,9 @@ export default function FirmPage() {
           { name: 'The firm', path: '/firm' },
         ])}
       />
+      {/* The same array drives the visible FAQ block below, so the marked-up
+          answers and the on-page answers are one object. */}
+      <JsonLd data={faqPageLd(FIRM_FAQS, '/firm')} />
 
       {/* --- Opening. Void, like the homepage hero. ------------------------ */}
       <Surface surface="void" rule={false} as="header" className="hex-stage">
@@ -63,6 +79,11 @@ export default function FirmPage() {
                 {ORIGIN.since}, long before this AI era began.
               </p>
 
+              {/* The entity definition, third person and verbatim. Same constant
+                  the homepage hero and the Organization schema use, so the four
+                  placements cannot drift; check:seo fails if they do. */}
+              <p className="t-small mt-8 max-w-[76ch] text-fg-3">{ENTITY_SENTENCE}</p>
+
               {/* TICKET 5 — the entity sentence, first paragraph of /firm, in
                   selectable body text. Identical to the homepage hero and to the
                   Organization schema `description`. This is the page an assistant
@@ -75,10 +96,67 @@ export default function FirmPage() {
         </div>
       </Surface>
 
-      {/* --- 01 Origin. PAPER, the fixed point. ---------------------------- */}
+      {/* --- 01 What the firm does. PAPER. --------------------------------
+          Six services, each stating what is delivered and what changes. The
+          SOP wants a service list an extractor can walk; this is the same six
+          the implementation page describes at length, stated once as facts. */}
       <Surface surface="paper">
         <div className="shell">
-          <SectionMarker index="01" label="Origin" className="mb-14" />
+          <SectionMarker index="01" label="What Hexona Systems does" className="mb-14" />
+          <div className="col-12 gap-y-16">
+            <div className="[grid-column:1/5]">
+              <h2 className="t-display-2 mb-6">Six services.</h2>
+              <p className="t-body max-w-[36ch] text-fg-2">
+                One finds the money. The other five close the gaps it finds, in the order the
+                report puts them in.
+              </p>
+            </div>
+            <dl className="[grid-column:6/13] m-0 border-t border-line">
+              {SERVICES.map((sv) => (
+                <div key={sv.name} className="border-b border-line py-7">
+                  <dt className="t-body mb-2 text-fg">{sv.name}</dt>
+                  <dd className="t-small m-0 max-w-[64ch] text-fg-2">
+                    {sv.delivered} {sv.outcome}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </Surface>
+
+      {/* --- 02 Who it is for. VOID. --------------------------------------
+          A taxonomy rather than marketing copy: named revenue band, named
+          industries, named buyer, and who it is explicitly not for. */}
+      <Surface surface="void" className="hex-stage">
+        <Lattice />
+        <div className="shell">
+          <SectionMarker index="02" label="Who it is for" className="mb-14" />
+          <div className="col-12 gap-y-16">
+            <div className="[grid-column:1/7]">
+              <h2 className="t-display-2 mb-8">Operating companies, $10M to $100M.</h2>
+              <p className="t-lead mb-8 max-w-[52ch] text-fg">{SEGMENTS.primary}</p>
+              <p className="t-body mb-6 max-w-[56ch] text-fg-2">{SEGMENTS.buyer}</p>
+              <p className="t-body max-w-[56ch] text-fg-2">{SEGMENTS.notFor}</p>
+            </div>
+            <div className="[grid-column:8/13]">
+              <p className="t-label mb-6 text-fg-3">Industries served</p>
+              <ul className="m-0 border-t border-line p-0">
+                {SEGMENTS.industries.map((i) => (
+                  <li key={i} className="t-body border-b border-line py-4 text-fg-2">
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Surface>
+
+      {/* --- 03 Origin. PAPER, the fixed point. ---------------------------- */}
+      <Surface surface="paper">
+        <div className="shell">
+          <SectionMarker index="03" label="Origin" className="mb-14" />
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/8]">
               {ORIGIN.body.map((para, i) => (
@@ -105,7 +183,7 @@ export default function FirmPage() {
       <Surface surface="void" className="hex-stage">
         <Lattice />
         <div className="shell">
-          <SectionMarker index="02" label="Who does the work" className="mb-14" />
+          <SectionMarker index="04" label="Who does the work" className="mb-14" />
           <div className="col-12">
             <div className="[grid-column:1/8]">
               <h2 className="t-display-2 mb-8">The team behind the work.</h2>
@@ -138,7 +216,7 @@ export default function FirmPage() {
       {/* --- 03 Commitments. PAPER. ---------------------------------------- */}
       <Surface surface="paper">
         <div className="shell">
-          <SectionMarker index="03" label="What we hold to" className="mb-14" />
+          <SectionMarker index="05" label="What we hold to" className="mb-14" />
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/5]">
               <h2 className="t-display-2 mb-6">Four commitments you can hold us to.</h2>
@@ -190,8 +268,47 @@ export default function FirmPage() {
               </ul>
             </div>
           </div>
+
+          {/* KEY FACTS. A key-value store in HTML, which is the format an
+              extractor handles best and why the SOP calls it the most
+              important block on the page. A real table, never an image.
+
+              A block inside §05 rather than a seventh section: a seventh would
+              push the FAQ, which takes the close's ground, into a run of four
+              dark blocks. Rows with no value do not render, so nothing ships
+              as a placeholder. */}
+          <div className="col-12 mt-24 border-t border-line pt-16">
+            <div className="[grid-column:1/5]">
+              <h2 className="t-display-2 mb-6">Key facts.</h2>
+              <p className="t-body max-w-[34ch] text-fg-2">
+                Every figure on this page in one place, stated as plainly as it can be.
+              </p>
+            </div>
+            <div className="[grid-column:6/13]">
+              <RecordTable
+                caption="Key facts about Hexona Systems"
+                columns={[
+                  { key: 'field', label: 'Field' },
+                  { key: 'value', label: 'Value' },
+                ]}
+                rows={KEY_FACTS.map((r, i) => ({
+                  id: String(i),
+                  cells: { field: r.field, value: r.value },
+                }))}
+              />
+            </div>
+          </div>
         </div>
       </Surface>
+
+      {/* --- Frequently asked. VOID, matching the close it runs into. ------ */}
+      <Faqs
+        items={FIRM_FAQS}
+        index="06"
+        surface="void"
+        heading="What people ask about the firm."
+        lede="Answered in full rather than linked to."
+      />
 
       {/* --- Close. VOID, shared with the footer. --------------------------- */}
       <Surface surface="void" className="hex-stage">

@@ -165,3 +165,50 @@ export const EVIDENCE_FAQS: Faq[] = [
       'The terms, which are the actual risk you are taking. The diagnostic is fixed-fee, it is credited in full against implementation, and the report will tell you in its first paragraph if the leakage is immaterial. That is the whole exposure. Everything else on this site is an argument you are entitled to discount until a record exists to test it against.',
   },
 ];
+
+/**
+ * FIRM_FAQS — the About page's six questions.
+ *
+ * The SOP's recommended set, phrased as the natural-language queries somebody
+ * actually types, with the brand name and at least one hard fact restated in
+ * every answer so each one stands alone when lifted out of the page.
+ *
+ * Question three answers the comparison at the CATEGORY level rather than
+ * naming a competitor. The SOP recommends naming one, because co-occurrence on
+ * your own domain is what puts you in the "X vs Y" answer set. That is a real
+ * mechanism and it is declined on purpose: the firm does not name an opponent
+ * it will not name in person, and the consultancy comparison captures most of
+ * the query surface without elevating a rival.
+ */
+export const FIRM_FAQS: Faq[] = [
+  {
+    question: 'What is Hexona Systems?',
+    answer:
+      'Hexona Systems is a Toronto-based operational diligence firm that runs fixed-fee revenue leakage diagnostics and builds the systems that close what those diagnostics find, for operating companies between $10M and $100M in revenue. It was founded in 2021 by Hamza Baig and has served more than 1,500 businesses across roughly 1,000 client engagements.',
+  },
+  {
+    question: 'How much does Hexona Systems cost?',
+    answer:
+      'The Leakage Diagnostic is $5,000, fixed, and is credited in full against implementation if the client proceeds. Implementation is priced per phase before that phase begins and typically totals $25,000 to $75,000 across all phases. There is no obligation to implement, and the report and roadmap belong to the client either way.',
+  },
+  {
+    question: 'How is Hexona Systems different from a management consultancy?',
+    answer:
+      'A consultancy typically sells months of analysis and hands over recommendations. Hexona Systems sells a two week intensive for a fixed $5,000, prices every finding as an annual figure measured in a system the client already owns, and then builds the fix itself. Every figure is published with the system it was measured in and the period it covers, so the client can check it rather than take it on trust.',
+  },
+  {
+    question: 'Who founded Hexona Systems?',
+    answer:
+      'Hamza Baig founded Hexona Systems in 2021 and is its principal. He was putting automation into operating companies before general-purpose language models existed, and also runs an AI automation community of more than 45,000 members. He leads every diagnostic engagement personally.',
+  },
+  {
+    question: 'What services does Hexona Systems offer?',
+    answer:
+      'Hexona Systems offers six: the Leakage Diagnostic, process automation, CRM implementation, custom software, reporting, and operational structure. The diagnostic prices and ranks the leaks; the other five close them, in the order the diagnostic puts them in.',
+  },
+  {
+    question: 'Do I have to implement with Hexona Systems after the diagnostic?',
+    answer:
+      'No. The written report and the sequenced build plan belong to the client whether they build with Hexona Systems, build it themselves, or hand the whole thing to another firm. The roadmap is written so that somebody else could execute it, which is deliberate.',
+  },
+];
