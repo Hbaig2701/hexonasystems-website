@@ -31,7 +31,6 @@ const NAV = [
   { label: 'Diagnostic', href: '/diagnostic' },
   { label: 'Implementation', href: '/implementation' },
   { label: 'Evidence', href: '/evidence' },
-  { label: 'Method', href: '/method' },
   { label: 'Firm', href: '/firm' },
 ];
 

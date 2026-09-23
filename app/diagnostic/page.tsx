@@ -7,6 +7,7 @@ import { Button, TextLink } from '@/components/ui/Button';
 import { DIAGNOSTIC } from '@/content/firm';
 import {
   CONFIDENTIALITY,
+  MEASUREMENT,
   IMPLEMENTATION,
   DELIVERABLES,
   DISCUSS,
@@ -97,7 +98,7 @@ export default function DiagnosticPage() {
       <Surface surface="void" className="hex-stage">
         <Lattice />
         <div className="shell">
-          <SectionMarker index="02" label="How it runs" className="mb-14" />
+          <SectionMarker index="02" label="How it runs, and how it is measured" className="mb-14" />
 
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/7]">
@@ -123,6 +124,38 @@ export default function DiagnosticPage() {
                   <div key={r.term} className="border-b border-line py-6">
                     <dt className="t-label mb-2 text-fg-3">{r.term}</dt>
                     <dd className="t-small m-0 max-w-[48ch] text-fg-2">{r.detail}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+
+          {/* What was going to be /method. It sits here because "why should I
+              believe the figure" is asked while somebody is deciding to
+              commission, not on a page they may never open. A full-width block
+              rather than a section, so the grounds below do not invert. */}
+          <div className="col-12 mt-24 border-t border-line pt-16">
+            <div className="[grid-column:1/7]">
+              <h2 className="t-display-2 mb-8">How a leak becomes a number.</h2>
+              {MEASUREMENT.body.map((para, i) => (
+                <p
+                  key={i}
+                  className={
+                    i === 0 ? 't-lead mb-8 max-w-[52ch] text-fg' : 't-body max-w-[56ch] text-fg-2'
+                  }
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
+
+            <div className="[grid-column:8/13]">
+              <p className="t-label mb-6 text-fg-3">What we will not count</p>
+              <dl className="m-0 border-t border-line">
+                {MEASUREMENT.excluded.map((e) => (
+                  <div key={e.term} className="border-b border-line py-6">
+                    <dt className="t-body mb-2 text-fg">{e.term}</dt>
+                    <dd className="t-small m-0 max-w-[48ch] text-fg-2">{e.detail}</dd>
                   </div>
                 ))}
               </dl>

@@ -266,3 +266,53 @@ export const BUILD_TEAM = {
     'None of them bills by the hour. Phases are priced before they start, so the incentive is to finish rather than to extend, and the people who scoped the work are the people who do it.',
   ],
 };
+
+/* --------------------------------------------------------------------------
+   HOW A LEAK BECOMES A NUMBER
+
+   This was going to be a /method page. It lives here instead, because the
+   question it answers ("why should I believe the figure") is asked at the
+   moment somebody is deciding to commission, not on a separate page they may
+   never open.
+
+   ⚠️ NOTHING HERE IS INVENTED. Every claim below is already made elsewhere on
+   the site and is only being stated plainly in one place: figures are priced
+   against the client's own numbers, annualised, and published with the system
+   and the period named beside them, and anything not measurable in a system
+   the client owns stays out of the report.
+
+   What is deliberately ABSENT is a worked example with real arithmetic. That
+   would be the strongest thing on the page and it needs the firm's actual
+   numbers. Add it when they exist; do not invent one, because this is the
+   section a sceptic checks hardest and a fabricated calculation is the one
+   error that cannot be walked back.
+   -------------------------------------------------------------------------- */
+
+export const MEASUREMENT = {
+  body: [
+    'Every figure in the report is calculated from your data and nothing else. We take a population out of your systems, split it on the thing we believe is failing, and compare what each half actually went on to do. The difference between them, applied to your own volume at your own margin, is the annual figure.',
+    'That is the whole method, and it is deliberately unglamorous. It means any number in the report can be checked by anybody with access to the same systems, including you, on the day of the readout.',
+  ],
+  excluded: [
+    {
+      term: 'Anything we cannot measure in a system you own',
+      detail:
+        'If the evidence is not in your systems, it is an argument rather than a finding, and arguments do not get a dollar figure.',
+    },
+    {
+      term: 'Benchmarks from other companies',
+      detail:
+        'What a comparable business converts at tells you nothing about what yours would have converted at, and it is the easiest number in this industry to quote and the hardest to defend.',
+    },
+    {
+      term: 'Improvements we assume rather than observe',
+      detail:
+        'We do not price what a fix ought to deliver. We price the gap that is already sitting in your data, which is why the figures survive being argued with.',
+    },
+    {
+      term: 'Anything that needs new demand',
+      detail:
+        'Recovered revenue is demand you have already paid for. Generating more of it is a different problem and, usually, a different firm.',
+    },
+  ],
+};
