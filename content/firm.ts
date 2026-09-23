@@ -18,6 +18,118 @@ export const FIRM = {
   engagementBasis: 'Fixed scope, fixed fee, credited',
 } as const;
 
+/* ---------------------------------------------------------------------------
+ * THE ENTITY SENTENCE — AI SEO Developer Guide, Ticket 5.
+ * ------------------------------------------------------------------------ */
+
+/**
+ * ONE PLAIN SENTENCE STATING WHAT THIS FIRM IS.
+ *
+ * The guide's Ticket 5 was written against the Wix site, whose copy ran to "a
+ * beacon of progress" and "the pinnacle of transformative power". v2 does not
+ * have that problem — it has the opposite one. Every sentence on the site is
+ * written to persuade a specific reader who already knows what a diagnostic is,
+ * and NONE of them defines the firm for a reader who does not. `positioning` is
+ * four words. The homepage description assumes you know what leakage means.
+ *
+ * An assistant asked "who is Hexona Systems" is doing entity resolution and
+ * needs one declarative sentence it can lift. Without one it infers, and what
+ * it infers from an argument about EBITDA is wrong in a way nobody can correct
+ * afterwards.
+ *
+ * It renders IDENTICALLY in four places, and the repetition is the mechanism —
+ * corroboration across a property is what raises a fact's confidence:
+ *
+ *   1. Homepage, first body copy, above the fold  (components/home/Hero.tsx)
+ *   2. /firm, first paragraph                     (app/firm/page.tsx)
+ *   3. The Organization schema `description`       (lib/jsonld.tsx)
+ *   4. The homepage meta description               (app/page.tsx)
+ *
+ * CONSTRAINTS IT MUST KEEP MEETING (Ticket 5 acceptance, enforced by
+ * `npm run check:seo`): names the city, names the category of business, names
+ * at least two concrete deliverables, names at least two industries, contains
+ * no "leading" / "pioneering" / "world-class" / "cutting-edge", and is
+ * selectable DOM text rather than baked into a graphic.
+ *
+ * ⚠️ ON THE INDUSTRIES IT NAMES. They are taken from INDUSTRIES in
+ * content/evidence.ts, which is the site's own published taxonomy, rather than
+ * invented here. That file flags an unresolved positioning question — those
+ * verticals are SMB shapes and the firm sells at $10M–$100M — and this sentence
+ * deliberately does NOT resolve it. It states the revenue range and the sectors
+ * together, so whichever way that call goes, this sentence is still true.
+ */
+export const ENTITY_SENTENCE =
+  'Hexona Systems is a Toronto-based operational diligence firm that runs fixed-fee revenue ' +
+  'leakage diagnostics and builds the process automation, CRM and reporting systems that close ' +
+  'what those diagnostics find, for operating companies between $10M and $100M in revenue ' +
+  'across home services, construction, automotive and hospitality.';
+
+/* ---------------------------------------------------------------------------
+ * THIRD-PARTY PROFILES — AI SEO Developer Guide, Ticket 9.
+ *
+ * The dev half of Ticket 9, done in advance. Every off-site mention of this
+ * firm today is syndicated press release distribution — which this file already
+ * warns about twice, for the right reason — and it is absent from the
+ * directories that "operational diligence firm Toronto" answers get assembled
+ * from.
+ *
+ * Marketing claims the profiles. The URLs land here and feed `sameAs` on the
+ * Organization schema automatically, so closing Ticket 9 later is one line per
+ * profile rather than a schema change.
+ *
+ * ⚠️ ONLY `verified` ENTRIES WITH A URL ARE EMITTED. A sameAs pointing at a
+ * profile that does not exist is worse than an absent one: it is a broken
+ * assertion about identity, and entity resolution penalises exactly that. This
+ * is the same gate CREDENTIALS and AWARDS already apply to `href`.
+ * ------------------------------------------------------------------------ */
+
+export interface Profile {
+  platform: string;
+  url: string;
+  verified: boolean;
+  note?: string;
+}
+
+export const PROFILES: Profile[] = [
+  {
+    platform: 'LinkedIn (firm)',
+    url: '',
+    verified: false,
+    note: 'The one a buyer checks before a call. Highest priority of the set.',
+  },
+  {
+    platform: 'LinkedIn (principal)',
+    url: '',
+    verified: false,
+    note: 'Feeds `sameAs` on the Person node, which is how the principal and the firm resolve as one entity rather than two.',
+  },
+  {
+    platform: 'Crunchbase',
+    url: '',
+    verified: false,
+    note: 'Disproportionately weighted in entity resolution for firms.',
+  },
+  {
+    platform: 'Google Business Profile',
+    url: '',
+    verified: false,
+    note: 'Must be verified against the Toronto address. Carries the local pack.',
+  },
+  {
+    platform: 'Clutch',
+    url: '',
+    verified: false,
+    note: 'Reviews from NAMED clients carry the weight, not the profile. Note the §5 tension: a review from a sub-$10M client sits oddly beside an ICP this site refuses to publish below.',
+  },
+  { platform: 'G2', url: '', verified: false },
+  { platform: 'DesignRush', url: '', verified: false },
+];
+
+/** The `sameAs` array. Verified profiles with a real URL, nothing else. */
+export function verifiedProfileUrls(): string[] {
+  return PROFILES.filter((p) => p.verified && p.url).map((p) => p.url);
+}
+
 export const DIAGNOSTIC = {
   name: 'Leakage Diagnostic',
   price: 5000,

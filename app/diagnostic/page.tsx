@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { Faqs } from '@/components/sections/Faqs';
+import { JsonLd, breadcrumbLd, diagnosticServiceLd, faqPageLd } from '@/lib/jsonld';
+import { DIAGNOSTIC_FAQS } from '@/content/faqs';
 import { Surface } from '@/components/ui/Surface';
 import { Lattice } from '@/components/ui/Lattice';
 import { SectionMarker } from '@/components/layout/SectionMarker';
@@ -43,6 +46,14 @@ export const metadata: Metadata = {
 export default function DiagnosticPage() {
   return (
     <>
+      <JsonLd data={diagnosticServiceLd()} />
+      <JsonLd data={faqPageLd(DIAGNOSTIC_FAQS, '/diagnostic')} />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: 'Home', path: '/' },
+          { name: 'The diagnostic', path: '/diagnostic' },
+        ])}
+      />
       {/* --- Opening ------------------------------------------------------- */}
       <Surface surface="void" rule={false} as="header" className="hex-stage">
         <Lattice />
@@ -235,6 +246,16 @@ export default function DiagnosticPage() {
           </div>
         </div>
       </Surface>
+
+      {/* --- Ticket 7: five-plus visible Q&A pairs on the service page. The same
+              array feeds the FAQPage schema above, so the two cannot drift. --- */}
+      <Faqs
+        items={DIAGNOSTIC_FAQS}
+        index="04"
+        surface="void"
+        heading="The questions buyers ask here."
+        lede="Including the two where the honest answer is inconvenient for us."
+      />
 
       {/* --- Close. Both anchors live here. -------------------------------- */}
       <Surface surface="void" className="hex-stage">

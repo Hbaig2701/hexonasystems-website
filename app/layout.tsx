@@ -7,6 +7,7 @@ import { Entrances } from '@/components/layout/Entrances';
 import { LatticeDefs } from '@/components/ui/Lattice';
 import { SITE } from '@/lib/site';
 import { FIRM } from '@/content/firm';
+import { JsonLd, organizationLd, principalLd, webSiteLd } from '@/lib/jsonld';
 
 /**
  * §3.3 — the institutional research-note stack: serif display, grotesque body,
@@ -74,6 +75,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
       </head>
       <body className="min-h-svh">
+        {/* AI SEO Developer Guide, Ticket 2 — the entity graph, once per
+            document rather than per page.
+
+            These three are site-wide facts, so emitting them here means every
+            page carries the entity and every `@id` reference made by a Service,
+            FAQPage, Article or BlogPosting block resolves on the page it appears
+            on. Put them per-page instead and a crawler that fetches one post in
+            isolation sees an author reference pointing at nothing. */}
+        <JsonLd data={organizationLd()} />
+        <JsonLd data={webSiteLd()} />
+        <JsonLd data={principalLd()} />
+
         {/* The lattice geometry, once per document. Every <Lattice/> on the
             page is a <use> pointing at this; without it they draw nothing. */}
         <LatticeDefs />

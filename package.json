@@ -11,8 +11,10 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "verify": "npm run typecheck && npm run lint && npm run check:contrast && npm run build",
-    "check:contrast": "node scripts/check-contrast.mjs"
+    "verify": "npm run typecheck && npm run test && npm run lint && npm run check:contrast && npm run check:seo && npm run build",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "test": "vitest run",
+    "check:seo": "node scripts/check-seo.mjs && vitest run content/seo.test.ts"
   },
   "dependencies": {
     "@upstash/ratelimit": "^2.0.8",

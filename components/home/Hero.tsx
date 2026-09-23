@@ -2,7 +2,7 @@ import { Surface } from '@/components/ui/Surface';
 import { Lattice } from '@/components/ui/Lattice';
 import { HexMark } from '@/components/ui/HexMark';
 import { Button, TextLink } from '@/components/ui/Button';
-import { DIAGNOSTIC } from '@/content/firm';
+import { DIAGNOSTIC, ENTITY_SENTENCE } from '@/content/firm';
 
 /**
  * SECTION 1 — HERO. §4. VOID.
@@ -56,10 +56,31 @@ export function Hero() {
               bought and never collected.
             </h1>
 
-            <p className="t-lead mb-14 text-fg-2">
+            <p className="t-lead mb-8 text-fg-2">
               We find demand a company already paid for and is failing to convert, price it in
               EBITDA, and seal it.
             </p>
+
+            {/* TICKET 5 — THE ENTITY SENTENCE.
+                The line above is the argument and it is the better sentence. This
+                is the definition, and the page needs both for different readers.
+
+                A human already knows what kind of firm this is by the time they
+                reach the hero, from the strap and the mark. A model does not: it
+                arrives at a page about collecting revenue you already bought and
+                has to infer the category, and what it infers is wrong. This is
+                the sentence it can lift.
+
+                Small type deliberately — it is the least interesting sentence on
+                the page to a human and the most useful one to a machine, and the
+                hierarchy should say so. It is still selectable DOM text at a
+                readable size, which Ticket 5 requires; it is not a graphic and it
+                is not hidden.
+
+                DO NOT paraphrase it here. Edit ENTITY_SENTENCE in
+                content/firm.ts and all four placements move together;
+                `npm run check:seo` fails if they diverge. */}
+            <p className="t-small mb-14 max-w-[76ch] text-fg-3">{ENTITY_SENTENCE}</p>
 
             <div className="flex flex-wrap items-center gap-x-10 gap-y-5">
               <Button href="/diagnostic">
