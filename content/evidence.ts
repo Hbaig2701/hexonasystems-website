@@ -103,6 +103,69 @@ export function populatedIndustries() {
  * Empty until §5 is satisfied. Add records here and /evidence switches from the
  * interim notice to the record table automatically.
  */
+/* ===========================================================================
+   HOW TO ADD A CASE STUDY
+
+   Copy the block below into RECORDS, fill it in, save. Everything else is
+   automatic: the row appears in the table on /evidence, its industry shelf
+   appears in the filter, the shelves appear at all once there are two of them,
+   and /evidence/<slug> becomes a full page. Nothing else needs editing.
+
+   `industry` must be one of the INDUSTRIES ids above: home-services, agencies,
+   hospitality, coaching, health, automotive. TypeScript will reject anything
+   else, which is deliberate: a typo would silently create an invisible record.
+
+   ---------------------------------------------------------------------------
+  {
+    slug: 'hvac-texas',            // the URL: /evidence/hvac-texas
+    index: '01',                   // display only, shown above the title
+    industry: 'home-services',
+    sector: 'Regional HVAC contracting',   // specific enough to be recognised
+    region: 'Texas',
+    year: '2026',
+    revenue: '$23M',               // the client's, not the finding
+    headcount: '140 staff',
+    found: '$880K',                // annualised leakage identified
+    sealed: '$510K',               // annualised recovery MEASURED. Less than found.
+    payback: '11 weeks',
+
+    title: 'The follow-up sequence stopped on day four because its author left.',
+
+    situation: [
+      'One paragraph per entry. What the business was doing, and what nobody noticed.',
+      'Two or three is plenty.',
+    ],
+
+    whatWeFound: [
+      { leak: 'Quotes under threshold received a single touch', annualised: '$540K' },
+      { leak: 'Seasonal maintenance never reactivated',          annualised: '$340K' },
+    ],
+
+    whatWeBuilt: [
+      'One line per thing built.',
+      'Plain description, no product names needed.',
+    ],
+
+    whatChanged: [
+      { metric: 'Quote-to-close rate',     before: '19%', after: '27%' },
+      { metric: 'Reactivated contracts',   before: '61',  after: '184' },
+    ],
+
+    // Never optional. Names the system and the period. This is the sentence
+    // that separates a record from a testimonial.
+    verification:
+      'Measured in the client field service platform over one full seasonal cycle, against the equivalent cycle in the prior year.',
+
+    consentOnFile: true,           // the client approved this version as published
+  },
+   ---------------------------------------------------------------------------
+
+   ⚠️ §5 still applies to anything published here. The figures must be measured
+   rather than estimated, `sealed` must be smaller than `found` because a
+   complete seal is not credible, and `consentOnFile` must be true before a
+   record goes in at all.
+   ======================================================================== */
+
 export const RECORDS: EngagementRecord[] = [];
 
 export const hasRecords = () => RECORDS.length > 0;
