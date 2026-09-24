@@ -42,7 +42,7 @@ import {
  * structural, it is everywhere, and this firm has measured it a lot.
  *
  * ⚠️ THE TWO FIGURES GET DIVIDED. $6B over 500 businesses is $12M each, against
- * an ICP of $10M-$100M. Read naively that says we routinely find more than a
+ * an ICP of $3M-$15M. Read naively that says we routinely find more than a
  * company at the bottom of our range earns in a year, and an operating partner
  * does that division on sight. The definitions underneath are therefore NOT
  * decoration and must not be trimmed for space: they state that the 500 are

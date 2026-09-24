@@ -15,10 +15,10 @@
  * receptionist vs. answering service: which is right for a small business?", and
  * eight more in that shape. Those were written against the Wix site, which sold
  * appointment setters to childcare operators and medspas. v2 sells operational
- * diligence to operating companies at $10M–$100M and prices findings in EBITDA.
+ * diligence to operating companies at $3M–$15M and prices findings in EBITDA.
  *
  * Publishing the guide's list verbatim would have done real damage rather than
- * nothing. "Which is right for a small business" beside a stated $10M–$100M
+ * nothing. "Which is right for a small business" beside a stated $3M–$15M
  * operating range is the §5 failure in article form: the same reader who
  * dismisses a property over a sub-$1M engagement record dismisses it over a blog
  * written for somebody a tenth his size. The guide's INTENT — answer the question
@@ -191,7 +191,7 @@ export const POSTS: Post[] = [
       {
         t: 'p',
         text:
-          'Across more than 500 businesses taken through this process, the cumulative unrealized revenue identified exceeds $6B. That figure is not annualised, it is totalled at the point the demand was lost, and most of those businesses sit well below the $10M to $100M range this firm now works in — so it is a statement about how common the pattern is, not a forecast of what any single company will find. What any single company will find is a question only its own systems can answer.',
+          'Across more than 500 businesses taken through this process, the cumulative unrealized revenue identified exceeds $6B. That figure is not annualised, it is totalled at the point the demand was lost, and most of those businesses sit well below the $3M to $15M range this firm now works in — so it is a statement about how common the pattern is, not a forecast of what any single company will find. What any single company will find is a question only its own systems can answer.',
       },
     ],
   },
@@ -203,7 +203,7 @@ export const POSTS: Post[] = [
     description:
       'A fixed $5,000, credited in full against implementation. What that buys, why it is fixed rather than scoped, and what to compare it against before committing.',
     answer:
-      'This firm charges a fixed $5,000 for a leakage diagnostic, credited in full against implementation if you proceed. So if you build, the diagnostic effectively cost nothing; if you do not, you keep the report and the roadmap anyway. The figure to compare it against is not other firms’ fees — it is the annualised leakage the diagnostic is looking for, which at a company doing $10M to $100M is routinely two orders of magnitude larger than the fee. That asymmetry is the only reason a fixed price works at all.',
+      'This firm charges a fixed $5,000 for a leakage diagnostic, credited in full against implementation if you proceed. So if you build, the diagnostic effectively cost nothing; if you do not, you keep the report and the roadmap anyway. The figure to compare it against is not other firms’ fees — it is the annualised leakage the diagnostic is looking for, which at a company doing $3M to $15M is routinely two orders of magnitude larger than the fee. That asymmetry is the only reason a fixed price works at all.',
     category: 'Cost',
     datePublished: '2026-09-23',
     published: true,
@@ -279,7 +279,7 @@ export const POSTS: Post[] = [
       {
         t: 'note',
         text:
-          'If that rough arithmetic produces a small number, the honest conclusion is not yet — and it is worth saying that a firm which agrees with you on that is more useful than one which does not. Below roughly $10M in revenue the leakage in most operations is not large enough to justify the engagement.',
+          'If that rough arithmetic produces a small number, the honest conclusion is not yet — and it is worth saying that a firm which agrees with you on that is more useful than one which does not. Below roughly $3M in revenue the leakage in most operations is not large enough to justify the engagement.',
       },
       { t: 'h2', text: 'What to ask before commissioning any diagnostic' },
       {
@@ -1044,7 +1044,7 @@ export const POSTS: Post[] = [
     description:
       'A null result is a real outcome and should be written into the engagement terms. Why it almost never happens, and why a firm that cannot return one is worth less.',
     answer:
-      'The report says so in its first paragraph and the firm tells you not to hire it. That should be a written term of the engagement rather than a reassurance on a call, because it is the only structural counterweight to a fee that is credited against implementation — without it, the firm is paid for finding something. In practice a fully null result is rare at $10M to $100M, but a result too small to justify a build is not rare at all, and the two should be treated the same way.',
+      'The report says so in its first paragraph and the firm tells you not to hire it. That should be a written term of the engagement rather than a reassurance on a call, because it is the only structural counterweight to a fee that is credited against implementation — without it, the firm is paid for finding something. In practice a fully null result is rare at $3M to $15M, but a result too small to justify a build is not rare at all, and the two should be treated the same way.',
     category: 'Engagement',
     datePublished: '2026-09-23',
     published: true,

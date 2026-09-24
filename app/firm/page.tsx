@@ -134,7 +134,7 @@ export default function FirmPage() {
           <SectionMarker index="02" label="Who it is for" className="mb-14" />
           <div className="col-12 gap-y-16">
             <div className="[grid-column:1/7]">
-              <h2 className="t-display-2 mb-8">Operating companies, $10M to $100M.</h2>
+              <h2 className="t-display-2 mb-8">Operating companies, $3M to $15M.</h2>
               <p className="t-lead mb-8 max-w-[52ch] text-fg">{SEGMENTS.primary}</p>
               <p className="t-body mb-6 max-w-[56ch] text-fg-2">{SEGMENTS.buyer}</p>
               <p className="t-body max-w-[56ch] text-fg-2">{SEGMENTS.notFor}</p>

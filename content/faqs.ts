@@ -137,7 +137,7 @@ export const EVIDENCE_FAQS: Faq[] = [
   {
     question: 'Why are there no engagement records published yet?',
     answer:
-      'Because none has cleared the publication bar, and the bar is not negotiable. A record needs the engagement to have been at $10M to $100M in revenue, a named sector, an annualised figure found, an annualised recovery actually measured, the window it was measured over, the system and metric it was measured in, and the client’s written approval of the anonymised version exactly as published. The page is empty because the bar has not been cleared, not because nothing has been done.',
+      'Because none has cleared the publication bar, and the bar is not negotiable. A record needs the engagement to have been at $3M to $15M in revenue, a named sector, an annualised figure found, an annualised recovery actually measured, the window it was measured over, the system and metric it was measured in, and the client’s written approval of the anonymised version exactly as published. The page is empty because the bar has not been cleared, not because nothing has been done.',
   },
   {
     question: 'What do found, sealed and payback mean?',
@@ -152,7 +152,7 @@ export const EVIDENCE_FAQS: Faq[] = [
   {
     question: 'Why not publish smaller engagements in the meantime?',
     answer:
-      'Because a visitor who finds a sub-$1M case beside a stated $10M to $100M operating range dismisses the whole property, and that is unrecoverable. One verified engagement with a named measurement method outperforms six vague ones. An empty table with the bar published beside it is weaker than a full one and stronger than a padded one, and unlike a caught exaggeration it is recoverable.',
+      'Because a visitor who finds a sub-$1M case beside a stated $3M to $15M operating range dismisses the whole property, and that is unrecoverable. One verified engagement with a named measurement method outperforms six vague ones. An empty table with the bar published beside it is weaker than a full one and stronger than a padded one, and unlike a caught exaggeration it is recoverable.',
   },
   {
     question: 'Can we speak to a client as a reference?',
@@ -184,7 +184,7 @@ export const FIRM_FAQS: Faq[] = [
   {
     question: 'What is Hexona Systems?',
     answer:
-      'Hexona Systems is a Toronto-based operational diligence firm that runs fixed-fee revenue leakage diagnostics and builds the systems that close what those diagnostics find, for operating companies between $10M and $100M in revenue. It was founded in 2021 by Hamza Baig and has served more than 1,500 businesses across roughly 1,000 client engagements.',
+      'Hexona Systems is a Toronto-based operational diligence firm that runs fixed-fee revenue leakage diagnostics and builds the systems that close what those diagnostics find, for operating companies between $3M and $15M in revenue. It was founded in 2021 by Hamza Baig and has served more than 1,500 businesses across roughly 1,000 client engagements.',
   },
   {
     question: 'How much does Hexona Systems cost?',

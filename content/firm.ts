@@ -14,7 +14,7 @@ export const FIRM = {
   /** ⚠️ [ASSET NEEDED] Public phone. The footer line hides itself until set. */
   phone: '' as string,
   principal: 'Hamza Baig',
-  operatingRange: '$10M–$100M revenue',
+  operatingRange: '$3M–$15M revenue',
   engagementBasis: 'Fixed scope, fixed fee, credited',
 } as const;
 
@@ -54,14 +54,14 @@ export const FIRM = {
  * ⚠️ ON THE INDUSTRIES IT NAMES. They are taken from INDUSTRIES in
  * content/evidence.ts, which is the site's own published taxonomy, rather than
  * invented here. That file flags an unresolved positioning question — those
- * verticals are SMB shapes and the firm sells at $10M–$100M — and this sentence
+ * verticals are SMB shapes and the firm sells at $3M–$15M — and this sentence
  * deliberately does NOT resolve it. It states the revenue range and the sectors
  * together, so whichever way that call goes, this sentence is still true.
  */
 export const ENTITY_SENTENCE =
   'Hexona Systems is a Toronto-based operational diligence firm that runs fixed-fee revenue ' +
   'leakage diagnostics and builds the process automation, CRM and reporting systems that close ' +
-  'what those diagnostics find, for operating companies between $10M and $100M in revenue ' +
+  'what those diagnostics find, for operating companies between $3M and $15M in revenue ' +
   'across home services, construction, automotive and hospitality.';
 
 /* ---------------------------------------------------------------------------
@@ -119,7 +119,7 @@ export const PROFILES: Profile[] = [
     platform: 'Clutch',
     url: '',
     verified: false,
-    note: 'Reviews from NAMED clients carry the weight, not the profile. Note the §5 tension: a review from a sub-$10M client sits oddly beside an ICP this site refuses to publish below.',
+    note: 'Reviews from NAMED clients carry the weight, not the profile. Note the §5 tension: a review from a sub-$3M client sits oddly beside an ICP this site refuses to publish below.',
   },
   { platform: 'G2', url: '', verified: false },
   { platform: 'DesignRush', url: '', verified: false },
@@ -516,7 +516,7 @@ export const SERVICES = [
 
 export const SEGMENTS = {
   primary:
-    'Operating companies between $10M and $100M in revenue, where inbound demand already exists and is being paid for.',
+    'Operating companies between $3M and $15M in revenue, where inbound demand already exists and is being paid for.',
   industries: [
     'Home services and construction',
     'Automotive',
@@ -528,7 +528,7 @@ export const SEGMENTS = {
   buyer:
     'The engagement is bought by whoever owns operations and can grant access to the systems without escalating.',
   notFor:
-    'Companies under $10M, where the leakage rarely justifies the fee. Hexona Systems says so rather than taking the engagement.',
+    'Companies under $3M, where the leakage rarely justifies the fee. Hexona Systems says so rather than taking the engagement.',
 };
 
 /**

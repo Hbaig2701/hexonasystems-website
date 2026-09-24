@@ -1,13 +1,13 @@
 /**
  * content/evidence.ts — engagement records, and the §5 gate that governs them.
  *
- * ⚠️ §5 IS BLOCKING. The site claims a $10M–$100M ICP. Every record must be an
+ * ⚠️ §5 IS BLOCKING. The site claims a $3M–$15M ICP. Every record must be an
  * engagement at that scale. A visitor who finds a sub-$1M case dismisses the
  * entire property in thirty seconds, and that is unrecoverable.
  *
  * REQUIRED PER RECORD, NO EXCEPTIONS:
  *   sector — specific. "Specialty industrial distribution", not "B2B".
- *   revenue — ≥ $10M
+ *   revenue — ≥ $3M
  *   headcount
  *   found — annualised leakage identified
  *   sealed — annualised recovery measured. MUST be less than found; a 100%
@@ -33,7 +33,7 @@ export interface EngagementRecord {
   sector: string;
   region: string;
   year: string;
-  /** Formatted, e.g. "$34M". Must be ≥ $10M. */
+  /** Formatted, e.g. "$34M". Must be ≥ $3M. */
   revenue: string;
   headcount: string;
   /** Annualised leakage identified during the diagnostic. */
@@ -61,7 +61,7 @@ export interface EngagementRecord {
  *    Construction. Correct it here and every reference follows.
  *
  * 2. These verticals are SMB shapes. The site sells to operating companies at
- *    $10M-$100M, and §5 refuses any record below that. Most restaurants,
+ *    $3M-$15M, and §5 refuses any record below that. Most restaurants,
  *    medspas and coaching practices are an order of magnitude under it, so
  *    either the library fills with work that contradicts the stated ICP, or
  *    most of these shelves stay empty. Deciding which is a positioning call,
@@ -216,14 +216,14 @@ export const RECORD_PREAMBLE =
  * ⚠️ READ THIS BEFORE CHANGING EITHER NUMBER.
  *
  * These two figures get divided. $6B over 500 businesses is $12M each, and the
- * site sells to companies doing $10M-$100M, so taken naively the claim says we
+ * site sells to companies doing $3M-$15M, so taken naively the claim says we
  * routinely find more unrealized revenue than a company at the bottom of our
  * range earns in a year. An operating partner does that division on sight, and
  * the page does not recover from it.
  *
  * What makes the pair survive scrutiny is the two things stated with them:
  *
- *   1. THE POPULATION. The 500 are not all $10M-$100M companies. Most sit well
+ *   1. THE POPULATION. The 500 are not all $3M-$15M companies. Most sit well
  *      below the diagnostic's ICP. Saying so costs nothing and removes the
  *      implication that $12M is a typical finding at our own ICP.
  *   2. THE MEASURE. "Unrealized revenue" is cumulative across every audit and
@@ -275,7 +275,7 @@ export const PUBLICATION_STANDARD = [
   {
     term: 'Scale',
     detail:
-      'The engagement was at $10M to $100M in revenue, the range this firm operates in. A smaller company rounded up would discredit every record beside it.',
+      'The engagement was at $3M to $15M in revenue, the range this firm operates in. A smaller company rounded up would discredit every record beside it.',
   },
   {
     term: 'A named sector',

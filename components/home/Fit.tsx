@@ -11,14 +11,14 @@ import { cn } from '@/lib/cn';
  */
 
 const FIT = [
-  '$10M–$100M revenue',
+  '$3M–$15M revenue',
   'Inbound demand exists and is being paid for',
   'Someone owns operations and can grant systems access',
   'Willing to change how work is done, not just which tools are used',
 ];
 
 const NOT_FIT = [
-  'Companies under $10M, where the leakage rarely justifies the fee and we will tell you so',
+  'Companies under $3M, where the leakage rarely justifies the fee and we will tell you so',
   'The goal is headcount reduction rather than recovered revenue',
   'Systems undocumented and nobody available to document them',
   'What’s wanted is a tool recommendation, which any consultant gives away free',

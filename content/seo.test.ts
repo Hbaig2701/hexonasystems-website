@@ -50,7 +50,7 @@ describe('Ticket 5 — the entity sentence', () => {
     // The specific failure this guards: v1 was repositioned from an SMB
     // automation agency, and a definition sentence that omits the range invites
     // exactly the old reading back in.
-    expect(ENTITY_SENTENCE).toMatch(/\$10M/);
+    expect(ENTITY_SENTENCE).toMatch(/\$3M/);
   });
 
   it('contains no puffery', () => {
@@ -108,7 +108,7 @@ describe('Ticket 6 — the blog', () => {
   it('never addresses a small business, which would contradict the ICP', () => {
     // ⚠️ THE REASON THIS TEST EXISTS. The guide's own ten topics were written for
     // the Wix site's SMB buyer — "which is right for a small business" — and the
-    // firm now sells at $10M-$100M. §5 refuses an engagement record below that
+    // firm now sells at $3M-$15M. §5 refuses an engagement record below that
     // range because a reader who finds one dismisses the whole property; a post
     // written for somebody a tenth his size does the same damage. If a future
     // post needs this vocabulary, it needs a different audience decision first.

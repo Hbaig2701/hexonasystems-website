@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: '%s · Hexona Systems',
   },
   description:
-    'We find demand a company already paid for and is failing to convert, price it in EBITDA, and seal it. Fixed-scope diagnostic for operating companies at $10M to $100M.',
+    'We find demand a company already paid for and is failing to convert, price it in EBITDA, and seal it. Fixed-scope diagnostic for operating companies at $3M to $15M.',
   openGraph: { type: 'website', siteName: FIRM.name, locale: 'en_CA', url: SITE.url },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
