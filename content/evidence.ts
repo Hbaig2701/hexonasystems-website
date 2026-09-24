@@ -757,7 +757,7 @@ export const CASE_COLUMN_DEFINITIONS = [
   {
     term: 'Result',
     definition:
-      'What was measured after implementation, in the system named at the foot of each record. A row reading "not yet measured" is a system that has shipped and whose measurement period has not closed; its page carries no result figure and names every forward-looking number as a projection. Where a figure was estimated rather than measured, the record says so beside it.',
+      'What was measured after implementation, in the system named at the foot of each record. A row reading "final results in progress" is a system that has shipped and whose measurement period has not closed; its page carries no result figure and names every forward-looking number as a projection. Where a figure was estimated rather than measured, the record says so beside it.',
   },
   {
     term: 'Window',

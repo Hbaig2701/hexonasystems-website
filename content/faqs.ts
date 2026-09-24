@@ -145,9 +145,9 @@ export const EVIDENCE_FAQS: Faq[] = [
       'Found is what the business was losing before the build. Result is what was measured after it, in the system named at the foot of that record. Window is the period the result covers. Where a source document states no window, the record says so instead of implying one, and where a figure was estimated rather than measured, it is named as an estimate beside the number. An undefined column is an unfalsifiable claim.',
   },
   {
-    question: 'Why are some case studies marked as not yet measured?',
+    question: 'Why do some case studies say final results are in progress?',
     answer:
-      'Because they are built and live and the measurement period has not closed. Those rows say so where a result would go, their pages carry no result figure at all, and every forward-looking number on them is labelled a projection rather than presented as an outcome. A result appears when it has been measured, and not before.',
+      'Because they are built and live and the measurement period has not closed. Those rows read final results in progress where a result would go, their pages carry no result figure at all, and every forward-looking number on them is labelled a projection rather than presented as an outcome. A result appears when it has been measured, and not before.',
   },
   {
     question: 'Are these businesses the same size as the ones you sell the diagnostic to?',

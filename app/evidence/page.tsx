@@ -34,8 +34,8 @@ import {
  * ⚠️ THE NOT-YET-MEASURED CARRY THEIR QUALIFIER IN THE ROW, NOT IN A SEPARATE
  * TABLE. Three of the ten shipped and have not been measured. They used to sit
  * under their own heading below the measured ones; they now sit in the one
- * table and print "Not yet measured" where a result would go. That is the
- * stronger position for it. A reader scanning the Result column meets the
+ * table and print "Final results in progress" where a result would go. That
+ * is the stronger position for it. A reader scanning Result meets the
  * qualifier on the row itself, rather than having to notice which of two tables
  * they had scrolled into, and the row is the thing that gets screenshotted.
  *
@@ -183,7 +183,7 @@ export default async function EvidencePage({
                       c.basis === 'measured' ? (
                         (c.result ?? '')
                       ) : (
-                        <span className="text-fg-3">Not yet measured</span>
+                        <span className="text-fg-3">Final results in progress</span>
                       ),
                   },
                 }))}

@@ -131,7 +131,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <div className="[grid-column:7/13]">
                 <FigureBlock
                   label="Status"
-                  figure="Not yet measured"
+                  figure="Final results in progress"
                   annotation="Built and live. No post-implementation period has been measured against it."
                 />
               </div>
