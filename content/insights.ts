@@ -36,8 +36,8 @@
  *
  * ⚠️ WHERE THE NUMBERS COME FROM. Every figure about this firm already exists in
  * content/firm.ts, content/diagnostic.ts or content/evidence.ts — the $5,000 fee,
- * the $25k–$75k range, the two weeks anchored to systems access, the 500 audits
- * and the $6B, and the found/sealed/payback definitions. NOTHING ABOUT THE FIRM
+ * the $15k–$75k range, the two weeks anchored to systems access, the 500 audits
+ * and the $100M, and the found/sealed/payback definitions. NOTHING ABOUT THE FIRM
  * IS INVENTED HERE, and §10 applies: where a post would need a market statistic
  * nobody has measured — EBITDA multiples, industry conversion benchmarks,
  * competitor fees — it does not assert one. It works from arithmetic with its
@@ -191,7 +191,7 @@ export const POSTS: Post[] = [
       {
         t: 'p',
         text:
-          'Across more than 500 businesses taken through this process, the cumulative unrealized revenue identified exceeds $6B. That figure is not annualised, it is totalled at the point the demand was lost, and most of those businesses sit well below the $3M to $15M range this firm now works in — so it is a statement about how common the pattern is, not a forecast of what any single company will find. What any single company will find is a question only its own systems can answer.',
+          'Across more than 500 businesses taken through this process, the cumulative unrealized revenue identified exceeds $100M, which is roughly $200,000 per business. That figure is not annualised, it is totalled at the point the demand was lost, and most of those businesses sit well below the $3M to $15M range this firm now works in — so it is a statement about how common the pattern is, not a forecast of what any single company will find. What any single company will find is a question only its own systems can answer.',
       },
     ],
   },
@@ -258,7 +258,7 @@ export const POSTS: Post[] = [
       {
         t: 'p',
         text:
-          '$25,000 to $75,000 across all phases is the typical range. Publishing that range matters more than protecting it: "credited against implementation" is an empty promise to somebody who cannot tell whether implementation is $40,000 or $400,000, and the uncertainty lands on the diagnostic rather than on the build. A $5,000 report is only worth commissioning if the follow-on is viable.',
+          '$15,000 to $75,000 across all phases is the typical range. Publishing that range matters more than protecting it: "credited against implementation" is an empty promise to somebody who cannot tell whether implementation is $40,000 or $400,000, and the uncertainty lands on the diagnostic rather than on the build. A $5,000 report is only worth commissioning if the follow-on is viable.',
       },
       {
         t: 'p',
@@ -451,7 +451,7 @@ export const POSTS: Post[] = [
       {
         t: 'p',
         text:
-          'This is where the distinction pays for itself. A sales intervention is a hiring and enablement programme: months to staff, a quarter or more before the signal is readable, and the cost is ongoing headcount. A leakage intervention is a build: weeks, a signal visible in the first week for latency and within one sales cycle for conversion, and the cost is largely one-time. Implementation at this scale typically runs $25,000 to $75,000 across all phases.',
+          'This is where the distinction pays for itself. A sales intervention is a hiring and enablement programme: months to staff, a quarter or more before the signal is readable, and the cost is ongoing headcount. A leakage intervention is a build: weeks, a signal visible in the first week for latency and within one sales cycle for conversion, and the cost is largely one-time. Implementation at this scale typically runs $15,000 to $75,000 across all phases.',
       },
       {
         t: 'p',
@@ -878,7 +878,7 @@ export const POSTS: Post[] = [
           'Start with recovered revenue: $3.0M annualised, already net of a stated recoverability haircut.',
           'Apply incremental contribution margin. Suppose 45% on this revenue, with existing capacity absorbing it. That is $1.35M of incremental contribution.',
           'Subtract the annualised cost of running the recovered process. Software, licences, monitoring, and any partial headcount. Suppose $90,000. That leaves $1.26M.',
-          'Subtract the amortised build cost if your board wants it in the first-year figure. Implementation at this scale typically runs $25,000 to $75,000 across all phases; take $60,000, and the first-year EBITDA effect is about $1.20M with the run-rate effect at $1.26M.',
+          'Subtract the amortised build cost if your board wants it in the first-year figure. Implementation at this scale typically runs $15,000 to $75,000 across all phases; take $60,000, and the first-year EBITDA effect is about $1.20M with the run-rate effect at $1.26M.',
           'Apply your sector’s EBITDA multiple to the run-rate figure to get the enterprise-value effect. The multiple is yours to supply — it is sector- and cycle-specific and nobody should take one from an article. At a hypothetical 7x, $1.26M becomes roughly $8.8M of enterprise value.',
         ],
       },
@@ -1124,7 +1124,7 @@ export const POSTS: Post[] = [
           'Count enquiries that received exactly one contact and no follow-up. If that number is small, one whole category of leak is already absent.',
           'Call your own business twice — mid-afternoon on a Tuesday, and on a Saturday evening. Note what happens and how long it takes. This costs ten minutes and is startlingly diagnostic.',
           'Check every channel you have ever published. The old inbox, the second number, the chat widget, the marketplace queue.',
-          'Multiply the gap you found by your own average first-year value, and annualise it. If that figure is not comfortably a multiple of a $5,000 fee plus a $25,000 to $75,000 build, the honest answer is not yet.',
+          'Multiply the gap you found by your own average first-year value, and annualise it. If that figure is not comfortably a multiple of a $5,000 fee plus a $15,000 to $75,000 build, the honest answer is not yet.',
         ],
       },
       {

@@ -215,11 +215,22 @@ export const RECORD_PREAMBLE =
  *
  * ⚠️ READ THIS BEFORE CHANGING EITHER NUMBER.
  *
- * These two figures get divided. $6B over 500 businesses is $12M each, and the
- * site sells to companies doing $3M-$15M, so taken naively the claim says we
- * routinely find more unrealized revenue than a company at the bottom of our
- * range earns in a year. An operating partner does that division on sight, and
- * the page does not recover from it.
+ * These two figures get divided, so they have to survive it.
+ *
+ * The figure was $6B, which is $12M per business across 500. Against the old
+ * $10M-$100M range that was a stretch; against $3M-$15M it is impossible,
+ * because you cannot find $12M of unrealised revenue inside a $3M company.
+ *
+ * $100M+ is worked back from the population instead of down from a boast. The
+ * site's own record examples imply leakage found at 4 to 5% of revenue. Five
+ * hundred businesses, most of them under $3M, at 6 to 8% gives $45M to $120M;
+ * $100M+ sits at the top of that band, which is where a headline claim
+ * belongs. It divides to $200,000 per business, which is 6.7% of a $3M
+ * company's revenue and a credible rate for an unoptimised operation.
+ *
+ * It is also the better sentence. $200,000 found against a $5,000 diagnostic
+ * is 40x, and a reader can map $200,000 onto their own business. Nobody could
+ * map $6B onto anything.
  *
  * What makes the pair survive scrutiny is the two things stated with them:
  *
@@ -237,7 +248,7 @@ export const RECORD_PREAMBLE =
  * numbers on the site.
  */
 export const LEAKAGE_SCALE = {
-  /** ⚠️ [ASSET NEEDED] The window the 500 and the $6B were accumulated over,
+  /** ⚠️ [ASSET NEEDED] The window the 500 and the $100M were accumulated over,
    *  e.g. "2019-2026". Without it "cumulative" is not actually a measurement,
    *  and the section says so in dev until it is filled in. */
   period: '',
@@ -250,7 +261,7 @@ export const LEAKAGE_SCALE = {
   },
 
   unrealized: {
-    figure: '$6B+',
+    figure: '$100M+',
     label: 'Unrealized revenue identified',
     definition:
       'Demand those businesses had already paid to acquire and did not convert, totalled at the point it was lost. Cumulative across every audit and the whole period. Not annualised, and not a claim about what any single business would find.',

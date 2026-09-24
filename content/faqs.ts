@@ -91,7 +91,7 @@ export const DIAGNOSTIC_FAQS: Faq[] = [
 export const IMPLEMENTATION_FAQS: Faq[] = [
   {
     question: 'How much does implementation cost?',
-    answer: `Typically $25,000 to $75,000 across all phases, with each phase priced before that phase begins and the ${DIAGNOSTIC.priceFormatted} diagnostic fee credited in full against the first. You approve phases one at a time and are never asked to commit to a total, because until the diagnostic is finished neither of us knows what the total is. A firm that quotes you a total before the diagnostic is guessing.`,
+    answer: `Typically $15,000 to $75,000 across all phases, with each phase priced before that phase begins and the ${DIAGNOSTIC.priceFormatted} diagnostic fee credited in full against the first. You approve phases one at a time and are never asked to commit to a total, because until the diagnostic is finished neither of us knows what the total is. A firm that quotes you a total before the diagnostic is guessing.`,
   },
   {
     question: 'Why is the number of phases never stated?',
@@ -145,9 +145,9 @@ export const EVIDENCE_FAQS: Faq[] = [
       'Found is annualised leakage identified during the diagnostic. Sealed is annualised recovery measured after implementation, over the period stated in each record, and it is always smaller than what was found. Payback is the number of weeks for measured recovery to equal total fees paid, diagnostic plus implementation. An undefined column is an unfalsifiable claim, so all three are published with every table.',
   },
   {
-    question: 'What is the $6B figure, exactly?',
+    question: 'What is the $100M figure, exactly?',
     answer:
-      'Demand that audited businesses had already paid to acquire and did not convert, totalled at the point it was lost. It is cumulative across 500-plus audits and across the whole period, it is not annualised, and it is not a claim about what any single business would find. Most of those 500 sit well below the operating range this diagnostic is sold into. It is a different and looser measure than found and sealed in an engagement record, which is precisely why both are defined rather than left to smell similar.',
+      'Demand that audited businesses had already paid to acquire and did not convert, totalled at the point it was lost. It is cumulative across 500-plus audits and across the whole period, it is not annualised, and it divides to roughly $200,000 per business rather than being a claim about what any single one would find. Most of those 500 sit well below the operating range this diagnostic is sold into. It is a different and looser measure than found and sealed in an engagement record, which is precisely why both are defined rather than left to smell similar.',
   },
   {
     question: 'Why not publish smaller engagements in the meantime?',
@@ -189,7 +189,7 @@ export const FIRM_FAQS: Faq[] = [
   {
     question: 'How much does Hexona Systems cost?',
     answer:
-      'The Leakage Diagnostic is $5,000, fixed, and is credited in full against implementation if the client proceeds. Implementation is priced per phase before that phase begins and typically totals $25,000 to $75,000 across all phases. There is no obligation to implement, and the report and roadmap belong to the client either way.',
+      'The Leakage Diagnostic is $5,000, fixed, and is credited in full against implementation if the client proceeds. Implementation is priced per phase before that phase begins and typically totals $15,000 to $75,000 across all phases. There is no obligation to implement, and the report and roadmap belong to the client either way.',
   },
   {
     question: 'How is Hexona Systems different from a management consultancy?',

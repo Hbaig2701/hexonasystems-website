@@ -137,7 +137,7 @@ export const IMPLEMENTATION = {
   ],
   terms: [
     { term: 'Pricing', value: 'Fixed price per phase, agreed before the phase begins' },
-    { term: 'Typical total', value: '$25,000 to $75,000 across all phases' },
+    { term: 'Typical total', value: '$15,000 to $75,000 across all phases' },
     { term: 'Diagnostic fee', value: 'Credited in full against the first phase' },
     {
       term: 'Commitment',
@@ -252,7 +252,7 @@ export const BUILDS = [
  * ⚠️ TWO THINGS FROM THE FOUNDER'S DESCRIPTION ARE DELIBERATELY ABSENT.
  *
  * "At the most affordable rates." This firm sells a $5,000 diagnostic and
- * $25k-$75k builds to operating partners at $3M-$15M companies. To that
+ * $15k-$75k builds to operating partners at $3M-$15M companies. To that
  * buyer cheap is not an attraction, it is a risk signal, and a claim about
  * your own affordability invites a comparison you do not want. Price is
  * already stated plainly; it does not need an adjective defending it.

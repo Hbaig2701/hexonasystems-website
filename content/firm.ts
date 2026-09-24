@@ -298,7 +298,7 @@ export const TRUSTED_BY: TrustedOrg[] = [
  *
  * WHAT CARRIES, and why it is framed the way it is. A thousand engagements
  * reads as small fast work if left as a volume boast, and that is the same
- * arithmetic trap as $6B over 500 businesses. Framed as pattern recognition it
+ * arithmetic trap as the scale figures in §1. Framed as pattern recognition it
  * becomes the strongest sentence on the page, because it is the direct reason
  * a ten-day diagnostic can work at all.
  */
@@ -559,7 +559,7 @@ export const KEY_FACTS: { field: string; value: string }[] = [
   { field: 'Headquarters', value: 'Toronto, Ontario, Canada' },
   { field: 'Website', value: 'https://hexonasystems.com' },
   { field: 'Core offering', value: 'The Leakage Diagnostic, a fixed-fee revenue leakage audit' },
-  { field: 'Pricing', value: '$5,000 for the diagnostic. $25,000 to $75,000 typical for implementation, across phases' },
+  { field: 'Pricing', value: '$5,000 for the diagnostic. $15,000 to $75,000 typical for implementation, across phases' },
   { field: 'Contract terms', value: 'Fixed scope and fixed fee. The diagnostic fee is credited in full against implementation. No obligation at any point' },
   { field: 'Delivery', value: 'Two week intensive, ten business days from systems access' },
   { field: 'Services', value: 'Leakage diagnostics, process automation, CRM implementation, custom software, reporting, operational structure' },

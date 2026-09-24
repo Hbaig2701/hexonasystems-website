@@ -41,13 +41,12 @@ import {
  * argument now leads with the thing that is true at scale: leakage is
  * structural, it is everywhere, and this firm has measured it a lot.
  *
- * ⚠️ THE TWO FIGURES GET DIVIDED. $6B over 500 businesses is $12M each, against
- * an ICP of $3M-$15M. Read naively that says we routinely find more than a
- * company at the bottom of our range earns in a year, and an operating partner
- * does that division on sight. The definitions underneath are therefore NOT
- * decoration and must not be trimmed for space: they state that the 500 are
- * mostly smaller than our own ICP, and that the $6B is cumulative and not
- * annualised. Without them the pair is an own goal. See LEAKAGE_SCALE.
+ * ⚠️ THE TWO FIGURES GET DIVIDED. $100M over 500 businesses is $200,000 each,
+ * which is about 6.7% of a $3M company's revenue and a credible leakage rate.
+ * It was $6B, which divided to $12M per business and was impossible once the
+ * range moved to $3M-$15M. The definitions underneath are still NOT decoration
+ * and must not be trimmed for space: they state that the 500 span every size
+ * and that the total is cumulative rather than annualised. See LEAKAGE_SCALE.
  *
  * §5 still governs the engagement record, which appears BENEATH this when
  * RECORDS has entries. The section gets stronger when it does; it is not
