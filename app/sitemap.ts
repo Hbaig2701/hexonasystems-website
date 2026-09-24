@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
-import { RECORDS } from '@/content/evidence';
+import { allPublished } from '@/content/evidence';
 import { publishedPosts } from '@/content/insights';
 
 /**
@@ -9,12 +9,13 @@ import { publishedPosts } from '@/content/insights';
  * v2 shipped without this file too, so there was no sitemap for robots.txt to
  * point at.
  *
- * ONLY ROUTES THAT EXIST. The record and post lists are derived from the content
- * modules rather than typed out, so an unpublished engagement record cannot leak
+ * ONLY ROUTES THAT EXIST. The case study and post lists are derived from the
+ * content modules rather than typed out, so an unpublished record cannot leak
  * into the sitemap and a published post cannot be forgotten. That matters more
  * here than usual: RECORDS is empty by design under §5, and a sitemap listing
  * /evidence/<slug> for a record that does not exist yet would advertise 404s to
- * every crawler that reads it.
+ * every crawler that reads it. `allPublished()` covers both classes, so adding
+ * either one is enough and neither can be forgotten here.
  *
  * ⚠️ /method, /terms and /privacy are DELIBERATELY ABSENT. The header and footer
  * link to all three and none of them exists — see the note in
@@ -36,8 +37,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       priority: route.priority,
     })),
-    ...RECORDS.map((record) => ({
-      url: `${SITE.url}/evidence/${record.slug}`,
+    ...allPublished().map((entry) => ({
+      url: `${SITE.url}/evidence/${entry.slug}`,
       lastModified: new Date(),
       priority: 0.6,
     })),

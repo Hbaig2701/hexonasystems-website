@@ -4,11 +4,12 @@ import { FigureBlock } from '@/components/ui/FigureBlock';
 import { RecordTable, ColumnKey, type Column } from '@/components/ui/RecordTable';
 import { TextLink } from '@/components/ui/Button';
 import {
-  COLUMN_DEFINITIONS,
+  CASE_COLUMN_DEFINITIONS,
+  CASE_STUDIES,
   LEAKAGE_SCALE,
-  RECORDS,
-  hasRecords,
+  hasCaseStudies,
   hasScalePeriod,
+  measured,
 } from '@/content/evidence';
 
 /**
@@ -48,17 +49,24 @@ import {
  * and must not be trimmed for space: they state that the 500 span every size
  * and that the total is cumulative rather than annualised. See LEAKAGE_SCALE.
  *
- * §5 still governs the engagement record, which appears BENEATH this when
- * RECORDS has entries. The section gets stronger when it does; it is not
- * waiting on it.
+ * The library appears BENEATH this. The section gets stronger when it has
+ * something under it; it was never waiting on it.
+ *
+ * ⚠️ MEASURED CASE STUDIES ONLY. content/evidence.ts keeps the not-yet-measured
+ * ones apart from the measured ones, and /evidence gives them their own table
+ * under a heading that says so. There is no room for that distinction on the
+ * homepage, so the homepage does not carry the rows that need it. A projected
+ * figure standing unlabelled in a table on the front page is exactly the
+ * failure the separation exists to prevent.
+ *
+ * No revenue column. No source document for any of these states the client's
+ * revenue, so the field does not exist and the column cannot.
  */
 
 const COLUMNS: Column[] = [
   { key: 'sector', label: 'Sector' },
-  { key: 'revenue', label: 'Revenue', numeric: true },
   { key: 'found', label: 'Found', numeric: true, tone: 'loss' },
-  { key: 'sealed', label: 'Sealed', numeric: true, tone: 'brand' },
-  { key: 'payback', label: 'Payback', numeric: true },
+  { key: 'result', label: 'Result', numeric: true, tone: 'brand' },
 ];
 
 export function Pattern() {
@@ -113,40 +121,44 @@ export function Pattern() {
           </div>
         </div>
 
-        {/* §5. Absent until there is something real to put here, and it only
+        {/* Absent until there is something real to put here, and it only
             ever strengthens the section above. */}
-        {hasRecords() && (
+        {hasCaseStudies() && (
           <div className="mt-28 border-t border-line pt-16">
             {/* The homepage points at the library rather than explaining the
-                terms of publication. RECORD_PREAMBLE still runs on /evidence,
+                terms of publication. CASE_PREAMBLE still runs on /evidence,
                 which is where a reader is actually reading the figures. */}
             <p className="mb-12">
               <TextLink href="/evidence">View our recent implementations</TextLink>
             </p>
 
             <RecordTable
-              caption="Engagement records"
+              caption="Case studies"
               columns={COLUMNS}
-              rows={RECORDS.map((r) => ({
-                id: r.slug,
-                href: `/evidence/${r.slug}`,
+              rows={measured(CASE_STUDIES).map((c) => ({
+                id: c.slug,
+                href: `/evidence/${c.slug}`,
                 cells: {
-                  sector: r.sector,
-                  revenue: r.revenue,
-                  found: r.found,
-                  sealed: r.sealed,
-                  payback: r.payback,
+                  sector: c.sector,
+                  found: c.found ?? '',
+                  result: c.result ?? '',
                 },
               }))}
             />
 
             <div className="mt-10 flex justify-end">
-              <TextLink href="/evidence">Verification method published with each record</TextLink>
+              <TextLink href="/evidence">
+                Verification method published with each case study
+              </TextLink>
             </div>
 
-            <ColumnKey items={COLUMN_DEFINITIONS} />
+            {/* Found and Result only. The homepage table has no Window
+                column, and defining a column that is not there is the same
+                fault in reverse as leaving one undefined. */}
+            <ColumnKey items={CASE_COLUMN_DEFINITIONS.slice(0, 2)} />
           </div>
         )}
+
       </div>
     </Surface>
   );
