@@ -241,7 +241,7 @@ export default async function EvidencePage({
         index="02"
         surface="void"
         heading="What people ask about this page."
-        lede="Starting with how to read the figures."
+        lede="Starting with how to read the figures, and why some of them are missing."
       />
 
       {/* --- Close ---------------------------------------------------------- */}

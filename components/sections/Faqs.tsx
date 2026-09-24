@@ -43,6 +43,15 @@ import type { Faq } from '@/content/faqs';
  *
  * If a reviewer prefers the pair mid-page, change the `surface` prop at each
  * call site; nothing here depends on it.
+ *
+ * ⚠️ THE HEADING COLUMN IS STICKY, VIA `.faq-aside` IN globals.css. Two or
+ * three lines of heading sit beside an answer column several times their
+ * height, and a grid item stretches to its row, so without it the heading
+ * pinned to the top of a dead full-height column and the section read as
+ * broken. The rule is scoped above 900px because below that the grid collapses
+ * to one column. Keep the length of these answer sets near the site norm of
+ * roughly 400 characters; the layout tolerates a long set, it does not flatter
+ * one.
  */
 export function Faqs({
   items,
@@ -66,7 +75,7 @@ export function Faqs({
       <div className="shell">
         <SectionMarker index={index} label={label} className="mb-14" />
         <div className="col-12 gap-y-16">
-          <div className="[grid-column:1/5]">
+          <div className="faq-aside [grid-column:1/5]">
             <h2 className="t-display-2 mb-6">{heading}</h2>
             {lede && <p className="t-body max-w-[36ch] text-fg-2">{lede}</p>}
           </div>

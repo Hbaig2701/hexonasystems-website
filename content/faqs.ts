@@ -137,32 +137,32 @@ export const EVIDENCE_FAQS: Faq[] = [
   {
     question: 'What is the difference between a case study and an engagement record?',
     answer:
-      'A case study is implementation work: what the business was losing, what Hexona Systems built, what changed afterwards, and the system that change was measured in. An engagement record is a stricter and narrower class, and it requires all of that plus a client between $3M and $15M in revenue, annualised leakage found, annualised recovery measured and smaller than what was found, a payback window, and the client’s written approval of the anonymised version. The case studies are published. The engagement records are not, because none has cleared that bar yet, and the two are never shown in the same table.',
+      'A case study is implementation work: what the business was losing, what Hexona Systems built, and the system the change was measured in. An engagement record is stricter. It also requires a client between $3M and $15M in revenue, annualised recovery measured and smaller than what was found, and the client’s written approval of the anonymised version. The case studies are published. No engagement record has cleared that bar yet, and the two never share a table.',
   },
   {
     question: 'What do found, result and window mean on the case study table?',
     answer:
-      'Found is what the business was losing before the build, quantified as the client measured it and over the period each record states. Result is what was measured after implementation, in the system named at the foot of that record. Window is the period the result was measured over. Where a source document does not state a window, the record says so rather than implying one it cannot support, and where a figure was estimated rather than measured, the record names it as an estimate beside the number. An undefined column is an unfalsifiable claim, so all three are defined wherever the table is printed.',
+      'Found is what the business was losing before the build. Result is what was measured after it, in the system named at the foot of that record. Window is the period the result covers. Where a source document states no window, the record says so instead of implying one, and where a figure was estimated rather than measured, it is named as an estimate beside the number. An undefined column is an unfalsifiable claim.',
   },
   {
     question: 'Why are some case studies marked as not yet measured?',
     answer:
-      'Because they are built and live and the measurement period has not closed. Those studies sit in a separate table under a heading that says exactly that, their pages carry no result figure at all, and every forward-looking number on them is labelled a projection. Publishing them as results would be the one thing this page exists to prevent. When the post-implementation figures arrive they move into the measured table, and not before.',
+      'Because they are built and live and the measurement period has not closed. Those studies sit in their own table under a heading that says so, their pages carry no result figure at all, and every forward-looking number on them is labelled a projection. They move into the measured table when the figures arrive, and not before.',
   },
   {
     question: 'Are these businesses the same size as the ones you sell the diagnostic to?',
     answer:
-      'Mostly not, and saying so is more useful than implying otherwise. The Leakage Diagnostic is sold to operating companies between $3M and $15M in revenue. The case studies here span a much wider range, and most of them sit below that, which is consistent with the 500-plus businesses Hexona Systems has audited across every size. The mechanics do not change with revenue: a form that routes nowhere, a follow-up that stops, a quote that takes six days. What changes is the size of the number at the end of it, which is precisely why an engagement record carries a revenue figure and a case study does not.',
+      'Mostly not, and saying so is more useful than implying otherwise. The Leakage Diagnostic is sold to operating companies between $3M and $15M in revenue. These case studies span a wider range and most sit below it, which is consistent with the 500-plus businesses Hexona Systems has audited across every size. The mechanics do not change with revenue. The size of the number at the end of them does, which is why an engagement record carries a revenue figure and a case study does not.',
   },
   {
     question: 'What is the $100M figure, exactly?',
     answer:
-      'Demand that audited businesses had already paid to acquire and did not convert, totalled at the point it was lost. It is cumulative across 500-plus audits and across the whole period, it is not annualised, and it divides to roughly $200,000 per business rather than being a claim about what any single one would find. Most of those 500 sit well below the operating range this diagnostic is sold into. It is a different and looser measure than found and result in a case study, which is precisely why both are defined rather than left to smell similar.',
+      'Demand those businesses had already paid to acquire and did not convert, totalled at the point it was lost. It is cumulative across 500-plus audits and the whole period, it is not annualised, and it divides to roughly $200,000 per business rather than being a claim about what any one would find. Most of those 500 sit below the range the diagnostic is sold into. It is a looser measure than found and result, which is why both are defined.',
   },
   {
     question: 'Can we speak to a client as a reference?',
     answer:
-      'Reference conversations are arranged case by case with the client’s permission, and we ask rather than assume. Client names are withheld across this library for the same reason. If a reference in your sector matters to your decision, raise it on the call and we will tell you plainly whether we can arrange one instead of implying we can.',
+      'Reference conversations are arranged case by case with the client’s permission, and we ask rather than assume. Client names are withheld across this library for the same reason. If a reference in your sector matters to your decision, raise it on the call and we will tell you plainly whether we can arrange one.',
   },
 ];
 

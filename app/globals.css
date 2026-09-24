@@ -682,6 +682,26 @@
     .col-12 > * { grid-column: 1 / -1 !important; }
   }
 
+  /* The FAQ heading column, which is two or three lines against an answer
+     column several times its height. Grid items stretch by default, so the
+     heading sat at the top of a full-height cell and the rest of that column
+     read as a formatting fault rather than as whitespace. `align-self: start`
+     collapses the cell to its content and `sticky` then carries the heading
+     down beside the answers it labels.
+
+     ⚠️ ABOVE 900px ONLY, and the breakpoint must track the rule above it. Below
+     it the grid is one column, the heading stacks above the answers, and a
+     sticky heading would pin itself over the text it is meant to introduce.
+
+     104px is the 64px fixed header plus 40px of clearance. See HEADER_H. */
+  @media (min-width: 901px) {
+    .faq-aside {
+      position: sticky;
+      top: 104px;
+      align-self: start;
+    }
+  }
+
   .section-pad { padding-block: 140px; }
   @media (max-width: 1024px) { .section-pad { padding-block: 96px; } }
   @media (max-width: 640px)  { .section-pad { padding-block: 72px; } }

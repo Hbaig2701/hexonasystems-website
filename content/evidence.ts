@@ -272,6 +272,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Two new locations opened, funded by the increase in per-store revenue',
     ],
 
+    /* The source document's subtitle says six months while its results section
+       says eight. Confirmed by the founder as eight. Do not change it back. */
     verification:
       'Membership, visit frequency, transaction value and attributed revenue were measured in the loyalty platform over the eight months after launch, against the paper card period that preceded it.',
   },
@@ -472,10 +474,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     industry: 'coaching',
     sector: 'Online basketball training and athlete mentorship',
     basis: 'measured',
-    headline: { figure: '167', label: 'Qualified calls booked in 30 days' },
+    headline: { figure: '$100,000+', label: 'Added annualised revenue' },
     found: 'A qualification form losing roughly 90% of pre-sold prospects',
     foundFigure: '13.7% completion',
-    result: 'Form completion 13.7% to 30.0%',
+    result: '$100,000+ added annually',
     window: 'May to June 2025',
 
     title: 'Nine in ten qualified prospects abandoned the form standing between them and a booking.',
@@ -501,14 +503,23 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Nurture sequences rebuilt around the testimonials, the coach’s own story, and messaging written for parents rather than players',
     ],
 
+    /* ⚠️ THE ABSOLUTE MONTHLY REVENUE IS WITHHELD ON PURPOSE, AND IT IS THE
+       ONE FIGURE IN THIS LIBRARY THAT WAS DELIBERATELY TAKEN OUT.
+       The source document gives it as $14,000 rising to $30,000 a month. No
+       other case study here states a client's revenue, because no other source
+       document contains one, and publishing this one would put a business at
+       roughly $200K a year on a site that sells a diagnostic at $3M to $15M.
+       The uplift survives without the base: the delta and the growth rate are
+       both below, and the annualised figure is derived from them in
+       `verification`. Do not restore the row to "strengthen" the table. */
     whatChanged: [
       { metric: 'Qualification form completion', before: '13.7%', after: '30.0%' },
       { metric: 'Close rate', before: '5–10%', after: '15%' },
-      { metric: 'Monthly revenue', before: '$14,000', after: '$30,000' },
       { metric: 'Community members', before: '0', after: '200+' },
     ],
 
     outcomes: [
+      'Monthly revenue doubled, an increase of more than $16,000 a month',
       '167 qualified calls booked in thirty days, every one of them from the automation',
       'The calendar filled three weeks out at six calls a day',
       'The bot was switched off after twenty-one days because the business could not absorb any more demand',
@@ -516,7 +527,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
 
     verification:
-      'Form completion was measured in the client Typeform analytics, comparing May 2025 against June 2025 either side of the rebuild on 6 June. Call volume, close rate and monthly revenue come from the client booking calendar and their own reporting over the same period. The community figure covers the two to three weeks following launch.',
+      'Form completion was measured in the client Typeform analytics, comparing May 2025 against June 2025 either side of the rebuild on 6 June. Call volume, close rate and revenue come from the client booking calendar and their own reporting over the same period. The community figure covers the two to three weeks following launch. The annual figure is derived rather than measured: the measured uplift is more than $16,000 in the month observed, which annualises to more than $192,000. It is published as $100,000+ because annualising a single month overstates what one month can carry, and because the programme was capacity-capped and paused at twenty-one days. The conservative figure is the one this page will stand behind.',
   },
 
   {
