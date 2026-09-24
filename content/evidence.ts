@@ -38,8 +38,9 @@
  *
  * ⚠️ `basis` IS LOAD-BEARING. Three of these ten shipped and have not been
  * measured yet; their own source documents say so in as many words. They
- * publish as `projected`, and the page groups them under a heading that states
- * it. Never move one to `measured` without the post-implementation figures.
+ * publish as `projected`, which the table states in place of a result and which
+ * the record page states four separate times. Never move one to `measured`
+ * without the post-implementation figures.
  */
 
 export interface CaseStudy {
@@ -637,6 +638,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     sector: 'Wellness and recovery centre',
     basis: 'projected',
     headline: { figure: 'Three weeks', label: 'From no digital presence to live' },
+    /* No dollar figure, because the business had not opened and there was
+       nothing yet to lose. What was found is the absence itself, and the table
+       says that rather than leaving the row blank in both value columns.
+       `foundFigure` stays unset on purpose: the record page then leads on
+       Delivered rather than on Found, which is the honest emphasis here. */
+    found: 'No booking, CRM or nurture at launch',
 
     title: 'A business that had not opened yet was already going to lose money at the front desk.',
 
@@ -750,7 +757,7 @@ export const CASE_COLUMN_DEFINITIONS = [
   {
     term: 'Result',
     definition:
-      'What was measured after implementation, in the system named at the foot of each record. Where a figure was estimated rather than measured, the record says so beside it.',
+      'What was measured after implementation, in the system named at the foot of each record. A row reading "not yet measured" is a system that has shipped and whose measurement period has not closed; its page carries no result figure and names every forward-looking number as a projection. Where a figure was estimated rather than measured, the record says so beside it.',
   },
   {
     term: 'Window',
@@ -781,13 +788,19 @@ export const RECORD_PREAMBLE =
   'We withhold client names by agreement, and the figures are exactly as they were measured.';
 
 /**
- * The case study preamble. It does three jobs in two sentences: it explains
- * the anonymity, it states that the figures are unaltered, and it tells the
- * reader up front that the measured and the not-yet-measured are separated
- * rather than mixed. That last clause is the one that earns the page.
+ * The case study preamble. It does three jobs in two sentences: it explains the
+ * anonymity, it states that the figures are unaltered, and it tells the reader
+ * what a missing result means before they meet one. That last clause is the one
+ * that earns the page.
+ *
+ * The not-yet-measured studies used to sit in a second table under their own
+ * heading. They now sit in the one table and carry the qualifier in their own
+ * Result cell, which is a stronger position for it: a reader scanning the
+ * column meets it on the row itself rather than having to notice which table
+ * they are in.
  */
 export const CASE_PREAMBLE =
-  'Client names are withheld by agreement and the figures are exactly as they were measured. Work that has shipped but has not yet been measured is listed separately below, and is never presented as a result.';
+  'Client names are withheld by agreement and the figures are exactly as they were measured. Where a system has shipped and the measurement period has not closed, the record says so in place of a result rather than offering a projection as one.';
 
 
 /**

@@ -18,8 +18,6 @@ import {
   caseStudiesByIndustry,
   hasCaseStudies,
   industryLabel,
-  measured,
-  projected,
   recordsByIndustry,
 } from '@/content/evidence';
 
@@ -33,12 +31,18 @@ import {
  * engagement record than anything a case study claims, and the whole argument
  * of this page is that a published figure means one specific thing.
  *
- * ⚠️ AND WITHIN THE CASE STUDIES, MEASURED AND PROJECTED ARE ALSO APART.
- * Three of the ten shipped and have not been measured yet. They sit under their
- * own heading which says exactly that. Do not merge the two tables to tidy the
- * page up: the separation IS the credibility, and a reader who scrolls past the
- * heading still cannot mistake one for the other because every projected row
- * carries no result column at all.
+ * ⚠️ THE NOT-YET-MEASURED CARRY THEIR QUALIFIER IN THE ROW, NOT IN A SEPARATE
+ * TABLE. Three of the ten shipped and have not been measured. They used to sit
+ * under their own heading below the measured ones; they now sit in the one
+ * table and print "Not yet measured" where a result would go. That is the
+ * stronger position for it. A reader scanning the Result column meets the
+ * qualifier on the row itself, rather than having to notice which of two tables
+ * they had scrolled into, and the row is the thing that gets screenshotted.
+ *
+ * What must never happen is a projection appearing in that cell. The record
+ * pages carry the full treatment: a status block instead of a result, section
+ * 04 titled "What is expected", a paragraph above every figure in it, and a
+ * verification paragraph naming what was not measured.
  *
  * The publication standard and the expanded column definitions were cut at the
  * founder's request: the page led with seven requirements a record must clear
@@ -73,18 +77,10 @@ const RECORD_COLUMNS: Column[] = [
    window is not dropped, it is moved: every record page carries it as a figure
    block, and where it is absent the block says so and the verification
    paragraph explains why. A directory is not the place to litigate it. */
-const MEASURED_COLUMNS: Column[] = [
+const CASE_COLUMNS: Column[] = [
   { key: 'sector', label: 'Sector' },
   { key: 'found', label: 'Found', numeric: true, tone: 'loss' },
   { key: 'result', label: 'Result', numeric: true, tone: 'brand' },
-];
-
-/* No result column, deliberately. A projected study has nothing to put in one,
-   and an empty cell under a "Result" heading invites the reader to assume the
-   figure is merely missing rather than absent by definition. */
-const PROJECTED_COLUMNS: Column[] = [
-  { key: 'sector', label: 'Sector' },
-  { key: 'found', label: 'Found', numeric: true, tone: 'loss' },
 ];
 
 export default async function EvidencePage({
@@ -97,8 +93,6 @@ export default async function EvidencePage({
   const shelf = industryLabel(industry ?? '') ? industry : undefined;
 
   const studies = caseStudiesByIndustry(shelf);
-  const done = measured(studies);
-  const pending = projected(studies);
   const records = recordsByIndustry(shelf);
 
   return (
@@ -171,52 +165,33 @@ export default async function EvidencePage({
 
               <p className="t-lead mb-12 max-w-[72ch] text-fg">{CASE_PREAMBLE}</p>
 
-              {done.length > 0 && (
-                <>
-                  <RecordTable
-                    caption={
-                      shelf ? `Case studies: ${industryLabel(shelf)}` : 'Case studies, measured'
-                    }
-                    columns={MEASURED_COLUMNS}
-                    rows={done.map((c) => ({
-                      id: c.slug,
-                      href: `/evidence/${c.slug}`,
-                      cells: {
-                        sector: c.sector,
-                        found: c.found ?? '',
-                        result: c.result ?? '',
-                      },
-                    }))}
-                  />
-                  {/* Found and Result. The Window definition stays in the content
-                      module and prints on the record pages, which is where the
-                      column now lives. */}
-                  <ColumnKey items={CASE_COLUMN_DEFINITIONS.slice(0, 2)} />
-                </>
-              )}
-
-              {/* Built, not yet measured. Under its own heading, in its own
-                  table, with no result column. See the note at the top. */}
-              {pending.length > 0 && (
-                <div className="mt-24 border-t border-line pt-16">
-                  <h2 className="t-display-2 mb-8">Built, and not yet measured.</h2>
-                  <p className="t-body mb-12 max-w-[68ch] text-fg-2">
-                    These systems are live and the measurement period has not closed. Each one
-                    states what was found before the build and what was built. Nothing on these
-                    pages is presented as a result, and any forward-looking figure is named as a
-                    projection where it appears.
-                  </p>
-                  <RecordTable
-                    caption="Case studies where measurement is still open"
-                    columns={PROJECTED_COLUMNS}
-                    rows={pending.map((c) => ({
-                      id: c.slug,
-                      href: `/evidence/${c.slug}`,
-                      cells: { sector: c.sector, found: c.found ?? '' },
-                    }))}
-                  />
-                </div>
-              )}
+              <RecordTable
+                caption={shelf ? `Case studies: ${industryLabel(shelf)}` : 'Case studies'}
+                columns={CASE_COLUMNS}
+                rows={studies.map((c) => ({
+                  id: c.slug,
+                  href: `/evidence/${c.slug}`,
+                  cells: {
+                    sector: c.sector,
+                    found: c.found ?? '',
+                    /* ⚠️ NEVER A PROJECTION IN THIS CELL. The column is toned
+                       brand, which reads as an achieved result, so a study with
+                       no measurement says so in muted text instead. The span
+                       sets its own colour and therefore beats the toned cell it
+                       sits in. */
+                    result:
+                      c.basis === 'measured' ? (
+                        (c.result ?? '')
+                      ) : (
+                        <span className="text-fg-3">Not yet measured</span>
+                      ),
+                  },
+                }))}
+              />
+              {/* Found and Result. The Window definition stays in the content
+                  module and prints on the record pages, which is where the
+                  column now lives. */}
+              <ColumnKey items={CASE_COLUMN_DEFINITIONS.slice(0, 2)} />
             </>
           ) : (
             /* §5's interim, verbatim. Stronger than a padded page and, unlike a

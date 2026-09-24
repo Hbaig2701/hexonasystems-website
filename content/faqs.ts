@@ -147,7 +147,7 @@ export const EVIDENCE_FAQS: Faq[] = [
   {
     question: 'Why are some case studies marked as not yet measured?',
     answer:
-      'Because they are built and live and the measurement period has not closed. Those studies sit in their own table under a heading that says so, their pages carry no result figure at all, and every forward-looking number on them is labelled a projection. They move into the measured table when the figures arrive, and not before.',
+      'Because they are built and live and the measurement period has not closed. Those rows say so where a result would go, their pages carry no result figure at all, and every forward-looking number on them is labelled a projection rather than presented as an outcome. A result appears when it has been measured, and not before.',
   },
   {
     question: 'Are these businesses the same size as the ones you sell the diagnostic to?',
