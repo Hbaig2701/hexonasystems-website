@@ -718,9 +718,16 @@ export function caseStudiesByIndustry(id?: string): CaseStudy[] {
   return CASE_STUDIES.filter((c) => c.industry === id);
 }
 
-/** The measured ones and the not-yet-measured ones, kept apart on purpose. */
+/**
+ * The measured ones. The homepage carries these and not the rest, because it
+ * has no room for the qualifier the others need.
+ *
+ * There was a `projected()` beside this. It went dead the moment the two
+ * tables on /evidence became one, since the not-yet-measured are now selected
+ * per row rather than as a group. Removed rather than left as a live-looking
+ * export nobody calls.
+ */
 export const measured = (list: CaseStudy[]) => list.filter((c) => c.basis === 'measured');
-export const projected = (list: CaseStudy[]) => list.filter((c) => c.basis === 'projected');
 
 /** Records on one shelf, or all of them when the id is unknown or absent. */
 export function recordsByIndustry(id?: string): EngagementRecord[] {

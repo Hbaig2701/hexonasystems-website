@@ -60,7 +60,12 @@ function Item({ href, label, active }: { href: string; label: string; active: bo
         scroll={false}
         aria-current={active ? 'page' : undefined}
         className={cn(
-          't-label inline-block border px-4 py-2.5 transition-colors duration-[160ms]',
+          /* leading-[1.45] because t-label sets line-height 1.2, which is
+             right for the single-line uppercase labels it was built for and
+             collides with itself on the one shelf long enough to wrap on a
+             phone. Scoped here rather than changed on t-label, which would
+             move the section markers and every table header with it. */
+          't-label inline-block border px-4 py-2.5 leading-[1.45] transition-colors duration-[160ms]',
           active
             ? 'border-brand bg-brand text-bg'
             : 'border-line text-fg-2 hover:border-brand hover:text-fg',

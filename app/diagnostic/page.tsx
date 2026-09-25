@@ -39,7 +39,7 @@ import {
 
 export const metadata: Metadata = {
   title: `The Leakage Diagnostic: ${DIAGNOSTIC.priceFormatted}`,
-  description: `A fixed-scope diagnostic for operating companies at $3M to $15M. ${DIAGNOSTIC.duration}. Every leak quantified annually and ranked by recoverable dollars. Fee credited in full against implementation.`,
+  description: `A fixed-scope diagnostic for operating companies at $3M to $15M. Every leak quantified annually and ranked by recoverable dollars. ${DIAGNOSTIC.priceFormatted}, credited against the build.`,
   alternates: { canonical: '/diagnostic' },
 };
 

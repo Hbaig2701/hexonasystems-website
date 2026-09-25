@@ -58,7 +58,7 @@ import {
 export const metadata: Metadata = {
   title: 'Case studies: Hexona Systems',
   description:
-    'Implementation case studies across home services, hospitality, coaching, health and automotive. Every figure names the system it was measured in, and work that has not yet been measured is listed separately.',
+    'Ten implementation case studies across home services, hospitality, coaching, health and automotive. Every figure names the system it was measured in.',
   alternates: { canonical: '/evidence' },
 };
 

@@ -30,9 +30,9 @@ import { BUILDS, BUILD_TEAM, IMPLEMENTATION } from '@/content/diagnostic';
  */
 
 export const metadata: Metadata = {
-  title: 'Implementation: sealing what the diagnostic found',
+  title: 'Implementation: sealing what was found',
   description:
-    'Fixed price per phase, typically $15,000 to $75,000 across all phases, with the diagnostic fee credited against the first. Recovery is measured after each phase, in the system the leak was found in.',
+    'Fixed price per phase, typically $15,000 to $75,000 in total. Recovery is measured after each phase, in the system the leak was found in.',
   alternates: { canonical: '/implementation' },
 };
 

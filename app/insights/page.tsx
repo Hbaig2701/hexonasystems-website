@@ -25,7 +25,7 @@ import { publishedPosts, readingMinutes } from '@/content/insights';
 export const metadata: Metadata = {
   title: 'Insights',
   description:
-    'Straight answers on revenue leakage, operational diligence and what it costs to close a leak. Each one answers its question in the first hundred words and shows its arithmetic.',
+    'Straight answers on revenue leakage, operational diligence and what it costs to close a leak. Each one answers its question in the first hundred words.',
   alternates: { canonical: '/insights' },
 };
 
