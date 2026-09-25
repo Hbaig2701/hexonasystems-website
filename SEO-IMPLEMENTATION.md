@@ -6,6 +6,13 @@ implemented on v2.
 Run `npm run check:seo` to verify everything below mechanically. It is wired into
 `npm run verify`, alongside `check:contrast`.
 
+> **Operating range, 2026-09-26.** This document originally said $10M–$100M,
+> which was the range when the tickets were implemented. It has since moved to
+> `$3M–$15M` and the references below are updated. The live site is the
+> authority: `FIRM.operatingRange` in `content/firm.ts`, which the entity
+> sentence, the FAQs, `/llms.txt` and the Fit section all read from. Do not
+> retype the range into prose here again — it moved once and it can move again.
+
 ---
 
 ## Read this first
@@ -13,7 +20,7 @@ Run `npm run check:seo` to verify everything below mechanically. It is wired int
 **The guide was written for the Wix site. This is the v2 Next.js property, which
 is a different business.** The Wix site sold appointment setters to childcare
 operators and medspas; v2 sells a fixed-fee leakage diagnostic to operating
-companies at $10M–$100M and prices findings in EBITDA. Every ticket was
+companies at $3M–$15M and prices findings in EBITDA. Every ticket was
 implemented against v2's positioning rather than transcribed, and where the
 guide's letter contradicted v2's argument, v2 won and the divergence is recorded
 below.
@@ -192,7 +199,7 @@ so no conflict there any more. Nothing outstanding.
 Hexona Systems is a Toronto-based operational diligence firm that runs fixed-fee
 revenue leakage diagnostics and builds the process automation, CRM and reporting
 systems that close what those diagnostics find, for operating companies between
-$10M and $100M in revenue across home services, construction, automotive and
+$3M and $15M in revenue across home services, construction, automotive and
 hospitality.
 ```
 
@@ -213,13 +220,13 @@ and the hierarchy should say so. Still selectable DOM text at a readable size.
 
 `check:seo` enforces the guide's acceptance criteria — city, category, ≥2
 deliverables, ≥2 industries, none of the four banned adjectives, present in all
-four files — plus one of its own: the sentence must state the `$10M` range, because
+four files — plus one of its own: the sentence must state the operating range, because
 a definition that omits it invites the old SMB-agency reading straight back in.
 
 **The industries come from `INDUSTRIES` in `content/evidence.ts`**, the site's own
 published taxonomy, rather than being invented. That file flags an unresolved
 positioning question — those verticals are SMB shapes and the firm sells at
-$10M–$100M — and this sentence deliberately does not resolve it. It states the
+$3M–$15M — and this sentence deliberately does not resolve it. It states the
 range and the sectors together, so it stays true whichever way that call goes.
 
 ---
@@ -237,7 +244,7 @@ DECISION IN THIS BRANCH.**
 The guide lists "How much does an AI appointment setter cost?", "AI receptionist
 vs. answering service: which is right for a small business?", and eight more in
 that shape. Publishing those verbatim would have done active damage rather than
-nothing: "which is right for a small business" beside a stated $10M–$100M
+nothing: "which is right for a small business" beside a stated operating
 operating range is the §5 failure in article form. The same reader who dismisses a
 property over a sub-$1M engagement record dismisses it over a blog written for
 somebody a tenth his size.
@@ -340,7 +347,7 @@ resolution penalises exactly that — the same gate `CREDENTIALS` and `AWARDS`
 already apply to `href`. A test enforces it.
 
 Marketing owns the rest. One note: the guide's advice to collect ten Clutch
-reviews sits awkwardly beside §5, since a review from a sub-$10M client contradicts
+reviews sits awkwardly beside §5, since a review from a below-range client contradicts
 an ICP this site refuses to publish below. Worth a decision before the profiles go
 live. The guide's other advice — stop buying syndicated press placement —
 `content/firm.ts` already argues for twice, independently.
