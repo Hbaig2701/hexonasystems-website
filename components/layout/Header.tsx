@@ -146,7 +146,7 @@ export function Header() {
           </nav>
 
           <div className="hidden md:block">
-            <Button href="/diagnostic" className="px-5 py-2.5 text-[13px]">
+            <Button href="/commission" className="px-5 py-2.5 text-[13px]">
               Commission a diagnostic
             </Button>
           </div>
@@ -183,7 +183,7 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <Button href="/diagnostic" className="w-full">
+          <Button href="/commission" className="w-full">
             Commission a diagnostic
           </Button>
         </div>

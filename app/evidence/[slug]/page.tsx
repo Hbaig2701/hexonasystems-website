@@ -358,7 +358,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 yours would.
               </h2>
               <div className="flex flex-col items-start gap-8">
-                <Button href="/diagnostic">
+                <Button href="/commission">
                   Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                   {DIAGNOSTIC.priceFormatted}
                 </Button>

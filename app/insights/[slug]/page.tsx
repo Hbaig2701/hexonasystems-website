@@ -158,7 +158,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 will tell you in its first paragraph if the leakage is immaterial.
               </p>
               <div className="flex flex-col items-start gap-8">
-                <Button href="/diagnostic">
+                <Button href="/commission">
                   Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                   {DIAGNOSTIC.priceFormatted}
                 </Button>

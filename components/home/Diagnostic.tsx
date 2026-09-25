@@ -36,7 +36,7 @@ export function DiagnosticOffer() {
             </p>
 
             <div className="flex flex-col items-start gap-6">
-              <Button href="/diagnostic">
+              <Button href="/commission">
                 Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                 {DIAGNOSTIC.priceFormatted}
               </Button>

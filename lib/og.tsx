@@ -114,7 +114,10 @@ export async function ogImage({
           position: 'relative',
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders
+            this, not a browser; next/image does not exist in an ImageResponse. */}
         <img
+          alt=""
           src={latticeUri()}
           width={OG_SIZE.width}
           height={OG_SIZE.height}
@@ -123,7 +126,8 @@ export async function ogImage({
 
         {/* Wordmark */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={markUri} width={42} height={39} />
+          {/* eslint-disable-next-line @next/next/no-img-element -- see above */}
+          <img alt="" src={markUri} width={42} height={39} />
           <div
             style={{
               display: 'flex',

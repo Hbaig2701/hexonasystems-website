@@ -327,7 +327,7 @@ export default function FirmPage() {
                 with the same two weeks.
               </h2>
               <div className="flex flex-col items-start gap-8">
-                <Button href="/diagnostic">
+                <Button href="/commission">
                   Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                   {DIAGNOSTIC.priceFormatted}
                 </Button>

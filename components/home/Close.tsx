@@ -22,7 +22,7 @@ export function Close() {
             </h2>
 
             <div className="flex flex-col items-start gap-8">
-              <Button href="/diagnostic">
+              <Button href="/commission">
                 Commission a diagnostic <span aria-hidden="true">→</span> {DIAGNOSTIC.priceFormatted}
               </Button>
               <TextLink href="/diagnostic#discuss">Discuss it first</TextLink>

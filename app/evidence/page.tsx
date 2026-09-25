@@ -231,7 +231,7 @@ export default async function EvidencePage({
                 with a diagnostic.
               </h2>
               <div className="flex flex-col items-start gap-8">
-                <Button href="/diagnostic">
+                <Button href="/commission">
                   Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                   {DIAGNOSTIC.priceFormatted}
                 </Button>

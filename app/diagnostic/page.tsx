@@ -71,7 +71,7 @@ export default function DiagnosticPage() {
                 paragraph and we tell you not to hire us.
               </p>
               <div className="flex flex-wrap items-center gap-x-10 gap-y-5">
-                <Button href="#commission">
+                <Button href="/commission">
                   Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                   {DIAGNOSTIC.priceFormatted}
                 </Button>
@@ -268,7 +268,7 @@ export default function DiagnosticPage() {
                 {DIAGNOSTIC.priceFormatted}, credited in full against implementation. The clock
                 starts the day you grant access, not the day you pay.
               </p>
-              <Button href={`mailto:${DISCUSS.email}?subject=Commission%20a%20diagnostic`}>
+              <Button href="/commission">
                 Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                 {DIAGNOSTIC.priceFormatted}
               </Button>

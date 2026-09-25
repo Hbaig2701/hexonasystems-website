@@ -56,14 +56,11 @@ export function Hero() {
               bought and never collected.
             </h1>
 
-            <p className="t-lead mb-8 text-fg-2">
-              We find demand a company already paid for and is failing to convert, price it in
-              EBITDA, and seal it.
-            </p>
-
             {/* TICKET 5 — THE ENTITY SENTENCE.
-                The line above is the argument and it is the better sentence. This
-                is the definition, and the page needs both for different readers.
+                This is the definition, and it now carries the hero alone: the
+                lead paragraph that used to sit above it ("We find demand a
+                company already paid for...") was cut, because it restated the
+                headline in duller words and the headline is the better sentence.
 
                 A human already knows what kind of firm this is by the time they
                 reach the hero, from the strap and the mark. A model does not: it
@@ -83,7 +80,7 @@ export function Hero() {
             <p className="t-small mb-14 max-w-[76ch] text-fg-3">{ENTITY_SENTENCE}</p>
 
             <div className="flex flex-wrap items-center gap-x-10 gap-y-5">
-              <Button href="/diagnostic">
+              <Button href="/commission">
                 Commission a diagnostic <span aria-hidden="true">→</span>{' '}
                 {DIAGNOSTIC.priceFormatted}
               </Button>
