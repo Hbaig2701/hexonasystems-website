@@ -19,7 +19,7 @@ const VALID = {
 let warn: ReturnType<typeof vi.spyOn>;
 beforeEach(() => {
   warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
-  delete process.env.MAKE_WEBHOOK_URL;
+  delete process.env.LEAD_WEBHOOK_URL;
 });
 afterEach(() => vi.restoreAllMocks());
 
@@ -73,15 +73,15 @@ describe('submitLead', () => {
     await submitLead(VALID, 'ip-nowebhook');
     expect(warn).toHaveBeenCalled();
     const [msg, payload] = warn.mock.calls[0];
-    expect(String(msg)).toContain('MAKE_WEBHOOK_URL');
+    expect(String(msg)).toContain('LEAD_WEBHOOK_URL');
     const parsed = JSON.parse(String(payload));
     expect(parsed.why).toBe('Quotes take six days');
     expect(parsed.source).toContain('/commission');
   });
 
   it('posts to the webhook with the signature when both are configured', async () => {
-    process.env.MAKE_WEBHOOK_URL = 'https://hook.example/x';
-    process.env.MAKE_WEBHOOK_SECRET = 'shh';
+    process.env.LEAD_WEBHOOK_URL = 'https://hook.example/x';
+    process.env.LEAD_WEBHOOK_SECRET = 'shh';
     const fetchSpy = vi
       .spyOn(globalThis, 'fetch')
       .mockResolvedValue(new Response('ok', { status: 200 }));
@@ -92,18 +92,35 @@ describe('submitLead', () => {
     const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
     expect(url).toBe('https://hook.example/x');
     expect((init.headers as Record<string, string>)['x-hexona-signature']).toBe('shh');
-    expect(JSON.parse(String(init.body)).company).toBe('Test Co');
+    const body = JSON.parse(String(init.body));
+    expect(body.company).toBe('Test Co');
+    /* GHL maps a contact off these three; see the note in deliver(). */
+    expect(body.firstName).toBe('Test');
+    expect(body.lastName).toBe('Person');
+    expect(body.companyName).toBe('Test Co');
 
-    delete process.env.MAKE_WEBHOOK_URL;
-    delete process.env.MAKE_WEBHOOK_SECRET;
+    delete process.env.LEAD_WEBHOOK_URL;
+    delete process.env.LEAD_WEBHOOK_SECRET;
+  });
+
+  it('splits a one-word name without inventing a surname', async () => {
+    process.env.LEAD_WEBHOOK_URL = 'https://hook.example/x';
+    const fetchSpy = vi
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response('ok', { status: 200 }));
+    await submitLead({ ...VALID, name: 'Cher' }, 'ip-oneword');
+    const body = JSON.parse(String((fetchSpy.mock.calls[0] as [string, RequestInit])[1].body));
+    expect(body.firstName).toBe('Cher');
+    expect(body.lastName).toBe('');
+    delete process.env.LEAD_WEBHOOK_URL;
   });
 
   it('still reports success to the visitor when the webhook throws', async () => {
-    process.env.MAKE_WEBHOOK_URL = 'https://hook.example/x';
+    process.env.LEAD_WEBHOOK_URL = 'https://hook.example/x';
     vi.spyOn(console, 'error').mockImplementation(() => {});
     vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('network down'));
     const r = await submitLead(VALID, 'ip-throw');
     expect(r.ok).toBe(true);
-    delete process.env.MAKE_WEBHOOK_URL;
+    delete process.env.LEAD_WEBHOOK_URL;
   });
 });

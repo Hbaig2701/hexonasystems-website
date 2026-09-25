@@ -6,15 +6,24 @@ import { REVENUE_BANDS } from '@/content/commission';
  * lib/lead.ts — the lead pipeline .env.example has described since v1 and which
  * no code implemented.
  *
- * The spec was already written down: a Make.com webhook that fans out to
- * GoHighLevel, the transactional email and the Slack notification, an optional
- * shared secret so Make can reject anything that did not come from this site,
- * and a 5-per-minute-per-IP limit backed by Upstash with an in-memory fallback.
+ * The spec was already written down: a webhook, an optional shared secret so
+ * the receiver can reject anything that did not come from this site, and a
+ * 5-per-minute-per-IP limit backed by Upstash with an in-memory fallback.
  * `zod`, `@upstash/ratelimit`, `@upstash/redis` and `server-only` were all in
  * package.json, unused. v2 dropped the implementation the same way it dropped
  * the SEO layer.
  *
- * ⚠️ A LEAD IS NEVER LOST TO A CONFIGURATION PROBLEM. If MAKE_WEBHOOK_URL is
+ * The original spec routed through Make.com to fan out to GoHighLevel, email
+ * and Slack. That hop is gone: the lead posts straight to a GoHighLevel
+ * inbound webhook, and GHL's own workflow does the fanning out. One fewer
+ * service between a form submission and the CRM, and one fewer bill.
+ *
+ * ⚠️ THE ENV VAR IS VENDOR-NEUTRAL ON PURPOSE. It is LEAD_WEBHOOK_URL, not
+ * GHL_WEBHOOK_URL, because this is the second receiver in this file's short
+ * life and it will not be the last. Nothing below knows or cares what is on
+ * the other end.
+ *
+ * ⚠️ A LEAD IS NEVER LOST TO A CONFIGURATION PROBLEM. If LEAD_WEBHOOK_URL is
  * unset, or Make returns an error, or the request times out, the submission is
  * written to the server log in full and the visitor is still told it arrived,
  * because from their side it did: the site has their answers. What it does not
@@ -126,9 +135,25 @@ export async function submitLead(raw: unknown, ip: string): Promise<LeadResult> 
 }
 
 async function deliver(lead: Lead, ip: string): Promise<void> {
-  const url = process.env.MAKE_WEBHOOK_URL;
+  const url = process.env.LEAD_WEBHOOK_URL;
+
+  /**
+   * ⚠️ SHAPED SO GOHIGHLEVEL CAN MAP IT WITHOUT A WORKFLOW STEP.
+   *
+   * GHL matches an inbound webhook onto a contact by `email`, and its contact
+   * record wants `firstName`, `lastName` and `companyName` rather than the
+   * single `name` and `company` this form collects. Sending both shapes costs
+   * a few bytes and saves building a mapping step that would then be the thing
+   * that silently breaks when somebody renames a field.
+   *
+   * Everything else goes through verbatim, for custom fields.
+   */
+  const [firstName, ...rest] = lead.name.split(/\s+/);
   const payload = {
     ...lead,
+    firstName,
+    lastName: rest.join(' '),
+    companyName: lead.company,
     source: 'hexonasystems.com/commission',
     receivedAt: new Date().toISOString(),
     ip,
@@ -136,7 +161,7 @@ async function deliver(lead: Lead, ip: string): Promise<void> {
 
   if (!url) {
     console.warn(
-      '[lead] MAKE_WEBHOOK_URL is not set. The lead was NOT delivered to the CRM. ' +
+      '[lead] LEAD_WEBHOOK_URL is not set. The lead was NOT delivered to the CRM. ' +
         'Full submission follows so it can be recovered from the log.',
       JSON.stringify(payload),
     );
@@ -144,7 +169,9 @@ async function deliver(lead: Lead, ip: string): Promise<void> {
   }
 
   try {
-    const secret = process.env.MAKE_WEBHOOK_SECRET;
+    /* GoHighLevel does not verify a signature on an inbound webhook; the URL
+       itself is the secret. Kept optional for whatever sits here next. */
+    const secret = process.env.LEAD_WEBHOOK_SECRET;
     const res = await fetch(url, {
       method: 'POST',
       headers: {
@@ -156,11 +183,11 @@ async function deliver(lead: Lead, ip: string): Promise<void> {
     });
     if (!res.ok) {
       console.error(
-        `[lead] Make webhook returned ${res.status}. Lead NOT delivered.`,
+        `[lead] webhook returned ${res.status}. Lead NOT delivered.`,
         JSON.stringify(payload),
       );
     }
   } catch (err) {
-    console.error('[lead] Make webhook threw. Lead NOT delivered.', err, JSON.stringify(payload));
+    console.error('[lead] webhook threw. Lead NOT delivered.', err, JSON.stringify(payload));
   }
 }
