@@ -85,6 +85,11 @@ export function organizationLd() {
     name: FIRM.name,
     alternateName: 'Hexona',
     url: SITE.url,
+    /* Google uses this for the knowledge panel and the brand mark beside a
+       result. The asset already existed in public/; the schema simply never
+       pointed at it. */
+    logo: absolute('/hexona-mark.svg'),
+    image: absolute('/hexona-mark.svg'),
     slogan: FIRM.positioning,
     // Word for word the sentence a visitor reads on the homepage and on /firm.
     description: ENTITY_SENTENCE,
@@ -259,7 +264,9 @@ export function recordLd(opts: {
   slug: string;
   title: string;
   description: string;
-  year: string;
+  /** Optional: a case study document does not always state one. `prune` drops
+   *  datePublished entirely rather than emitting "undefined-01-01". */
+  year?: string;
 }) {
   const url = absolute(`/evidence/${opts.slug}`);
   return prune({
@@ -270,7 +277,7 @@ export function recordLd(opts: {
     headline: opts.title,
     description: opts.description,
     url,
-    datePublished: `${opts.year}-01-01`,
+    datePublished: opts.year ? `${opts.year}-01-01` : undefined,
     isPartOf: { '@id': WEBSITE_ID },
     publisher: orgRef,
     author: orgRef,

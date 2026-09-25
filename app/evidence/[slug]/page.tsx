@@ -6,6 +6,7 @@ import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
 import { RecordTable } from '@/components/ui/RecordTable';
 import { Button, TextLink } from '@/components/ui/Button';
+import { JsonLd, breadcrumbLd, recordLd } from '@/lib/jsonld';
 import { DIAGNOSTIC } from '@/content/firm';
 import { CASE_STUDIES, RECORDS, type CaseStudy } from '@/content/evidence';
 
@@ -55,19 +56,36 @@ export async function generateMetadata({
   const { slug } = await params;
   const study = resolve(slug);
   if (!study) return { title: 'Case study not found' };
-
-  /* The description states the basis. An assistant lifting this line out of a
-     search result must not be able to quote a projection as a result. */
-  const lede =
-    study.basis === 'measured'
-      ? `${study.found ?? study.headline.figure} found, ${study.result ?? 'measured after implementation'}.`
-      : `${study.found ?? study.headline.figure} found. Built and live; measurement period still open.`;
-
   return {
-    title: `${study.sector}: ${study.title}`,
-    description: `${lede} ${study.verification}`.slice(0, 300),
+    title: study.metaTitle ?? study.sector,
+    description: metaDescription(study),
     alternates: { canonical: `/evidence/${study.slug}` },
   };
+}
+
+/**
+ * ⚠️ BUDGETED TO 160 CHARACTERS, AND IT STATES THE BASIS.
+ *
+ * This used to be the lede plus the entire verification paragraph, sliced at
+ * 300, which is roughly double what a search result shows and put the sentence
+ * that qualifies the figures in the half nobody reads. It now leads with the
+ * numbers and says outright when there is no result yet, so a snippet lifted
+ * out of the page cannot present a projection as an outcome.
+ */
+function metaDescription(study: CaseStudy): string {
+  const where = `${study.sector}, client name withheld.`;
+  const body =
+    study.basis === 'measured'
+      ? [
+          study.found ? `${study.found} found` : null,
+          study.result,
+          study.window ? `measured over ${study.window.toLowerCase()}` : null,
+        ]
+          .filter(Boolean)
+          .join(', ') + '.'
+      : `${study.found ?? study.headline.figure}. Built and live; final results in progress.`;
+  const full = `${body} ${where}`;
+  return full.length <= 160 ? full : `${body} ${study.sector}.`.slice(0, 160);
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -79,6 +97,24 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   return (
     <>
+      {/* recordLd has existed in lib/jsonld.tsx since the SEO work and was
+          never wired up, so the ten most linkable pages on the site shipped
+          with no Article markup and no breadcrumb while every /insights post
+          had both. */}
+      <JsonLd
+        data={recordLd({
+          slug: study.slug,
+          title: study.title,
+          description: metaDescription(study),
+        })}
+      />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: 'Home', path: '/' },
+          { name: 'Evidence', path: '/evidence' },
+          { name: study.metaTitle ?? study.sector, path: `/evidence/${study.slug}` },
+        ])}
+      />
       <Surface surface="void" rule={false} as="header" className="hex-stage">
         <Lattice />
         <div className="shell">
@@ -172,7 +208,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
       <Surface surface="paper">
         <div className="shell">
-          <SectionMarker index="01" label="The situation" className="mb-14" />
+          <SectionMarker as="h2" index="01" label="The situation" className="mb-14" />
           <div className="col-12">
             <div className="[grid-column:1/8]">
               {study.situation.map((para, i) => (
@@ -193,7 +229,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <Surface surface="void" className="hex-stage">
         <Lattice />
         <div className="shell">
-          <SectionMarker index="02" label="What we found" className="mb-14" />
+          <SectionMarker as="h2" index="02" label="What we found" className="mb-14" />
           <RecordTable
             caption="Leakage identified before the build"
             columns={[
@@ -214,7 +250,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
       <Surface surface="paper">
         <div className="shell">
-          <SectionMarker index="03" label="What we built" className="mb-14" />
+          <SectionMarker as="h2" index="03" label="What we built" className="mb-14" />
           <div className="col-12">
             <ul className="[grid-column:1/9] border-t border-line">
               {study.whatWeBuilt.map((item) => (
@@ -231,6 +267,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <Lattice />
         <div className="shell">
           <SectionMarker
+            as="h2"
             index="04"
             label={isProjected ? 'What is expected' : 'What changed'}
             className="mb-14"
@@ -285,6 +322,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <Surface surface="paper">
         <div className="shell">
           <SectionMarker
+            as="h2"
             index="05"
             label={isProjected ? 'What has and has not been measured' : 'How this was measured'}
             className="mb-14"

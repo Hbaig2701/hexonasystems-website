@@ -95,6 +95,14 @@ export interface CaseStudy {
   verification: string;
   /** Set only where the client has approved being named. Anonymised otherwise. */
   clientName?: string;
+  /**
+   * ⚠️ THE <title>, AND IT HAS A HARD BUDGET. The layout appends
+   * " · Hexona Systems" (17 characters) and search truncates the whole thing
+   * around 60, so keep this at 45 or under. It carries the sector and the
+   * outcome, because "solar case study" is the query and `title` below is a
+   * full sentence that blew the budget on its own.
+   */
+  metaTitle?: string;
 }
 
 /**
@@ -174,6 +182,7 @@ export function industryLabel(id: string): string | undefined {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: 'solar-dormant-database',
+    metaTitle: 'Solar: $24,500 from a dormant database',
     index: '01',
     industry: 'home-services',
     sector: 'Residential solar installation',
@@ -221,6 +230,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'coffee-loyalty-programme',
+    metaTitle: 'Coffee retail: $312,000 from loyalty',
     index: '02',
     industry: 'hospitality',
     sector: 'Multi-location speciality coffee retail',
@@ -281,6 +291,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'home-improvement-sales-workflow',
+    metaTitle: 'Home improvement: $45,000+ a month added',
     index: '03',
     industry: 'home-services',
     sector: 'Roofing, kitchen and bath remodelling, exterior renovation',
@@ -330,6 +341,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'construction-project-pipeline',
+    metaTitle: 'Construction: project delays cut 41%',
     index: '04',
     industry: 'home-services',
     sector: 'Residential and commercial renovation contracting',
@@ -377,6 +389,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'tire-shop-missed-calls',
+    metaTitle: 'Tire shop: $50,000+ of missed calls back',
     index: '05',
     industry: 'automotive',
     sector: 'Tire and seasonal automotive service',
@@ -424,6 +437,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'coaching-lead-scoring',
+    metaTitle: 'Coaching: 34x return on lead scoring',
     index: '06',
     industry: 'coaching',
     sector: 'High-ticket dating and relationship coaching',
@@ -471,6 +485,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'basketball-coaching-funnel',
+    metaTitle: 'Athlete coaching: $100,000+ added a year',
     index: '07',
     industry: 'coaching',
     sector: 'Online basketball training and athlete mentorship',
@@ -533,6 +548,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'plumbing-field-service-platform',
+    metaTitle: 'Plumbing: $280,800 of operational waste',
     index: '08',
     industry: 'home-services',
     sector: 'Plumbing and field services',
@@ -585,6 +601,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'medspa-booking-system',
+    metaTitle: 'Medspa: a $4,000 to $6,000 monthly leak',
     index: '09',
     industry: 'health',
     sector: 'Medical spa and aesthetic treatments',
@@ -633,6 +650,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   {
     slug: 'wellness-centre-launch-systems',
+    metaTitle: 'Wellness centre: launch systems in 3 weeks',
     index: '10',
     industry: 'health',
     sector: 'Wellness and recovery centre',
