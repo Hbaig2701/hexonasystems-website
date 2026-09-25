@@ -212,18 +212,58 @@ export const ENGAGEMENT_TERMS = [
  */
 export interface TrustedOrg {
   name: string;
-  /** Path under /public once supplied, e.g. "/logos/gohighlevel.svg". */
+  /** Path under /public. Absent means the band sets the name as type instead. */
   logo?: string;
+  /** Intrinsic pixel size of that file, so next/image reserves the right box. */
+  width?: number;
+  height?: number;
+  /**
+   * ⚠️ OPTICAL, NOT MATHEMATICAL, AND IT IS NOT OPTIONAL POLISH.
+   *
+   * Every logo here is normalised to the same BOUNDING BOX height, which is the
+   * wrong thing to equalise. A single word like "skool" fills its box with
+   * letterforms, while a stacked lockup like Cardone Ventures spends most of
+   * its box on two lines and a gap, so at identical heights the wordmark shouts
+   * and the lockup whispers. This multiplies the row height per logo so the
+   * lettering reads at a consistent size instead of the boxes matching.
+   *
+   * Tuned by eye against a render, which is the only way to tune it.
+   */
+  scale?: number;
 }
 
 export const TRUSTED_BY: TrustedOrg[] = [
-  { name: 'Cardone Ventures' },
-  { name: 'GoHighLevel' },
+  {
+    name: 'Cardone Ventures',
+    logo: '/logos/cardone-ventures.png',
+    width: 435,
+    height: 112, scale: 1.18,
+  },
+  {
+    name: 'GoHighLevel',
+    logo: '/logos/gohighlevel.png',
+    width: 494,
+    height: 112, scale: 0.95,
+  },
   { name: 'School of Hard Knocks' },
-  { name: 'Tai Lopez' },
-  { name: "Moody's Analytics" },
-  { name: 'Poppy AI' },
-  { name: 'Skool' },
+  {
+    name: 'Tai Lopez',
+    logo: '/logos/tai-lopez.png',
+    width: 502,
+    height: 112, scale: 1.18,
+  },
+  {
+    name: 'Poppy AI',
+    logo: '/logos/poppy-ai.png',
+    width: 422,
+    height: 112, scale: 1.0,
+  },
+  {
+    name: 'Skool',
+    logo: '/logos/skool.png',
+    width: 344,
+    height: 112, scale: 0.8,
+  },
 ];
 
 /**

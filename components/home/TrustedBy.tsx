@@ -51,12 +51,23 @@ function List({ duplicate = false }: { duplicate?: boolean }) {
       {TRUSTED_BY.map((org) => (
         <li key={org.name} className="flex shrink-0 items-center">
           {org.logo ? (
+            /* Height is set inline from `scale`, not by a utility class,
+               because it differs per logo. See the note on TrustedOrg.scale:
+               matching bounding boxes makes a one-word mark shout and a
+               stacked lockup whisper, so the lettering is matched instead.
+
+               The files are white silhouettes on transparency. Every source
+               supplied was built for a light background, two of them with a
+               background baked in, so they were flattened rather than
+               recoloured. That is also why the band reads as one material
+               instead of six sets of brand colours fighting each other. */
             <Image
               src={org.logo}
               alt={org.name}
-              width={132}
-              height={28}
-              className="h-7 w-auto opacity-70"
+              width={org.width ?? 132}
+              height={org.height ?? 28}
+              style={{ height: `${28 * (org.scale ?? 1)}px` }}
+              className="w-auto opacity-70"
             />
           ) : (
             /* Type, until the logos land. Set at the same weight a logo would
