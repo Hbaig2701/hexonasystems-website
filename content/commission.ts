@@ -22,7 +22,7 @@ export interface Field {
   label: string;
   /** Rendered under the label. The reason the question is being asked. */
   hint?: string;
-  type: 'text' | 'email' | 'url' | 'textarea' | 'select';
+  type: 'text' | 'email' | 'tel' | 'url' | 'textarea' | 'select';
   required?: boolean;
   options?: string[];
   autoComplete?: string;
@@ -49,6 +49,14 @@ export const FIELDS: Field[] = [
     type: 'email',
     required: true,
     autoComplete: 'email',
+  },
+  {
+    name: 'phone',
+    label: 'Phone',
+    hint: 'The next step is a call, so this is the number we would use. Include the country code if you are outside North America.',
+    type: 'tel',
+    required: true,
+    autoComplete: 'tel',
   },
   {
     name: 'company',
@@ -103,7 +111,7 @@ export const FIELDS: Field[] = [
 export const COMMISSION = {
   eyebrow: 'Commission a diagnostic',
   heading: 'Tell us what we would be looking at.',
-  lede: `Nine questions, and none of them are qualifying you for a sales call. They are what we need to scope the work and to tell you honestly whether it is worth doing. The principal reads every one of these.`,
+  lede: `Ten questions, and none of them are qualifying you for a sales call. They are what we need to scope the work and to tell you honestly whether it is worth doing. The principal reads every one of these.`,
 
   /** Shown beside the form, not inside it. What happens after submit. */
   next: [

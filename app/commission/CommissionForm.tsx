@@ -19,7 +19,7 @@ import { cn } from '@/lib/cn';
  * Rather than pretend, the <noscript> below says so before anyone fills in nine
  * fields, and gives the email address instead. A server-component form with a
  * plain action would genuinely work scriptless, but it loses the entered
- * answers on every validation error, and losing nine answers is a worse failure
+ * answers on every validation error, and losing ten answers is a worse failure
  * than the one being avoided.
  *
  * Fields come from content/commission.ts rather than being written out here,
@@ -46,7 +46,7 @@ export function CommissionForm() {
 
   return (
     <form action={formAction} noValidate className="border-t border-line">
-      {/* Said before the nine fields, not after them. See the note above. */}
+      {/* Said before the ten fields, not after them. See the note above. */}
       <noscript>
         <p className="t-body border-b border-line py-7 text-fg">
           This form needs JavaScript to send. With it switched off, email{' '}

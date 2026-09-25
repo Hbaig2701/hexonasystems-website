@@ -39,6 +39,19 @@ const MAX_LEN = 4000;
 export const leadSchema = z.object({
   name: z.string().trim().min(1, 'Tell us who you are.').max(120),
   email: z.string().trim().toLowerCase().email('That does not look like an email address.').max(200),
+  /**
+   * Deliberately loose. Phone formats differ by country in ways no regex gets
+   * right, and the cost of rejecting a real number is losing the lead outright,
+   * while the cost of accepting a malformed one is somebody squinting at it for
+   * a second. So: strip everything that is not a digit and insist on enough of
+   * them to be a real number. `+`, spaces, dashes, dots and parens all pass.
+   */
+  phone: z
+    .string()
+    .trim()
+    .min(1, 'We need a number for the call.')
+    .max(40)
+    .refine((v) => (v.match(/\d/g) ?? []).length >= 7, 'That is too short to be a phone number.'),
   company: z.string().trim().min(1, 'Which company?').max(200),
   website: z.string().trim().max(300).optional(),
   revenue: z.enum(REVENUE_BANDS, { message: 'Pick the closest band.' }),
@@ -140,9 +153,10 @@ async function deliver(lead: Lead, ip: string): Promise<void> {
   /**
    * ⚠️ SHAPED SO GOHIGHLEVEL CAN MAP IT WITHOUT A WORKFLOW STEP.
    *
-   * GHL matches an inbound webhook onto a contact by `email`, and its contact
-   * record wants `firstName`, `lastName` and `companyName` rather than the
-   * single `name` and `company` this form collects. Sending both shapes costs
+   * GHL matches an inbound webhook onto a contact by `email` and `phone`, both
+   * of which go through under those exact names already. What its contact
+   * record also wants is `firstName`, `lastName` and `companyName`, rather than
+   * the single `name` and `company` this form collects. Sending both shapes costs
    * a few bytes and saves building a mapping step that would then be the thing
    * that silently breaks when somebody renames a field.
    *

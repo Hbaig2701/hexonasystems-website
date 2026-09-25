@@ -10,6 +10,7 @@ import { submitLead } from './lead';
 const VALID = {
   name: 'Test Person',
   email: 'Test@Example.com ',
+  phone: '+1 (416) 555-0123',
   company: 'Test Co',
   revenue: '$3M to $15M',
   systems: 'GoHighLevel and a shared inbox',
@@ -41,6 +42,19 @@ describe('submitLead', () => {
     if (r.ok || r.kind !== 'invalid') throw new Error('expected invalid');
     expect(Object.keys(r.errors).sort()).toEqual(['email', 'why']);
     expect(Object.values(r.errors).every((m) => typeof m === 'string' && m.length > 0)).toBe(true);
+  });
+
+  it.each([
+    ['+1 (416) 555-0123', true],
+    ['416-555-0123', true],
+    ['+44 20 7946 0958', true],
+    ['4165550123', true],
+    ['', false],
+    ['call me', false],
+    ['12345', false],
+  ])('phone %s -> accepted=%s', async (phone, accepted) => {
+    const r = await submitLead({ ...VALID, phone }, 'ip-phone-' + Math.random());
+    expect(r.ok).toBe(accepted);
   });
 
   it('rejects a revenue band that is not on the form', async () => {

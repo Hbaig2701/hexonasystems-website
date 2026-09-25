@@ -30,6 +30,7 @@ export async function commission(_prev: FormState, formData: FormData): Promise<
     {
       name: formData.get('name'),
       email: formData.get('email'),
+      phone: formData.get('phone'),
       company: formData.get('company'),
       website: formData.get('website') || undefined,
       revenue: formData.get('revenue'),
