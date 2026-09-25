@@ -95,7 +95,7 @@ export const PROFILES: Profile[] = [
     platform: 'LinkedIn (firm)',
     url: 'https://www.linkedin.com/company/hexona-systems',
     verified: true,
-    note: 'The one a buyer checks before a call. Highest priority of the set.',
+    note: 'The one a buyer checks before a call. Feeds `sameAs` on Organization.',
   },
   {
     platform: 'LinkedIn (principal)',
@@ -103,27 +103,13 @@ export const PROFILES: Profile[] = [
     verified: true,
     note: 'Feeds `sameAs` on the Person node, which is how the principal and the firm resolve as one entity rather than two.',
   },
-  {
-    platform: 'Crunchbase',
-    url: '',
-    verified: false,
-    note: 'Disproportionately weighted in entity resolution for firms.',
-  },
-  {
-    platform: 'Google Business Profile',
-    url: '',
-    verified: false,
-    note: 'Must be verified against the Toronto address. Carries the local pack.',
-  },
-  {
-    platform: 'Clutch',
-    url: '',
-    verified: false,
-    note: 'Reviews from NAMED clients carry the weight, not the profile. Note the §5 tension: a review from a sub-$3M client sits oddly beside an ICP this site refuses to publish below.',
-  },
-  { platform: 'G2', url: '', verified: false },
-  { platform: 'DesignRush', url: '', verified: false },
 ];
+
+/* Crunchbase, Google Business Profile, Clutch, G2 and DesignRush were listed
+   here as empty placeholders. None exists, and an entry with no URL emits
+   nothing, so they were five rows of intent pretending to be configuration.
+   Add one back the day the profile is actually live. */
+
 
 /** The `sameAs` array. Verified profiles with a real URL, nothing else. */
 export function verifiedProfileUrls(): string[] {
@@ -182,40 +168,10 @@ export interface Credential {
   verified: boolean;
 }
 
-/**
- * §4 section 2 — OPERATING TRACK RECORD.
- *
- * What the principal has actually run, at what scale, and what changed. For a
- * PE operating partner this outranks any award: awards say somebody liked you,
- * a track record says you have stood inside a company this size and moved a
- * number. It is also the one form of standing that does not need a third party
- * to attest to it, which matters when the awards are unlinked.
- *
- * ⚠️ EMPTY BY DESIGN, AND GATED. The section renders this block only when it
- * has entries, exactly as §5 gates the engagement record. Do not seed it with
- * plausible-sounding history to fill the space: a fabricated operating record
- * is the same offence as a fabricated engagement record, and it is the first
- * thing a reference call would expose.
- *
- * `company` may be a description rather than a name where the work is covered
- * by an NDA. "B2B logistics, $40M revenue" is verifiable in a reference call;
- * an invented name is not.
- */
-export interface TrackRecordEntry {
-  /** Inclusive, e.g. "2019-2023". */
-  period: string;
-  /** Named, or described with enough scale to be meaningful. */
-  company: string;
-  role: string;
-  /** What was done and what moved. One sentence, and it should carry a number. */
-  outcome: string;
-}
-
-export const TRACK_RECORD: TrackRecordEntry[] = [];
-
-export function hasTrackRecord(): boolean {
-  return TRACK_RECORD.length > 0;
-}
+/* An operating track record (period, company, role, outcome) was specified
+   here and never rendered by any page. Removed as dead code rather than left
+   as a gate that could not open. If the firm wants its operating history on
+   /firm, that is a section to design, not an array to fill. */
 
 export const CREDENTIALS: Credential[] = [
   {
@@ -426,7 +382,11 @@ export const AWARDS = [
     year: '2025',
     title: 'Canadian Tech Business of the Year',
     detail: 'Nominated',
-    href: 'https://levelup.gohighlevel.com/awards',
+    /* Deliberately unlinked. It is not a GoHighLevel award, so the GoHighLevel
+       awards page would have been a false attribution on the one page whose
+       whole job is standing. An unlinked award is weaker than a linked one and
+       far better than a wrong one. The renderer handles an empty href. */
+    href: '',
   },
   {
     year: '2024',
