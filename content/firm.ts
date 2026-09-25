@@ -245,7 +245,16 @@ export const TRUSTED_BY: TrustedOrg[] = [
     width: 494,
     height: 112, scale: 0.95,
   },
-  { name: 'School of Hard Knocks' },
+  {
+    name: 'School of Hard Knocks',
+    logo: '/logos/school-of-hard-knocks.png',
+    width: 224,
+    height: 224,
+    /* The only round mark in the band, and a circle needs far more height than
+       a wordmark to carry the same optical weight: at a matched 28px it is a
+       28px dot beside 130px wordmarks. See TrustedOrg.scale. */
+    scale: 1.62,
+  },
   {
     name: 'Tai Lopez',
     logo: '/logos/tai-lopez.png',
