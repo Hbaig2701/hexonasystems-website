@@ -44,10 +44,30 @@ const fail = (msg, detail) => {
 const pass = (msg) => console.log(`✓ ${msg}`);
 
 /* --- The two files v2 shipped without ---------------------------------- */
-for (const f of ['app/robots.ts', 'app/sitemap.ts']) {
-  if (!existsSync(join(ROOT, f))) fail(`${f} is missing. v2 shipped without it once already.`);
+for (const f of ['app/robots.ts', 'app/sitemap.ts', 'app/llms.txt/route.ts']) {
+  if (!existsSync(join(ROOT, f))) fail(`${f} is missing. v2 shipped without robots and sitemap once already.`);
 }
-if (failures === 0) pass('robots.ts and sitemap.ts exist.');
+if (failures === 0) pass('robots.ts, sitemap.ts and llms.txt exist.');
+
+/* --- THE CANONICAL HOST ------------------------------------------------ *
+ * Every canonical, og:url, sitemap entry and structured-data @id is built from
+ * SITE.url. It shipped as the apex while the site serves www, so all of them
+ * named a host that 308s. Semrush reported it as 25 sitemap errors; the real
+ * cost was every canonical on the site pointing at a redirect.
+ *
+ * This asserts the default matches the host actually served. If the primary
+ * domain changes, change both together.
+ * -------------------------------------------------------------------- */
+const PRODUCTION_HOST = 'https://www.hexonasystems.com';
+const siteSrc = code('lib/site.ts');
+if (!siteSrc.includes(`?? '${PRODUCTION_HOST}'`)) {
+  fail(
+    `lib/site.ts does not fall back to ${PRODUCTION_HOST}.`,
+    'NEXT_PUBLIC_SITE_URL is not set in the Vercel project, so the fallback is what ships. A mismatch here puts every canonical, og:url, sitemap entry and @id on a redirecting host.',
+  );
+} else {
+  pass(`SITE.url falls back to the host actually served (${PRODUCTION_HOST}).`);
+}
 
 /* --- TICKET 3: no AI crawler may be blocked ---------------------------- */
 const AI_AGENTS = [
