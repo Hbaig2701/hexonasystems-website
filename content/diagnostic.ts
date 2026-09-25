@@ -166,7 +166,56 @@ export interface ConfidentialityTerm {
   detail: string;
 }
 
-export const CONFIDENTIALITY: ConfidentialityTerm[] = [];
+/**
+ * ⚠️ EVERY LINE BELOW IS A COMMITMENT THE FIRM IS MAKING IN WRITING, AND THE
+ * FOUNDER MUST CONFIRM EACH ONE IS ACTUALLY WHAT HAPPENS BEFORE THIS DEPLOYS.
+ *
+ * They are deliberately written as things within the firm's control rather
+ * than as certifications. There is no claim of SOC 2, ISO 27001, encryption
+ * standards or retention windows anywhere here, because those are facts about
+ * infrastructure that can be audited and found false. A specific false
+ * security claim is actionable in a way that a vague one is not, which is why
+ * this section sat empty rather than being filled with reassurance.
+ *
+ * Note what the third term does NOT say. It does not claim there are no
+ * contractors and no offshore staff, because that would be a factual claim
+ * about how the firm is staffed. It makes the commitment about NAMING and
+ * BINDING everyone who touches the data instead, which is both true whichever
+ * way the firm is staffed and a stronger answer to the question a buyer's
+ * legal team is actually asking.
+ */
+export const CONFIDENTIALITY: ConfidentialityTerm[] = [
+  {
+    term: 'A mutual NDA, before any credential is issued',
+    detail:
+      'Signed both ways and signed first. Mutual because the exchange runs both ways: we see how your business actually operates, and you see the method we use to take it apart. Nothing is provisioned until it is executed.',
+  },
+  {
+    term: 'Read-only access wherever the system allows it',
+    detail:
+      'We are looking at what your systems already recorded, not changing anything in them. Where a platform has no read-only role, we say so before you grant access and we agree the narrowest scope that still answers the question.',
+  },
+  {
+    term: 'Named people only, and you see the list first',
+    detail:
+      'Access is granted to individuals named to you in writing before the engagement starts, and to nobody else. Anyone who touches your systems is bound by the same NDA, whether they are an employee of the firm or working under contract to it.',
+  },
+  {
+    term: 'You revoke the access, not us',
+    detail:
+      'At the readout you revoke every credential yourself, from inside your own systems, on your own schedule. You do not have to take our word for it or wait for us to confirm, which is the only version of this term that is worth anything to you.',
+  },
+  {
+    term: 'Raw exports are destroyed at readout',
+    detail:
+      'Anything pulled out of your systems to do the analysis is deleted when the engagement closes. What we keep is the report itself and the working behind its figures, because we have to be able to stand behind a number if you challenge it later.',
+  },
+  {
+    term: 'Your data is used for your engagement and nothing else',
+    detail:
+      'Not for benchmarks, not for a case study, not shown to another client, and not used to train anything. If we ever want to publish a record of the work, we ask, and we publish only the version you have approved.',
+  },
+];
 
 export const hasConfidentiality = () => CONFIDENTIALITY.length > 0;
 

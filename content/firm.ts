@@ -93,14 +93,14 @@ export interface Profile {
 export const PROFILES: Profile[] = [
   {
     platform: 'LinkedIn (firm)',
-    url: '',
-    verified: false,
+    url: 'https://www.linkedin.com/company/hexona-systems',
+    verified: true,
     note: 'The one a buyer checks before a call. Highest priority of the set.',
   },
   {
     platform: 'LinkedIn (principal)',
-    url: '',
-    verified: false,
+    url: 'https://www.linkedin.com/in/hamzautomates',
+    verified: true,
     note: 'Feeds `sameAs` on the Person node, which is how the principal and the firm resolve as one entity rather than two.',
   },
   {
@@ -222,7 +222,7 @@ export const CREDENTIALS: Credential[] = [
     year: '2024',
     title: 'Platinum SaaSPreneur Award',
     detail: 'Top 0.01% of SaaS firms worldwide',
-    href: '',
+    href: 'https://awards.gohighlevel.com/',
     verified: true,
   },
   {
@@ -426,25 +426,25 @@ export const AWARDS = [
     year: '2025',
     title: 'Canadian Tech Business of the Year',
     detail: 'Nominated',
-    href: '',
+    href: 'https://levelup.gohighlevel.com/awards',
   },
   {
     year: '2024',
     title: 'Platinum SaaSPreneur Award',
     detail: 'Awarded to the firm',
-    href: '',
+    href: 'https://awards.gohighlevel.com/',
   },
   {
     year: '2024',
     title: 'Technopreneur of the Year',
     detail: 'Hamza Baig, nominated',
-    href: '',
+    href: 'https://awards.gohighlevel.com/',
   },
   {
     year: '2024',
     title: 'Young Entrepreneur of the Year',
     detail: 'Hamza Baig, nominated',
-    href: '',
+    href: 'https://awards.gohighlevel.com/',
   },
 ];
 

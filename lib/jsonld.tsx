@@ -120,7 +120,12 @@ export function organizationLd() {
       'Revenue operations',
     ],
     // Ticket 9. Empty until profiles exist — see PROFILES in content/firm.ts.
-    sameAs: verifiedProfileUrls(),
+    /* ⚠️ THE ORGANISATION'S OWN PROFILES, NOT THE PRINCIPAL'S. A personal
+       LinkedIn on an Organization node claims the firm and the person are the
+       same entity, which is the opposite of what the Person node below is
+       there to express. This was invisible while PROFILES was empty and became
+       wrong the moment it was filled in. */
+    sameAs: verifiedProfileUrls().filter((u) => !u.includes('/in/')),
   });
 }
 

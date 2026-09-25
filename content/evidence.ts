@@ -859,10 +859,11 @@ export const CASE_PREAMBLE =
  * numbers on the site.
  */
 export const LEAKAGE_SCALE = {
-  /** ⚠️ [ASSET NEEDED] The window the 500 and the $100M were accumulated over,
-   *  e.g. "2019-2026". Without it "cumulative" is not actually a measurement,
-   *  and the section says so in dev until it is filled in. */
-  period: '',
+  /** The window the 500 and the $100M were accumulated over. Without it
+   *  "cumulative" is not actually a measurement, which is the same objection
+   *  this page raises against every undefined column. Confirmed by the founder
+   *  as 2022 to 2026. */
+  period: '2022 to 2026',
 
   audited: {
     figure: '500+',
