@@ -42,9 +42,31 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      // The internal component library. Nothing else is excluded, because
-      // nothing else on this site is anything other than the argument.
-      disallow: ['/styleguide'],
+      /**
+       * ⚠️ NOTHING IS DISALLOWED, AND /styleguide IS THE REASON WHY.
+       *
+       * This used to read `disallow: ['/styleguide']`. That was a mistake, and
+       * Search Console caught it: the page surfaced under "Indexed, though
+       * blocked by robots.txt".
+       *
+       * The two mechanisms were fighting each other. app/styleguide/page.tsx
+       * already sets `robots: { index: false, follow: false }`, which is the
+       * correct way to keep a page out of the index — but a Disallow here stops
+       * Google FETCHING the page at all, so it never reads that tag. Google
+       * indexed the bare URL anyway, on the strength of it existing, with no
+       * snippet and no way to learn it was unwanted.
+       *
+       * Disallow governs CRAWLING. noindex governs INDEXING. Setting both on one
+       * URL guarantees the second is never seen, and the first does not do what
+       * people assume it does.
+       *
+       * So the block is gone. Google now crawls /styleguide, reads the noindex,
+       * and drops it — which is what was wanted in the first place.
+       *
+       * DO NOT add a Disallow for a page that carries noindex. If a page must
+       * stay out of the index, noindex alone is the mechanism.
+       */
+      disallow: [],
     },
     sitemap: `${SITE.url}/sitemap.xml`,
   };
