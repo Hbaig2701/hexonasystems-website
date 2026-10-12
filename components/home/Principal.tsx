@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Surface } from '@/components/ui/Surface';
 import { SectionMarker } from '@/components/layout/SectionMarker';
 import { FigureBlock } from '@/components/ui/FigureBlock';
@@ -32,22 +31,7 @@ export function Principal() {
         <SectionMarker index="03" label="The principal" className="mb-14" />
 
         <div className="col-12 gap-y-14">
-          {/* Dossier layout: portrait in the narrow left column, the account
-              beside it, figures beneath. The photo is deliberately modest in
-              scale. It is here to put a face to a name at the moment the
-              reader is deciding whether to trust one, not to be a hero image. */}
-          <div className="[grid-column:1/4]">
-            <Image
-              src={PRINCIPAL.portrait.src}
-              width={PRINCIPAL.portrait.width}
-              height={PRINCIPAL.portrait.height}
-              alt={PRINCIPAL.name}
-              sizes="(max-width: 768px) 55vw, 24vw"
-              className="w-full border border-line"
-            />
-          </div>
-
-          <div className="[grid-column:4/13]">
+          <div className="[grid-column:1/13]">
             <h2 className="t-display-2 mb-3">{PRINCIPAL.name}</h2>
             <p className="t-label mb-10 text-brand">{PRINCIPAL.role}</p>
 
@@ -66,7 +50,7 @@ export function Principal() {
             ))}
           </div>
 
-          <div className="[grid-column:4/13] grid gap-6 sm:grid-cols-2">
+          <div className="[grid-column:1/13] grid gap-6 sm:grid-cols-2">
             {PRINCIPAL.figures.map((f) => (
               <FigureBlock key={f.label} label={f.label} figure={f.figure} />
             ))}

@@ -147,7 +147,6 @@ export function principalLd() {
     worksFor: orgRef,
     // The first bio line is the plain declarative one; the rest argue.
     description: PRINCIPAL.bio[0],
-    image: absolute(PRINCIPAL.portrait.src),
     // Only the principal's own profiles, never the firm's.
     sameAs: verifiedProfileUrls().filter((u) => u.includes('/in/')),
   });
