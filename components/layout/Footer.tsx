@@ -21,22 +21,6 @@ const SITE_LINKS = [
 ];
 
 /**
- * ⚠️ /terms AND /privacy DO NOT EXIST. v1 had both pages; v2 deleted them and
- * kept the footer links, so both 404'd on every page of the site.
- *
- * They are gated rather than deleted, because unlike /method these two SHOULD
- * exist — a firm taking systems access and holding client data is expected to
- * publish them, and a buyer's legal function will look. Writing them is not a
- * developer's call, so the links stay dark until the pages land: set the flag
- * and add the routes together.
- *
- * Until then the footer says nothing about it to a visitor, which is the correct
- * failure mode. A missing Privacy link invites a question; a Privacy link that
- * 404s answers it badly.
- */
-const LEGAL_LIVE = false;
-
-/**
  * §3.5: if the Institute stays under this brand at all, ONE unstyled text line
  * pointing off-domain. §1.2 moves it to a separate property because "largest
  * community on Skool" reads creator, not firm. Set the URL to surface it.
@@ -81,16 +65,12 @@ export function Footer() {
           </nav>
 
           <div className="flex flex-col gap-3">
-            {LEGAL_LIVE && (
-              <>
-                <Link href="/terms" className="t-small text-fg-2 hover:text-fg">
-                  Terms
-                </Link>
-                <Link href="/privacy" className="t-small text-fg-2 hover:text-fg">
-                  Privacy
-                </Link>
-              </>
-            )}
+            <Link href="/terms" className="t-small text-fg-2 hover:text-fg">
+              Terms of Service
+            </Link>
+            <Link href="/privacy" className="t-small text-fg-2 hover:text-fg">
+              Privacy Policy
+            </Link>
             {INSTITUTE_URL && (
               <a
                 href={INSTITUTE_URL}

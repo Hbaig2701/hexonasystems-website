@@ -17,9 +17,8 @@ import { publishedPosts } from '@/content/insights';
  * every crawler that reads it. `allPublished()` covers both classes, so adding
  * either one is enough and neither can be forgotten here.
  *
- * ⚠️ /method, /terms and /privacy are DELIBERATELY ABSENT. The header and footer
- * link to all three and none of them exists — see the note in
- * SEO-IMPLEMENTATION.md. They go in here when the pages do, not before.
+ * ⚠️ /method is DELIBERATELY ABSENT: the route does not exist — see the note
+ * in SEO-IMPLEMENTATION.md. It goes in here when the page does, not before.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -29,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/evidence', priority: 0.7 },
     { path: '/insights', priority: 0.7 },
     { path: '/firm', priority: 0.6 },
+    { path: '/terms', priority: 0.2 },
+    { path: '/privacy', priority: 0.2 },
   ];
 
   return [
