@@ -39,7 +39,9 @@ export async function generateMetadata({
   if (!post) return { title: 'Not found' };
 
   return {
-    title: post.title,
+    // The <title> uses metaTitle where the full question would be truncated in a
+    // search result. The H1 below always renders post.title in full.
+    title: post.metaTitle ?? post.title,
     description: post.description,
     alternates: { canonical: `/insights/${post.slug}` },
     openGraph: {

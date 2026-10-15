@@ -59,8 +59,26 @@ export interface PostBlock {
 
 export interface Post {
   slug: string;
-  /** The question, as somebody would type it. The H1 and the <title>. */
+  /**
+   * The question, as somebody would type it. This is the H1 on the page, and it
+   * is never shortened — the full question is what makes the post findable and
+   * what an extractive model quotes.
+   */
   title: string;
+  /**
+   * A shorter title for the <title> tag ONLY, where the full question plus
+   * " · Hexona Systems" would exceed roughly 60 characters and get truncated in
+   * a search result.
+   *
+   * The same pattern CaseStudy already uses. It exists because the two jobs
+   * conflict: an H1 should ask the whole question, and a <title> has a width
+   * budget. Bing's site scan flagged four of these; nine were over.
+   *
+   * ⚠️ THE H1 DOES NOT CHANGE. This only affects the browser tab and the search
+   * result. If you edit one of these, keep metaTitle + 17 characters under 60 —
+   * `npm run check:seo` fails otherwise.
+   */
+  metaTitle?: string;
   /** Meta description. */
   description: string;
   /**
@@ -105,6 +123,7 @@ export const POSTS: Post[] = [
   {
     slug: 'what-is-revenue-leakage',
     title: 'What is revenue leakage, and how is it measured?',
+    metaTitle: 'What is revenue leakage?',
     description:
       'Demand a company already paid to acquire and failed to convert. Where it hides, why it is invisible in every report you already run, and the arithmetic for pricing it.',
     answer:
@@ -200,6 +219,7 @@ export const POSTS: Post[] = [
   {
     slug: 'how-much-does-a-leakage-diagnostic-cost',
     title: 'How much does a revenue leakage diagnostic cost?',
+    metaTitle: 'How much does a leakage diagnostic cost?',
     description:
       'A fixed $5,000, credited in full against implementation. What that buys, why it is fixed rather than scoped, and what to compare it against before committing.',
     answer:
@@ -299,6 +319,7 @@ export const POSTS: Post[] = [
   {
     slug: 'how-long-does-a-leakage-diagnostic-take',
     title: 'How long does a revenue leakage diagnostic take?',
+    metaTitle: 'How long does a leakage diagnostic take?',
     description:
       'Two weeks — ten business days from systems access, not from purchase. What each stage contains, and the two things that cause almost every overrun.',
     answer:
@@ -402,6 +423,7 @@ export const POSTS: Post[] = [
   {
     slug: 'revenue-leakage-vs-a-sales-problem',
     title: 'Revenue leakage vs. a sales problem: which one do you have?',
+    metaTitle: 'Revenue leakage vs. a sales problem',
     description:
       'They look identical from the top of a P&L and have nothing in common as interventions. A test you can run on your own data this week.',
     answer:
@@ -496,6 +518,7 @@ export const POSTS: Post[] = [
   {
     slug: 'operational-diligence-vs-management-consulting',
     title: 'Operational diligence vs. management consulting: what is the difference?',
+    metaTitle: 'Diligence vs. management consulting',
     description:
       'One produces recommendations from interviews and benchmarks. The other produces figures measured inside your own systems. Where each is the right instrument.',
     answer:
@@ -595,6 +618,7 @@ export const POSTS: Post[] = [
   {
     slug: 'which-revenue-leaks-to-close-first',
     title: 'Which revenue leaks are worth closing first?',
+    metaTitle: 'Which revenue leaks to close first?',
     description:
       'Rank by recoverable dollars against effort, not by size. The ordering rule, the four-question test, and the leaks that feel urgent and are not.',
     answer:
@@ -710,6 +734,7 @@ export const POSTS: Post[] = [
   {
     slug: 'how-to-measure-roi-on-closing-a-revenue-leak',
     title: 'How do you measure the ROI of closing a revenue leak?',
+    metaTitle: 'How to measure ROI on closing a leak',
     description:
       'Capture the baseline before the build, measure in the system the leak was found in, and expect sealed to be smaller than found. The metrics that survive a board review.',
     answer:
@@ -925,6 +950,7 @@ export const POSTS: Post[] = [
   {
     slug: 'what-access-does-a-diagnostic-need',
     title: 'What access does a revenue leakage diagnostic need, and what should you demand in return?',
+    metaTitle: 'What access does a diagnostic need?',
     description:
       'The four things a diagnostic genuinely needs, what it should never be given, and the six questions your IT or legal team will ask before granting any of it.',
     answer:
@@ -1041,6 +1067,7 @@ export const POSTS: Post[] = [
   {
     slug: 'what-if-a-diagnostic-finds-nothing',
     title: 'What happens if a diagnostic finds nothing worth fixing?',
+    metaTitle: 'What if a diagnostic finds nothing?',
     description:
       'A null result is a real outcome and should be written into the engagement terms. Why it almost never happens, and why a firm that cannot return one is worth less.',
     answer:

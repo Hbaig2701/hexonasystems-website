@@ -100,6 +100,27 @@ describe('Ticket 6 — the blog', () => {
     }
   });
 
+  it('renders every <title> under 60 characters', () => {
+    // Bing's site scan flagged four posts as "Title too long". The rendered tag
+    // is metaTitle (or title) plus the layout template's " · Hexona Systems",
+    // so the budget is what matters rather than the title alone. A post whose
+    // question is long gets a metaTitle; one whose question is short does not.
+    const SUFFIX = ' · Hexona Systems';
+    for (const post of posts) {
+      const rendered = (post.metaTitle ?? post.title) + SUFFIX;
+      expect(rendered.length, `"${rendered}" is ${rendered.length} chars`).toBeLessThanOrEqual(60);
+    }
+  });
+
+  it('keeps every H1 question intact, metaTitle or not', () => {
+    // The shortening is for the <title> only. If a metaTitle ever replaced the
+    // H1, the post would stop answering the question it was written to answer.
+    for (const post of posts) {
+      expect(post.title.length).toBeGreaterThan(20);
+      if (post.metaTitle) expect(post.metaTitle).not.toBe(post.title);
+    }
+  });
+
   it('has no duplicate slugs', () => {
     const slugs = posts.map((p) => p.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
