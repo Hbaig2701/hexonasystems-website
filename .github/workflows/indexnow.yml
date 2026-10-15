@@ -1,0 +1,68 @@
+# Tell Bing what changed, after Vercel has deployed it.
+#
+# Bing's index is what ChatGPT search and Copilot read, so this is the AI-search
+# half of indexing. Google ignores IndexNow entirely and finds pages its own way.
+#
+# ⚠️ THE PATH FILTER IS THE WHOLE POINT. This fires only when content or routes
+# actually change. IndexNow is a change-notification protocol, and submitting
+# unchanged URLs on a schedule is how a domain gets quietly deprioritised. Do not
+# add a `schedule:` trigger here.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'app/**'
+  # For re-submitting by hand after a deploy that did not trigger the above.
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Submit every URL in the sitemap (first submission only)'
+        type: boolean
+        default: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Needed to diff this push against the commit before it.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Vercel builds on the same push. Submitting before it finishes would point
+      # Bing at the previous version — not harmful, since it would recrawl later
+      # anyway, but it wastes the notification. Two minutes covers a build of
+      # this size comfortably.
+      - name: Wait for the Vercel deploy
+        if: github.event_name == 'push'
+        run: sleep 120
+
+      - name: Confirm the site is serving
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://www.hexonasystems.com/sitemap.xml)
+          if [ "$code" != "200" ]; then
+            echo "sitemap.xml returned $code — not submitting."
+            exit 1
+          fi
+
+      - name: Submit changed URLs
+        if: github.event_name == 'push'
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- content app || true)
+          if [ -z "$CHANGED" ]; then
+            echo "No content or route files changed. Submitting nothing."
+            exit 0
+          fi
+          echo "Changed:"; echo "$CHANGED" | sed 's/^/  /'
+          node scripts/indexnow.mjs --changed $CHANGED
+
+      - name: Submit everything (manual only)
+        if: github.event_name == 'workflow_dispatch' && inputs.all
+        run: node scripts/indexnow.mjs --all

@@ -15,7 +15,7 @@
  * grep it. `npm run check:seo` runs both.
  */
 
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = process.cwd();
@@ -67,6 +67,34 @@ if (!siteSrc.includes(`?? '${PRODUCTION_HOST}'`)) {
   );
 } else {
   pass(`SITE.url falls back to the host actually served (${PRODUCTION_HOST}).`);
+}
+
+/* --- THE INDEXNOW KEY FILE --------------------------------------------- *
+ * The key is public by design — it proves control of the domain and grants
+ * nothing. But the file's NAME and its CONTENTS must match exactly or every
+ * submission is rejected, and the rejection is silent: the API still returns
+ * 202, it just never crawls. So this is checked rather than trusted.
+ *
+ * It must also never be a Bing Webmaster API key. Those are the same shape,
+ * 32 hex characters, and publishing one hands over API access to the account.
+ * -------------------------------------------------------------------- */
+const keyFiles = readdirSync(join(ROOT, 'public')).filter((f) => /^[0-9a-f]{8,128}\.txt$/.test(f));
+if (keyFiles.length !== 1) {
+  fail(
+    `public/ holds ${keyFiles.length} IndexNow key file(s); there must be exactly one.`,
+    keyFiles.join(', ') || 'none found',
+  );
+} else {
+  const contents = read(join('public', keyFiles[0])).trim();
+  const expected = keyFiles[0].replace(/\.txt$/, '');
+  if (contents !== expected) {
+    fail(
+      `public/${keyFiles[0]} must contain exactly its own filename as its contents.`,
+      `found "${contents}"`,
+    );
+  } else {
+    pass('IndexNow key file is present and its contents match its name.');
+  }
 }
 
 /* --- TICKET 3: no AI crawler may be blocked ---------------------------- */
