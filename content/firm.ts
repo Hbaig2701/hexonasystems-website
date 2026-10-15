@@ -92,6 +92,19 @@ export interface Profile {
 
 export const PROFILES: Profile[] = [
   {
+    platform: 'Google Business Profile',
+    /**
+     * The cid form, not the share.google link and not a search URL with a
+     * kgmid. A share link carries the sharer's locale and tracking parameters;
+     * a kgmid search URL is a result page, not a profile. The cid is the
+     * listing's own stable identifier — verified against the fid in Business
+     * Profile Manager.
+     */
+    url: 'https://maps.google.com/?cid=3329588286767817884',
+    verified: true,
+    note: 'Claimed and verified. 74 reviews at 4.8. Carries the local pack and Maps results.',
+  },
+  {
     platform: 'LinkedIn (firm)',
     url: 'https://www.linkedin.com/company/hexona-systems',
     verified: true,
