@@ -33,7 +33,23 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-const ENDPOINT = 'https://api.indexnow.org/indexnow';
+/**
+ * Bing's own endpoint, deliberately, not the generic api.indexnow.org relay.
+ *
+ * They behave differently in a way that matters. The relay returns 202 —
+ * "accepted, key validation pending" — and propagates onward on its own
+ * schedule; a submission sent there did not appear in Bing Webmaster Tools at
+ * all. Bing's endpoint validates the key on the spot and returns 200.
+ *
+ * 200 means Bing fetched the key file, matched it, and accepted the URLs. 202
+ * means nothing has been checked yet, so a wrong key still looks like success.
+ * Given the whole point of this is Bing — its index is what ChatGPT search and
+ * Copilot read — the endpoint that actually confirms is the right one.
+ *
+ * Participating engines share submissions between themselves under the spec, so
+ * Yandex and the rest still receive it.
+ */
+const ENDPOINT = 'https://www.bing.com/indexnow';
 const HOST = 'www.hexonasystems.com';
 const ORIGIN = `https://${HOST}`;
 const ROOT = process.cwd();
@@ -149,9 +165,16 @@ async function main() {
     body: JSON.stringify({ host: HOST, key, keyLocation: `${ORIGIN}/${key}.txt`, urlList: urls }),
   });
 
-  // 200 accepted · 202 accepted, key validation pending · 4xx is a real failure.
-  if (res.status === 200 || res.status === 202) {
-    console.log(`\n✓ ${res.status} — accepted.`);
+  if (res.status === 200) {
+    console.log('\n✓ 200 — key validated and URLs accepted.');
+  } else if (res.status === 202) {
+    // Not treated as success. 202 means the key has not been checked yet, so a
+    // broken key file looks identical to a working one at this point.
+    console.warn(
+      '\n⚠️  202 — accepted but key validation is PENDING, not confirmed.\n' +
+        '    Check https://www.bing.com/webmasters in a few hours. If the\n' +
+        '    submission never appears, the key file is the first thing to check.',
+    );
   } else {
     console.error(`\n✗ ${res.status} ${res.statusText}\n${(await res.text()).slice(0, 500)}`);
     process.exit(1);
