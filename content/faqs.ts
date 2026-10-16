@@ -26,14 +26,27 @@ import { DIAGNOSTIC, FIRM } from './firm';
  *    because "how long does it take" is exactly the question a model will lift
  *    and paraphrase. `DIAGNOSTIC.duration` is imported rather than retyped.
  *
- * ⚠️ WHAT IS DELIBERATELY NOT HERE: the confidentiality and systems-access
- * questions. content/diagnostic.ts calls that "THE MOST IMPORTANT UNANSWERED
- * QUESTION ON THE SITE" and leaves CONFIDENTIALITY empty on purpose, because an
- * invented security posture is worse than an absent one and a specific false one
- * is actionable. That reasoning applies with more force in an FAQ, so those
- * questions stay out until the facts exist. They are the highest-value FAQ this
- * page could carry and they are blocked on the founder, not on the writing —
- * see CONFIDENTIALITY_QUESTIONS for the six a buyer's IT or legal will ask.
+ * ⚠️ STILL MISSING, BUT NO LONGER BLOCKED: the confidentiality and
+ * systems-access questions.
+ *
+ * These were left out because CONFIDENTIALITY in content/diagnostic.ts was
+ * empty on purpose — an invented security posture is worse than an absent one,
+ * and a specific false one is actionable. That reasoning applied with more
+ * force in an FAQ, which is the surface an assistant is most likely to quote
+ * verbatim to someone who never visits the page.
+ *
+ * THAT CHANGED ON 2026-09-24. Six confidentiality terms are now published and
+ * live on /diagnostic. The facts exist, so the questions can be answered here,
+ * and they remain the highest-value FAQ this page could carry: the real
+ * transaction is not the fee, it is handing over credentials to the system a
+ * company's revenue runs through, and a buyer's legal function asks before
+ * anyone signs anything.
+ *
+ * Whoever writes them: answer from CONFIDENTIALITY, word for word. Do not
+ * paraphrase a commitment into something broader than what the firm actually
+ * agreed to, and do not answer a question the terms do not cover — notably
+ * data residency and sub-processors, which CONFIDENTIALITY_QUESTIONS asks and
+ * the published terms still do not address.
  */
 
 export interface Faq {

@@ -149,16 +149,25 @@ export const IMPLEMENTATION = {
 /* --------------------------------------------------------------------------
    CONFIDENTIALITY AND ACCESS
 
-   ⚠️ THE MOST IMPORTANT UNANSWERED QUESTION ON THE SITE, AND IT IS EMPTY.
-   The transaction is not really $5,000; it is handing a firm you have not met
-   the keys to the system your revenue runs through. An operating partner at a
-   $40M company will not clear that internally on the strength of good copy
-   about the report, and no other section compensates for this one missing.
-   §5's gate applies for the same reason it applies to engagement records: an
+   ✅ ANSWERED 2026-09-24. This was the most important unanswered question on
+   the site and sat empty for months. Six terms are now live below.
+
+   Why it mattered, kept because it governs any future edit: the transaction is
+   not really $5,000, it is handing a firm you have not met the keys to the
+   system your revenue runs through. An operating partner will not clear that
+   internally on the strength of good copy about the report, and no other
+   section compensates for this one missing.
+
+   ⚠️ THE GATE STILL APPLIES IN REVERSE. §5's rule held this empty because an
    invented security posture is worse than an absent one, and unlike a vague
-   claim, a specific false one is actionable.
-   Fill every field and the section appears. Until then it renders nothing to
-   visitors and nags in development.
+   claim a specific false one is actionable. Now that the terms are published,
+   the same rule says every line must stay TRUE — each one is a commitment made
+   in writing to clients. Two of them need a named owner or they quietly stop
+   being true: "raw exports are destroyed at readout" and "your data is used for
+   your engagement and nothing else" both require somebody to actually do
+   something, every engagement.
+
+   Deleting a term is safer than letting it go stale.
    -------------------------------------------------------------------------- */
 
 export interface ConfidentialityTerm {

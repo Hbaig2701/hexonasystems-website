@@ -41,7 +41,14 @@ import { RecordTable } from '@/components/ui/RecordTable';
  */
 
 export const metadata: Metadata = {
-  title: 'The firm: Hexona Systems',
+  /**
+   * `absolute` stops the layout template appending " · Hexona Systems" to a
+   * title that already ends in it. Without it this rendered as
+   * "The firm: Hexona Systems · Hexona Systems", which was live in Google's results.
+   *
+   * The string itself is unchanged — this only stops it being said twice.
+   */
+  title: { absolute: 'The firm: Hexona Systems' },
   description: `${ENTITY_SENTENCE} Who runs the firm, and what it holds to.`,
   alternates: { canonical: '/firm' },
 };

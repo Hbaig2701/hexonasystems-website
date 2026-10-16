@@ -56,7 +56,14 @@ import {
  */
 
 export const metadata: Metadata = {
-  title: 'Case studies: Hexona Systems',
+  /**
+   * `absolute` stops the layout template appending " · Hexona Systems" to a
+   * title that already ends in it. Without it this rendered as
+   * "Case studies: Hexona Systems · Hexona Systems", which was live in Google's results.
+   *
+   * The string itself is unchanged — this only stops it being said twice.
+   */
+  title: { absolute: 'Case studies: Hexona Systems' },
   description:
     'Ten implementation case studies across home services, hospitality, coaching, health and automotive. Every figure names the system it was measured in.',
   alternates: { canonical: '/evidence' },
