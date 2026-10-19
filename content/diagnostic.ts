@@ -150,7 +150,7 @@ export const IMPLEMENTATION = {
    CONFIDENTIALITY AND ACCESS
 
    ✅ ANSWERED 2026-09-24. This was the most important unanswered question on
-   the site and sat empty for months. Six terms are now live below.
+   the site and sat empty for months. Four terms are now live below.
 
    Why it mattered, kept because it governs any future edit: the transaction is
    not really $5,000, it is handing a firm you have not met the keys to the
@@ -162,10 +162,10 @@ export const IMPLEMENTATION = {
    invented security posture is worse than an absent one, and unlike a vague
    claim a specific false one is actionable. Now that the terms are published,
    the same rule says every line must stay TRUE — each one is a commitment made
-   in writing to clients. Two of them need a named owner or they quietly stop
-   being true: "raw exports are destroyed at readout" and "your data is used for
-   your engagement and nothing else" both require somebody to actually do
-   something, every engagement.
+   in writing to clients. Two former terms, "raw exports are destroyed at
+   readout" and "your data is used for your engagement and nothing else", were
+   removed on 2026-10-19 at the founder's request: both needed somebody to act
+   on them every engagement, and an unkept data commitment is worse than none.
 
    Deleting a term is safer than letting it go stale.
    -------------------------------------------------------------------------- */
@@ -213,16 +213,6 @@ export const CONFIDENTIALITY: ConfidentialityTerm[] = [
     term: 'You revoke the access, not us',
     detail:
       'At the readout you revoke every credential yourself, from inside your own systems, on your own schedule. You do not have to take our word for it or wait for us to confirm, which is the only version of this term that is worth anything to you.',
-  },
-  {
-    term: 'Raw exports are destroyed at readout',
-    detail:
-      'Anything pulled out of your systems to do the analysis is deleted when the engagement closes. What we keep is the report itself and the working behind its figures, because we have to be able to stand behind a number if you challenge it later.',
-  },
-  {
-    term: 'Your data is used for your engagement and nothing else',
-    detail:
-      'Not for benchmarks, not for a case study, not shown to another client, and not used to train anything. If we ever want to publish a record of the work, we ask, and we publish only the version you have approved.',
   },
 ];
 

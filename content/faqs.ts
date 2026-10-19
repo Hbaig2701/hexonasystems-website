@@ -35,7 +35,7 @@ import { DIAGNOSTIC, FIRM } from './firm';
  * force in an FAQ, which is the surface an assistant is most likely to quote
  * verbatim to someone who never visits the page.
  *
- * THAT CHANGED ON 2026-09-24. Six confidentiality terms are now published and
+ * THAT CHANGED ON 2026-09-24. Confidentiality terms are now published and
  * live on /diagnostic. The facts exist, so the questions can be answered here,
  * and they remain the highest-value FAQ this page could carry: the real
  * transaction is not the fee, it is handing over credentials to the system a
