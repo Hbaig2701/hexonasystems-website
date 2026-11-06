@@ -2,10 +2,12 @@
 // chatgpt" (20), "chatgpt local business recommendations", "google ai mode local
 // business". Volumes are small on Google but this is the question owners ask
 // ChatGPT itself. Sources: OpenAI's crawler docs (OAI-SearchBot), Google Search
-// Central "AI features and your website" and its May 2025 AI search post, Search
-// Engine Land on how ChatGPT runs local searches (Bing-based), Bing Places. The
-// approach mirrors what Hexona did on its own site (llms.txt, IndexNow, entity
-// sentence, crawler access), which is true of hexonasystems.com.
+// Central "AI features and your website" and its May 21, 2025 AI search post,
+// Google's local ranking and spam policy pages, IndexNow. Search Engine Land's
+// local search piece returned 403 on Nov 6, 2026, so its Bing finding is
+// attributed via beSpacific's May 4, 2025 excerpt. ChatGPT ads from TechCrunch
+// (Feb 9, 2026); OpenAI's own post returned 403. The approach mirrors what Hexona
+// did on its own site (app/robots.ts allows OAI-SearchBot; scripts/indexnow.mjs).
 
 import type { Article } from '../types';
 
@@ -30,11 +32,11 @@ const article: Article = {
   coverAlt:
     'A chat where someone asks an AI assistant for a plumber near them who answers on weekends, and the assistant starts listing local options.',
   intro: [
-    'ChatGPT recommends local businesses mostly from web search results (largely Bing) and business listings, and Google’s AI Overviews and AI Mode draw on Google’s own index and Business Profiles. So the way to get recommended is the same work that gets you found in search, done properly: complete and consistent listings, real reviews, a website that answers questions plainly, and nothing blocking the crawlers.',
+    'ChatGPT recommends local businesses mostly from web search results (largely Bing) and pages its own crawler reads, and Google’s AI Overviews and AI Mode draw on Google’s own index and Business Profiles. So the way to get recommended is the same work that gets you found in search, done properly: complete and consistent listings, real reviews, a website that answers questions plainly, and nothing blocking the crawlers.',
     'Nobody can guarantee you a spot in an AI answer, and anyone selling that is selling smoke. But owners are asking ChatGPT "who’s a good HVAC company near me" right now, and most local businesses make it easy for the AI to skip them. Below is where the answers come from and what to fix, in order.',
   ],
   tldr: [
-    'ChatGPT search leans on Bing results and business listings; Google’s AI answers use Google’s index and Business Profiles.',
+    'ChatGPT search leans on Bing results and its own OAI-SearchBot crawler; Google’s AI answers use Google’s index and Business Profiles.',
     'Claim and complete Google Business Profile and Bing Places, with the same name, address, phone and hours everywhere.',
     'Make sure your website lets OAI-SearchBot, Bingbot and Googlebot in. A blocked site can’t be cited.',
     'Write pages that answer real customer questions in the first two sentences: prices, areas, hours, what happens on a call-out.',
@@ -45,7 +47,7 @@ const article: Article = {
       id: 'where-answers-come-from',
       heading: 'Where does ChatGPT get its local business recommendations?',
       paragraphs: [
-        'When you ask ChatGPT for a business near you, it searches the web and then writes an answer from what it found. Search Engine Land’s testing found ChatGPT runs a Bing search for local queries, takes the top results and organizes them with its own logic. Other analyses have found Google and Yelp place data in ChatGPT’s local results too, so treat it as several sources rather than one.',
+        'When you ask ChatGPT for a business near you, it searches the web and then writes an answer from what it found. Search Engine Land reported in 2025 that ChatGPT pulls web content for local searches from Bing’s index and then applies its own logic to organize the results. OpenAI doesn’t publish a full list of the sources behind its local answers, so treat Bing as one important input rather than the whole story.',
         'OpenAI also runs its own crawler for ChatGPT search, called **OAI-SearchBot**. OpenAI’s documentation says sites that block it will not be shown in ChatGPT search answers, apart from plain navigational links.',
         'Google is more direct. Its Search Central documentation says there are no extra requirements to appear in AI Overviews or AI Mode: a page needs to be indexed and eligible to show with a snippet. It also says you don’t need special AI files or special schema to qualify.',
       ],
@@ -57,7 +59,7 @@ const article: Article = {
           { key: 'fix', label: 'What to fix first' },
         ],
         rows: [
-          { assistant: 'ChatGPT search', source: 'Bing results, its own OAI-SearchBot crawler, listings data', fix: 'Bing Places, crawler access, clear website pages' },
+          { assistant: 'ChatGPT search', source: 'Bing results and its own OAI-SearchBot crawler', fix: 'Bing Places, crawler access, clear website pages' },
           { assistant: 'Google AI Overviews and AI Mode', source: 'Google’s index and Google Business Profile', fix: 'Business Profile, reviews, indexed pages' },
           { assistant: 'Microsoft Copilot', source: 'Bing', fix: 'Bing Places and Bing Webmaster Tools' },
         ],
@@ -79,7 +81,7 @@ const article: Article = {
       paragraphs: [
         'Some website setups block AI crawlers by default, especially sites behind Cloudflare with "block AI bots" switched on, or old robots.txt files that block everything unfamiliar. If OAI-SearchBot can’t read your site, ChatGPT can’t cite it.',
         'Ask whoever runs your website to confirm that Googlebot, Bingbot and OAI-SearchBot are allowed in robots.txt and not blocked by a firewall. OpenAI notes that changes to robots.txt can take about 24 hours to be picked up.',
-        'Then submit your site to Bing Webmaster Tools as well as Google Search Console. Bing is the one most owners forget, and it feeds ChatGPT and Copilot. If your site supports IndexNow, it can tell Bing about new or updated pages within hours instead of waiting to be crawled. We do all three on our own site.',
+        'Then submit your site to Bing Webmaster Tools as well as Google Search Console. Bing is the one most owners forget, and it feeds ChatGPT and Copilot. If your site supports IndexNow, it can tell Bing the moment a page is added or changed, instead of waiting days or weeks for a crawler to notice. On our own site we let OAI-SearchBot in and ping IndexNow when pages change.',
       ],
     },
     {
@@ -109,8 +111,8 @@ const article: Article = {
       id: 'reviews',
       heading: 'Step 5: How much do reviews matter for AI recommendations?',
       paragraphs: [
-        'A lot. Reviews feed local rankings on Google and Bing, and assistants often summarize what reviewers say ("customers mention fast response on weekends"). The words in your reviews become the words in the recommendation.',
-        'The fix is a steady flow of recent reviews, not a burst. Ask every happy customer, the same day, with a direct link. That is one of the jobs our /ai-employees/ai-retention handles automatically after each completed job.',
+        'A lot. Google says more reviews and positive ratings can help a business’s local ranking, and assistants often summarize what reviewers say ("customers mention fast response on weekends"). The words in your reviews become the words in the recommendation.',
+        'The fix is a steady flow of recent reviews, not a burst. Ask every happy customer, the same day, with a direct link; /blog/how-to-get-more-google-reviews has the wording and timing. That is one of the jobs our /ai-employees/ai-retention handles automatically after each completed job.',
       ],
     },
     {
@@ -118,7 +120,7 @@ const article: Article = {
       heading: 'Step 6: What happens when the AI sends someone your way?',
       paragraphs: [
         'Getting recommended is wasted if nobody answers. Someone who asked ChatGPT for a weekend plumber is calling on a weekend. If that call goes to voicemail, they call the next name on the list.',
-        'This is where most of the money is. The tire shop in /evidence/tire-shop-missed-calls was missing more than 600 calls a month; answering them recovered over $50,000. An /ai-employees/ai-receptionist makes sure the customers AI search sends you actually get booked.',
+        'This is where most of the money is. The tire shop in /evidence/tire-shop-missed-calls was missing more than 600 calls a month; after a missed-call assistant started texting those callers back within seconds, the shop reported over $50,000 in recovered revenue. An /ai-employees/ai-receptionist makes sure the customers AI search sends you actually get booked.',
       ],
     },
     {
@@ -126,7 +128,7 @@ const article: Article = {
       heading: 'What should you not pay for?',
       bullets: [
         '**Guaranteed ChatGPT rankings.** Nobody controls what an assistant says. You can improve the odds; you can’t buy a spot.',
-        '**Mass-produced city pages.** Hundreds of near-identical "plumber in [town]" pages are what Google calls scaled content abuse, and they can drag the whole site down.',
+        '**Mass-produced city pages.** Google’s spam policies call many pages made mainly to manipulate rankings scaled content abuse, and list pages aimed at specific cities that funnel visitors to one page as doorway abuse. Hundreds of near-identical "plumber in [town]" pages can fall into both.',
         '**Fake reviews.** Platforms remove them, they put your listing at risk, and they tell an assistant nothing true about you.',
         '**Special AI files as a magic fix.** Google says you don’t need them for its AI features. They don’t hurt, but they don’t replace the steps above.',
       ],
@@ -143,12 +145,12 @@ const article: Article = {
     {
       question: 'Where does ChatGPT get information about local businesses?',
       answer:
-        'Mostly from web search results, largely Bing, plus business listings data and pages crawled by OpenAI’s OAI-SearchBot. Testing by Search Engine Land found ChatGPT runs a Bing search for local queries and organizes the top results.',
+        'Mostly from web search results, largely Bing, plus pages crawled by OpenAI’s OAI-SearchBot. Search Engine Land reported that ChatGPT pulls local results from Bing’s index and organizes them with its own logic.',
     },
     {
       question: 'Can I pay to be recommended by ChatGPT?',
       answer:
-        'No. There is no paid placement in ChatGPT’s answers as of November 2026, and nobody can guarantee a recommendation. Be wary of anyone selling guaranteed AI rankings.',
+        'Not inside the answer. ChatGPT started testing ads in the US in February 2026 for Free and Go users, labeled as sponsored and kept separate from the answer, and OpenAI says ads do not influence the answers ChatGPT gives. Nobody can guarantee a recommendation, so be wary of anyone selling guaranteed AI rankings.',
     },
     {
       question: 'Do I need special schema or an llms.txt file for Google AI Overviews?',
@@ -180,12 +182,32 @@ const article: Article = {
     {
       label: 'Google Search Central Blog, Top ways to ensure your content performs well in Google’s AI experiences on Search',
       url: 'https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search',
-      note: 'Google’s guidance on content for AI search, May 2025. Read Nov 6, 2026.',
+      note: 'John Mueller’s May 21, 2025 guidance on content for AI search, including keeping Business Profile information up to date. Read Nov 6, 2026.',
     },
     {
       label: 'Search Engine Land, How does ChatGPT conduct local searches?',
       url: 'https://searchengineland.com/how-does-chatgpt-conduct-local-searches-454894',
-      note: 'Testing showing ChatGPT runs Bing searches for local queries. Read Nov 6, 2026.',
+      note: 'ChatGPT pulls local results from Bing’s index and organizes them itself. The page returned 403 on Nov 6, 2026; finding taken from the excerpt quoted by beSpacific (https://www.bespacific.com/?p=112908, May 4, 2025), read Nov 6, 2026.',
+    },
+    {
+      label: 'Google Business Profile Help, Tips to improve your local ranking on Google',
+      url: 'https://support.google.com/business/answer/7091',
+      note: 'Relevance, distance, prominence; more reviews and positive ratings can help; no way to pay for local ranking. Read Nov 6, 2026.',
+    },
+    {
+      label: 'Google Search Central, Spam policies for Google web search',
+      url: 'https://developers.google.com/search/docs/essentials/spam-policies',
+      note: 'Definitions of scaled content abuse and doorway abuse. Read Nov 6, 2026.',
+    },
+    {
+      label: 'IndexNow',
+      url: 'https://www.indexnow.org/',
+      note: 'How IndexNow notifies Bing and other engines of changed URLs. Read Nov 6, 2026.',
+    },
+    {
+      label: 'TechCrunch, ChatGPT rolls out ads',
+      url: 'https://www.techcrunch.com/2026/02/09/chatgpt-rolls-out-ads/',
+      note: 'Ads test for US Free and Go users from Feb 9, 2026, and OpenAI’s statement that ads do not influence answers. Read Nov 6, 2026.',
     },
   ],
   related: ['how-to-get-more-google-reviews', 'google-ai-mode-home-services-booking-links', 'what-is-an-ai-agent'],
