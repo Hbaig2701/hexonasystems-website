@@ -37,7 +37,7 @@ export const INDUSTRY_LIST: Industry[] = [
     page: {
       metaTitle: 'AI for Construction Companies',
       metaDescription:
-        'AI employees for construction companies and contractors: answer every enquiry, follow up every estimate, and automate approvals and paperwork. Built and run by Hexona.',
+        'AI employees for construction companies and contractors: answer every enquiry, follow up every estimate, and automate approvals and paperwork. Run by Hexona.',
       h1: 'AI employees for construction companies and contractors.',
       answer:
         'Construction companies use AI employees to answer every enquiry while the team is on site, follow up every estimate until it is signed, and move approvals and paperwork without anyone chasing them. Hexona builds them into the systems you already use and runs them for you.',
@@ -227,7 +227,7 @@ export const INDUSTRY_LIST: Industry[] = [
     page: {
       metaTitle: 'AI Answering Service for Property Managers',
       metaDescription:
-        'An AI answering service for property management: answers tenant calls 24/7, logs maintenance requests, escalates emergencies and books showings. Built and run by Hexona.',
+        'An AI answering service for property managers: answers tenant calls 24/7, logs maintenance requests, escalates emergencies and books showings. Run by Hexona.',
       h1: 'AI employees for property management companies.',
       answer:
         'Property management companies use AI employees to answer tenant and owner calls 24/7, log maintenance requests, send real emergencies to the on-call team, and book showings for vacant units. Hexona builds them into your property management software and runs them for you.',

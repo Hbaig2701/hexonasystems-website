@@ -9,7 +9,7 @@ import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
 export const metadata: Metadata = {
   title: 'AI for Service Businesses by Industry',
   description:
-    'How Hexona builds AI employees for construction, home services, med spas, property management, automotive and hospitality businesses across the United States and Canada.',
+    'How Hexona builds AI employees for construction, home services, med spas, property management, automotive and hospitality businesses in the US and Canada.',
   alternates: { canonical: '/industries' },
 };
 

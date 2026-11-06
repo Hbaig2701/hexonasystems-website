@@ -74,7 +74,7 @@ export const EMPLOYEES: Employee[] = [
     page: {
       metaTitle: 'AI Receptionist for Service Businesses',
       metaDescription:
-        'An AI receptionist that answers every call 24/7, texts back missed callers, books jobs into your calendar and hands urgent calls to your team. Built and run for you by Hexona.',
+        'An AI receptionist that answers every call 24/7, texts back missed callers, books jobs into your calendar and hands urgent calls to your team. Run by Hexona.',
       h1: 'An AI receptionist that never lets a call go to voicemail.',
       answer:
         'An AI receptionist answers every call and message 24/7, texts back anyone who hangs up, books the job into your calendar and passes urgent calls to a person. Hexona builds it into your phone line and CRM, then runs and tunes it for you.',
@@ -487,7 +487,7 @@ export const EMPLOYEES: Employee[] = [
     page: {
       metaTitle: 'AI Retention: Win-Backs and Reviews',
       metaDescription:
-        'An AI retention assistant that wins back lapsed customers, sells maintenance plans and memberships, books repeat visits and asks happy customers for reviews. Built by Hexona.',
+        'An AI retention assistant that wins back lapsed customers, sells maintenance plans and memberships, books repeat visits and asks for reviews. Built by Hexona.',
       h1: 'Turn one-time customers into regulars.',
       answer:
         'AI Retention keeps past customers coming back: it reminds them when the next service is due, wins back the ones who have gone quiet, offers maintenance plans and memberships, and asks happy customers for reviews and referrals. Hexona builds it on your customer list and runs it for you.',

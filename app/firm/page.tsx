@@ -17,7 +17,8 @@ import { CtaPair, FaqList, RoleCard, SectionHead, delay } from '@/components/hx/
 
 export const metadata: Metadata = {
   title: { absolute: 'About Hexona Systems' },
-  description: ENTITY_SENTENCE,
+  description:
+    'About Hexona Systems: a Toronto AI implementation firm founded in 2021 by Hamza Baig. The team, our commitments, awards and how we work with clients.',
   alternates: { canonical: '/firm' },
 };
 

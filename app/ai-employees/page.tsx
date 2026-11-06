@@ -9,7 +9,7 @@ import { PointerTilt } from '@/components/hx/Interactive';
 export const metadata: Metadata = {
   title: 'AI Employees for Service Businesses',
   description:
-    'Hire AI employees for your service business: an AI receptionist, sales follow-up, dispatcher, office admin, collections and retention. Built and run by Hexona, each one chosen to increase what your business is worth.',
+    'AI employees for service businesses: receptionist, sales follow-up, dispatcher, office admin, collections and retention. Each one chosen to raise your value.',
   alternates: { canonical: '/ai-employees' },
 };
 

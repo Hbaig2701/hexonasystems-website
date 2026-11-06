@@ -11,7 +11,7 @@ import { ArticleCard } from '@/components/blog/ArticleView';
 const FEATURED = 'what-is-an-ai-agent';
 
 const DESCRIPTION =
-  'Straight answers for owners of service businesses: what AI receptionists and automation cost, how to stop losing leads, what makes a business worth more, and the AI news that matters this week.';
+  'Straight answers for service business owners: what AI receptionists and automation cost, how to stop losing leads, what raises your value, and AI news.';
 
 export const metadata: Metadata = {
   title: 'Blog: AI for Service Businesses',

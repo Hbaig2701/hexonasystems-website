@@ -25,11 +25,11 @@ export function Hero() {
             Done-for-you AI implementation
           </p>
 
-          <h1 className="hx-h1 m-0 max-w-[14ch]" data-enter="up" style={delay(80)}>
+          <h1 className="hx-h1 m-0 max-w-[14ch]" data-enter="rise" style={delay(80)}>
             AI that increases <span className="hx-mark">enterprise value.</span>
           </h1>
 
-          <p className="hx-lead m-0 mt-8 max-w-[40rem]" data-enter="up" style={delay(180)}>
+          <p className="hx-lead m-0 mt-8 max-w-[40rem]" data-enter="rise" style={delay(180)}>
             We build and run AI employees for service businesses: a receptionist, sales follow-up,
             dispatch and back office. We only build the ones that make your business worth more.
           </p>
@@ -44,7 +44,7 @@ export function Hero() {
           </div>
 
           {/* The definition. Quiet for people, essential for machines. */}
-          <p className="m-0 mt-10 max-w-[44rem] text-[14px] leading-relaxed" style={{ color: 'var(--hx-ink-3)', ...delay(380) }} data-enter="up">
+          <p className="m-0 mt-10 max-w-[44rem] text-[14px] leading-relaxed" style={{ color: 'var(--hx-ink-3)', ...delay(380) }} data-enter="rise">
             {ENTITY_SENTENCE}
           </p>
         </div>

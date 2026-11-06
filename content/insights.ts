@@ -125,7 +125,7 @@ export const POSTS: Post[] = [
     title: 'What is revenue leakage, and how is it measured?',
     metaTitle: 'What is revenue leakage?',
     description:
-      'Demand a company already paid to acquire and failed to convert. Where it hides, why it is invisible in every report you already run, and the arithmetic for pricing it.',
+      'Demand a company already paid to acquire and failed to convert: where it hides, why your reports never show it, and the arithmetic for pricing it.',
     answer:
       'Revenue leakage is demand a company already paid to acquire and then fails to convert for operational rather than commercial reasons: the enquiry that waited two days for a reply, the quote never followed up, the renewal nobody owned. It is measured by tracing every path a lead can take through the systems of record, finding where each stops, and pricing what stopped against the company’s own conversion rates and deal values. It is invisible in ordinary reporting because a lead that was never captured generates no record, and a record that does not exist cannot appear in one.',
     category: 'Diagnosis',
@@ -739,7 +739,7 @@ export const POSTS: Post[] = [
     title: 'How do you measure the ROI of closing a revenue leak?',
     metaTitle: 'How to measure ROI on closing a leak',
     description:
-      'Capture the baseline before the build, measure in the system the leak was found in, and expect sealed to be smaller than found. The metrics that survive a board review.',
+      'Capture the baseline before the build, measure in the system the leak was found in, and expect sealed to be smaller than found. The metrics that hold up.',
     answer:
       'Capture the baseline before the build starts — that is the only moment an honest baseline still exists — then measure recovery in the same system the leak was found in, against that same baseline, over a stated window. Three numbers survive scrutiny: found, which is annualised leakage identified; sealed, which is annualised recovery actually measured afterwards and is always smaller than found; and payback, the number of weeks for measured recovery to equal total fees paid. Hours saved does not survive, because the freed hour gets absorbed rather than reallocated and never reaches a P&L.',
     category: 'Measurement',

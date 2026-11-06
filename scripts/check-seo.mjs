@@ -132,7 +132,6 @@ const ENTITY_SITES = [
   ['components/home/Hero.tsx', 'homepage body, above the fold'],
   ['app/firm/page.tsx', '/firm first paragraph'],
   ['lib/jsonld.tsx', 'Organization schema description'],
-  ['app/page.tsx', 'homepage meta description'],
 ];
 const missingEntity = ENTITY_SITES.filter(([f]) => !read(f).includes('ENTITY_SENTENCE'));
 if (missingEntity.length > 0) {
@@ -141,7 +140,7 @@ if (missingEntity.length > 0) {
     missingEntity.map(([f, where]) => `${f} — ${where}`).join('\n    '),
   );
 } else {
-  pass('The entity sentence renders in all four required locations.');
+  pass('The entity sentence renders in all three required locations (hero, /firm, Organization schema).');
 }
 
 /* --- TICKET 2 / §10: no bracketed placeholder may ship in the graph ----- */

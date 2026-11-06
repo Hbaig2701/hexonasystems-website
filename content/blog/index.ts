@@ -12,11 +12,11 @@ import { POSTS } from '../insights';
 import { ARTICLE_FILES } from './articles';
 
 export const CATEGORIES: Category[] = [
-  { id: 'guides', label: 'Guides', blurb: 'Plain-English explainers on AI for owners of service businesses.' },
-  { id: 'costs', label: 'Costs & comparisons', blurb: 'What AI receptionists, answering services and automation actually cost, side by side.' },
-  { id: 'playbooks', label: 'Playbooks', blurb: 'Step-by-step fixes for missed calls, slow follow-up, reviews, no-shows and late invoices.' },
-  { id: 'value', label: 'Business value', blurb: 'What makes a service business worth more to a buyer, and how to get there.' },
-  { id: 'news', label: 'AI news', blurb: 'What changed in AI this week and what it means for a service business.' },
+  { id: 'guides', label: 'Guides', blurb: 'Plain-English explainers on AI agents, AI receptionists, call recording rules, texting rules and AI search, written for owners of service businesses.' },
+  { id: 'costs', label: 'Costs & comparisons', blurb: 'What AI receptionists, answering services and automation actually cost in 2026, side by side, with every price checked on the vendor\'s own page.' },
+  { id: 'playbooks', label: 'Playbooks', blurb: 'Step-by-step fixes for the leaks in a service business: missed calls, slow follow-up, old estimates, Google reviews, no-shows and late invoices.' },
+  { id: 'value', label: 'Business value', blurb: 'What makes a service business worth more to a buyer: valuation multiples, owner dependence, recurring revenue and how to prepare to sell.' },
+  { id: 'news', label: 'AI news', blurb: 'What changed in AI this week and what it means for a service business: voice AI, texting rules, Google and ChatGPT search, booking and payments.' },
 ];
 
 export const categoryLabel = (id: CategoryId) => CATEGORIES.find((c) => c.id === id)?.label ?? id;
