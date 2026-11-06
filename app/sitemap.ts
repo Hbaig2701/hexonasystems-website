@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
 import { allPublished } from '@/content/evidence';
 import { publishedPosts } from '@/content/insights';
+import { employeesWithPages } from '@/content/employees';
+import { industriesWithPages } from '@/content/industries';
 
 /**
  * sitemap.xml — AI SEO Developer Guide, Ticket 3 and Ticket 6.
@@ -23,8 +25,14 @@ import { publishedPosts } from '@/content/insights';
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { path: '/', priority: 1 },
-    { path: '/diagnostic', priority: 0.9 },
-    { path: '/implementation', priority: 0.8 },
+    { path: '/ai-employees', priority: 0.9 },
+    { path: '/industries', priority: 0.8 },
+    { path: '/book', priority: 0.8 },
+    ...employeesWithPages().map((e) => ({ path: `/ai-employees/${e.slug}`, priority: 0.9 })),
+    ...industriesWithPages().map((i) => ({ path: `/industries/${i.slug}`, priority: 0.8 })),
+    // v2 pages, still live until the second pass replaces them.
+    { path: '/diagnostic', priority: 0.4 },
+    { path: '/implementation', priority: 0.4 },
     { path: '/evidence', priority: 0.7 },
     { path: '/insights', priority: 0.7 },
     { path: '/firm', priority: 0.6 },

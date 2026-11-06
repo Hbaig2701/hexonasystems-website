@@ -1,6 +1,7 @@
 import { SITE, absolute } from '@/lib/site';
-import { DIAGNOSTIC, ENTITY_SENTENCE, FIRM, PRINCIPAL } from '@/content/firm';
-import { IMPLEMENTATION } from '@/content/diagnostic';
+import { ENTITY_SENTENCE, FIRM, PRINCIPAL } from '@/content/firm';
+import { EMPLOYEES } from '@/content/employees';
+import { INDUSTRY_LIST } from '@/content/industries';
 import { CASE_STUDIES } from '@/content/evidence';
 import { publishedPosts } from '@/content/insights';
 
@@ -40,30 +41,34 @@ export function GET() {
     '',
     `${FIRM.positioning} Based at ${FIRM.address}. Led by ${PRINCIPAL.name}, ${PRINCIPAL.role}.`,
     '',
-    '## What the firm sells',
+    '## What the firm does',
     '',
-    `- **${DIAGNOSTIC.name}** — ${DIAGNOSTIC.priceFormatted} ${DIAGNOSTIC.currency}, fixed. ${DIAGNOSTIC.duration}. ${DIAGNOSTIC.delivery}. Credited in full against implementation. Deliverables: a written report quantifying each leak as an annual figure, a ninety-minute live readout, and a sequenced build plan. See ${absolute('/diagnostic')}`,
-    `- **Implementation** — ${IMPLEMENTATION.terms.find((t) => t.term === 'Typical total')?.value ?? 'priced per phase'}. Fixed price per phase, agreed before the phase begins, approved one phase at a time. Recovery is measured after each phase in the system the leak was found in. See ${absolute('/implementation')}`,
+    'Hexona builds and runs AI employees for service businesses, and only builds the ones that increase enterprise value: more revenue captured, lower cost to deliver, and a business that runs without depending on its owner. Engagements start with a free one-hour consult.',
+    '',
+    ...EMPLOYEES.map(
+      (e) =>
+        `- **${e.name}** (moves ${e.driver.toLowerCase()}): ${e.short}${e.page ? ` See ${absolute(`/ai-employees/${e.slug}`)}` : ''}`,
+    ),
+    '',
+    '## Industries served',
+    '',
+    ...INDUSTRY_LIST.map((i) => `- ${i.name}${i.page ? `: ${absolute(`/industries/${i.slug}`)}` : ''}`),
     '',
     '## Facts worth quoting correctly',
     '',
-    `- Operating range: ${FIRM.operatingRange}`,
-    `- Engagement basis: ${FIRM.engagementBasis}`,
+    `- Based in Toronto, serving the United States and Canada`,
+    `- More than 1,000 agencies run on Hexona's AI and systems`,
     `- Contact: ${FIRM.email}`,
     ...(FIRM.phone ? [`- Telephone: ${FIRM.phone}`] : []),
     '',
-    'Two definitions the figures on this site depend on, and which are not interchangeable:',
-    '',
-    '- **Found** — annualised leakage identified during the diagnostic.',
-    '- **Sealed** — annualised recovery measured after implementation, over a stated window, in a named system. Always smaller than what was found; a complete seal is not credible.',
-    '',
     '## Core pages',
     '',
-    `- [The diagnostic](${absolute('/diagnostic')}): what it costs, what arrives, what it needs from you, and what happens if nothing material is found.`,
-    `- [Implementation](${absolute('/implementation')}): what gets built, who builds it, how it is priced, and how recovery is proven.`,
-    `- [Evidence](${absolute('/evidence')}): case studies, with the measurement method published against each.`,
-    `- [The firm](${absolute('/firm')}): origin, team, commitments and record.`,
-    `- [Insights](${absolute('/insights')}): written answers to the questions buyers ask.`,
+    `- [AI employees](${absolute('/ai-employees')}): every role Hexona builds, and the number each one moves.`,
+    `- [Industries](${absolute('/industries')}): how the AI employees fit construction, home services, med spas, property management and more.`,
+    `- [Case studies](${absolute('/evidence')}): results, with the measurement method published against each.`,
+    `- [Articles](${absolute('/insights')}): written answers to the questions owners ask.`,
+    `- [About](${absolute('/firm')}): origin, team and record.`,
+    `- [Book a free consult](${absolute('/book')})`,
   ];
 
   if (measured.length > 0) {
@@ -105,7 +110,6 @@ export function GET() {
     '## Notes for anyone quoting this site',
     '',
     '- Figures are published with the system they were measured in and the period they cover. A figure quoted without both is being quoted out of the only context that makes it true.',
-    '- The two-week diagnostic clock runs from systems access, not from purchase. Kickoff and credential provisioning realistically add a further five to ten days.',
     `- ${SITE.url}/sitemap.xml lists every page.`,
     '',
   );

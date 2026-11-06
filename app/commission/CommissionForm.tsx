@@ -35,9 +35,9 @@ export function CommissionForm() {
 
   if (state.status === 'sent') {
     return (
-      <div className="border-t border-line pt-10">
-        <h2 className="t-display-2 mb-6">{COMMISSION.success.heading}</h2>
-        <p className="t-body max-w-[58ch] text-fg-2">{COMMISSION.success.body}</p>
+      <div className="py-4">
+        <h2 className="hx-h3 mb-4">{COMMISSION.success.heading}</h2>
+        <p className="max-w-[58ch] text-[17px] leading-relaxed text-[#3B4E55]">{COMMISSION.success.body}</p>
       </div>
     );
   }
@@ -45,7 +45,7 @@ export function CommissionForm() {
   const errors = state.status === 'error' ? (state.errors ?? {}) : {};
 
   return (
-    <form action={formAction} noValidate className="border-t border-line">
+    <form action={formAction} noValidate>
       {/* Said before the ten fields, not after them. See the note above. */}
       <noscript>
         <p className="t-body border-b border-line py-7 text-fg">
@@ -65,14 +65,14 @@ export function CommissionForm() {
           undefined;
 
         return (
-          <div key={f.name} className="border-b border-line py-7">
-            <label htmlFor={id} className="t-label mb-2 block text-fg">
+          <div key={f.name} className="py-4">
+            <label htmlFor={id} className="mb-1.5 block text-[15px] font-semibold text-[#0E1E24]">
               {f.label}
-              {!f.required && <span className="ml-2 text-fg-3">Optional</span>}
+              {!f.required && <span className="ml-2 font-normal text-[#52656B]">Optional</span>}
             </label>
 
             {f.hint && (
-              <p id={`${id}-hint`} className="t-small mb-4 max-w-[62ch] text-fg-3">
+              <p id={`${id}-hint`} className="mb-3 max-w-[62ch] text-[14px] leading-relaxed text-[#52656B]">
                 {f.hint}
               </p>
             )}
@@ -136,15 +136,11 @@ export function CommissionForm() {
         <input id="f-role" name="role" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-10">
-        <button
-          type="submit"
-          disabled={pending}
-          className="t-label inline-block border border-brand bg-brand px-7 py-3.5 text-bg transition-opacity duration-[160ms] disabled:opacity-55"
-        >
-          {pending ? 'Sending…' : 'Send it to the principal'}
+      <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-6">
+        <button type="submit" disabled={pending} className="hx-btn hx-btn-primary disabled:opacity-55">
+          {pending ? 'Sending…' : 'Request my free consult'}
+          {!pending && <span className="hx-arrow" aria-hidden="true">→</span>}
         </button>
-        <p className="t-small text-fg-3">{COMMISSION.fallback}</p>
       </div>
 
       {/* aria-live so the message is announced when it replaces nothing. */}
@@ -157,8 +153,8 @@ export function CommissionForm() {
 
 function fieldClass(err?: string) {
   return cn(
-    't-body w-full border bg-bg-sunk px-4 py-3 text-fg outline-none',
-    'transition-colors duration-[160ms] focus:border-brand',
-    err ? 'border-loss' : 'border-line',
+    'w-full rounded-xl border bg-white px-4 py-3 text-[16px] text-[#0E1E24] outline-none',
+    'transition-[border-color,box-shadow] duration-200 focus:border-[#0B5566] focus:shadow-[0_0_0_4px_rgba(53,198,209,0.2)]',
+    err ? 'border-loss' : 'border-[#BFD9DC]',
   );
 }

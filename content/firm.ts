@@ -8,7 +8,7 @@
 
 export const FIRM = {
   name: 'Hexona Systems',
-  positioning: 'Operational diligence and revenue recovery.',
+  positioning: 'AI employees that increase enterprise value.',
   address: '18 Harbour Street, Toronto, ON',
   email: 'hamza@hexonasystems.com',
   /** ⚠️ [ASSET NEEDED] Public phone. The footer line hides itself until set. */
@@ -59,10 +59,10 @@ export const FIRM = {
  * together, so whichever way that call goes, this sentence is still true.
  */
 export const ENTITY_SENTENCE =
-  'Hexona Systems is a Toronto-based operational diligence firm that runs fixed-fee revenue ' +
-  'leakage diagnostics and builds the process automation, CRM and reporting systems that close ' +
-  'what those diagnostics find, for operating companies between $3M and $15M in revenue ' +
-  'across home services, construction, automotive and hospitality.';
+  'Hexona Systems is a Toronto-based AI implementation firm that builds and runs AI employees, ' +
+  'including AI receptionists, sales follow-up, dispatch and back-office automation, for service ' +
+  'businesses across the United States and Canada in construction, home services, med spas and ' +
+  'property management, and only builds the systems that increase enterprise value.';
 
 /* ---------------------------------------------------------------------------
  * THIRD-PARTY PROFILES — AI SEO Developer Guide, Ticket 9.

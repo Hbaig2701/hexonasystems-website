@@ -3,98 +3,44 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Wordmark } from './Wordmark';
-import { Button } from '@/components/ui/Button';
-import { cn } from '@/lib/cn';
-import type { SurfaceName } from '@/components/ui/Surface';
+import { Wordmark } from '@/components/hx/Logo';
 
 /**
- * Header — §3.1, §2.
+ * Site header. Transparent over the hero, frosted white once the page scrolls.
  *
- * Four links, one button. The button is the only coloured element in the
- * header, and it inverts by surface (§3.5).
- *
- * SURFACE SWITCHING: the header adopts the surface of the section beneath it,
- * switching at the boundary. Text and border colour cross-fade over 160ms; the
- * background switch is instant, because a fading background would read as the
- * gradient blend §3.1 explicitly forbids between sections.
- *
- * The section under the header is found by hit-testing the header's own bottom
- * edge against every [data-surface] block, rather than by observing
- * intersections. Intersection ratios answer "how much of this is visible",
- * which is the wrong question: the question is "what is directly behind this
- * 64px strip", and only a point test answers that correctly when a short
- * section passes beneath.
- */
-
-/**
- * ⚠️ `/method` WAS IN HERE AND THE ROUTE DOES NOT EXIST. It 404'd from the
- * primary navigation of every page on the site. Same in the footer, and the
- * footer additionally links /terms and /privacy, which v2 also deleted.
- *
- * A 404 in the primary nav is worse than a missing link on every axis: a visitor
- * reads it as a broken site, and a crawler spends budget on it and records a
- * soft-404 against the domain. It is also precisely what the AI SEO Developer
- * Guide's Ticket 1 acceptance criteria call out — "the footer link resolves to a
- * real page instead of an empty anchor".
- *
- * So the nav is now DERIVED from what exists. Add the page, add the entry, and
- * it appears. This is the same gate content/firm.ts applies to INSTITUTE_URL and
- * content/evidence.ts applies to empty industry shelves: never offer a link to
- * nothing.
- *
- * `Insights` is here because Ticket 6 requires the index in the primary
- * navigation rather than under a dropdown.
+ * ⚠️ Every href here must resolve to a real route: `npm run check:seo` reads
+ * the `href: '…'` literals in this file and fails on a dead one.
  */
 const NAV = [
-  { label: 'Diagnostic', href: '/diagnostic' },
-  { label: 'Implementation', href: '/implementation' },
-  { label: 'Evidence', href: '/evidence' },
-  { label: 'Insights', href: '/insights' },
-  { label: 'Firm', href: '/firm' },
+  { label: 'AI Employees', href: '/ai-employees' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Case Studies', href: '/evidence' },
+  { label: 'Articles', href: '/insights' },
+  { label: 'About', href: '/firm' },
 ];
 
-export const HEADER_H = 64;
+const CTA = { label: 'Book a free consult', href: '/book' };
+
+export const HEADER_H = 76;
 
 export function Header() {
-  const [surface, setSurface] = useState<SurfaceName>('void');
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect -- resetting UI state on route change
-  useEffect(() => setOpen(false), [pathname]);
+  // Close the mobile menu whenever the route changes.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
-    let frame = 0;
-
-    const read = () => {
-      frame = 0;
-      const line = HEADER_H - 1;
-      let found: SurfaceName | null = null;
-
-      for (const el of document.querySelectorAll<HTMLElement>('[data-surface]')) {
-        if (el.closest('header') || el.id === 'menu') continue;
-        const r = el.getBoundingClientRect();
-        if (r.top <= line && r.bottom > line) {
-          found = (el.dataset.surface as SurfaceName) ?? null;
-        }
-      }
-      if (found) setSurface(found);
-    };
-
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(read);
-    };
-
-    read();
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, [pathname]);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -111,44 +57,30 @@ export function Header() {
   return (
     <>
       <header
-        data-surface={surface}
-        style={{ height: HEADER_H }}
-        className="fixed inset-x-0 top-0 z-50 border-b border-line transition-[color,border-color] duration-[160ms]"
+        className="hx hx-header"
+        data-scrolled={scrolled || open ? 'true' : 'false'}
+        style={{ height: HEADER_H, background: scrolled || open ? undefined : 'transparent' }}
       >
-        <div className="shell flex h-full items-center justify-between gap-8">
-          <Link href="/" aria-label="Hexona Systems, home">
+        <div className="hx-wrap flex h-full items-center justify-between gap-6">
+          <Link href="/" aria-label="Hexona Systems, home" className="no-underline">
             <Wordmark />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+          <nav aria-label="Primary" className="hx-nav hidden items-center gap-7 lg:flex">
             {NAV.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + '/');
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={active ? 'page' : undefined}
-                  className={cn(
-                    't-label relative py-1 transition-colors duration-[160ms]',
-                    active ? 'text-fg' : 'text-fg-2 hover:text-fg',
-                  )}
-                >
+                <Link key={item.href} href={item.href} aria-current={active ? 'page' : undefined}>
                   {item.label}
-                  {active && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute -bottom-0.5 left-0 h-px w-full bg-brand"
-                    />
-                  )}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="hidden md:block">
-            <Button href="/commission" className="px-5 py-2.5 text-[13px]">
-              Commission a diagnostic
-            </Button>
+          <div className="hidden lg:block">
+            <Link href={CTA.href} className="hx-btn hx-btn-primary !min-h-[44px] !px-5 !py-3 text-[15px]">
+              {CTA.label}
+            </Link>
           </div>
 
           <button
@@ -157,35 +89,37 @@ export function Header() {
             aria-expanded={open}
             aria-controls="menu"
             onClick={() => setOpen((v) => !v)}
-            className="t-label -mr-2 px-2 py-2 md:hidden"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
           >
-            {open ? 'Close' : 'Menu'}
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E1E24" strokeWidth="1.8" strokeLinecap="round">
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
           </button>
         </div>
       </header>
 
       <div
         id="menu"
-        data-surface="void"
         hidden={!open}
-        className="fixed inset-0 z-40 md:hidden"
-        style={{ paddingTop: HEADER_H }}
+        className="hx fixed inset-0 z-40 lg:hidden"
+        style={{ paddingTop: HEADER_H, background: '#FFFFFF' }}
       >
-        <div className="shell flex h-full flex-col justify-between py-10">
+        <div className="hx-wrap flex h-full flex-col justify-between py-8">
           <nav aria-label="Primary" className="flex flex-col">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="t-display-2 border-b border-line py-5 text-fg"
+                className="hx-serif border-b py-5 text-[28px] no-underline"
+                style={{ borderColor: 'var(--hx-line)', color: 'var(--hx-ink)' }}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <Button href="/commission" className="w-full">
-            Commission a diagnostic
-          </Button>
+          <Link href={CTA.href} className="hx-btn hx-btn-primary w-full">
+            {CTA.label}
+          </Link>
         </div>
       </div>
     </>

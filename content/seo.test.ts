@@ -22,15 +22,15 @@ describe('Ticket 5 — the entity sentence', () => {
   });
 
   it('names the category of business', () => {
-    expect(ENTITY_SENTENCE).toMatch(/operational diligence/i);
+    expect(ENTITY_SENTENCE).toMatch(/AI implementation firm/i);
   });
 
   it('names at least two concrete deliverables', () => {
     const deliverables = [
-      /diagnostic/i,
-      /process automation/i,
-      /CRM/,
-      /reporting/i,
+      /AI receptionist/i,
+      /sales follow-up/i,
+      /dispatch/i,
+      /back-office automation/i,
     ].filter((re) => re.test(ENTITY_SENTENCE));
     expect(deliverables.length).toBeGreaterThanOrEqual(2);
   });
@@ -39,24 +39,21 @@ describe('Ticket 5 — the entity sentence', () => {
     const industries = [
       /home services/i,
       /construction/i,
-      /automotive/i,
-      /hospitality/i,
-      /health/i,
+      /med spas/i,
+      /property management/i,
     ].filter((re) => re.test(ENTITY_SENTENCE));
     expect(industries.length).toBeGreaterThanOrEqual(2);
   });
 
-  it('states the operating range, so it cannot be read as an SMB agency', () => {
-    // The specific failure this guards: v1 was repositioned from an SMB
-    // automation agency, and a definition sentence that omits the range invites
-    // exactly the old reading back in.
-    expect(ENTITY_SENTENCE).toMatch(/\$3M/);
+  it('names the market it serves, so assistants place it in the US as well as Canada', () => {
+    expect(ENTITY_SENTENCE).toMatch(/United States/);
+  });
+
+  it('states the differentiator: enterprise value', () => {
+    expect(ENTITY_SENTENCE).toMatch(/enterprise value/i);
   });
 
   it('contains no puffery', () => {
-    // The guide names these four explicitly. They are banned because they are
-    // unfalsifiable, which is what makes them worthless to a crawler and, by
-    // §10, unpublishable here regardless.
     for (const adjective of ['leading', 'pioneering', 'world-class', 'cutting-edge']) {
       expect(ENTITY_SENTENCE.toLowerCase()).not.toContain(adjective);
     }

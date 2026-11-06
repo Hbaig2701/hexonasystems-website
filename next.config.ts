@@ -85,7 +85,6 @@ const REDIRECTS = [
   { source: '/work/:slug', destination: '/evidence', statusCode: 301 },
   { source: '/audit', destination: '/diagnostic', statusCode: 301 },
   { source: '/audit/results', destination: '/diagnostic', statusCode: 301 },
-  { source: '/book', destination: '/diagnostic', statusCode: 301 },
   { source: '/pricing', destination: '/diagnostic', statusCode: 301 },
 
   /* --- Slugs the Wix rename in Guide Ticket 1 would create -------------- *
@@ -94,6 +93,12 @@ const REDIRECTS = [
    * -------------------------------------------------------------------- */
   { source: '/case-studies', destination: '/evidence', statusCode: 301 },
   { source: '/case-studies/:slug', destination: '/evidence', statusCode: 301 },
+
+  /* --- v3 (AI employees) ------------------------------------------------ *
+   * /book is now the free-consult page, so it is no longer redirected. The
+   * old intake form moves there with it.
+   * -------------------------------------------------------------------- */
+  { source: '/commission', destination: '/book', statusCode: 301 },
 
   /* --- Plausible inbound links that never existed as pages -------------- */
   { source: '/ai-appointment-setting', destination: '/implementation', statusCode: 301 },

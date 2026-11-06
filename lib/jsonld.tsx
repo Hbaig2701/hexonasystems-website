@@ -112,12 +112,14 @@ export function organizationLd() {
       { '@type': 'Country', name: 'United States' },
     ],
     knowsAbout: [
-      'Revenue leakage',
-      'Operational diligence',
-      'Process automation',
-      'CRM implementation',
+      'AI employees',
+      'AI receptionists',
+      'AI answering services',
+      'Sales follow-up automation',
+      'Business process automation',
+      'Enterprise value',
       'Lead response time',
-      'Revenue operations',
+      'CRM implementation',
     ],
     // Ticket 9. Empty until profiles exist — see PROFILES in content/firm.ts.
     /* ⚠️ THE ORGANISATION'S OWN PROFILES, NOT THE PRINCIPAL'S. A personal
@@ -227,6 +229,28 @@ export function implementationServiceLd() {
       priceCurrency: DIAGNOSTIC.currency,
       description: typical ? `${typical} across all phases, priced one phase at a time.` : '',
     }),
+  });
+}
+
+/**
+ * A Service node for each AI employee and each industry page (v3).
+ * Description is the page's own answer sentence, so schema and visible text agree.
+ */
+export function aiServiceLd(opts: { path: string; name: string; serviceType: string; description: string; audience?: string }) {
+  return prune({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': absolute(opts.path) + '#service',
+    name: opts.name,
+    serviceType: opts.serviceType,
+    provider: orgRef,
+    url: absolute(opts.path),
+    description: opts.description,
+    audience: opts.audience ? { '@type': 'BusinessAudience', name: opts.audience } : undefined,
+    areaServed: [
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Canada' },
+    ],
   });
 }
 

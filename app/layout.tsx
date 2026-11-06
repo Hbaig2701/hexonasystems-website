@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono, Newsreader } from 'next/font/google';
+import { Geist, Geist_Mono, Inter, Newsreader } from 'next/font/google';
 import './globals.css';
 import { Header, HEADER_H } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Entrances } from '@/components/layout/Entrances';
 import { LatticeDefs } from '@/components/ui/Lattice';
 import { SITE } from '@/lib/site';
-import { FIRM } from '@/content/firm';
+import { ENTITY_SENTENCE, FIRM } from '@/content/firm';
 import { JsonLd, organizationLd, principalLd, webSiteLd } from '@/lib/jsonld';
 
 /**
@@ -21,8 +21,16 @@ import { JsonLd, organizationLd, principalLd, webSiteLd } from '@/lib/jsonld';
 const newsreader = Newsreader({
   variable: '--font-newsreader',
   subsets: ['latin'],
-  weight: ['400'],
+  // 500 is for the v3 card titles. v2's "never bold display" rule still holds:
+  // nothing heavier than 500 is shipped.
+  weight: ['400', '500'],
   style: ['normal', 'italic'],
+  display: 'swap',
+});
+
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin'],
   display: 'swap',
 });
 
@@ -41,19 +49,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'Hexona Systems: operational diligence and revenue recovery',
+    default: 'Hexona Systems: AI that increases enterprise value',
     template: '%s · Hexona Systems',
   },
-  description:
-    'We find demand a company already paid for and is failing to convert, price it in EBITDA, and seal it. Fixed-scope diagnostic for operating companies at $3M to $15M.',
-  openGraph: { type: 'website', siteName: FIRM.name, locale: 'en_CA', url: SITE.url },
+  description: ENTITY_SENTENCE,
+  openGraph: { type: 'website', siteName: FIRM.name, locale: 'en_US', url: SITE.url },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0B0D0C',
-  colorScheme: 'dark light',
+  themeColor: '#FFFFFF',
+  colorScheme: 'light',
 };
 
 /**
@@ -68,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${newsreader.variable} ${inter.variable} ${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -93,8 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <a
           href="#main"
-          data-surface="paper"
-          className="sr-only z-[100] focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:px-4 focus:py-2 focus:text-[14px]"
+          className="hx sr-only z-[100] focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:px-4 focus:py-2 focus:text-[14px]"
         >
           Skip to content
         </a>
