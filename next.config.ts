@@ -37,7 +37,7 @@ const REDIRECTS = [
    * /about       About                 →  /firm
    * /incubator   Incubator             →  /firm
    * /solutions   Solutions             →  /implementation
-   * /blog        Blog                  →  /insights
+   * /blog        Blog                  →  served at /blog again (v3)
    * /get-started Get Started           →  /diagnostic
    * /programs    Programs              →  /firm
    * /general-1   A.I Appointment Setting  →  /implementation
@@ -47,10 +47,8 @@ const REDIRECTS = [
    * /challenge-page/<uuid> ×3         Online Programs       →  /firm
    * -------------------------------------------------------------------- */
   { source: '/about', destination: '/firm', statusCode: 301 },
-  { source: '/solutions', destination: '/implementation', statusCode: 301 },
-  { source: '/blog', destination: '/insights', statusCode: 301 },
-  { source: '/blog/:slug', destination: '/insights/:slug', statusCode: 301 },
-  { source: '/get-started', destination: '/diagnostic', statusCode: 301 },
+  { source: '/solutions', destination: '/ai-employees', statusCode: 301 },
+  { source: '/get-started', destination: '/book', statusCode: 301 },
 
   // The Automation Institute moves to a separate property under §1.2, so both
   // of its old URLs land on /firm, which is where the community and the
@@ -63,30 +61,29 @@ const REDIRECTS = [
   // /general-1 serves "A.I Appointment Setting" — a capability page. v2's
   // capability page is /implementation, where lead capture, routing and
   // follow-up are the first BUILDS entry.
-  { source: '/general-1', destination: '/implementation', statusCode: 301 },
+  { source: '/general-1', destination: '/ai-employees', statusCode: 301 },
 
   // "Missed Lead Capture" is the symptom this firm now sells the diagnosis of,
   // so it goes to /diagnostic rather than to a build page. Someone arriving on
   // that URL has the problem, not yet the solution.
   {
     source: '/copy-of-a-i-appointment-setting',
-    destination: '/diagnostic',
+    destination: '/book',
     statusCode: 301,
   },
-  { source: '/copy-of-missed-lead-capture', destination: '/implementation', statusCode: 301 },
+  { source: '/copy-of-missed-lead-capture', destination: '/ai-employees', statusCode: 301 },
   { source: '/copy-of-about', destination: '/evidence', statusCode: 301 },
 
   /* --- v1 Next.js routes, all deleted by v2 ----------------------------- *
    * v1 was deployed, so these have preview URLs in the wild and were linked
    * from the v1 build. They cost two lines each and prevent a 404.
    * -------------------------------------------------------------------- */
-  { source: '/system', destination: '/implementation', statusCode: 301 },
+  { source: '/system', destination: '/ai-employees', statusCode: 301 },
   { source: '/work', destination: '/evidence', statusCode: 301 },
   { source: '/work/:slug', destination: '/evidence', statusCode: 301 },
-  { source: '/audit', destination: '/diagnostic', statusCode: 301 },
-  { source: '/audit/results', destination: '/diagnostic', statusCode: 301 },
-  { source: '/book', destination: '/diagnostic', statusCode: 301 },
-  { source: '/pricing', destination: '/diagnostic', statusCode: 301 },
+  { source: '/audit', destination: '/book', statusCode: 301 },
+  { source: '/audit/results', destination: '/book', statusCode: 301 },
+  { source: '/pricing', destination: '/book', statusCode: 301 },
 
   /* --- Slugs the Wix rename in Guide Ticket 1 would create -------------- *
    * If that rename happens on Wix before the DNS cutover, these URLs exist and
@@ -95,11 +92,30 @@ const REDIRECTS = [
   { source: '/case-studies', destination: '/evidence', statusCode: 301 },
   { source: '/case-studies/:slug', destination: '/evidence', statusCode: 301 },
 
+  /* --- v3 (AI employees) ------------------------------------------------ *
+   * /book is now the free-consult page, so it is no longer redirected. The
+   * old intake form moves there with it.
+   * -------------------------------------------------------------------- */
+  { source: '/commission', destination: '/book', statusCode: 301 },
+  // The diagnostic and implementation offer is retired; its pages and the
+  // articles written about the product itself go to their nearest v3 page.
+  { source: '/diagnostic', destination: '/ai-employees', statusCode: 301 },
+  { source: '/implementation', destination: '/ai-employees', statusCode: 301 },
+  { source: '/insights/how-much-does-a-leakage-diagnostic-cost', destination: '/book', statusCode: 301 },
+  { source: '/insights/how-long-does-a-leakage-diagnostic-take', destination: '/book', statusCode: 301 },
+  { source: '/insights/what-access-does-a-diagnostic-need', destination: '/book', statusCode: 301 },
+  { source: '/insights/what-if-a-diagnostic-finds-nothing', destination: '/book', statusCode: 301 },
+  { source: '/insights/operational-diligence-vs-management-consulting', destination: '/firm', statusCode: 301 },
+  // v3: the articles section moved from /insights to /blog. The specific
+  // retired posts above match first; everything else keeps its slug.
+  { source: '/insights', destination: '/blog', statusCode: 301 },
+  { source: '/insights/:slug', destination: '/blog/:slug', statusCode: 301 },
+
   /* --- Plausible inbound links that never existed as pages -------------- */
-  { source: '/ai-appointment-setting', destination: '/implementation', statusCode: 301 },
-  { source: '/missed-lead-capture', destination: '/diagnostic', statusCode: 301 },
-  { source: '/e-commerce-automation', destination: '/implementation', statusCode: 301 },
-  { source: '/ecommerce-automation', destination: '/implementation', statusCode: 301 },
+  { source: '/ai-appointment-setting', destination: '/ai-employees', statusCode: 301 },
+  { source: '/missed-lead-capture', destination: '/book', statusCode: 301 },
+  { source: '/e-commerce-automation', destination: '/ai-employees', statusCode: 301 },
+  { source: '/ecommerce-automation', destination: '/ai-employees', statusCode: 301 },
 ];
 
 const nextConfig: NextConfig = {

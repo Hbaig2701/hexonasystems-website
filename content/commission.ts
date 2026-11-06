@@ -29,10 +29,10 @@ export interface Field {
 }
 
 export const REVENUE_BANDS = [
-  'Under $3M',
+  'Under $1M',
+  '$1M to $3M',
   '$3M to $15M',
-  '$15M to $50M',
-  'Over $50M',
+  'Over $15M',
 ] as const;
 
 export const FIELDS: Field[] = [
@@ -75,7 +75,7 @@ export const FIELDS: Field[] = [
   {
     name: 'revenue',
     label: 'Annual revenue',
-    hint: `We operate at ${FIRM.operatingRange}. If you are below it we will tell you on the call rather than after you have paid.`,
+    hint: 'A rough band is fine. It tells us which AI employees are likely to pay back fastest for a business your size.',
     type: 'select',
     required: true,
     options: [...REVENUE_BANDS],
@@ -88,15 +88,15 @@ export const FIELDS: Field[] = [
   },
   {
     name: 'systems',
-    label: 'What runs your leads today',
-    hint: 'CRM, phone, inbox, forms, scheduling. Whatever a new enquiry actually touches. If the answer is a spreadsheet, say so.',
+    label: 'What tools run the business today',
+    hint: 'CRM, phone system, calendar, field-service or booking software. If the answer is a spreadsheet, say so.',
     type: 'textarea',
     required: true,
   },
   {
     name: 'why',
-    label: 'What made you look at this now',
-    hint: 'The part of the operation you already suspect. This is the single most useful thing on the form.',
+    label: 'What would you hand to an AI employee first',
+    hint: 'Missed calls, slow follow-up, scheduling, paperwork, invoices. Whatever is costing you most right now.',
     type: 'textarea',
     required: true,
   },
@@ -133,7 +133,7 @@ export const COMMISSION = {
   fallback: `Would rather just email? ${FIRM.email}.`,
 
   success: {
-    heading: 'That is with the principal.',
-    body: 'You will have a reply inside one business day. If anything about your answers means this is not worth doing, that reply will say so.',
+    heading: 'Thanks. That is with Hamza.',
+    body: 'You will have a reply inside one business day to set a time for your free consult. If we are not the right fit, that reply will say so.',
   },
 } as const;

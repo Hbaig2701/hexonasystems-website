@@ -187,7 +187,7 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
-    background-color: var(--void);
+    background-color: #FFFFFF;
   }
 
   body {
@@ -744,4 +744,227 @@
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* ============================================================================
+   HEXONA v3 — "Ledger" in the brand colours.
+
+   The new site's own layer. Everything is namespaced `hx-` so it cannot collide
+   with the v2 classes still used by the pages that have not been rebuilt yet.
+   Colours come from the logo: deep teal #0B5566 and cyan #35C6D1.
+   ========================================================================= */
+
+:root {
+  --hx-bg:         #FFFFFF;
+  --hx-ink:        #0E1E24;   /* 16.9:1 on white */
+  --hx-ink-2:      #3B4E55;   /*  8.6:1 */
+  --hx-ink-3:      #52656B;   /*  6.0:1 */
+  --hx-teal:       #0B5566;   /*  8.1:1 — text-safe on white */
+  --hx-teal-deep:  #073B47;
+  --hx-teal-ink:   #062B33;
+  --hx-cyan:       #35C6D1;   /*  logo cyan; NOT text-safe on white */
+  --hx-cyan-light: #7FE3EA;   /*  text-safe on teal and deep teal */
+  --hx-cyan-pale:  #B9EEF2;
+  --hx-cyan-soft:  #E9F8F9;
+  --hx-mist:       #E3EEF0;
+  --hx-line:       #D7E6E8;
+  --hx-line-2:     #BFD9DC;
+  --hx-on-teal:    #CFE9EC;   /*  7.0:1 on teal */
+  --hx-ease:       cubic-bezier(0.22, 1, 0.36, 1);
+  --hx-shadow-1:   0 1px 2px rgba(7, 59, 71, 0.06), 0 8px 24px -12px rgba(7, 59, 71, 0.18);
+  --hx-shadow-2:   0 2px 4px rgba(7, 59, 71, 0.06), 0 24px 48px -20px rgba(7, 59, 71, 0.32);
+}
+
+.hx {
+  background: var(--hx-bg);
+  color: var(--hx-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.6;
+}
+.hx ::selection { background: var(--hx-cyan-pale); color: var(--hx-teal-ink); }
+
+.hx-wrap { max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+@media (min-width: 1024px) { .hx-wrap { padding-inline: 32px; } }
+
+.hx-serif { font-family: var(--font-newsreader), Georgia, serif; font-weight: 400; }
+.hx-h1 {
+  font-family: var(--font-newsreader), Georgia, serif; font-weight: 400;
+  font-size: clamp(3rem, 7vw, 5.75rem); line-height: 1.02; letter-spacing: -0.02em;
+}
+.hx-h2 {
+  font-family: var(--font-newsreader), Georgia, serif; font-weight: 400;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem); line-height: 1.08; letter-spacing: -0.01em;
+}
+.hx-h3 { font-family: var(--font-newsreader), Georgia, serif; font-weight: 500; font-size: 1.75rem; line-height: 1.2; }
+.hx-lead { font-size: clamp(1.125rem, 1.6vw, 1.3125rem); line-height: 1.55; color: var(--hx-ink-2); }
+.hx-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--hx-teal); background: var(--hx-cyan-soft); border-radius: 999px; padding: 8px 14px;
+}
+.hx-kicker { font-family: var(--font-inter), system-ui, sans-serif; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hx-teal); }
+
+/* The highlighted phrase in a headline: italic teal over a cyan marker stroke
+   that draws in from the left once the headline has entered. */
+.hx-mark {
+  font-style: italic; color: var(--hx-teal);
+  background-image: linear-gradient(var(--hx-cyan-pale), var(--hx-cyan-pale));
+  background-repeat: no-repeat; background-position: 0 88%; background-size: 100% 0.28em;
+}
+.js .hx-mark { background-size: 0% 0.28em; transition: background-size 900ms var(--hx-ease) 450ms; }
+.js [data-entered='true'] .hx-mark, .js .hx-mark[data-entered='true'] { background-size: 100% 0.28em; }
+
+/* --- Buttons ------------------------------------------------------------ */
+.hx-btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 14px 24px; border-radius: 999px;
+  font-size: 1rem; font-weight: 500; line-height: 1; text-decoration: none; white-space: nowrap;
+  transition: transform 220ms var(--hx-ease), box-shadow 220ms var(--hx-ease), background-color 220ms, color 220ms, border-color 220ms;
+}
+.hx-btn:hover { transform: translateY(-2px); }
+.hx-btn:active { transform: translateY(0); }
+.hx-btn:focus-visible { outline: 2px solid var(--hx-cyan); outline-offset: 3px; }
+.hx-btn-primary { background: var(--hx-teal); color: #FFFFFF; box-shadow: 0 10px 24px -12px rgba(11, 85, 102, 0.7); }
+.hx-btn-primary:hover { background: var(--hx-teal-deep); box-shadow: 0 16px 32px -14px rgba(11, 85, 102, 0.8); }
+.hx-btn-ghost { border: 1px solid var(--hx-line-2); color: var(--hx-ink); background: rgba(255,255,255,0.7); backdrop-filter: blur(6px); }
+.hx-btn-ghost:hover { border-color: var(--hx-teal); color: var(--hx-teal); }
+.hx-btn-cyan { background: var(--hx-cyan); color: var(--hx-teal-ink); font-weight: 600; box-shadow: 0 10px 30px -12px rgba(53, 198, 209, 0.8); }
+.hx-btn-cyan:hover { background: var(--hx-cyan-light); }
+.hx-btn-outline-dark { border: 1px solid #2F6A75; color: #FFFFFF; }
+.hx-btn-outline-dark:hover { border-color: var(--hx-cyan-light); color: var(--hx-cyan-light); }
+.hx-btn .hx-arrow { transition: transform 220ms var(--hx-ease); }
+.hx-btn:hover .hx-arrow { transform: translateX(3px); }
+
+.hx-link { color: var(--hx-teal); font-weight: 500; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 300ms var(--hx-ease); }
+.hx-link:hover { background-size: 100% 1px; }
+
+/* --- Cards with depth -------------------------------------------------- */
+.hx-card {
+  position: relative; border-radius: 20px; padding: 32px;
+  transition: transform 400ms var(--hx-ease), box-shadow 400ms var(--hx-ease), background-color 300ms;
+  transform-style: preserve-3d;
+}
+.hx-card-tilt { will-change: transform; transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px)); }
+.hx-card-tilt:hover { --lift: -6px; box-shadow: var(--hx-shadow-2); }
+.hx-card-tilt::after {
+  /* The light that follows the pointer across the card's face. */
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.65), transparent 45%);
+  opacity: 0; transition: opacity 300ms;
+}
+.hx-card-tilt:hover::after { opacity: 1; }
+
+.hx-pill {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border-radius: 999px;
+  background: var(--hx-cyan-soft); color: var(--hx-teal); font-weight: 500; text-decoration: none;
+  transition: background-color 220ms, transform 220ms var(--hx-ease), box-shadow 220ms;
+}
+.hx-pill:hover { background: var(--hx-cyan-pale); transform: translateY(-2px); box-shadow: var(--hx-shadow-1); }
+
+/* --- Entrances, stronger than v2's for the new pages ------------------- */
+.js .hx [data-enter='up'] { opacity: 0; transform: translateY(32px); filter: blur(6px);
+  transition: opacity 900ms var(--hx-ease), transform 900ms var(--hx-ease), filter 900ms var(--hx-ease);
+  transition-delay: var(--enter-delay, 0ms); }
+.js .hx [data-enter='scale'] { opacity: 0; transform: scale(0.92) translateY(20px);
+  transition: opacity 1100ms var(--hx-ease), transform 1100ms var(--hx-ease); transition-delay: var(--enter-delay, 0ms); }
+.js .hx [data-enter][data-entered='true'] { opacity: 1; transform: none; filter: none; }
+
+/* --- The hero ---------------------------------------------------------- */
+.hx-hero { position: relative; isolation: isolate; overflow: clip; }
+.hx-hero-canvas { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; display: block; }
+.hx-hero::after {
+  /* Fades the lattice out under the copy column so the headline always sits on white. */
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(70% 90% at 22% 50%, rgba(255,255,255,0.92) 30%, rgba(255,255,255,0) 72%),
+              linear-gradient(to bottom, rgba(255,255,255,0) 70%, #FFFFFF 100%);
+}
+
+/* On a phone the copy spans the full width, so the lattice is veiled harder
+   behind it and only shows clearly below the fold of the hero. */
+@media (max-width: 768px) {
+  .hx-hero::after {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.8) 62%, rgba(255,255,255,0.2) 85%, #FFFFFF 100%);
+  }
+}
+
+.hx-float { animation: hx-float 9s ease-in-out infinite; }
+@keyframes hx-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(1.2deg); } }
+
+.hx-mark-3d { transform-style: preserve-3d; transition: transform 600ms var(--hx-ease);
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+.hx-mark-shadow { filter: drop-shadow(0 30px 40px rgba(11, 85, 102, 0.28)) drop-shadow(0 8px 12px rgba(53, 198, 209, 0.25)); }
+
+/* Rings that draw themselves on load. pathLength=1 on each path makes the dash maths unit-free. */
+.js .hx-draw path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hx-draw 1800ms var(--hx-ease) forwards; }
+.js .hx-draw path:nth-child(2) { animation-delay: 250ms; }
+.js .hx-draw path:nth-child(3) { animation-delay: 500ms; }
+/* The last frame drops the dash entirely: while a dash pattern is set, the
+   point where a ring's path starts and ends is two butt caps instead of a
+   mitred corner, which shows as a notch in the cyan ring's right corner. */
+@keyframes hx-draw {
+  99% { stroke-dashoffset: 0; stroke-dasharray: 1; }
+  100% { stroke-dashoffset: 0; stroke-dasharray: none; }
+}
+.hx-draw .hx-weave { stroke-dasharray: 0.34 0.66 !important; stroke-dashoffset: -0.125 !important; }
+.js .hx-draw .hx-weave { opacity: 0; animation: hx-fade-in 400ms ease 1600ms forwards !important; }
+@keyframes hx-fade-in { to { opacity: 1; } }
+
+/* Orbiting dots around the hero mark: the "AI employees" circling the business. */
+.hx-orbit { position: absolute; inset: -6%; border-radius: 50%; border: 1px dashed rgba(11, 85, 102, 0.18); animation: hx-spin 40s linear infinite; }
+.hx-orbit-2 { inset: 8%; animation-duration: 28s; animation-direction: reverse; border-color: rgba(53, 198, 209, 0.3); }
+.hx-orbit span { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--hx-cyan); box-shadow: 0 0 0 6px rgba(53, 198, 209, 0.18); }
+.hx-orbit-2 span { background: var(--hx-teal); box-shadow: 0 0 0 6px rgba(11, 85, 102, 0.12); width: 9px; height: 9px; }
+@keyframes hx-spin { to { transform: rotate(360deg); } }
+
+/* --- Results band ------------------------------------------------------ */
+.hx-band { background: var(--hx-teal); color: #FFFFFF; position: relative; overflow: clip; }
+.hx-band::before { content: ''; position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0l28 16v32L28 64 0 48V16zM28 64v33' fill='none' stroke='%237FE3EA' stroke-opacity='.12'/%3E%3C/svg%3E");
+  animation: hx-pan 60s linear infinite; }
+@keyframes hx-pan { to { background-position: 560px 970px; } }
+.hx-figure { font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(2rem, 3.4vw, 2.6rem); color: var(--hx-cyan-light); line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+/* --- Steps line that draws as you scroll ------------------------------ */
+.hx-steps-line { position: absolute; left: 0; right: 0; top: 24px; height: 2px; background: var(--hx-line-2); transform-origin: left; }
+.js .hx-steps-line { transform: scaleX(0); transition: transform 1600ms var(--hx-ease) 300ms; }
+.js [data-entered='true'] .hx-steps-line { transform: scaleX(1); }
+
+/* --- Little animated graphics on the role cards ------------------------ */
+.hx-wave { display: flex; align-items: end; gap: 3px; height: 22px; }
+.hx-wave i { width: 3px; border-radius: 2px; background: currentColor; animation: hx-wave 1.2s ease-in-out infinite; }
+.hx-wave i:nth-child(2) { animation-delay: .15s } .hx-wave i:nth-child(3) { animation-delay: .3s }
+.hx-wave i:nth-child(4) { animation-delay: .45s } .hx-wave i:nth-child(5) { animation-delay: .6s }
+@keyframes hx-wave { 0%, 100% { height: 5px; } 50% { height: 22px; } }
+.hx-ping { position: relative; width: 10px; height: 10px; border-radius: 50%; background: var(--hx-cyan); }
+.hx-ping::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--hx-cyan); animation: hx-ping 2s cubic-bezier(0, 0, .2, 1) infinite; }
+@keyframes hx-ping { 75%, 100% { transform: scale(2.8); opacity: 0; } }
+
+/* --- Marquee of industries --------------------------------------------- */
+.hx-marquee { overflow: hidden; mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.hx-marquee-track { display: flex; gap: 12px; width: max-content; animation: hx-marquee 50s linear infinite; }
+.hx-marquee:hover .hx-marquee-track { animation-play-state: paused; }
+@keyframes hx-marquee { to { transform: translateX(-50%); } }
+
+/* --- Header ------------------------------------------------------------ */
+.hx-header { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background-color 300ms, box-shadow 300ms, backdrop-filter 300ms; }
+.hx-header[data-scrolled='true'] { background: rgba(255, 255, 255, 0.82); backdrop-filter: saturate(1.4) blur(14px); box-shadow: 0 1px 0 var(--hx-line); }
+.hx-nav a { position: relative; color: var(--hx-ink-2); text-decoration: none; font-size: 0.9375rem; padding: 10px 2px; }
+.hx-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 2px; border-radius: 2px; background: var(--hx-cyan); transform: scaleX(0); transform-origin: left; transition: transform 300ms var(--hx-ease); }
+.hx-nav a:hover, .hx-nav a[aria-current='page'] { color: var(--hx-ink); }
+.hx-nav a:hover::after, .hx-nav a[aria-current='page']::after { transform: scaleX(1); }
+
+.hx-prose p { margin: 0 0 1.1em; color: var(--hx-ink-2); font-size: 1.0625rem; line-height: 1.7; }
+.hx-prose h2 { margin: 2em 0 0.6em; }
+
+.hx details > summary { list-style: none; cursor: pointer; }
+.hx details > summary::-webkit-details-marker { display: none; }
+.hx details .hx-plus { transition: transform 300ms var(--hx-ease); }
+.hx details[open] .hx-plus { transform: rotate(45deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hx-float, .hx-orbit, .hx-band::before, .hx-marquee-track, .hx-wave i, .hx-ping::after { animation: none !important; }
+  .js .hx [data-enter] { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .js .hx-draw path { stroke-dashoffset: 0; animation: none; }
+  .js .hx-draw .hx-weave { opacity: 1; }
+  .hx-card-tilt { transform: none !important; }
 }

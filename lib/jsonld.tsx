@@ -1,6 +1,5 @@
 import { SITE, absolute } from './site';
 import {
-  DIAGNOSTIC,
   ENTITY_SENTENCE,
   FIRM,
   ORIGIN,
@@ -8,7 +7,6 @@ import {
   TEAM,
   verifiedProfileUrls,
 } from '@/content/firm';
-import { IMPLEMENTATION } from '@/content/diagnostic';
 
 /**
  * STRUCTURED DATA — AI SEO Developer Guide, Ticket 2.
@@ -112,12 +110,14 @@ export function organizationLd() {
       { '@type': 'Country', name: 'United States' },
     ],
     knowsAbout: [
-      'Revenue leakage',
-      'Operational diligence',
-      'Process automation',
-      'CRM implementation',
+      'AI employees',
+      'AI receptionists',
+      'AI answering services',
+      'Sales follow-up automation',
+      'Business process automation',
+      'Enterprise value',
       'Lead response time',
-      'Revenue operations',
+      'CRM implementation',
     ],
     // Ticket 9. Empty until profiles exist — see PROFILES in content/firm.ts.
     /* ⚠️ THE ORGANISATION'S OWN PROFILES, NOT THE PRINCIPAL'S. A personal
@@ -148,7 +148,18 @@ export function principalLd() {
     // The first bio line is the plain declarative one; the rest argue.
     description: PRINCIPAL.bio[0],
     // Only the principal's own profiles, never the firm's.
-    sameAs: verifiedProfileUrls().filter((u) => u.includes('/in/')),
+    image: absolute('/images/hamza-baig.jpg'),
+    url: absolute('/firm'),
+    knowsAbout: ['AI automation', 'AI receptionists', 'GoHighLevel', 'Business process automation', 'AI agents'],
+    sameAs: [
+      ...verifiedProfileUrls().filter((u) => u.includes('/in/')),
+      'https://www.youtube.com/@hamza_automates',
+      'https://www.instagram.com/hamza_automates/',
+      'https://x.com/hamza_automates',
+      'https://www.tiktok.com/@hamza_automates',
+      'https://www.skool.com/automate',
+      'https://hamzaautomates.com/gohighlevel/hamza-baig',
+    ],
   });
 }
 
@@ -165,68 +176,24 @@ export function webSiteLd() {
 }
 
 /**
- * Ticket 2b — Service, one per thing the firm sells.
- *
- * `provider` is a REFERENCE, not a copy. That reference is the edge joining the
- * service to the firm in the graph; inlining the organization here would produce
- * a second, competing description of the same company.
+ * A Service node for each AI employee and each industry page (v3).
+ * Description is the page's own answer sentence, so schema and visible text agree.
  */
-export function diagnosticServiceLd() {
+export function aiServiceLd(opts: { path: string; name: string; serviceType: string; description: string; audience?: string }) {
   return prune({
     '@context': 'https://schema.org',
     '@type': 'Service',
-    '@id': absolute('/diagnostic') + '#service',
-    name: DIAGNOSTIC.name,
-    serviceType: 'Revenue leakage diagnostic',
+    '@id': absolute(opts.path) + '#service',
+    name: opts.name,
+    serviceType: opts.serviceType,
     provider: orgRef,
-    url: absolute('/diagnostic'),
-    description:
-      'A fixed-fee diagnostic that traces every path a lead can take through an operation, prices each leak against the company’s own numbers, and ranks them by recoverable dollars. Delivered as a written report, a ninety-minute readout, and a sequenced build plan.',
+    url: absolute(opts.path),
+    description: opts.description,
+    audience: opts.audience ? { '@type': 'BusinessAudience', name: opts.audience } : undefined,
     areaServed: [
-      { '@type': 'Country', name: 'Canada' },
       { '@type': 'Country', name: 'United States' },
-    ],
-    audience: {
-      '@type': 'BusinessAudience',
-      name: `Operating companies, ${FIRM.operatingRange}`,
-    },
-    // $5,000 is published on the page, so it is publishable here. The term
-    // length is the honest one: ten business days FROM SYSTEMS ACCESS, which is
-    // the anchor content/firm.ts insists on everywhere.
-    offers: {
-      '@type': 'Offer',
-      price: String(DIAGNOSTIC.price),
-      priceCurrency: DIAGNOSTIC.currency,
-      availability: 'https://schema.org/InStock',
-      description: `${DIAGNOSTIC.duration}. Credited in full against implementation, if you proceed.`,
-    },
-  });
-}
-
-export function implementationServiceLd() {
-  const typical = IMPLEMENTATION.terms.find((t) => t.term === 'Typical total')?.value ?? '';
-  return prune({
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': absolute('/implementation') + '#service',
-    name: 'Implementation',
-    serviceType: 'Process automation and systems implementation',
-    provider: orgRef,
-    url: absolute('/implementation'),
-    description:
-      'Closing the leaks the diagnostic priced, in the order the report ranks them: process automation, CRM rebuilds, custom software, reporting, routing and the operational ownership around them. Fixed price per phase, and recovery measured after each phase in the system the leak was found in.',
-    areaServed: [
       { '@type': 'Country', name: 'Canada' },
-      { '@type': 'Country', name: 'United States' },
     ],
-    // A range, not a price, because a range is what the page publishes. An
-    // invented point price here would contradict the one honest thing the
-    // pricing says: nobody knows the total before the diagnostic.
-    offers: prune({
-      '@type': 'Offer',
-      priceCurrency: DIAGNOSTIC.currency,
-      description: typical ? `${typical} across all phases, priced one phase at a time.` : '',
-    }),
   });
 }
 
@@ -303,26 +270,30 @@ export function blogPostingLd(opts: {
   datePublished: string;
   dateModified?: string;
   wordCount?: number;
+  section?: string;
+  news?: boolean;
+  keywords?: string[];
 }) {
-  const url = absolute(`/insights/${opts.slug}`);
+  const url = absolute(`/blog/${opts.slug}`);
   return prune({
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': opts.news ? 'NewsArticle' : 'BlogPosting',
     '@id': url + '#post',
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     headline: opts.headline,
     description: opts.description,
     url,
+    image: [absolute(`/blog/${opts.slug}/opengraph-image`)],
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
     wordCount: opts.wordCount,
-    inLanguage: 'en-CA',
+    articleSection: opts.section,
+    keywords: opts.keywords && opts.keywords.length ? opts.keywords.join(', ') : undefined,
+    inLanguage: 'en-US',
     isPartOf: { '@id': WEBSITE_ID },
     publisher: orgRef,
-    // The principal writes them and the firm publishes them. Both are true and
-    // the distinction is the one a reader would draw.
-    author: { '@id': PRINCIPAL_ID },
-    about: orgRef,
+    // The principal writes them and the firm publishes them.
+    author: { '@type': 'Person', '@id': PRINCIPAL_ID, name: PRINCIPAL.name, url: absolute('/firm') },
   });
 }
 

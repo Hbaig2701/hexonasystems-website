@@ -1,7 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
 import { allPublished } from '@/content/evidence';
-import { publishedPosts } from '@/content/insights';
+import { ARTICLES, CATEGORIES, articlesIn } from '@/content/blog';
+import { employeesWithPages } from '@/content/employees';
+import { industriesWithPages } from '@/content/industries';
 
 /**
  * sitemap.xml — AI SEO Developer Guide, Ticket 3 and Ticket 6.
@@ -23,10 +25,15 @@ import { publishedPosts } from '@/content/insights';
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { path: '/', priority: 1 },
-    { path: '/diagnostic', priority: 0.9 },
-    { path: '/implementation', priority: 0.8 },
+    { path: '/ai-employees', priority: 0.9 },
+    { path: '/industries', priority: 0.8 },
+    { path: '/book', priority: 0.8 },
+    { path: '/score', priority: 0.8 },
+    ...employeesWithPages().map((e) => ({ path: `/ai-employees/${e.slug}`, priority: 0.9 })),
+    ...industriesWithPages().map((i) => ({ path: `/industries/${i.slug}`, priority: 0.8 })),
     { path: '/evidence', priority: 0.7 },
-    { path: '/insights', priority: 0.7 },
+    { path: '/blog', priority: 0.8 },
+    ...CATEGORIES.filter((c) => articlesIn(c.id).length > 0).map((c) => ({ path: `/blog/category/${c.id}`, priority: 0.5 })),
     { path: '/firm', priority: 0.6 },
     { path: '/terms', priority: 0.2 },
     { path: '/privacy', priority: 0.2 },
@@ -43,13 +50,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       priority: 0.6,
     })),
-    ...publishedPosts().map((post) => ({
-      url: `${SITE.url}/insights/${post.slug}`,
-      // A real date from the post itself. `new Date()` on every build tells
-      // crawlers everything changed on every deploy, which trains them to
-      // ignore the field entirely.
-      lastModified: new Date(`${post.dateModified ?? post.datePublished}T00:00:00Z`),
-      priority: 0.5,
+    ...ARTICLES.map((a) => ({
+      url: `${SITE.url}/blog/${a.slug}`,
+      lastModified: new Date(`${a.dateModified}T00:00:00Z`),
+      priority: a.category === 'news' ? 0.6 : 0.7,
+      images: [`${SITE.url}/blog/${a.slug}/opengraph-image`],
     })),
   ];
 }

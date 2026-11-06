@@ -1,62 +1,79 @@
 import Link from 'next/link';
-import { Wordmark } from './Wordmark';
+import { Wordmark } from '@/components/hx/Logo';
 import { FIRM } from '@/content/firm';
 
 /**
- * Footer — §3.5. Always VOID, whatever surface precedes it.
+ * The closing block and footer, on every page: one call to action, repeated
+ * the same way everywhere, then the links.
  *
- * Three columns desktop, stacked mobile. §10 removes what normally accumulates
- * down here: no newsletter field, no social icons, no "back to top", no chat
- * widget. An email address is the contact mechanism.
+ * ⚠️ Every `href: '…'` literal here is checked by `npm run check:seo`.
  */
-
-/** Matches the primary nav. `/method` removed — the route does not exist and
- *  this link 404'd on every page. See the note in Header.tsx. */
-const SITE_LINKS = [
-  { label: 'Diagnostic', href: '/diagnostic' },
-  { label: 'Implementation', href: '/implementation' },
-  { label: 'Evidence', href: '/evidence' },
-  { label: 'Insights', href: '/insights' },
-  { label: 'Firm', href: '/firm' },
+const EXPLORE = [
+  { label: 'AI Employees', href: '/ai-employees' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Case Studies', href: '/evidence' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'About', href: '/firm' },
+  { label: 'Value Score', href: '/score' },
 ];
 
-/**
- * §3.5: if the Institute stays under this brand at all, ONE unstyled text line
- * pointing off-domain. §1.2 moves it to a separate property because "largest
- * community on Skool" reads creator, not firm. Set the URL to surface it.
- */
-const INSTITUTE_URL = '';
+const LEGAL = [
+  { label: 'Privacy', href: '/privacy' },
+  { label: 'Terms', href: '/terms' },
+];
 
 export function Footer() {
   return (
-    <footer data-surface="void" className="border-t border-line">
-      <div className="shell py-16">
-        <div className="grid gap-12 md:grid-cols-3">
-          <div className="flex flex-col gap-5">
-            <Wordmark className="text-brand" />
-            <p className="t-small max-w-[34ch] text-fg-2">{FIRM.positioning}</p>
-            <address className="t-small flex flex-col gap-1 not-italic text-fg-3">
-              {/* The principal was named only in the old Standing section. A
-                  firm selling diligence does not get to be anonymous, so the
-                  name moved here rather than off the site. */}
-              <span className="text-fg-2">{FIRM.principal}</span>
+    <footer className="hx" style={{ background: 'var(--hx-teal-deep)', color: '#FFFFFF' }}>
+      <div className="hx-wrap grid gap-10 py-24 md:grid-cols-[1.4fr_1fr] md:items-end md:py-28">
+        <div data-enter="up">
+          <h2 className="hx-h2 m-0" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.05 }}>
+            Find out what&rsquo;s holding your value{' '}
+            <em className="italic" style={{ color: 'var(--hx-cyan-light)' }}>
+              back.
+            </em>
+          </h2>
+          <p className="mt-6 max-w-[38rem] text-[18px] leading-relaxed" style={{ color: 'var(--hx-on-teal)' }}>
+            A free one-hour consult. We&rsquo;ll look at your numbers and tell you which AI employee
+            would move them first. Straight answers, no sales script.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3 md:justify-end" data-enter="up" style={{ ['--enter-delay' as string]: '120ms' }}>
+          <Link href="/book" className="hx-btn hx-btn-cyan">
+            Book a free consult <span className="hx-arrow" aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </div>
+
+      <div className="border-t" style={{ borderColor: '#1A5361' }}>
+        <div className="hx-wrap grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div className="flex flex-col gap-4">
+            <Wordmark tone="light" />
+            <p className="m-0 max-w-[34ch] text-[15px]" style={{ color: 'var(--hx-on-teal)' }}>
+              {FIRM.positioning}
+            </p>
+            <address className="flex flex-col gap-1 text-[14px] not-italic" style={{ color: '#A9CDD2' }}>
               <span>{FIRM.address}</span>
+              <span>Serving the United States and Canada</span>
               {FIRM.phone && (
-                <a href={`tel:${FIRM.phone.replace(/\s/g, '')}`} className="link">
+                <a href={`tel:${FIRM.phone.replace(/\s/g, '')}`} style={{ color: '#FFFFFF' }}>
                   {FIRM.phone}
                 </a>
               )}
-              <a href={`mailto:${FIRM.email}`} className="link">
+              <a href={`mailto:${FIRM.email}`} style={{ color: '#FFFFFF' }}>
                 {FIRM.email}
               </a>
             </address>
           </div>
 
           <nav aria-label="Footer">
-            <ul className="flex flex-col gap-3">
-              {SITE_LINKS.map((l) => (
+            <p className="hx-kicker m-0 mb-4" style={{ color: 'var(--hx-cyan-light)' }}>
+              Explore
+            </p>
+            <ul className="m-0 flex list-none flex-col gap-3 p-0">
+              {EXPLORE.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="t-small text-fg-2 hover:text-fg">
+                  <Link href={l.href} className="text-[15px] no-underline hover:underline" style={{ color: 'var(--hx-on-teal)' }}>
                     {l.label}
                   </Link>
                 </li>
@@ -64,31 +81,31 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="flex flex-col gap-3">
-            <Link href="/terms" className="t-small text-fg-2 hover:text-fg">
-              Terms of Service
-            </Link>
-            <Link href="/privacy" className="t-small text-fg-2 hover:text-fg">
-              Privacy Policy
-            </Link>
-            {INSTITUTE_URL && (
-              <a
-                href={INSTITUTE_URL}
-                className="t-small mt-4 text-fg-3 hover:text-fg-2"
-                rel="noopener noreferrer"
-              >
-                Automation Institute →
-              </a>
-            )}
+          <div>
+            <p className="hx-kicker m-0 mb-4" style={{ color: 'var(--hx-cyan-light)' }}>
+              Company
+            </p>
+            <ul className="m-0 flex list-none flex-col gap-3 p-0">
+              <li>
+                <Link href="/book" className="text-[15px] no-underline hover:underline" style={{ color: 'var(--hx-on-teal)' }}>
+                  Book a free consult
+                </Link>
+              </li>
+              {LEGAL.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-[15px] no-underline hover:underline" style={{ color: 'var(--hx-on-teal)' }}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-line">
-        <div className="shell py-5">
-          <p className="t-label text-fg-3">
-            © Hexona Systems {new Date().getFullYear()}
-          </p>
+      <div className="border-t" style={{ borderColor: '#1A5361' }}>
+        <div className="hx-wrap py-6 text-[13px]" style={{ color: '#A9CDD2' }}>
+          © Hexona Systems {new Date().getFullYear()}
         </div>
       </div>
     </footer>

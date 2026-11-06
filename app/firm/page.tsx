@@ -1,349 +1,243 @@
 import type { Metadata } from 'next';
-import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
-import { SectionMarker } from '@/components/layout/SectionMarker';
-import { FigureBlock } from '@/components/ui/FigureBlock';
-import { Button, TextLink } from '@/components/ui/Button';
-import {
-  AWARDS,
-  COMMITMENTS,
-  DIAGNOSTIC,
-  ENTITY_SENTENCE,
-  KEY_FACTS,
-  ORIGIN,
-  SEGMENTS,
-  SERVICES,
-  TEAM,
-} from '@/content/firm';
-import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
-import { Faqs } from '@/components/sections/Faqs';
+import { AWARDS, COMMITMENTS, ENTITY_SENTENCE, KEY_FACTS, ORIGIN, PRINCIPAL, TEAM } from '@/content/firm';
+import { EMPLOYEES } from '@/content/employees';
 import { FIRM_FAQS } from '@/content/faqs';
-import { RecordTable } from '@/components/ui/RecordTable';
+import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
+import { PageHero } from '@/components/hx/PageHero';
+import { CountUp, PointerTilt, Tilt } from '@/components/hx/Interactive';
+import { LogoMark } from '@/components/hx/Logo';
+import { CtaPair, FaqList, RoleCard, SectionHead, delay } from '@/components/hx/Blocks';
 
 /**
- * /firm — the About page.
+ * /firm — About. Kept at this URL because it already ranks and is linked.
  *
- * Built from the old Framer About page's SUBSTANCE and none of its register.
- * That page ran "A Tale of Inevitability", "Objective Dominance" and "Take Your
- * First Step to Liberation" over gradient cards. The facts underneath were
- * good; the styling was doing work the facts could do on their own.
- *
- * WHAT WAS DROPPED, and why. The old page carried a competitor table: "Other
- * Agencies: Riding the AI Wave / Unremarkable Leadership" against "Hexona:
- * Building Since Before ChatGPT". The comparison is fair and the sneer is not,
- * and a firm selling diligence to operating partners does not win by naming an
- * opponent it will not name. The one fact that table existed to deliver, that
- * this firm predates the tools, is now a date in the first paragraph, where it
- * is stronger and cannot be argued with.
- *
- * Grounds follow the homepage rule: section 01 is PAPER and is the fixed
- * point, and the close shares the footer's void so the page goes quiet into it.
+ * ⚠️ ENTITY_SENTENCE must render in this file (Ticket 5, check:seo). It is the
+ * page an assistant is most likely to fetch when asked what Hexona is.
  */
 
 export const metadata: Metadata = {
-  /**
-   * `absolute` stops the layout template appending " · Hexona Systems" to a
-   * title that already ends in it. Without it this rendered as
-   * "The firm: Hexona Systems · Hexona Systems", which was live in Google's results.
-   *
-   * The string itself is unchanged — this only stops it being said twice.
-   */
-  title: { absolute: 'The firm: Hexona Systems' },
-  description: `${ENTITY_SENTENCE} Who runs the firm, and what it holds to.`,
+  title: { absolute: 'About Hexona Systems' },
+  description: ENTITY_SENTENCE,
   alternates: { canonical: '/firm' },
 };
 
+const FIGURES = [
+  { value: '2021', label: 'Building automation since' },
+  { value: '1,500+', label: 'Businesses served' },
+  { value: '1,000+', label: "Agencies run on Hexona's AI and systems" },
+  { value: '45,000+', label: 'Community members trained' },
+];
+
 export default function FirmPage() {
+  const trail = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/firm' },
+  ];
   return (
-    <>
-      <JsonLd
-        data={breadcrumbLd([
-          { name: 'Home', path: '/' },
-          { name: 'The firm', path: '/firm' },
-        ])}
-      />
-      {/* The same array drives the visible FAQ block below, so the marked-up
-          answers and the on-page answers are one object. */}
+    <div className="hx">
+      <JsonLd data={breadcrumbLd(trail)} />
+      {/* The same array drives the visible FAQ below, so schema and page match word for word. */}
       <JsonLd data={faqPageLd(FIRM_FAQS, '/firm')} />
 
-      {/* --- Opening. Void, like the homepage hero. ------------------------ */}
-      <Surface surface="void" rule={false} as="header" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/9]">
-              <p className="t-label mb-14 text-fg-3">
-                <span className="text-brand">Hexona Systems</span>
-                <span className="px-1.5 text-brand opacity-50">·</span> The firm
-              </p>
-              <h1 className="t-display-1 mb-12">
-                We were doing this before
-                <br className="hidden sm:inline" />
-                there was a name for it.
-              </h1>
-              <p className="t-lead mb-8 max-w-[56ch] text-fg-2">
-                Hexona has paved the way for AI automation agencies since establishing in{' '}
-                {ORIGIN.since}, long before this AI era began.
-              </p>
+      <PageHero
+        trail={trail}
+        eyebrow="About Hexona"
+        title={
+          <>
+            We were doing this before there was a <span className="hx-mark">name for it.</span>
+          </>
+        }
+        answer={`Hexona has been putting automation into businesses since ${ORIGIN.since}, long before the AI era began. Today we build and run AI employees for service businesses, and we only build the ones that make a business worth more.`}
+        aside={
+          <div className="relative aspect-square">
+            <div className="hx-orbit" aria-hidden="true">
+              <span style={{ top: '6%', left: '50%' }} />
+              <span style={{ bottom: '18%', left: '6%' }} />
+            </div>
+            <div className="hx-orbit hx-orbit-2" aria-hidden="true">
+              <span style={{ top: '-1%', left: '30%' }} />
+            </div>
+            <PointerTilt className="absolute inset-[20%]">
+              <div className="hx-float h-full w-full">
+                <LogoMark size="100%" draw className="hx-mark-shadow h-full w-full" />
+              </div>
+            </PointerTilt>
+          </div>
+        }
+      >
+        <CtaPair secondary={{ label: 'See our results', href: '/evidence' }} />
+        {/* The definition, third person and verbatim. */}
+        <p className="m-0 mt-8 max-w-[44rem] text-[14px] leading-relaxed" style={{ color: 'var(--hx-ink-3)' }}>
+          {ENTITY_SENTENCE}
+        </p>
+      </PageHero>
 
-              {/* The entity definition, third person and verbatim. Same constant
-                  the homepage hero and the Organization schema use, so the four
-                  placements cannot drift; check:seo fails if they do. */}
-              <p className="t-small mt-8 max-w-[76ch] text-fg-3">{ENTITY_SENTENCE}</p>
+      <section aria-label="Hexona in numbers" className="hx-band">
+        <div className="hx-wrap relative grid gap-8 py-14 sm:grid-cols-2 lg:grid-cols-4">
+          {FIGURES.map((f, i) => (
+            <div key={f.label} data-enter="up" style={delay(i * 90)}>
+              <div className="hx-figure">{f.value === '2021' ? f.value : <CountUp value={f.value} />}</div>
+              <div className="mt-1 text-[14px]" style={{ color: 'var(--hx-on-teal)' }}>
+                {f.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-              {/* TICKET 5 — the entity sentence, first paragraph of /firm, in
-                  selectable body text. Identical to the homepage hero and to the
-                  Organization schema `description`. This is the page an assistant
-                  is most likely to fetch when asked what Hexona is, so the
-                  definition belongs above the origin story rather than after
-                  it. */}
-              <p className="t-small max-w-[76ch] text-fg-3">{ENTITY_SENTENCE}</p>
+      <section aria-labelledby="origin" className="hx-wrap py-28">
+        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+          <div data-enter="up">
+            <p className="hx-kicker m-0 mb-4">Where we came from</p>
+            <h2 id="origin" className="hx-h2 m-0">
+              Built around the problems, <span className="hx-mark">not the tools.</span>
+            </h2>
+            <div className="hx-prose mt-8">
+              {ORIGIN.body.map((para) => (
+                <p key={para.slice(0, 24)}>{para}</p>
+              ))}
             </div>
           </div>
+          <div data-enter="up" style={delay(120)}>
+            <Tilt max={3} className="hx-card" style={{ background: 'var(--hx-cyan-soft)' }}>
+              <p className="hx-kicker m-0">From the founder</p>
+              <p className="hx-h3 m-0 mt-3">{PRINCIPAL.name}</p>
+              <div className="hx-prose mt-5">
+                {PRINCIPAL.bio.map((para) => (
+                  <p key={para.slice(0, 24)} style={{ fontSize: 16 }}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </Tilt>
+          </div>
         </div>
-      </Surface>
+      </section>
 
-      {/* --- 01 What the firm does. PAPER. --------------------------------
-          Six services, each stating what is delivered and what changes. The
-          SOP wants a service list an extractor can walk; this is the same six
-          the implementation page describes at length, stated once as facts. */}
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker index="01" label="What Hexona Systems does" className="mb-14" />
-          <div className="col-12 gap-y-16">
-            <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">Six services.</h2>
-              <p className="t-body max-w-[36ch] text-fg-2">
-                One finds the money. The other five close the gaps it finds, in the order the
-                report puts them in.
-              </p>
-            </div>
-            <dl className="[grid-column:6/13] m-0 border-t border-line">
-              {SERVICES.map((sv) => (
-                <div key={sv.name} className="border-b border-line py-7">
-                  <dt className="t-body mb-2 text-fg">{sv.name}</dt>
-                  <dd className="t-small m-0 max-w-[64ch] text-fg-2">
-                    {sv.delivered} {sv.outcome}
+      <section aria-labelledby="what" style={{ background: 'var(--hx-cyan-soft)' }}>
+        <div className="hx-wrap py-28">
+          <SectionHead
+            id="what"
+            kicker="What we build"
+            title="AI employees, each one tied to a number buyers pay for."
+            text="We build them into the tools you already use, run them for you, and report what they changed every month."
+          />
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {EMPLOYEES.map((e, i) => (
+              <RoleCard key={e.slug} employee={e} index={i + 1} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="team" className="hx-wrap py-28">
+        <SectionHead id="team" kicker="The team" title="The people who do the work." />
+        <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {TEAM.map((person, i) => (
+            <li key={person.name} data-enter="up" style={delay((i % 3) * 90)}>
+              <Tilt max={4} className="hx-card flex items-center gap-4" style={{ background: '#FFFFFF', border: '1px solid var(--hx-line)', boxShadow: 'var(--hx-shadow-1)', padding: 24 }}>
+                <span
+                  className="hx-serif flex h-14 w-14 flex-none items-center justify-center rounded-2xl text-[20px]"
+                  style={{ background: i % 2 ? 'var(--hx-teal)' : 'var(--hx-cyan-pale)', color: i % 2 ? '#FFFFFF' : 'var(--hx-teal-deep)' }}
+                  aria-hidden="true"
+                >
+                  {person.name
+                    .split(' ')
+                    .map((w) => w[0])
+                    .join('')}
+                </span>
+                <span>
+                  <span className="block text-[18px] font-semibold">{person.name}</span>
+                  <span className="block text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
+                    {person.role}
+                  </span>
+                </span>
+              </Tilt>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="commit" className="hx-band">
+        <div className="hx-wrap relative py-24">
+          <h2 id="commit" className="hx-h2 m-0 max-w-[20ch]" style={{ color: '#FFFFFF' }} data-enter="up">
+            Four commitments you can hold us to.
+          </h2>
+          <dl className="m-0 mt-12 grid gap-4 md:grid-cols-2">
+            {COMMITMENTS.map((c, i) => (
+              <div
+                key={c.term}
+                data-enter="up"
+                style={{ ...delay(i * 90), background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(127,227,234,0.2)' }}
+                className="rounded-2xl p-7"
+              >
+                <dt className="text-[19px] font-semibold" style={{ color: '#FFFFFF' }}>
+                  {c.term}
+                </dt>
+                <dd className="m-0 mt-2 text-[16px] leading-relaxed" style={{ color: 'var(--hx-on-teal)' }}>
+                  {c.detail}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section aria-labelledby="awards" className="hx-wrap py-28">
+        <div className="grid gap-14 lg:grid-cols-2">
+          <div>
+            <SectionHead id="awards" kicker="Recognition" title="Awards and nominations." />
+            <ul className="m-0 mt-10 flex list-none flex-col gap-3 p-0">
+              {AWARDS.map((a, i) => (
+                <li key={a.title + a.year} data-enter="up" style={delay(i * 70)} className="flex items-center gap-5 rounded-2xl p-5">
+                  <span className="hx-serif text-[22px]" style={{ color: 'var(--hx-cyan)' }}>
+                    {a.year}
+                  </span>
+                  <span>
+                    <span className="block text-[17px] font-semibold">
+                      {a.href ? (
+                        <a href={a.href} className="hx-link" rel="noopener noreferrer">
+                          {a.title}
+                        </a>
+                      ) : (
+                        a.title
+                      )}
+                    </span>
+                    <span className="block text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
+                      {a.detail}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <SectionHead kicker="Key facts" title="Hexona at a glance." />
+            <dl className="m-0 mt-10 overflow-hidden rounded-3xl" style={{ border: '1px solid var(--hx-line)' }} data-enter="up">
+              {KEY_FACTS.map((f, i) => (
+                <div key={f.field} className="grid gap-1 px-6 py-4 sm:grid-cols-[0.8fr_1.2fr]" style={{ background: i % 2 ? '#FFFFFF' : 'var(--hx-cyan-soft)' }}>
+                  <dt className="text-[15px] font-semibold">{f.field}</dt>
+                  <dd className="m-0 text-[15px]" style={{ color: 'var(--hx-ink-2)' }}>
+                    {f.value}
                   </dd>
                 </div>
               ))}
             </dl>
           </div>
         </div>
-      </Surface>
+      </section>
 
-      {/* --- 02 Who it is for. VOID. --------------------------------------
-          A taxonomy rather than marketing copy: named revenue band, named
-          industries, named buyer, and who it is explicitly not for. */}
-      <Surface surface="void" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <SectionMarker index="02" label="Who it is for" className="mb-14" />
-          <div className="col-12 gap-y-16">
-            <div className="[grid-column:1/7]">
-              <h2 className="t-display-2 mb-8">Operating companies, $3M to $15M.</h2>
-              <p className="t-lead mb-8 max-w-[52ch] text-fg">{SEGMENTS.primary}</p>
-              <p className="t-body mb-6 max-w-[56ch] text-fg-2">{SEGMENTS.buyer}</p>
-              <p className="t-body max-w-[56ch] text-fg-2">{SEGMENTS.notFor}</p>
-            </div>
-            <div className="[grid-column:8/13]">
-              <p className="t-label mb-6 text-fg-3">Industries served</p>
-              <ul className="m-0 border-t border-line p-0">
-                {SEGMENTS.industries.map((i) => (
-                  <li key={i} className="t-body border-b border-line py-4 text-fg-2">
-                    {i}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <section aria-labelledby="faq" className="hx-wrap pb-28">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div data-enter="up">
+            <p className="hx-kicker m-0 mb-4">Questions</p>
+            <h2 id="faq" className="hx-h2 m-0">
+              About Hexona
+            </h2>
           </div>
+          <FaqList faqs={FIRM_FAQS} />
         </div>
-      </Surface>
-
-      {/* --- 03 Origin. PAPER, the fixed point. ---------------------------- */}
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker index="03" label="Origin" className="mb-14" />
-          <div className="col-12 gap-y-16">
-            <div className="[grid-column:1/8]">
-              {ORIGIN.body.map((para, i) => (
-                <p
-                  key={i}
-                  className={
-                    i === 0 ? 't-lead mb-8 max-w-[58ch] text-fg' : 't-body max-w-[64ch] text-fg-2'
-                  }
-                >
-                  {para}
-                </p>
-              ))}
-            </div>
-            <div className="[grid-column:9/13] flex flex-col gap-6">
-              {ORIGIN.figures.map((f) => (
-                <FigureBlock key={f.label} label={f.label} figure={f.figure} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </Surface>
-
-      {/* --- 02 The team. VOID. -------------------------------------------- */}
-      <Surface surface="void" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <SectionMarker index="04" label="Who does the work" className="mb-14" />
-          <div className="col-12">
-            <div className="[grid-column:1/8]">
-              <h2 className="t-display-2 mb-8">The team behind the work.</h2>
-              <p className="t-body mb-16 max-w-[60ch] text-fg-2">
-                Engagements are led by the principal with one or two operators, and the team that
-                takes your systems access is the team that presents the findings. Builds are
-                delivered by a separate engineering team, described on the{' '}
-                <a href="/implementation" className="link">
-                  implementation page
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-
-          <ul className="col-12 gap-y-0 border-t border-line">
-            {TEAM.map((person) => (
-              <li
-                key={person.name}
-                className="flex flex-col gap-x-12 gap-y-1 border-b border-line py-6 md:flex-row md:items-baseline [grid-column:1/13]"
-              >
-                <p className="t-body shrink-0 text-fg md:w-64">{person.name}</p>
-                <p className="t-small text-fg-3">{person.role}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Surface>
-
-      {/* --- 03 Commitments. PAPER. ---------------------------------------- */}
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker index="05" label="What we hold to" className="mb-14" />
-          <div className="col-12 gap-y-16">
-            <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">Four commitments you can hold us to.</h2>
-              <p className="t-body max-w-[36ch] text-fg-2">
-                A value nobody could disagree with is decoration. Each of these is enforced by the
-                engagement terms.
-              </p>
-            </div>
-
-            <dl className="[grid-column:6/13] m-0 border-t border-line">
-              {COMMITMENTS.map((c) => (
-                <div key={c.term} className="border-b border-line py-7">
-                  <dt className="t-body mb-2 text-fg">{c.term}</dt>
-                  <dd className="t-small m-0 max-w-[62ch] text-fg-2">{c.detail}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          {/* Awards sit here rather than on the homepage: there they would be
-              proof and cannot be checked, here they are biography. */}
-          <div className="col-12 mt-24">
-            <div className="[grid-column:6/13]">
-              <p className="t-label mb-6 text-fg-3">Recognition</p>
-              <ul className="border-t border-line">
-                {AWARDS.map((a) => (
-                  <li
-                    key={a.title}
-                    className="flex flex-col gap-x-8 gap-y-1 border-b border-line py-5 md:flex-row md:items-baseline"
-                  >
-                    <span className="t-label shrink-0 text-brand md:w-20">{a.year}</span>
-                    <span className="t-body text-fg-2">
-                      {a.title}
-                      {/* Says award or nomination, every time. See AWARDS. */}
-                      {a.detail && <span className="t-small block text-fg-3">{a.detail}</span>}
-                    </span>
-                    {a.href && (
-                      <a
-                        href={a.href}
-                        className="link t-label md:ml-auto"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        Verify <span aria-hidden="true">→</span>
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* KEY FACTS. A key-value store in HTML, which is the format an
-              extractor handles best and why the SOP calls it the most
-              important block on the page. A real table, never an image.
-
-              A block inside §05 rather than a seventh section: a seventh would
-              push the FAQ, which takes the close's ground, into a run of four
-              dark blocks. Rows with no value do not render, so nothing ships
-              as a placeholder. */}
-          <div className="col-12 mt-24 border-t border-line pt-16">
-            <div className="[grid-column:1/5]">
-              <h2 className="t-display-2 mb-6">Key facts.</h2>
-              <p className="t-body max-w-[34ch] text-fg-2">
-                Every figure on this page in one place, stated as plainly as it can be.
-              </p>
-            </div>
-            <div className="[grid-column:6/13]">
-              <RecordTable
-                caption="Key facts about Hexona Systems"
-                columns={[
-                  { key: 'field', label: 'Field' },
-                  { key: 'value', label: 'Value' },
-                ]}
-                rows={KEY_FACTS.map((r, i) => ({
-                  id: String(i),
-                  cells: { field: r.field, value: r.value },
-                }))}
-              />
-            </div>
-          </div>
-        </div>
-      </Surface>
-
-      {/* --- Frequently asked. VOID, matching the close it runs into. ------ */}
-      <Faqs
-        items={FIRM_FAQS}
-        index="06"
-        surface="void"
-        heading="What people ask about the firm."
-        lede="Answered in full rather than linked to."
-      />
-
-      {/* --- Close. VOID, shared with the footer. --------------------------- */}
-      <Surface surface="void" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/9]">
-              {/* Plain and true. The line here used to be "The firm is five
-                  years old. The leak in your business is older", which asserts
-                  something about a reader the firm has never met, and reaches
-                  for a flourish this page does not need. The homepage carries
-                  the argument; this close only has to point at the next step. */}
-              <h2 className="t-display-1 mb-16">
-                Every engagement begins
-                <br className="hidden sm:inline" />
-                with the same two weeks.
-              </h2>
-              <div className="flex flex-col items-start gap-8">
-                <Button href="/commission">
-                  Commission a diagnostic <span aria-hidden="true">→</span>{' '}
-                  {DIAGNOSTIC.priceFormatted}
-                </Button>
-                <TextLink href="/diagnostic#discuss">Discuss it first</TextLink>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Surface>
-    </>
+      </section>
+    </div>
   );
 }

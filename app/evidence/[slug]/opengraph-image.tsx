@@ -47,5 +47,5 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       note: `${record.sealed} sealed`,
     });
   }
-  return ogImage({ eyebrow: 'Case studies', title: 'A series of transformed organisations.' });
+  return ogImage({ eyebrow: 'Case studies', title: 'Results, measured in our clients’ own systems.' });
 }
