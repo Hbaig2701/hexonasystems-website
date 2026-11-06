@@ -182,7 +182,7 @@ const article: Article = {
       note: 'Lead-to-quote time, admin hours and conversion, quoted as published. Checked Nov 6, 2026.',
     },
   ],
-  related: ['missed-call-text-back', 'database-reactivation', 'what-is-revenue-leakage'],
+  related: ['missed-call-text-back', 'database-reactivation', 'ai-receptionist-cost'],
   queries: ['speed to lead', 'speed to lead statistics', 'lead response time statistics', 'how fast to respond to leads', '5 minute rule leads'],
 };
 

@@ -257,7 +257,7 @@ const article: Article = {
       note: 'Report on the April 17, 2026 policy update. Read Nov 6, 2026.',
     },
   ],
-  related: ['appointment-reminder-texts', 'what-is-an-ai-agent', 'which-revenue-leaks-to-close-first'],
+  related: ['how-to-get-recommended-by-chatgpt', 'appointment-reminder-texts', 'missed-call-text-back'],
   queries: ['how to get more google reviews', 'google review automation', 'automated review requests', 'how to ask for google reviews', 'google review link'],
 };
 

@@ -148,7 +148,7 @@ const article: Article = {
       note: 'Google calling businesses on a customer’s behalf, with a Business Profile opt-out. Read Nov 6, 2026.',
     },
   ],
-  related: ['ai-news-week-of-november-2-2026', 'what-is-an-ai-agent', 'revenue-leakage-vs-a-sales-problem'],
+  related: ['how-to-get-recommended-by-chatgpt', 'ai-news-week-of-november-2-2026', 'speed-to-lead'],
   queries: ['google ai mode home services', 'google ai mode booking links', 'how to show up in google ai mode', 'ai mode local business', 'angi google ai mode'],
 };
 

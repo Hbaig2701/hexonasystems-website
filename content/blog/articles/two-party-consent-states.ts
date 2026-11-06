@@ -213,7 +213,7 @@ const article: Article = {
       note: 'PIPEDA investigation about a business recording a customer call. Read Nov 6, 2026.',
     },
   ],
-  related: ['what-is-an-ai-agent', 'a2p-10dlc-explained', 'how-to-get-recommended-by-chatgpt'],
+  related: ['a2p-10dlc-explained', 'best-ai-receptionist-for-small-business', 'ai-receptionist-cost'],
   queries: [
     'two party consent states',
     'call recording laws by state',

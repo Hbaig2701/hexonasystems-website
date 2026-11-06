@@ -167,7 +167,7 @@ const article: Article = {
       note: 'Project delays down 41% and more than 27 active projects without adding admin staff, measured in the client’s CRM. Checked Nov 6, 2026.',
     },
   ],
-  related: ['what-is-my-business-worth', 'hvac-business-valuation', 'what-is-an-ai-agent'],
+  related: ['what-is-my-business-worth', 'ai-agent-examples', 'hvac-business-valuation'],
   queries: ['how to make my business run without me', 'owner dependent business', 'reduce owner dependence', 'how to step back from my business'],
 };
 

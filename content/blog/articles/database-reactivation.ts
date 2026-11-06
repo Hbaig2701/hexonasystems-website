@@ -200,7 +200,7 @@ const article: Article = {
       note: 'The April 2025 revocation rule and the ten business day deadline. Read Nov 6, 2026.',
     },
   ],
-  related: ['speed-to-lead', 'missed-call-text-back', 'which-revenue-leaks-to-close-first'],
+  related: ['speed-to-lead', 'missed-call-text-back', 'a2p-10dlc-explained'],
   queries: ['database reactivation', 'reactivate old leads', 'how to follow up on estimates', 'estimate follow up email', 'dead lead reactivation'],
 };
 

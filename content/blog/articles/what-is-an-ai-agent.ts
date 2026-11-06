@@ -183,7 +183,7 @@ const article: Article = {
       note: 'Client figures quoted exactly as published, measured in each client’s own systems. Checked Nov 6, 2026.',
     },
   ],
-  related: ['what-is-revenue-leakage', 'which-revenue-leaks-to-close-first', 'how-to-measure-roi-on-closing-a-revenue-leak'],
+  related: ['ai-agent-examples', 'ai-receptionist-cost', 'how-to-make-your-business-run-without-you'],
   queries: ['what is an ai agent', 'ai agent examples', 'ai agents for small business', 'what is an ai employee', 'ai agent vs chatbot'],
 };
 

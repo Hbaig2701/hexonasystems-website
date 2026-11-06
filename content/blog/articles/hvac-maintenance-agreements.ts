@@ -206,7 +206,7 @@ const article: Article = {
       note: 'Maintenance agreements as the biggest driver of valuation range. Read Nov 6, 2026.',
     },
   ],
-  related: ['how-to-price-a-revenue-leak-in-ebitda', 'appointment-reminder-texts', 'what-is-revenue-leakage'],
+  related: ['hvac-business-valuation', 'appointment-reminder-texts', 'what-is-my-business-worth'],
   queries: ['hvac maintenance agreement', 'hvac service agreement', 'hvac membership program', 'hvac maintenance plan cost', 'recurring revenue service business'],
 };
 

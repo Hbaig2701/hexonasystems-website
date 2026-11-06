@@ -231,7 +231,7 @@ const article: Article = {
       note: 'Opt-out words such as STOP and the ten business day deadline to honor revocations. Read Nov 6, 2026.',
     },
   ],
-  related: ['how-to-get-more-google-reviews', 'what-is-an-ai-agent', 'what-is-revenue-leakage'],
+  related: ['missed-call-text-back', 'a2p-10dlc-explained', 'how-to-get-more-google-reviews'],
   queries: ['appointment reminder texts', 'how to reduce no shows', 'appointment reminder template', 'appointment reminder text message', 'no show policy med spa'],
 };
 

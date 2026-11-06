@@ -151,7 +151,7 @@ const article: Article = {
     { label: 'Dialzara pricing', url: 'https://dialzara.com/pricing/', note: 'AI receptionist plans from $29 a month. Read Nov 6, 2026.' },
     { label: 'Goodcall FAQ', url: 'https://www.goodcall.com/faq', note: 'AI plans from $79 a month for 100 unique callers. Read Nov 6, 2026.' },
   ],
-  related: ['ai-receptionist-cost', 'ai-receptionist-vs-answering-service', 'what-is-an-ai-agent'],
+  related: ['ai-receptionist-cost', 'how-to-make-your-business-run-without-you', 'ai-receptionist-vs-answering-service'],
   queries: ['receptionist salary', 'cost of hiring a receptionist', 'ai vs hiring an employee', 'ai receptionist vs human receptionist', 'how much does a receptionist make'],
 };
 

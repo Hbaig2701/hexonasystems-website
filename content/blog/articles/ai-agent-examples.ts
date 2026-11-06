@@ -151,7 +151,7 @@ const article: Article = {
     { label: 'OpenAI, A practical guide to building agents', url: 'https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf', note: 'Agents as systems that complete tasks on your behalf, and when to use them. Read Nov 6, 2026.' },
     { label: 'Hexona case studies', url: 'https://www.hexonasystems.com/evidence', note: 'Client figures quoted exactly as published, measured in each client’s own systems or labelled as found before the build. Checked Nov 6, 2026.' },
   ],
-  related: ['what-is-an-ai-agent', 'best-ai-receptionist-for-small-business', 'after-hours-answering-service'],
+  related: ['what-is-an-ai-agent', 'ai-receptionist-cost', 'database-reactivation'],
   queries: ['ai agent examples', 'ai agents for small business', 'ai agent use cases', 'examples of ai agents in business'],
 };
 

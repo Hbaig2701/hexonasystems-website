@@ -188,7 +188,7 @@ const article: Article = {
       note: 'Testing showing ChatGPT runs Bing searches for local queries. Read Nov 6, 2026.',
     },
   ],
-  related: ['what-is-an-ai-agent', 'two-party-consent-states', 'a2p-10dlc-explained'],
+  related: ['how-to-get-more-google-reviews', 'google-ai-mode-home-services-booking-links', 'what-is-an-ai-agent'],
   queries: [
     'how to get recommended by chatgpt',
     'how to show up in chatgpt',

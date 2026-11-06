@@ -153,7 +153,7 @@ const article: Article = {
     { label: 'Ringly, after-hours answering service guide (2026)', url: 'https://www.ringly.io/nl/blog/after-hours-answering-service', note: 'Third-party overview of live answering price ranges and fees, read Nov 6, 2026.' },
     { label: 'Hexona med spa case study', url: 'https://www.hexonasystems.com/evidence/medspa-booking-system', note: 'After-hours booking share and the leak found before the build, quoted as published. Checked Nov 6, 2026.' },
   ],
-  related: ['best-ai-receptionist-for-small-business', 'ai-agent-examples', 'what-is-an-ai-agent'],
+  related: ['ai-receptionist-cost', 'ai-receptionist-vs-answering-service', 'missed-call-text-back'],
   queries: ['after hours answering service', '24 7 answering service', 'answering service for small business', 'after hours answering service for hvac', 'ai answering service vs human'],
 };
 

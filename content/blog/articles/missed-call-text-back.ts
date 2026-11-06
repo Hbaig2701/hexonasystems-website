@@ -201,7 +201,7 @@ const article: Article = {
       note: 'The carrier-run registry for A2P 10DLC brand and campaign registration. Read Nov 6, 2026.',
     },
   ],
-  related: ['speed-to-lead', 'database-reactivation', 'what-is-an-ai-agent'],
+  related: ['speed-to-lead', 'after-hours-answering-service', 'a2p-10dlc-explained'],
   queries: ['missed call text back', 'how to stop missing calls', 'missed calls small business', 'missed call text back templates'],
 };
 

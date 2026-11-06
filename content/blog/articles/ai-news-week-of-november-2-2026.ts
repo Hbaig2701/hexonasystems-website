@@ -193,7 +193,7 @@ const article: Article = {
       note: 'Press release, Oct 29, 2026. Read Nov 6, 2026.',
     },
   ],
-  related: ['google-ai-mode-home-services-booking-links', 'what-is-an-ai-agent', 'which-revenue-leaks-to-close-first'],
+  related: ['google-ai-mode-home-services-booking-links', 'how-to-get-recommended-by-chatgpt', 'a2p-10dlc-explained'],
   queries: ['ai news for small business', 'google ai mode home services', 'openai outbound phone calls', 'tcpa opt out rule november 2026', 'google business profile whatsapp button'],
 };
 

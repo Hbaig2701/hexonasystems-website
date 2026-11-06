@@ -167,7 +167,7 @@ const article: Article = {
     { label: 'Goodcall FAQ', url: 'https://www.goodcall.com/faq', note: 'AI plans priced per unique caller, from $79 a month. Read Nov 6, 2026.' },
     { label: 'Smith.ai AI Receptionist', url: 'https://smith.ai/ai-receptionist', note: 'AI plans with human escalation included. Read Nov 6, 2026.' },
   ],
-  related: ['ai-receptionist-cost', 'ai-receptionist-vs-hiring-a-receptionist', 'what-is-an-ai-agent'],
+  related: ['ai-receptionist-cost', 'after-hours-answering-service', 'best-ai-receptionist-for-small-business'],
   queries: ['ai receptionist vs answering service', 'ai receptionist vs virtual receptionist', 'virtual receptionist', 'answering service vs ai', 'after hours answering service'],
 };
 

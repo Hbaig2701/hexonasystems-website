@@ -179,7 +179,7 @@ const article: Article = {
       note: 'Waste quantified before the build ($23,400 a month, including 3 to 4 hours a day of scheduling). Results still being measured. Checked Nov 6, 2026.',
     },
   ],
-  related: ['what-is-my-business-worth', 'how-to-make-your-business-run-without-you', 'which-revenue-leaks-to-close-first'],
+  related: ['hvac-maintenance-agreements', 'what-is-my-business-worth', 'how-to-make-your-business-run-without-you'],
   queries: ['hvac business valuation', 'how much is my hvac business worth', 'how to sell an hvac business', 'hvac company valuation multiples'],
 };
 

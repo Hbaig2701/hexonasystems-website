@@ -180,7 +180,7 @@ const article: Article = {
       note: 'Voice AI per-minute rates (updated Oct 29, 2026), with phone rates from the Phone System Pricing guide (updated Oct 12, 2026) and A2P fees (updated Sep 24, 2026). Read Oct 31, 2026.',
     },
   ],
-  related: ['ai-receptionist-vs-answering-service', 'ai-receptionist-vs-hiring-a-receptionist', 'what-is-an-ai-agent'],
+  related: ['best-ai-receptionist-for-small-business', 'ai-receptionist-vs-hiring-a-receptionist', 'after-hours-answering-service'],
   queries: ['ai receptionist cost', 'ai receptionist pricing', 'how much does an ai receptionist cost', 'ai answering service cost', 'answering service cost', 'virtual receptionist cost'],
 };
 

@@ -217,7 +217,7 @@ const article: Article = {
       note: 'Florida’s 8 p.m. limit, three-per-24-hours cap and coverage of texts. Read Nov 6, 2026.',
     },
   ],
-  related: ['two-party-consent-states', 'what-is-an-ai-agent', 'how-to-get-recommended-by-chatgpt'],
+  related: ['missed-call-text-back', 'appointment-reminder-texts', 'two-party-consent-states'],
   queries: ['a2p 10dlc', 'a2p 10dlc registration', 'tcpa text message rules', 'sms marketing compliance', 'business texts not delivered', 'error 30034'],
 };
 

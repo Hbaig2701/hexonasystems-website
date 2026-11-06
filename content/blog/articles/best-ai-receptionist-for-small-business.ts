@@ -173,7 +173,7 @@ const article: Article = {
     { label: 'Macha, Goodcall complete guide', url: 'https://www.getmacha.com/blog/goodcall-complete-guide', note: 'Third-party summary of Goodcall per-agent pricing, read Nov 6, 2026. Confirm on goodcall.com.' },
     { label: 'CloudTalk, My AI Front Desk pricing summary', url: 'https://www.cloudtalk.io/blog/my-ai-front-desk-pricing/', note: 'Third-party summary of the $99 plan and minute overage, read Nov 6, 2026. Confirm on myaifrontdesk.com.' },
   ],
-  related: ['after-hours-answering-service', 'ai-agent-examples', 'what-is-an-ai-agent'],
+  related: ['ai-receptionist-cost', 'two-party-consent-states', 'ai-receptionist-vs-answering-service'],
   queries: ['best ai receptionist', 'best ai receptionist for small business', 'best ai answering service', 'ai receptionist comparison', 'smith.ai alternatives'],
 };
 
