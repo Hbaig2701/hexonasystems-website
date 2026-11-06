@@ -128,7 +128,7 @@ const article: Article = {
       heading: 'How do you measure your own speed to lead?',
       paragraphs: [
         'Pull the last 50 leads from your CRM or inbox and note two times for each: when the lead came in and when someone first replied with something useful. Then check three numbers: the median response time, the share answered within an hour, and the share never answered.',
-        'Or test yourself the way the HBR researchers did: fill in your own website form at 8 p.m. on a Thursday and see when you hear back. If you want a broader look at what a slow response costs your business value, take /score.',
+        'Or test yourself the way the HBR researchers did: fill in your own website form at 8 p.m. on a Thursday and see when you hear back. If you want a broader look at what a slow response costs your business value, read /blog/what-is-my-business-worth.',
       ],
     },
   ],

@@ -6,14 +6,14 @@ import { FIRM } from './firm';
  * Written against what the site actually does, not a template. If any of the
  * following changes, the privacy policy is now wrong and must change with it:
  *
- *   - The intake form at /commission is the only place personal information is
+ *   - The intake form at /book is the only place personal information is
  *     collected. Its fields are in lib/lead.ts.
  *   - Submissions go to GoHighLevel (the CRM), with the submitter's IP address.
  *     The IP is also used for rate limiting (Upstash).
  *   - The site is hosted on Vercel.
- *   - No analytics, tracking pixels or advertising cookies are loaded.
- *     `posthog-js` and `@vercel/analytics` are installed but not wired up;
- *     wiring either one up means adding a section here first.
+ *   - Vercel Web Analytics is loaded (app/layout.tsx). It sets no cookies and
+ *     stores no IP addresses. No tracking pixels or advertising cookies. Adding
+ *     any other analytics or tracking tool means updating this policy first.
  *
  * Client engagements are governed by their own signed agreement, not by these
  * pages, and both pages say so.
@@ -26,7 +26,7 @@ export type LegalDoc = {
   sections: { heading: string; body: string[] }[];
 };
 
-const UPDATED = 'October 14, 2026';
+const UPDATED = 'November 6, 2026';
 const CONTACT = `${FIRM.name}, ${FIRM.address}, Canada. ${FIRM.email}.`;
 
 export const TERMS: LegalDoc = {
@@ -114,7 +114,8 @@ export const PRIVACY: LegalDoc = {
     {
       heading: 'Cookies and tracking',
       body: [
-        'The site does not use advertising cookies, tracking pixels or third-party analytics. Our hosting provider keeps standard server logs, such as IP addresses and requested pages, for security and operational purposes.',
+        'We use Vercel Web Analytics to count visits and see which pages are read and which sites refer visitors to us. It does not use cookies, does not store IP addresses, and does not identify you or follow you across other websites.',
+        'The site does not use advertising cookies or tracking pixels. Our hosting provider keeps standard server logs, such as IP addresses and requested pages, for security and operational purposes.',
       ],
     },
     {

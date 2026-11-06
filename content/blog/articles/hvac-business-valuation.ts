@@ -121,7 +121,7 @@ const article: Article = {
         'Fix the leaks above, so the earnings a buyer sees are the earnings the business can actually produce.',
       ],
       callout:
-        'Not sure where to start? Take the Enterprise Value Score at /score. It rates your business on the 10 drivers buyers look at and shows your two biggest gaps.',
+        'Not sure where to start? /book and we will look at the drivers buyers check with you, and tell you which two gaps to close first.',
     },
     {
       id: 'help',
@@ -158,9 +158,9 @@ const article: Article = {
         'Make the earnings look safe: grow and automate your maintenance plan base, take yourself out of dispatch and quoting, keep good techs, close your books monthly and stop the leaks like missed calls and lapsed plans. Start two to three years before you plan to sell.',
     },
     {
-      question: 'Is the Enterprise Value Score a valuation of my HVAC company?',
+      question: 'Can I value my HVAC company myself?',
       answer:
-        'No. It scores your business out of 100 on the 10 drivers buyers look at and shows your two biggest gaps. It tells you what to fix, not what the business would sell for.',
+        'You can get a rough range by applying the multiples above to your SDE or EBITDA, but a buyer will adjust for owner dependence, the share of revenue under maintenance agreements and how clean the books are. For a number you can rely on, use a business broker or a valuation professional.',
     },
   ],
   sources: [

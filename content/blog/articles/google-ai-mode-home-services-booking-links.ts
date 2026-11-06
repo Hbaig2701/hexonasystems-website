@@ -93,7 +93,7 @@ const article: Article = {
       heading: 'Is this the start of AI booking for every local business?',
       paragraphs: [
         'Probably, but slowly. In July 2025 Google started rolling out AI that calls local businesses on a searcher’s behalf to check prices and availability in the US, and says businesses stay in control through their Business Profile settings. Booking links for home services are the next step. Med spas, auto shops and restaurants already have booking platforms of their own, and it would be surprising if Google stopped at home services.',
-        'The businesses that win this aren’t the ones with the cleverest AI. They are the ones with complete profiles, real reviews and someone (or something) answering every request. That is also what makes a business worth more when you sell it. If you want to see where yours stands, take /score, or read our AI receptionist page for home services at /industries/home-services.',
+        'The businesses that win this aren’t the ones with the cleverest AI. They are the ones with complete profiles, real reviews and someone (or something) answering every request. That is also what makes a business worth more when you sell it. If you want to see where yours stands, read /industries/home-services, or /book.',
       ],
     },
   ],

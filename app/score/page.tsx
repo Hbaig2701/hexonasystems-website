@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description:
     'Would a buyer want your business? Score it on the 10 drivers of enterprise value in about five minutes. Free, no email needed, and it shows what to fix first.',
   alternates: { canonical: '/score' },
+  // Hidden until it is ready: reachable by direct link, kept out of search and nav.
+  robots: { index: false, follow: false },
 };
 
 export default function ScorePage() {

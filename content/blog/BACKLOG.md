@@ -89,7 +89,7 @@ Built Nov 6, 2026 from DataforSEO (Google Ads search volume, US, location 2840; 
 ### 31. How to prepare a service business for sale: a 12-month checklist
 - Track V · slug `how-to-prepare-a-business-for-sale`
 - Queries: sell my business (1,600), how to sell my business (720), business exit strategy (720), exit planning (720)
-- Angle: the 10 drivers (content/drivers.ts), clean books, recurring revenue, documented systems; link /score.
+- Angle: the 10 drivers (content/drivers.ts), clean books, recurring revenue, documented systems; link /book (the /score tool is hidden until it is ready, so do not link it).
 
 ### 32. SDE vs EBITDA: which one is your business valued on?
 - Track V · slug `sde-vs-ebitda`

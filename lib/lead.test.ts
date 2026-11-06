@@ -90,7 +90,7 @@ describe('submitLead', () => {
     expect(String(msg)).toContain('LEAD_WEBHOOK_URL');
     const parsed = JSON.parse(String(payload));
     expect(parsed.why).toBe('Quotes take six days');
-    expect(parsed.source).toContain('/commission');
+    expect(parsed.source).toContain('/book');
   });
 
   it('posts to the webhook with the signature when both are configured', async () => {

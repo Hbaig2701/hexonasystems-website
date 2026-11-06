@@ -1,4 +1,4 @@
-import { DIAGNOSTIC, FIRM } from './firm';
+
 
 /**
  * content/commission.ts — the intake form, as content rather than as markup.
@@ -109,29 +109,6 @@ export const FIELDS: Field[] = [
 ];
 
 export const COMMISSION = {
-  eyebrow: 'Commission a diagnostic',
-  heading: 'Tell us what we would be looking at.',
-  lede: `Ten questions, and none of them are qualifying you for a sales call. They are what we need to scope the work and to tell you honestly whether it is worth doing. The principal reads every one of these.`,
-
-  /** Shown beside the form, not inside it. What happens after submit. */
-  next: [
-    {
-      term: 'You hear back inside one business day',
-      detail: 'From the principal, not from a sequence. If we are not the right fit we say so in that reply.',
-    },
-    {
-      term: 'A thirty minute call, no deck',
-      detail: 'We scope what we would look at and confirm the systems involved. You can stop here at no cost.',
-    },
-    {
-      term: 'Then, and only then, an invoice',
-      detail: `${DIAGNOSTIC.priceFormatted}, fixed, and credited in full against implementation. The clock starts when credentials are provisioned, not when you pay.`,
-    },
-  ],
-
-  /** The form is not the only way in. Some people will always prefer email. */
-  fallback: `Would rather just email? ${FIRM.email}.`,
-
   success: {
     heading: 'Thanks. That is with Hamza.',
     body: 'You will have a reply inside one business day to set a time for your free consult. If we are not the right fit, that reply will say so.',

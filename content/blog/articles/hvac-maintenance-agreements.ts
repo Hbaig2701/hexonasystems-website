@@ -136,7 +136,7 @@ const article: Article = {
       paragraphs: [
         'Because a maintenance agreement is revenue that is likely to come back next year without new marketing. Buyers price risk, and a documented base of customers who already pay you every month is the least risky revenue an HVAC company has. Relay’s HVAC valuation guide calls maintenance agreements "the single biggest driver" of where a business lands in its valuation range.',
         'You will see specific premiums quoted online, often attributed to industry reports. We couldn’t verify those figures against their original sources, so we’re not repeating them. What is consistent across broker and buyer guides is the direction: more recurring revenue, with good renewal rates and clean records, supports a higher multiple.',
-        'That is why recurring revenue is one of the ten drivers in /score. If you want to see how buyers value an HVAC company, and the other places it loses value without noticing, /blog/hvac-business-valuation covers it.',
+        'That is why recurring revenue is one of the ten drivers of value we look at with every client. If you want to see how buyers value an HVAC company, and the other places it loses value without noticing, /blog/hvac-business-valuation covers it.',
       ],
     },
     {

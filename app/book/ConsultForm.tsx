@@ -48,9 +48,9 @@ export function ConsultForm() {
     <form action={formAction} noValidate>
       {/* Said before the ten fields, not after them. See the note above. */}
       <noscript>
-        <p className="t-body border-b border-line py-7 text-fg">
+        <p className="border-b border-[#D7E6E8] py-7 text-[16px] text-[#0E1E24]">
           This form needs JavaScript to send. With it switched off, email{' '}
-          <a href={`mailto:${EMAIL}`} className="link text-brand">
+          <a href={`mailto:${EMAIL}`} className="hx-link">
             {EMAIL}
           </a>{' '}
           instead and we will reply the same way.
@@ -120,7 +120,7 @@ export function ConsultForm() {
             )}
 
             {err && (
-              <p id={`${id}-err`} className="t-small mt-3 text-loss">
+              <p id={`${id}-err`} className="mt-3 text-[14px] text-[#A32A1C]">
                 {err}
               </p>
             )}
@@ -144,7 +144,7 @@ export function ConsultForm() {
       </div>
 
       {/* aria-live so the message is announced when it replaces nothing. */}
-      <p aria-live="polite" className="t-small mt-5 min-h-5 text-loss">
+      <p aria-live="polite" className="mt-5 min-h-5 text-[14px] text-[#A32A1C]">
         {state.status === 'error' ? state.message : ''}
       </p>
     </form>
@@ -155,6 +155,6 @@ function fieldClass(err?: string) {
   return cn(
     'w-full rounded-xl border bg-white px-4 py-3 text-[16px] text-[#0E1E24] outline-none',
     'transition-[border-color,box-shadow] duration-200 focus:border-[#0B5566] focus:shadow-[0_0_0_4px_rgba(53,198,209,0.2)]',
-    err ? 'border-loss' : 'border-[#BFD9DC]',
+    err ? 'border-[#A32A1C]' : 'border-[#BFD9DC]',
   );
 }

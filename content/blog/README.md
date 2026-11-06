@@ -76,7 +76,8 @@ or take the Value Score without being pushy about it.
   - `/ai-employees/<slug>` → "our AI Receptionist page" (etc.)
   - `/industries/<slug>` → "AI for construction and contractors" (etc.)
   - `/evidence/<slug>` → "the tire and seasonal automotive service case study" (etc.)
-  - `/book` → "book a free consult", `/score` → "the Enterprise Value Score", `/firm` → "about Hexona"
+  - `/book` → "book a free consult", `/firm` → "about Hexona"
+  - Do not link `/score`: the Value Score is hidden from the public until it is ready.
   So write the sentence for the label: "If you want it built for you, /book." reads as "If you want it built for you, book a free consult."
 - Link 2 to 4 site pages from the body of every article, where they fit the sentence. Always include at least one AI employee or industry page.
 - External sources: write the full https:// address; it renders as a link labelled with the host and path.

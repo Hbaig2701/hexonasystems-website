@@ -14,7 +14,6 @@ const EXPLORE = [
   { label: 'Case Studies', href: '/evidence' },
   { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/firm' },
-  { label: 'Value Score', href: '/score' },
 ];
 
 const LEGAL = [
