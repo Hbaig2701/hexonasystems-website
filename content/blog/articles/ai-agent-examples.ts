@@ -72,7 +72,7 @@ const article: Article = {
       heading: 'What do AI agents do for sales and follow-up?',
       paragraphs: [
         '**4. Speed-to-lead responder (roofing, remodeling, solar).** Replies to every web form and ad lead within seconds by text and email, asks a few qualifying questions and sends a booking link for the site visit, with reminders if nothing happens. A roofing and remodeling company running this kind of instant reply plus quote follow-up added over $45,000 in monthly revenue and cut sales admin from 18 to 3.5 hours a week (/evidence/home-improvement-sales-workflow). Limit: it books the visit, it doesn’t price a custom job.',
-        '**5. Old lead reactivation (any business with a list).** Messages people who asked for a quote months or years ago and never bought, then holds the conversation when they reply. A solar installer had more than four thousand homeowners nobody had gone back to. Re-engaging them got 832 replies at a 21% reply rate and $24,500 in net profit (/evidence/solar-dormant-database). Limit: only message people who gave you permission, and stop the moment someone opts out.',
+        '**5. Old lead reactivation (any business with a list).** Messages people who asked for a quote months or years ago and never bought, then holds the conversation when they reply. A solar installer had more than four thousand homeowners nobody had gone back to. The campaign re-engaged 832 of them at a 21% reply rate and produced $24,500 in net profit (/evidence/solar-dormant-database). Limit: only message people who gave you permission, and stop the moment someone opts out.',
         '**6. Lead qualifier (high-ticket services).** Reads form answers, scores each lead and sends the best ones straight to a person while the rest go into follow-up. Our clearest example is from coaching, not a service trade: a high-ticket coach with thousands of leads a month saw a 34x return on the build (/evidence/coaching-lead-scoring). The same idea works for any business where a salesperson’s time is the bottleneck. Limit: the closing conversation stays human.',
       ],
     },
@@ -128,7 +128,7 @@ const article: Article = {
     {
       question: 'Do AI agents replace staff?',
       answer:
-        'In service businesses they mostly take repetitive work off people: after-hours calls, follow-up texts, scheduling and paperwork chasing. One renovation contractor we worked with grew to more than 27 active projects without adding admin staff.',
+        'In service businesses they mostly take repetitive work off people: after-hours calls, follow-up texts, scheduling and paperwork chasing. One renovation contractor we worked with scaled to 27 or more active projects without adding admin staff.',
     },
     {
       question: 'What does an AI agent need to connect to?',
@@ -149,7 +149,7 @@ const article: Article = {
   sources: [
     { label: 'Anthropic, Building effective agents', url: 'https://www.anthropic.com/engineering/building-effective-agents', note: 'Definition of agents vs fixed workflows, published Dec 19, 2024. Read Nov 6, 2026.' },
     { label: 'OpenAI, A practical guide to building agents', url: 'https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf', note: 'Agents as systems that complete tasks on your behalf, and when to use them. Read Nov 6, 2026.' },
-    { label: 'Hexona case studies', url: 'https://www.hexonasystems.com/evidence', note: 'Client figures quoted exactly as published, measured in each client’s own systems or labelled as found before the build. Checked Nov 6, 2026.' },
+    { label: 'Hexona case studies', url: 'https://www.hexonasystems.com/evidence', note: 'Client figures quoted exactly as published, measured in each client’s own systems or labelled as found before the build. Read Nov 6, 2026.' },
   ],
   related: ['what-is-an-ai-agent', 'ai-receptionist-cost', 'database-reactivation'],
   queries: ['ai agent examples', 'ai agents for small business', 'ai agent use cases', 'examples of ai agents in business'],

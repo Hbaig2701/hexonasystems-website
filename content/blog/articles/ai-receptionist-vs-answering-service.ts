@@ -1,7 +1,7 @@
 // Target: "ai receptionist vs answering service", "ai receptionist vs virtual
 // receptionist", "virtual receptionist" (2,900/mo US), "after hours answering
 // service" (DataforSEO, Nov 6, 2026).
-// Prices from vendors' own pages via search, Nov 6, 2026. Client figures from
+// Prices opened and checked on each vendor's own page, Nov 6, 2026. Client figures from
 // content/evidence.ts (tire-shop-missed-calls measured; medspa-booking-system is
 // projected, so only the leak found before the build is quoted).
 
@@ -61,8 +61,8 @@ const article: Article = {
         ],
         rows: [
           { what: 'Starting price', ai: '$29 a month for 60 min (Dialzara), $79 for 100 callers (Goodcall)', human: '$250 a month for 50 min (Ruby)' },
-          { what: 'How it bills', ai: 'Per minute, per call or per caller', human: 'Per minute, rounded up' },
-          { what: 'Answers at 2 a.m. and on holidays', ai: 'Yes, same price', human: 'Usually, check the plan' },
+          { what: 'How it bills', ai: 'Per minute, per call or per caller', human: 'Monthly bundles of receptionist minutes' },
+          { what: 'Answers at 2 a.m. and on holidays', ai: 'Yes, same price', human: 'Ruby’s plans include 24/7, others vary' },
           { what: 'Busy Monday, 10 calls at once', ai: 'Answers them all', human: 'Callers may wait on hold' },
           { what: 'Books into your calendar', ai: 'Yes, if connected', human: 'Some do, many take a message' },
           { what: 'Emotional or angry callers', ai: 'Weak, should hand off', human: 'Strong' },
@@ -77,7 +77,7 @@ const article: Article = {
       paragraphs: [
         'When most calls are the same five questions. Plumbers, HVAC companies, auto shops, med spas and property managers get a lot of "can someone come out", "how much is it roughly", "are you open Saturday", "I need to reschedule". AI handles those well and books them without anyone touching the call.',
         'When the problem is volume or hours. A human service costs more the more you use it. AI costs about the same at 9 a.m. and 9 p.m., and it picks up the tenth call in a busy minute as fast as the first.',
-        'When missed calls are your real leak. A tire shop we worked with had more than 600 calls a month going to voicemail. After a missed-call assistant that replied within seconds and steered callers to a booking, booked appointments rose 50% and more than $50,000 was recovered (/evidence/tire-shop-missed-calls). A med spa we built for found that nearly a quarter of its bookings arrived after hours, and two thirds of those callers never rang back (/evidence/medspa-booking-system).',
+        'When missed calls are your real leak. A tire shop we worked with had more than 600 calls a month going to voicemail. After a missed-call assistant that replied within seconds and steered callers to a booking, booked appointments rose 50% and more than $50,000 was recovered (/evidence/tire-shop-missed-calls). A med spa we built for found that nearly a quarter of its bookings were attempted after hours, and two thirds of those callers never rang back (/evidence/medspa-booking-system).',
       ],
     },
     {
@@ -112,7 +112,7 @@ const article: Article = {
       heading: 'Is a virtual receptionist the same as an AI receptionist?',
       paragraphs: [
         'Not always. "Virtual receptionist" usually means a remote human, often from a service like Ruby or Smith.ai’s live team. Some companies now use the term for AI too, which makes comparing prices confusing. Ask directly whether a person or software answers the call, and what happens when the call gets complicated.',
-        'Smith.ai is an example of a mixed model: its AI Receptionist plans include escalation to its human receptionists at no extra fee, according to its pricing page as of November 2026.',
+        'Smith.ai is an example of a mixed model. According to its AI Receptionist page as of November 2026, there is no fee when the AI itself escalates a call to a human, while having a live agent verify details or handle scheduling is a per-call add-on on any plan.',
       ],
     },
     {
@@ -138,7 +138,7 @@ const article: Article = {
     {
       question: 'How much cheaper is an AI receptionist than an answering service?',
       answer:
-        'As of November 2026, AI receptionist plans start around $29 to $199 a month for hundreds of minutes or callers, while a live service like Ruby starts at $250 a month for 50 minutes. At a few hundred minutes a month, AI is often five to ten times cheaper.',
+        'As of November 2026, AI receptionist plans start at $29 a month, with a few hundred minutes or callers for $99 to $199, while a live service like Ruby starts at $250 a month for 50 minutes. At 500 minutes a month, Ruby is $1,725 and Dialzara is $199, almost nine times less.',
     },
     {
       question: 'Do callers know they are talking to an AI?',
@@ -162,10 +162,10 @@ const article: Article = {
     },
   ],
   sources: [
-    { label: 'Ruby plans and pricing', url: 'https://www.ruby.com/plans-and-pricing/', note: 'Live receptionist plans from $250 a month for 50 minutes. Read Nov 6, 2026.' },
-    { label: 'Dialzara pricing', url: 'https://dialzara.com/pricing/', note: 'AI plans from $29 a month for 60 minutes. Read Nov 6, 2026.' },
+    { label: 'Ruby plans and pricing', url: 'https://www.ruby.com/plans-and-pricing/', note: 'Live receptionist plans from $250 a month for 50 minutes to $1,725 for 500, with 24/7 answering. Read Nov 6, 2026.' },
+    { label: 'Dialzara pricing', url: 'https://dialzara.com/pricing/', note: 'AI plans from $29 a month for 60 minutes to $199 for 500. Read Nov 6, 2026.' },
     { label: 'Goodcall FAQ', url: 'https://www.goodcall.com/faq', note: 'AI plans priced per unique caller, from $79 a month. Read Nov 6, 2026.' },
-    { label: 'Smith.ai AI Receptionist', url: 'https://smith.ai/ai-receptionist', note: 'AI plans with human escalation included. Read Nov 6, 2026.' },
+    { label: 'Smith.ai AI Receptionist', url: 'https://smith.ai/ai-receptionist', note: 'AI plans, and the FAQ on escalation fees and the per-call live agent add-on. Read Nov 6, 2026.' },
   ],
   related: ['ai-receptionist-cost', 'after-hours-answering-service', 'best-ai-receptionist-for-small-business'],
   queries: ['ai receptionist vs answering service', 'ai receptionist vs virtual receptionist', 'virtual receptionist', 'answering service vs ai', 'after hours answering service'],

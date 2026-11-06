@@ -1,9 +1,11 @@
 // Target: "after hours answering service" (1,000/mo US, $143 CPC), "24 7 answering
 // service" (720), "answering service for small business" (720), "after hours
 // answering service for hvac". DataforSEO Nov 6, 2026.
-// Human answering prices are third-party 2026 summaries (vendor pages did not
-// load in research) and are labelled that way. AI prices from Dialzara's and
-// Rosie's own pricing pages. Med spa figures from content/evidence.ts
+// Human answering prices from Ruby's own plans page (opened Nov 6, 2026); the
+// per-minute range is our arithmetic from those plans. Ruby overage rates are
+// attributed to CloudTalk's Aug 2026 summary because ruby.com does not list
+// them. AI prices from Dialzara's, Rosie's and HighLevel's own pages, opened
+// Nov 6, 2026. Rosie shows no overage rate, so none is quoted. Med spa figures from content/evidence.ts
 // medspa-booking-system, a projected case: only what was found is quoted.
 
 import type { Article } from '../types';
@@ -32,8 +34,8 @@ const article: Article = {
     'After hours is where a lot of service revenue quietly disappears. One med spa we worked with found that 23% of its bookings were being attempted after hours, and two thirds of those callers never rang back (/evidence/medspa-booking-system). Nobody was being lazy. The phone just rang when nobody was there.',
   ],
   tldr: [
-    'Human answering services usually bill by the minute, roughly $1.50 to $5 a minute according to 2026 buyer guides, and mostly take messages.',
-    'AI answering costs cents a minute (Rosie lists $0.25 a minute over its plan, Dialzara $0.35 to $0.48) and can book the job instead of logging a message.',
+    'Human answering services usually bill by the minute. Ruby’s published plans work out to about $3.45 to $5.00 a minute, and many services mostly take messages.',
+    'AI answering costs cents a minute (Dialzara’s plans work out to $0.35 to $0.48, HighLevel’s Voice AI $0.10 to $0.20) and can book the job instead of logging a message.',
     'The hard part is emergency triage: deciding what wakes up your on-call tech and what waits until 8 a.m.',
     'Best setup for most trades and clinics: AI answers and books, real emergencies transfer to a person with a summary.',
   ],
@@ -50,11 +52,11 @@ const article: Article = {
       id: 'cost',
       heading: 'How much does an after-hours answering service cost?',
       paragraphs: [
-        'Human answering services almost all bill by the minute. 2026 buyer guides put live answering at roughly $1.50 to $5 a minute once you include plan prices and overage, and several report that Ruby’s entry plan is about $250 a month for 50 minutes. Watch for setup fees, rounding up to the next minute and charges for time spent after the call. Those figures come from third-party comparisons, so get a written quote with the overage rate.',
-        'AI answering is priced in minute bundles or per minute. Rosie’s pricing page lists $49 a month for 250 minutes and $0.25 a minute after that. Dialzara’s plans run from $29 for 60 minutes up to $349 for 1,000 minutes, with overage from $0.48 down to $0.35 a minute as of November 2026.',
+        'Human answering services almost all bill by the minute. Ruby’s own pricing page lists $250 a month for 50 receptionist minutes, $395 for 100, $720 for 200 and $1,725 for 500, which works out to about $3.45 to $5.00 a minute as of November 2026. Ruby does not publish overage rates on that page; a CloudTalk summary from August 2026 puts them at $3.30 to $5.40 a minute depending on the plan. Whichever service you look at, get a written quote with the overage rate and any setup fee.',
+        'AI answering is priced in minute bundles or per minute. Rosie’s pricing page lists $49 a month for 250 minutes, with booking into your calendar and live transfers on its $149 plan for 1,000 minutes. Dialzara’s plans run from $29 for 60 minutes up to $349 for 1,000 minutes, with overage from $0.48 down to $0.35 a minute as of November 2026. HighLevel’s Voice AI is $0.10 to $0.20 a minute plus phone charges.',
       ],
       table: {
-        caption: 'After-hours call handling options compared, November 2026. Human prices are third-party estimates.',
+        caption: 'After-hours call handling options compared, November 2026. Human prices from Ruby’s published plans.',
         columns: [
           { key: 'option', label: '' },
           { key: 'voicemail', label: 'Voicemail' },
@@ -62,7 +64,7 @@ const article: Article = {
           { key: 'ai', label: 'AI answering service' },
         ],
         rows: [
-          { option: 'Typical cost', voicemail: 'Free', human: 'Roughly $1.50 to $5 a minute', ai: 'Roughly $0.10 to $0.50 a minute' },
+          { option: 'Typical cost', voicemail: 'Free', human: 'About $3.45 to $5.00 a minute (Ruby)', ai: 'Roughly $0.10 to $0.50 a minute' },
           { option: 'Answers instantly', voicemail: 'No', human: 'Usually, can queue at busy times', ai: 'Yes, every call at once' },
           { option: 'Books the job', voicemail: 'No', human: 'Sometimes, often takes a message', ai: 'Yes, if connected to your calendar' },
           { option: 'Handles an upset or unusual caller', voicemail: 'No', human: 'Best at this', ai: 'Fair, should transfer when unsure' },
@@ -110,7 +112,7 @@ const article: Article = {
       paragraphs: [
         'Keep your main number. Most businesses forward calls to the AI line only after hours, or only when nobody picks up within a few rings, so customers dial the same number they always have.',
         'Then connect it to the systems that matter: the calendar it books into, the CRM where the call is logged, and the phone of whoever is on call. Test it with real scenarios before you switch it on, including a fake emergency at 2 a.m. Read the first two weeks of transcripts and fix every question it got wrong.',
-        'If you would rather have that built and run for you, that is what our /ai-employees/ai-receptionist does. Or /book and we will look at your call logs with you first.',
+        'If you only get a few after-hours calls a week, start smaller: /blog/missed-call-text-back. If you would rather have the full setup built and run for you, that is what our /ai-employees/ai-receptionist does. Or /book and we will look at your call logs with you first.',
       ],
     },
   ],
@@ -118,7 +120,7 @@ const article: Article = {
     {
       question: 'How much does an after-hours answering service cost?',
       answer:
-        'Human answering services usually bill per minute, roughly $1.50 to $5 a minute according to 2026 buyer guides, plus possible setup and overage fees. AI answering services start around $29 to $49 a month for a bundle of minutes, with extra minutes from about $0.25 to $0.48 as of November 2026.',
+        'Human answering services usually bill per minute. Ruby, for example, lists $250 a month for 50 minutes up to $1,725 for 500, about $3.45 to $5.00 a minute, plus overage. AI answering services start around $29 to $49 a month for a bundle of minutes, and Dialzara charges $0.35 to $0.48 for extra minutes as of November 2026.',
     },
     {
       question: 'Can an AI answering service handle emergency calls?',
@@ -147,11 +149,12 @@ const article: Article = {
     },
   ],
   sources: [
-    { label: 'Rosie pricing', url: 'https://heyrosie.com/pricing', note: 'Plan price, included minutes and overage rate, read Nov 6, 2026.' },
+    { label: 'Ruby plans and pricing', url: 'https://www.ruby.com/plans-and-pricing/', note: 'Receptionist minute plans from $250 for 50 minutes to $1,725 for 500, with 24/7 answering; no overage rate listed. Read Nov 6, 2026.' },
+    { label: 'Rosie pricing', url: 'https://heyrosie.com/pricing', note: 'Plan prices, included minutes and which plans book and transfer; no overage rate shown. Read Nov 6, 2026.' },
     { label: 'Dialzara pricing', url: 'https://dialzara.com/pricing/', note: 'Plan prices, included minutes and overage rates, read Nov 6, 2026.' },
-    { label: 'CloudTalk, Ruby receptionist pricing summary', url: 'https://www.cloudtalk.io/blog/ruby-receptionist-pricing/', note: 'Third-party summary of Ruby’s minute plans and overage, read Nov 6, 2026. Confirm on ruby.com.' },
-    { label: 'Ringly, after-hours answering service guide (2026)', url: 'https://www.ringly.io/nl/blog/after-hours-answering-service', note: 'Third-party overview of live answering price ranges and fees, read Nov 6, 2026.' },
-    { label: 'Hexona med spa case study', url: 'https://www.hexonasystems.com/evidence/medspa-booking-system', note: 'After-hours booking share and the leak found before the build, quoted as published. Checked Nov 6, 2026.' },
+    { label: 'HighLevel AI Products Pricing', url: 'https://help.gohighlevel.com/support/solutions/articles/155000006652', note: 'Voice AI per-minute rates, phone charges billed separately (page last modified Nov 6, 2026). Read Nov 6, 2026.' },
+    { label: 'CloudTalk, Ruby receptionist pricing summary', url: 'https://www.cloudtalk.io/blog/ruby-receptionist-pricing/', note: 'Third-party summary (updated Aug 31, 2026) of Ruby’s overage rates by plan, $3.30 to $5.40 a minute. Read Nov 6, 2026. Confirm with Ruby.' },
+    { label: 'Hexona med spa case study', url: 'https://www.hexonasystems.com/evidence/medspa-booking-system', note: 'After-hours booking share and the leak found before the build, quoted as published. Read Nov 6, 2026.' },
   ],
   related: ['ai-receptionist-cost', 'ai-receptionist-vs-answering-service', 'missed-call-text-back'],
   queries: ['after hours answering service', '24 7 answering service', 'answering service for small business', 'after hours answering service for hvac', 'ai answering service vs human'],

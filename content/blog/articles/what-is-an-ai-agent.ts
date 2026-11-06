@@ -42,7 +42,7 @@ const article: Article = {
       heading: 'What is an AI agent, in plain English?',
       paragraphs: [
         'Think of the difference between a receptionist who can only read from a script and one who can actually open the calendar and book you in. The second one is an agent.',
-        'The AI companies draw the line the same way. Anthropic, which makes Claude, separates **workflows**, where the steps are fixed in advance by a developer, from **agents**, where the AI "dynamically directs its own processes and tool usage". OpenAI describes agents as systems that "independently accomplish tasks on your behalf". Both definitions come down to three parts:',
+        'The AI companies draw the line the same way. Anthropic, which makes Claude, separates **workflows**, where the steps are fixed in advance by a developer, from **agents**, where the AI models "dynamically direct their own processes and tool usage". OpenAI describes agents as systems that "independently accomplish tasks on your behalf". Both definitions come down to three parts:',
       ],
       bullets: [
         '**A goal.** "Book this caller into the next available slot", not "reply to this message".',
@@ -87,7 +87,7 @@ const article: Article = {
       ],
       bullets: [
         '**Answering calls and texts.** A tire shop was sending more than 600 calls a month to voicemail. A missed-call assistant that texted back within seconds and booked appointments recovered over $50,000 and lifted booked appointments 50% (/evidence/tire-shop-missed-calls).',
-        '**Following up leads and old estimates.** A solar installer had 4,000 homeowners who had asked for a quote and never heard back. Re-engaging them produced $24,500 in net profit (/evidence/solar-dormant-database).',
+        '**Following up leads and old estimates.** A solar installer had more than 4,000 homeowners who had shown interest and never bought, and nobody had gone back to them. Re-engaging them produced $24,500 in net profit (/evidence/solar-dormant-database). More examples like this are in /blog/ai-agent-examples.',
         '**Moving paperwork.** A renovation contractor automated forms, signatures and approvals and cut project delays 41%, with estimates approved 44% faster (/evidence/construction-project-pipeline).',
         '**Bringing customers back.** A multi-location coffee chain lifted retention from 27% to 68% with automated, personalised win-backs (/evidence/coffee-loyalty-programme).',
       ],
@@ -153,7 +153,7 @@ const article: Article = {
     {
       question: 'Do AI agents replace employees?',
       answer:
-        'In service businesses they mostly take work off people rather than replace them: the after-hours calls, the follow-up texts, the paperwork chasing. One renovation contractor we worked with grew to more than 27 active projects without adding admin staff.',
+        'In service businesses they mostly take work off people rather than replace them: the after-hours calls, the follow-up texts, the paperwork chasing. One renovation contractor we worked with scaled to 27 or more active projects without adding admin staff.',
     },
     {
       question: 'Are AI agents safe to give access to my business systems?',
@@ -175,12 +175,12 @@ const article: Article = {
     {
       label: 'OpenAI, A practical guide to building agents',
       url: 'https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf',
-      note: 'Definition of an agent as a system that independently accomplishes tasks. Read Nov 6, 2026.',
+      note: 'Definition: "Agents are systems that independently accomplish tasks on your behalf." Read Nov 6, 2026.',
     },
     {
       label: 'Hexona case studies',
       url: 'https://www.hexonasystems.com/evidence',
-      note: 'Client figures quoted exactly as published, measured in each client’s own systems. Checked Nov 6, 2026.',
+      note: 'Client figures quoted exactly as published, measured in each client’s own systems. Read Nov 6, 2026.',
     },
   ],
   related: ['ai-agent-examples', 'ai-receptionist-cost', 'how-to-make-your-business-run-without-you'],

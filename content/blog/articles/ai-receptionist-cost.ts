@@ -1,12 +1,12 @@
 // Target: "ai receptionist cost", "ai receptionist pricing", "how much does an ai
 // receptionist cost", "ai answering service cost", "answering service cost",
 // "virtual receptionist cost" (DataforSEO, US, Nov 6, 2026).
-// Prices from each vendor's own pricing page or FAQ as shown in search on
-// Nov 6, 2026. GoHighLevel rates from its help docs (AI Products Pricing,
-// updated Oct 29, 2026; Phone System Pricing, updated Oct 12, 2026; A2P pricing,
-// updated Sep 24, 2026), read Oct 31, 2026 for hamzaautomates.com/gohighlevel.
-// Left out: Dialzara's Business Pro price (not visible on its own page) and any
-// vendor figure that only appeared on third-party sites.
+// Prices opened and checked on each vendor's own pricing page or FAQ on
+// Nov 6, 2026. GoHighLevel rates from its help docs, opened Nov 6, 2026: AI
+// Products Pricing (last modified Nov 6, 2026), Phone System Pricing (last
+// modified Oct 12, 2026) and A2P 10DLC fees (last modified Sep 24, 2026).
+// Smith.ai: AI-initiated escalation has no fee, live agent help is a per-call
+// add-on (its own FAQ). Left out: any vendor figure only on third-party sites.
 
 import type { Article } from '../types';
 
@@ -50,9 +50,9 @@ const article: Article = {
           { key: 'price', label: 'Published price' },
         ],
         rows: [
-          { vendor: 'Dialzara', how: 'Minutes per month', price: '$29 for 60 min, $199 for 500 min, $349 for 1,000 min. Overage $0.35 to $0.48 a minute. No setup fee, 7-day trial.' },
+          { vendor: 'Dialzara', how: 'Minutes per month', price: '$29 for 60 min, $99 for 220 min, $199 for 500 min, $349 for 1,000 min. Overage $0.35 to $0.48 a minute. No setup fee, 7-day trial.' },
           { vendor: 'Goodcall', how: 'Unique callers per month', price: '$79 for 100 callers, $129 for 500, $299 for 2,000. Extra callers 15¢ to 79¢ each. No setup fee, month to month.' },
-          { vendor: 'Smith.ai AI Receptionist', how: 'Per call', price: 'Free for 25 calls ($3.00 a call after), Pro $150 a month at $2.00 a call, Enterprise $500 a month at $1.67 a call. Human backup included.' },
+          { vendor: 'Smith.ai AI Receptionist', how: 'Per call', price: 'Free for 25 calls ($3.00 a call after), Pro $150 a month at $2.00 a call, Enterprise $500 a month at $1.67 a call. No fee when the AI escalates to a human; live agent help with scheduling is a per-call add-on.' },
           { vendor: 'GoHighLevel Voice AI', how: 'Per minute, usage', price: '$0.10 to $0.20 a minute plus phone charges (inbound about $0.012 a minute), on top of a HighLevel subscription.' },
           { vendor: 'Ruby (live humans)', how: 'Receptionist minutes', price: '$250 for 50 min, $395 for 100, $720 for 200, $1,725 for 500.' },
         ],
@@ -86,8 +86,8 @@ const article: Article = {
         'This is where most owners get surprised. The monthly plan is the easy part.',
       ],
       bullets: [
-        '**Texting registration.** If the receptionist texts customers (confirmations, missed-call text back), US carriers require A2P 10DLC registration. On GoHighLevel that is $22.50 one time for a low-volume brand and $1.50 to $10.50 a month per campaign, per its help docs as of Oct 2026. Other platforms charge similar carrier fees.',
-        '**Texts themselves.** Fractions of a cent to about a cent and a quarter per text segment on usage platforms. Small, but it adds up with reminders.',
+        '**Texting registration.** If the receptionist texts customers (confirmations, missed-call text back), US carriers require A2P 10DLC registration. On GoHighLevel that is $22.50 one time for a low-volume brand and $1.50 to $10.00 a month per campaign, per its help docs as of Nov 2026. Other platforms charge similar carrier fees. /blog/a2p-10dlc-explained covers what registration involves.',
+        '**Texts themselves.** On GoHighLevel a US text segment is $0.00747 plus a carrier fee of a fraction of a cent, so roughly a cent a text, per its phone pricing guide as of Nov 2026. Small, but it adds up with reminders.',
         '**Connecting your calendar and CRM.** Some plans include common calendars. Field-service software, practice management systems and custom CRMs often need an integration someone has to build and maintain.',
         '**Call recording and transcripts.** Often included on self-serve plans. On usage platforms they are billed per minute, and stored recordings can carry a small monthly fee.',
         '**Your time, or someone’s.** Writing the scripts, testing calls, reading transcripts and fixing wrong answers. In the first month this is a few hours a week. Skip it and the receptionist keeps making the same mistake.',
@@ -146,7 +146,7 @@ const article: Article = {
     {
       question: 'Is an AI receptionist cheaper than an answering service?',
       answer:
-        'Usually, yes. A human answering service like Ruby starts at $250 a month for 50 minutes, while AI plans with hundreds of minutes start around $129 to $199. Human services are still better for complex or emotional calls, which is why many businesses use both.',
+        'Usually, yes. A human answering service like Ruby starts at $250 a month for 50 minutes, while AI plans with a few hundred minutes or callers start around $99 to $199 (Dialzara $99 for 220 minutes, Goodcall $129 for 500 callers). Human services are still better for complex or emotional calls, which is why many businesses use both.',
     },
     {
       question: 'How much does AI voice cost per minute?',
@@ -172,12 +172,22 @@ const article: Article = {
   sources: [
     { label: 'Dialzara pricing', url: 'https://dialzara.com/pricing/', note: 'Plan minutes, prices, overage rates, trial and setup fees. Read Nov 6, 2026.' },
     { label: 'Goodcall FAQ', url: 'https://www.goodcall.com/faq', note: 'Starter, Growth and Scale prices, per-customer billing and overage. Read Nov 6, 2026.' },
-    { label: 'Smith.ai AI Receptionist', url: 'https://smith.ai/ai-receptionist', note: 'Free, Pro and Enterprise plans, per-call rates, human escalation. Read Nov 6, 2026.' },
+    { label: 'Smith.ai AI Receptionist', url: 'https://smith.ai/ai-receptionist', note: 'Free, Pro and Enterprise plans, per-call rates, no setup fees, and the escalation fee FAQ. Read Nov 6, 2026.' },
     { label: 'Ruby plans and pricing', url: 'https://www.ruby.com/plans-and-pricing/', note: 'Receptionist minute plans from $250 a month. Read Nov 6, 2026.' },
     {
       label: 'HighLevel AI Products Pricing',
       url: 'https://help.gohighlevel.com/support/solutions/articles/155000006652',
-      note: 'Voice AI per-minute rates (updated Oct 29, 2026), with phone rates from the Phone System Pricing guide (updated Oct 12, 2026) and A2P fees (updated Sep 24, 2026). Read Oct 31, 2026.',
+      note: 'Voice AI per-minute rates and AI Employee plans (page last modified Nov 6, 2026). Read Nov 6, 2026.',
+    },
+    {
+      label: 'HighLevel Phone System Pricing and Billing Guide',
+      url: 'https://help.gohighlevel.com/en/support/solutions/articles/48001223556',
+      note: 'US inbound call rate ($0.01165 a minute), text segment, recording and number fees (page last modified Oct 12, 2026). Read Nov 6, 2026.',
+    },
+    {
+      label: 'HighLevel A2P 10DLC fees',
+      url: 'https://help.gohighlevel.com/support/solutions/articles/155000005200',
+      note: 'Brand registration ($22.50 low volume) and monthly campaign fees ($1.50 to $10.00), page last modified Sep 24, 2026. Read Nov 6, 2026.',
     },
   ],
   related: ['best-ai-receptionist-for-small-business', 'ai-receptionist-vs-hiring-a-receptionist', 'after-hours-answering-service'],
