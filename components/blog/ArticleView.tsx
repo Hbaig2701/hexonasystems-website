@@ -376,15 +376,28 @@ function AuthorCard() {
 
 export function ArticleCard({ article: a, index, featured = false }: { article: BlogArticle; index: number; featured?: boolean }) {
   return (
-    <div data-enter="up" style={delay((index % 3) * 90)} className={featured ? 'md:col-span-2' : undefined}>
-      <Tilt href={blogPath(a.slug)} max={3} className="hx-card flex h-full flex-col overflow-hidden no-underline" style={{ background: '#FFFFFF', color: 'var(--hx-ink)', padding: 0, boxShadow: 'var(--hx-shadow-1)', border: '1px solid var(--hx-line)' }}>
+    <div data-enter="up" style={delay((index % 3) * 90)} className={featured ? 'md:col-span-3' : undefined}>
+      <Tilt
+        href={blogPath(a.slug)}
+        max={featured ? 2 : 3}
+        className={`hx-card flex h-full overflow-hidden no-underline ${featured ? 'flex-col md:flex-row' : 'flex-col'}`}
+        style={{ background: '#FFFFFF', color: 'var(--hx-ink)', padding: 0, boxShadow: 'var(--hx-shadow-1)', border: '1px solid var(--hx-line)' }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element -- generated PNG route */}
-        <img src={`${blogPath(a.slug)}/opengraph-image`} alt={a.coverAlt} width={1200} height={630} loading="lazy" className="h-auto w-full" style={{ borderBottom: '1px solid var(--hx-line)' }} />
-        <span className="flex flex-1 flex-col gap-2 p-6">
+        <img
+          src={`${blogPath(a.slug)}/opengraph-image`}
+          alt={a.coverAlt}
+          width={1200}
+          height={630}
+          loading={featured ? 'eager' : 'lazy'}
+          className={`h-auto w-full ${featured ? 'md:w-[58%] md:flex-none md:self-center' : ''}`}
+          style={{ borderBottom: '1px solid var(--hx-line)' }}
+        />
+        <span className={`flex flex-1 flex-col gap-2 ${featured ? 'justify-center p-8' : 'p-6'}`}>
           <span className="hx-kicker">
             {a.kind} · {readingMinutes(a)} min read
           </span>
-          <span className={`hx-serif leading-snug ${featured ? 'text-[28px]' : 'text-[21px]'}`}>{a.title}</span>
+          <span className={`hx-serif leading-snug ${featured ? 'text-[30px]' : 'text-[21px]'}`}>{a.title}</span>
           {featured && (
             <span className="text-[16px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
               {a.description}

@@ -7,6 +7,9 @@ import { PageHero } from '@/components/hx/PageHero';
 import { CtaPair } from '@/components/hx/Blocks';
 import { ArticleCard } from '@/components/blog/ArticleView';
 
+/** The article pinned at the top of /blog. Change it when a better pillar page ships. */
+const FEATURED = 'what-is-an-ai-agent';
+
 const DESCRIPTION =
   'Straight answers for owners of service businesses: what AI receptionists and automation cost, how to stop losing leads, what makes a business worth more, and the AI news that matters this week.';
 
@@ -40,7 +43,9 @@ export default function BlogPage() {
       datePublished: a.datePublished,
     })),
   };
-  const [lead, ...rest] = ARTICLES;
+  // Feature the pillar guide; everything else newest first.
+  const lead = ARTICLES.find((a) => a.slug === FEATURED) ?? ARTICLES[0];
+  const rest = ARTICLES.filter((a) => a !== lead);
 
   return (
     <div className="hx">
