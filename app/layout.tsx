@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
-import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import { Header, HEADER_H } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -61,6 +60,9 @@ export const viewport: Viewport = {
  */
 const JS_FLAG = `document.documentElement.classList.add('js');`;
 
+const GTM_ID = 'GTM-KZ9XN392';
+const GTM_INIT = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -70,9 +72,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
+        {/* Google Tag Manager (GA4 is configured inside the container). Plain
+            tags in the server HTML so Google's tag checker can see them; the
+            script is async, so it does not block rendering. */}
+        <script dangerouslySetInnerHTML={{ __html: GTM_INIT }} />
+        <script async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} />
       </head>
-      {/* Google Tag Manager container (GA4 and any tags configured in GTM). Loads after hydration. */}
-      <GoogleTagManager gtmId="GTM-KZ9XN392" />
       <body className="min-h-svh">
         {/* AI SEO Developer Guide, Ticket 2 — the entity graph, once per
             document rather than per page.
