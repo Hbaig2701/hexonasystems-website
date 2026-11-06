@@ -44,7 +44,7 @@ llms.txt and llms-full.txt pick it up on the next build.
 
 | Figure | Value |
 |---|---|
-| Founded | 2021 |
+| Founded | 2022 |
 | Businesses served | 1,500+ |
 | Agencies running on Hexona's AI and systems | 1,000+ |
 | Community members | 45,000+ |

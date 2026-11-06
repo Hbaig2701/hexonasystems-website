@@ -242,14 +242,14 @@ export const PRINCIPAL = {
   role: 'Principal',
 
   bio: [
-    'I have spent five years building Hexona Systems, and I was putting automation into operating companies before ChatGPT existed.',
+    'I have spent four years building Hexona Systems, and I was putting automation into operating companies before ChatGPT existed.',
     'More than 1,500 businesses have been served through the firm since, and more than 1,000 agencies run on Hexona\'s AI and systems. Those numbers matter for one reason, not for bragging: the same short list of failures turns up in almost every business, and I have seen each of them often enough now to know which one to fix first.',
     'I also run one of the largest AI automation communities in the world, at over 45,000 members. Several of the operators I trained there now do this work inside companies considerably larger than my own.',
   ],
 
   /** The brand figures. One set, used everywhere (see BRAND FIGURES in
    *  LAUNCH-CHECKLIST.md): 45,000+ community members, 1,500+ businesses
-   *  served, 1,000+ agencies, founded 2021. */
+   *  served, 1,000+ agencies, founded 2022. */
   figures: [
     { label: 'Businesses served', figure: '1,500+' },
     { label: 'Community members trained', figure: '45,000+' },
@@ -268,13 +268,13 @@ export const PRINCIPAL = {
  * and a date cannot be argued with.
  */
 export const ORIGIN = {
-  since: '2021',
+  since: '2022',
   body: [
-    'Hexona began in 2021, automating operations for local businesses. The work was unglamorous and the tools were primitive, and that turned out to be the advantage. By the time general-purpose language models arrived, the firm had already spent two years watching where operational money goes missing.',
+    'Hexona began in 2022, automating operations for local businesses. The work was unglamorous and the tools were primitive, and that turned out to be the advantage. By the time general-purpose language models reached ordinary businesses, the firm had already spent years watching where operational money goes missing.',
     'Most firms in this market started after that moment and built their practice around the tools. Hexona started before it and built the practice around the failures. The tools have changed several times since. The failures have not changed once.',
   ],
   figures: [
-    { label: 'Operating since', figure: '2021' },
+    { label: 'Founded', figure: '2022' },
     { label: 'Businesses served', figure: '1,500+' },
     { label: 'Community members trained', figure: '45,000+' },
   ],
@@ -359,7 +359,7 @@ export const COMMITMENTS = [
 export const KEY_FACTS: { field: string; value: string }[] = [
   { field: 'Company name', value: FIRM.name },
   { field: 'Type', value: 'AI implementation firm' },
-  { field: 'Founded', value: '2021' },
+  { field: 'Founded', value: '2022' },
   { field: 'Founder', value: FIRM.principal },
   { field: 'Headquarters', value: 'Toronto, Ontario, Canada' },
   { field: 'Market served', value: 'United States and Canada' },

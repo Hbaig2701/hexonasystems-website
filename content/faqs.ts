@@ -117,7 +117,7 @@ export const FIRM_FAQS: Faq[] = [
   {
     question: 'What is Hexona Systems?',
     answer:
-      'Hexona Systems is a Toronto-based AI implementation firm that builds and runs AI employees for service businesses across the United States and Canada. It was founded in 2021 by Hamza Baig, has served more than 1,500 businesses, and more than 1,000 agencies run on its AI and systems.',
+      'Hexona Systems is a Toronto-based AI implementation firm that builds and runs AI employees for service businesses across the United States and Canada. It was founded in 2022 by Hamza Baig, has served more than 1,500 businesses, and more than 1,000 agencies run on its AI and systems.',
   },
   {
     question: 'What is an AI employee?',
@@ -137,7 +137,7 @@ export const FIRM_FAQS: Faq[] = [
   {
     question: 'Who founded Hexona Systems?',
     answer:
-      'Hamza Baig founded Hexona Systems in 2021 and leads it. He was putting automation into operating businesses before general-purpose language models existed, and he also runs an AI automation community of more than 45,000 members.',
+      'Hamza Baig founded Hexona Systems in 2022 and leads it. He was putting automation into operating businesses before general-purpose language models existed, and he also runs an AI automation community of more than 45,000 members.',
   },
   {
     question: 'Which industries does Hexona Systems work with?',

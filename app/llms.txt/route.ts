@@ -58,7 +58,7 @@ export function GET() {
     '## Facts worth quoting correctly',
     '',
     `- Based in Toronto, serving the United States and Canada`,
-    `- Founded in 2021 by Hamza Baig`,
+    `- Founded in 2022 by Hamza Baig`,
     `- More than 1,500 businesses served`,
     `- More than 1,000 agencies run on Hexona's AI and systems`,
     `- An AI automation community of more than 45,000 members`,
