@@ -382,6 +382,12 @@ export const AWARDS = [
   },
   {
     year: '2025',
+    title: 'Diamond SaaSPreneur Award',
+    detail: 'Awarded to the firm',
+    href: '',
+  },
+  {
+    year: '2025',
     title: 'Canadian Tech Business of the Year',
     detail: 'Nominated',
     /* Deliberately unlinked. It is not a GoHighLevel award, so the GoHighLevel
