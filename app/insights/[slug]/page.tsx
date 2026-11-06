@@ -1,46 +1,25 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
-import { SectionMarker } from '@/components/layout/SectionMarker';
-import { Button, TextLink } from '@/components/ui/Button';
 import { PostBody } from '@/components/insights/PostBody';
 import { JsonLd, blogPostingLd, breadcrumbLd } from '@/lib/jsonld';
-import { DIAGNOSTIC, PRINCIPAL } from '@/content/firm';
-import { POSTS, postBySlug, postWordCount, publishedPosts, readingMinutes } from '@/content/insights';
-
-/**
- * /insights/[slug] — AI SEO Developer Guide, Ticket 6.
- *
- * THE STANDFIRST IS THE POINT. `post.answer` renders above everything, in lead
- * type, before the first heading. Ticket 6 requires each post to answer its title
- * question within the first hundred words, and holding the answer in its own
- * field enforces that structurally instead of trusting a writer to remember:
- * it cannot drift down the page as the post gets edited, and
- * `npm run check:seo` fails the build if it is missing, over 100 words, or if the
- * post is under 800 words.
- *
- * It is also the passage an extractive model will quote. A post that spends three
- * paragraphs clearing its throat gets quoted saying nothing.
- */
+import { PRINCIPAL } from '@/content/firm';
+import { postBySlug, postWordCount, publishedPosts, readingMinutes } from '@/content/insights';
+import { Breadcrumbs, delay } from '@/components/hx/Blocks';
+import { LatticeCanvas } from '@/components/hx/LatticeCanvas';
+import { Tilt } from '@/components/hx/Interactive';
 
 export function generateStaticParams() {
-  return POSTS.filter((p) => p.published).map((p) => ({ slug: p.slug }));
+  return publishedPosts().map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export const dynamicParams = false;
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = postBySlug(slug);
-  if (!post) return { title: 'Not found' };
-
+  if (!post || !post.published) return { title: 'Not found' };
   return {
-    // The <title> uses metaTitle where the full question would be truncated in a
-    // search result. The H1 below always renders post.title in full.
     title: post.metaTitle ?? post.title,
     description: post.description,
     alternates: { canonical: `/insights/${post.slug}` },
@@ -57,21 +36,24 @@ export async function generateMetadata({
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = postBySlug(slug);
-  if (!post) notFound();
-
+  if (!post || !post.published) notFound();
   const others = publishedPosts()
     .filter((p) => p.slug !== post.slug)
     .slice(0, 3);
-
-  const published = new Date(post.datePublished + 'T00:00:00Z').toLocaleDateString('en-CA', {
+  const published = new Date(post.datePublished + 'T00:00:00Z').toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     timeZone: 'UTC',
   });
+  const trail = [
+    { name: 'Home', path: '/' },
+    { name: 'Articles', path: '/insights' },
+    { name: post.title, path: `/insights/${post.slug}` },
+  ];
 
   return (
-    <>
+    <div className="hx">
       <JsonLd
         data={blogPostingLd({
           headline: post.title,
@@ -82,94 +64,67 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           wordCount: postWordCount(post),
         })}
       />
-      <JsonLd
-        data={breadcrumbLd([
-          { name: 'Home', path: '/' },
-          { name: 'Insights', path: '/insights' },
-          { name: post.title, path: `/insights/${post.slug}` },
-        ])}
-      />
+      <JsonLd data={breadcrumbLd(trail)} />
 
-      {/* --- Opening ------------------------------------------------------- */}
-      <Surface surface="void" rule={false} as="header" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/10]">
-              <p className="t-label mb-14 text-fg-3">
-                <span className="text-brand">{post.category}</span>
-                <span className="px-1.5 text-brand opacity-50">·</span>
-                <time dateTime={post.datePublished}>{published}</time>
-                <span className="px-1.5 text-brand opacity-50">·</span>
-                {readingMinutes(post)} min read
-              </p>
-              <h1 className="t-display-1 mb-12 max-w-[26ch]">{post.title}</h1>
-              {/* The answer. First prose on the page, above the first heading. */}
-              <p className="t-lead max-w-[64ch] border-l border-brand pl-6 text-fg">
-                {post.answer}
-              </p>
-            </div>
+      <header className="hx-hero">
+        <LatticeCanvas className="hx-hero-canvas" />
+        <div className="hx-wrap pb-16 pt-12">
+          <div className="mx-auto max-w-[48rem]">
+            <Breadcrumbs trail={trail} />
+            <p className="hx-eyebrow m-0 mb-6" data-enter="up">
+              {post.category} · <time dateTime={post.datePublished}>{published}</time> · {readingMinutes(post)} min read
+            </p>
+            <h1 className="hx-h1 m-0" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)', ...delay(80) }} data-enter="up">
+              {post.title}
+            </h1>
+            <p className="m-0 mt-5 text-[15px]" style={{ color: 'var(--hx-ink-3)', ...delay(140) }} data-enter="up">
+              By {PRINCIPAL.name}
+            </p>
+            {/* The answer: first prose on the page, above the first heading. */}
+            <p
+              className="m-0 mt-8 rounded-2xl p-6 text-[19px] leading-relaxed"
+              style={{ background: 'var(--hx-cyan-soft)', borderLeft: '4px solid var(--hx-cyan)', color: 'var(--hx-ink)', ...delay(200) }}
+              data-enter="up"
+            >
+              {post.answer}
+            </p>
           </div>
         </div>
-      </Surface>
+      </header>
 
-      {/* --- The body ------------------------------------------------------ */}
-      <Surface surface="paper" as="article">
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/10]">
-              <PostBody blocks={post.body} />
-            </div>
-          </div>
+      <article className="hx-wrap pb-24">
+        <div className="mx-auto max-w-[48rem]">
+          <PostBody blocks={post.body} />
         </div>
-      </Surface>
+      </article>
 
-      {/* --- Also worth reading -------------------------------------------- */}
       {others.length > 0 && (
-        <Surface surface="void" className="hex-stage">
-          <Lattice />
-          <div className="shell">
-            <SectionMarker index="02" label="Also worth reading" className="mb-14" />
-            <div className="col-12">
-              <div className="[grid-column:1/10] border-t border-line">
-                {others.map((other) => (
-                  <p key={other.slug} className="t-body border-b border-line py-5">
-                    <Link href={`/insights/${other.slug}`} className="link">
-                      {other.title}
-                    </Link>
-                  </p>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Surface>
-      )}
-
-      {/* --- Close --------------------------------------------------------- */}
-      <Surface surface="paper">
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/9]">
-              <h2 className="t-display-1 mb-8">
-                Reading about it is
-                <br className="hidden sm:inline" />
-                cheaper than measuring it.
+        <section aria-labelledby="more" style={{ background: 'var(--hx-cyan-soft)' }}>
+          <div className="hx-wrap py-24">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 id="more" className="hx-h2 m-0" data-enter="up">
+                Also worth reading
               </h2>
-              <p className="t-body mb-16 max-w-[56ch] text-fg-2">
-                Not by much, and only once. {PRINCIPAL.name} leads every engagement, and the report
-                will tell you in its first paragraph if the leakage is immaterial.
-              </p>
-              <div className="flex flex-col items-start gap-8">
-                <Button href="/commission">
-                  Commission a diagnostic <span aria-hidden="true">→</span>{' '}
-                  {DIAGNOSTIC.priceFormatted}
-                </Button>
-                <TextLink href="/insights">All insights</TextLink>
-              </div>
+              <Link href="/insights" className="hx-link">
+                All articles <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {others.map((o, i) => (
+                <div key={o.slug} data-enter="up" style={delay(i * 90)}>
+                  <Tilt href={`/insights/${o.slug}`} max={4} className="hx-card flex h-full flex-col gap-3 no-underline" style={{ background: '#FFFFFF', color: 'var(--hx-ink)', boxShadow: 'var(--hx-shadow-1)' }}>
+                    <span className="hx-kicker">{o.category}</span>
+                    <span className="hx-serif text-[22px] leading-snug">{o.title}</span>
+                    <span className="mt-auto pt-2 text-[15px] font-medium" style={{ color: 'var(--hx-teal)' }}>
+                      Read <span aria-hidden="true">→</span>
+                    </span>
+                  </Tilt>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </Surface>
-    </>
+        </section>
+      )}
+    </div>
   );
 }

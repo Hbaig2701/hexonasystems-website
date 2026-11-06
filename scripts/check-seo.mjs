@@ -160,15 +160,21 @@ for (const file of ['lib/jsonld.tsx', 'content/firm.ts', 'content/faqs.ts']) {
 if (placeholderFailures === 0) pass('No bracketed placeholder in a shipping string literal.');
 
 /* --- TICKET 2c: schema text and visible text share one source ---------- */
-const FAQ_PAGES = ['app/diagnostic/page.tsx', 'app/implementation/page.tsx', 'app/evidence/page.tsx'];
+// v3: every role page, industry page, Case Studies and About carry an FAQ.
+const FAQ_PAGES = [
+  'app/ai-employees/[slug]/page.tsx',
+  'app/industries/[slug]/page.tsx',
+  'app/evidence/page.tsx',
+  'app/firm/page.tsx',
+];
 let faqFailures = 0;
 for (const file of FAQ_PAGES) {
   const src = read(file);
-  if (src.includes('<Faqs') && !src.includes('faqPageLd')) {
+  if (src.includes('<FaqList') && !src.includes('faqPageLd')) {
     faqFailures += 1;
     fail(`${file} renders an FAQ block with no FAQPage schema (Ticket 7).`);
   }
-  if (!src.includes('<Faqs')) {
+  if (!src.includes('<FaqList')) {
     faqFailures += 1;
     fail(`${file} has no FAQ block. Ticket 7 requires five-plus pairs on every service page.`);
   }

@@ -1,19 +1,6 @@
 import type { PostBlock } from '@/content/insights';
 
-/**
- * Renders a post body from a small fixed block vocabulary rather than from
- * Markdown or MDX.
- *
- * Two reasons, both of which matter more here than the convenience of MDX would.
- * Ticket 6 requires every heading to land at a predictable level so the document
- * outline is real, and a constrained vocabulary makes that true by construction
- * rather than by review. And §3.3 pins the type scale: a Markdown pipeline would
- * quietly stop obeying it the first time somebody pasted in an h4 or a bold run,
- * because display type on this site is serif at weight 400 and never bold.
- *
- * No client JavaScript. `data-enter` is picked up by the document-wide Entrances
- * observer, and the no-JS default is fully visible.
- */
+/** Renders an article body in the v3 type system. */
 export function PostBody({ blocks }: { blocks: PostBlock[] }) {
   return (
     <div className="flex flex-col">
@@ -21,52 +8,47 @@ export function PostBody({ blocks }: { blocks: PostBlock[] }) {
         switch (block.t) {
           case 'h2':
             return (
-              <h2 key={i} className="t-display-2 mb-6 mt-14 max-w-[30ch] first:mt-0" data-enter>
+              <h2 key={i} className="hx-h2 mb-5 mt-14 first:mt-0" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)' }} data-enter="up">
                 {block.text}
               </h2>
             );
-
           case 'ul':
             return (
-              <ul key={i} className="mb-6 flex max-w-[68ch] flex-col border-t border-line" data-enter>
+              <ul key={i} className="m-0 mb-6 flex list-none flex-col gap-3 p-0" data-enter="up">
                 {block.items?.map((item, j) => (
-                  <li key={j} className="t-small border-b border-line py-4 text-fg-2">
-                    {item}
+                  <li key={j} className="flex gap-3 text-[17px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                    <span aria-hidden="true" className="mt-[0.6em] h-2 w-2 flex-none rounded-full" style={{ background: 'var(--hx-cyan)' }} />
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
             );
-
           case 'ol':
             return (
-              <ol key={i} className="mb-6 flex max-w-[68ch] flex-col border-t border-line" data-enter>
+              <ol key={i} className="m-0 mb-6 flex list-none flex-col gap-4 p-0" data-enter="up">
                 {block.items?.map((item, j) => (
-                  <li key={j} className="flex gap-5 border-b border-line py-4">
-                    {/* Mono numerals with the accent, matching SectionMarker —
-                        the site's enumeration system, not a decorative bullet. */}
-                    <span className="t-label shrink-0 pt-0.5 text-brand">
-                      {String(j + 1).padStart(2, '0')}
+                  <li key={j} className="flex gap-4">
+                    <span className="hx-serif flex h-8 w-8 flex-none items-center justify-center rounded-full text-[15px]" style={{ background: 'var(--hx-cyan-soft)', color: 'var(--hx-teal)' }}>
+                      {j + 1}
                     </span>
-                    <span className="t-small text-fg-2">{item}</span>
+                    <span className="pt-0.5 text-[17px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ol>
             );
-
           case 'note':
             return (
-              <aside
-                key={i}
-                className="mb-6 max-w-[68ch] border-l border-brand pl-6 py-1"
-                data-enter
-              >
-                <p className="t-small text-fg-2">{block.text}</p>
+              <aside key={i} className="mb-6 rounded-2xl p-6" style={{ background: 'var(--hx-cyan-soft)', borderLeft: '4px solid var(--hx-cyan)' }} data-enter="up">
+                <p className="m-0 text-[16px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                  {block.text}
+                </p>
               </aside>
             );
-
           default:
             return (
-              <p key={i} className="t-body mb-6 max-w-[68ch] text-fg-2" data-enter>
+              <p key={i} className="m-0 mb-6 text-[17px] leading-[1.75]" style={{ color: 'var(--hx-ink-2)' }} data-enter="up">
                 {block.text}
               </p>
             );

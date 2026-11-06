@@ -45,7 +45,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       <JsonLd data={faqPageLd(p.faqs, path)} />
 
       <PageHero trail={trail} eyebrow={`Industries · ${ind.name}`} title={p.h1} answer={p.answer} aside={p.demo && <Conversation {...p.demo} />}>
-        <CtaPair secondary={{ label: 'See the results', href: '#proof' }} />
+        <CtaPair secondary={p.proof.length > 0 ? { label: 'See the results', href: '#proof' } : { label: 'Meet your AI team', href: '#team' }} />
       </PageHero>
 
       <section aria-labelledby="problems" className="hx-band">
@@ -81,9 +81,9 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      <section aria-labelledby="team" className="hx-wrap py-28">
+      <section id="team" aria-labelledby="team-h" className="hx-wrap py-28">
         <SectionHead
-          id="team"
+          id="team-h"
           kicker="Your AI team"
           title={<>The AI employees that fit <span className="hx-mark">{ind.name.toLowerCase()}.</span></>}
         />
@@ -121,9 +121,10 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
+      {p.proof.length > 0 && (
       <section id="proof" aria-labelledby="proof-h" style={{ background: 'var(--hx-cyan-soft)' }}>
         <div className="hx-wrap py-28">
-          <SectionHead id="proof-h" kicker="Proof" title="Results from companies like yours." text="Measured in each client's own systems. Client names are withheld by agreement." />
+          <SectionHead id="proof-h" kicker="Proof" title={p.proofTitle ?? 'Results from companies like yours.'} text="Measured in each client's own systems. Client names are withheld by agreement." />
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {p.proof.map((pr, i) => (
               <ProofCard key={pr.caseSlug} proof={pr} index={i} />
@@ -131,6 +132,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       </section>
+      )}
 
       <section aria-labelledby="faq" className="hx-wrap py-28">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">

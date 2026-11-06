@@ -1,27 +1,26 @@
-import { Surface } from '@/components/ui/Surface';
 import type { LegalDoc } from '@/content/legal';
 
 /**
- * /terms and /privacy share this layout. A single text column on PAPER, no
- * lattice, no section markers: a legal page is read, not sold, and anything
- * decorative here reads as the firm trying to make the small print look like
- * something else.
+ * /terms and /privacy share this layout: one calm reading column. A legal page
+ * is read, not sold, so there is no lattice and no motion here.
  */
 export function LegalPage({ doc }: { doc: LegalDoc }) {
   return (
-    <Surface surface="paper" rule={false}>
-      <div className="shell">
-        <div className="max-w-[68ch]">
-          <p className="t-label mb-6 text-fg-3">Last updated · {doc.updated}</p>
-          <h1 className="t-display-1 mb-10">{doc.title}</h1>
-          <p className="t-lead mb-14 text-fg-2">{doc.intro}</p>
+    <div className="hx">
+      <div className="hx-wrap py-16 lg:py-24">
+        <div className="mx-auto max-w-[46rem]">
+          <p className="hx-eyebrow m-0 mb-6">Last updated · {doc.updated}</p>
+          <h1 className="hx-h1 m-0" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)' }}>
+            {doc.title}
+          </h1>
+          <p className="hx-lead m-0 mt-6">{doc.intro}</p>
 
-          <div className="flex flex-col gap-12">
+          <div className="mt-14 flex flex-col gap-12">
             {doc.sections.map((s) => (
               <section key={s.heading}>
-                <h2 className="t-display-2 mb-5">{s.heading}</h2>
+                <h2 className="hx-h3 m-0 mb-4">{s.heading}</h2>
                 {s.body.map((para, i) => (
-                  <p key={i} className="t-body mb-4 text-fg-2 last:mb-0">
+                  <p key={i} className="m-0 mb-4 text-[17px] leading-[1.75] last:mb-0" style={{ color: 'var(--hx-ink-2)' }}>
                     {para}
                   </p>
                 ))}
@@ -30,6 +29,6 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
           </div>
         </div>
       </div>
-    </Surface>
+    </div>
   );
 }

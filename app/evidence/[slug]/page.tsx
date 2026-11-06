@@ -1,60 +1,43 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
-import { SectionMarker } from '@/components/layout/SectionMarker';
-import { FigureBlock } from '@/components/ui/FigureBlock';
-import { RecordTable } from '@/components/ui/RecordTable';
-import { Button, TextLink } from '@/components/ui/Button';
 import { JsonLd, breadcrumbLd, recordLd } from '@/lib/jsonld';
-import { DIAGNOSTIC } from '@/content/firm';
-import { CASE_STUDIES, RECORDS, type CaseStudy } from '@/content/evidence';
+import { CASE_STUDIES, type CaseStudy } from '@/content/evidence';
+import { EMPLOYEES } from '@/content/employees';
+import { INDUSTRY_LIST } from '@/content/industries';
+import { PageHero } from '@/components/hx/PageHero';
+import { CtaPair, RoleCard, delay } from '@/components/hx/Blocks';
 
 /**
- * /evidence/[slug] — one case study, or one engagement record.
+ * A single case study.
  *
- * ⚠️ BOTH CLASSES RESOLVE HERE AND THEY RENDER DIFFERENTLY. An engagement
- * record is the strict §5 class (revenue, found, sealed, payback, consent) and
- * RECORDS is still empty; a case study is implementation work. The adapter at
- * the foot of this file maps a record onto the same layout so there is one page
- * to maintain, but it keeps the record's own labels: `sealed` is presented as
- * annualised measured recovery and never as the looser "result".
- *
- * ⚠️ A PROJECTED CASE STUDY MUST NEVER READ LIKE A MEASURED ONE. Three of the
- * ten shipped and have not been measured. On those pages the hero carries a
- * status block instead of a result, section 04 is titled "What is expected"
- * rather than "What changed", and the outcomes list is introduced by a sentence
- * that says the figures are projections. Removing any one of those three would
- * leave a page that reads as evidence and is not.
- *
- * Order is deliberate. Situation, then what was found, then what was built,
- * then what changed, then how it was measured. A reader who stops early has
- * still read the claim in the order it was earned. Verification is last and is
- * never optional, because it is the only thing separating this from a
- * testimonial.
+ * The honesty rules from v2 carry over unchanged, because they are the reason
+ * the numbers are believable: a projected study shows what was FOUND and says
+ * plainly that results are in progress; every study ends with how it was
+ * measured; client names are withheld unless the client agreed in writing.
  */
 
 export function generateStaticParams() {
-  return [
-    ...CASE_STUDIES.map((c) => ({ slug: c.slug })),
-    ...RECORDS.map((r) => ({ slug: r.slug })),
-  ];
+  return CASE_STUDIES.map((c) => ({ slug: c.slug }));
 }
 
-function resolve(slug: string): CaseStudy | undefined {
-  const study = CASE_STUDIES.find((c) => c.slug === slug);
-  if (study) return study;
-  const record = RECORDS.find((r) => r.slug === slug);
-  return record ? fromRecord(record) : undefined;
+export const dynamicParams = false;
+
+const find = (slug: string) => CASE_STUDIES.find((c) => c.slug === slug);
+
+function metaDescription(study: CaseStudy): string {
+  const where = `${study.sector}, client name withheld.`;
+  const body =
+    study.basis === 'measured'
+      ? [study.found ? `${study.found} found` : null, study.result].filter(Boolean).join(', ') + '.'
+      : `${study.found ?? study.headline.figure}. Built and live; final results in progress.`;
+  const full = `${body} ${where}`;
+  return full.length <= 160 ? full : `${body} ${study.sector}.`.slice(0, 160);
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const study = resolve(slug);
+  const study = find(slug);
   if (!study) return { title: 'Case study not found' };
   return {
     title: study.metaTitle ?? study.sector,
@@ -63,350 +46,210 @@ export async function generateMetadata({
   };
 }
 
-/**
- * ⚠️ BUDGETED TO 160 CHARACTERS, AND IT STATES THE BASIS.
- *
- * This used to be the lede plus the entire verification paragraph, sliced at
- * 300, which is roughly double what a search result shows and put the sentence
- * that qualifies the figures in the half nobody reads. It now leads with the
- * numbers and says outright when there is no result yet, so a snippet lifted
- * out of the page cannot present a projection as an outcome.
- */
-function metaDescription(study: CaseStudy): string {
-  const where = `${study.sector}, client name withheld.`;
-  const body =
-    study.basis === 'measured'
-      ? [
-          study.found ? `${study.found} found` : null,
-          study.result,
-          study.window ? `measured over ${study.window.toLowerCase()}` : null,
-        ]
-          .filter(Boolean)
-          .join(', ') + '.'
-      : `${study.found ?? study.headline.figure}. Built and live; final results in progress.`;
-  const full = `${body} ${where}`;
-  return full.length <= 160 ? full : `${body} ${study.sector}.`.slice(0, 160);
-}
-
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const study = resolve(slug);
+  const study = find(slug);
   if (!study) notFound();
+  const projected = study.basis === 'projected';
+  const trail = [
+    { name: 'Home', path: '/' },
+    { name: 'Case Studies', path: '/evidence' },
+    { name: study.metaTitle ?? study.sector, path: `/evidence/${study.slug}` },
+  ];
+  // Internal links: the AI employees and industry pages that cite this case.
+  const employees = EMPLOYEES.filter((e) => e.page?.proof.some((p) => p.caseSlug === study.slug));
+  const industries = INDUSTRY_LIST.filter((i) => i.page?.proof.some((p) => p.caseSlug === study.slug));
 
-  const isProjected = study.basis === 'projected';
+  const figures = projected
+    ? [
+        { label: study.foundFigure ? 'Found before the build' : 'Delivered', figure: study.foundFigure ?? study.headline.figure, note: study.foundFigure ? study.found : study.headline.label },
+        { label: 'Status', figure: 'In progress', note: 'Built and live. The measurement period has not closed yet.' },
+      ]
+    : [
+        { label: 'Found before the build', figure: study.foundFigure ?? '—', note: study.found },
+        { label: 'Result', figure: study.headline.figure, note: study.headline.label },
+        { label: 'Window', figure: study.window ?? 'Not stated', note: study.window ? undefined : 'The source does not state one. See how this was measured, below.' },
+      ];
 
   return (
-    <>
-      {/* recordLd has existed in lib/jsonld.tsx since the SEO work and was
-          never wired up, so the ten most linkable pages on the site shipped
-          with no Article markup and no breadcrumb while every /insights post
-          had both. */}
-      <JsonLd
-        data={recordLd({
-          slug: study.slug,
-          title: study.title,
-          description: metaDescription(study),
-        })}
-      />
-      <JsonLd
-        data={breadcrumbLd([
-          { name: 'Home', path: '/' },
-          { name: 'Evidence', path: '/evidence' },
-          { name: study.metaTitle ?? study.sector, path: `/evidence/${study.slug}` },
-        ])}
-      />
-      <Surface surface="void" rule={false} as="header" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/10]">
-              <p className="t-label mb-14 text-fg-3">
-                <span className="text-brand">{study.index}</span>
-                <span className="px-1.5 text-brand opacity-50">·</span> {study.sector}
-                {study.region && (
-                  <>
-                    <span className="px-1.5 text-brand opacity-50">·</span> {study.region}
-                  </>
-                )}
-                {study.clientName && (
-                  <>
-                    <span className="px-1.5 text-brand opacity-50">·</span> {study.clientName}
-                  </>
-                )}
-              </p>
-              <h1 className="t-display-1 mb-12 max-w-[22ch]">{study.title}</h1>
+    <div className="hx">
+      <JsonLd data={recordLd({ slug: study.slug, title: study.title, description: metaDescription(study) })} />
+      <JsonLd data={breadcrumbLd(trail)} />
 
-              {/* Said once, in prose, above the figures. The status block below
-                  says it again, and section 04 says it a third time. */}
-              {isProjected && (
-                <p className="t-lead mb-4 max-w-[62ch] text-fg-2">
-                  This system is live and the measurement period has not closed. Everything below
-                  that looks forward is a projection, and it is named as one where it appears.
-                </p>
+      <PageHero
+        trail={trail}
+        eyebrow={[study.sector, study.region, study.clientName].filter(Boolean).join(' · ')}
+        title={study.title}
+        answer={
+          projected
+            ? 'This system is live and the measurement period has not closed. The figures below are what the business was losing before the build. Anything forward-looking is labelled a projection.'
+            : study.situation[0]
+        }
+      >
+        <CtaPair secondary={{ label: 'All case studies', href: '/evidence' }} />
+      </PageHero>
+
+      <section aria-label="Key figures" className="hx-band">
+        <div className={`hx-wrap relative grid gap-8 py-14 ${figures.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
+          {figures.map((f, i) => (
+            <div key={f.label} data-enter="up" style={delay(i * 100)}>
+              <div className="hx-kicker" style={{ color: 'var(--hx-cyan-light)' }}>
+                {f.label}
+              </div>
+              <div className="hx-figure mt-2">{f.figure}</div>
+              {f.note && (
+                <div className="mt-2 max-w-[22rem] text-[14px] leading-relaxed" style={{ color: 'var(--hx-on-teal)' }}>
+                  {f.note}
+                </div>
               )}
             </div>
-          </div>
-
-          {/* ⚠️ THESE BLOCKS SET AT DISPLAY SIZE. Everything in them must be a
-              figure and a unit, never a phrase: `found` is the table cell and
-              wraps to five lines here, so `foundFigure` exists for this and the
-              blocks use it. Anything long belongs in the annotation. */}
-          {isProjected ? (
-            /* Two blocks, not three. A projected study has no result, and the
-               third block previously repeated the found figure under a
-               "Delivered" label, which read as a second and larger finding. */
-            <div className="col-12 mt-8 gap-6">
-              <div className="[grid-column:1/7]">
-                <FigureBlock
-                  label={study.foundFigure ? 'Found' : 'Delivered'}
-                  figure={study.foundFigure ?? study.headline.figure}
-                  annotation={study.foundFigure ? study.found : study.headline.label}
-                  tone={study.foundFigure ? 'loss' : undefined}
-                />
-              </div>
-              <div className="[grid-column:7/13]">
-                <FigureBlock
-                  label="Status"
-                  figure="Final results in progress"
-                  annotation="Built and live. No post-implementation period has been measured against it."
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="col-12 mt-8 gap-6">
-              <div className="[grid-column:1/5]">
-                <FigureBlock
-                  label="Found"
-                  figure={study.foundFigure ?? study.headline.figure}
-                  annotation={study.foundFigure ? study.found : study.headline.label}
-                  tone="loss"
-                />
-              </div>
-              <div className="[grid-column:5/9]">
-                <FigureBlock
-                  label="Result"
-                  figure={study.headline.figure}
-                  annotation={study.headline.label}
-                  tone="brand"
-                />
-              </div>
-              <div className="[grid-column:9/13]">
-                <FigureBlock
-                  label="Window"
-                  figure={study.window ?? 'Not stated'}
-                  annotation={
-                    study.window
-                      ? undefined
-                      : 'The source document does not state a measurement window. See verification below.'
-                  }
-                />
-              </div>
-            </div>
-          )}
+          ))}
         </div>
-      </Surface>
+      </section>
 
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker as="h2" index="01" label="The situation" className="mb-14" />
-          <div className="col-12">
-            <div className="[grid-column:1/8]">
-              {study.situation.map((para, i) => (
-                <p
-                  key={i}
-                  className={
-                    i === 0 ? 't-lead mb-8 max-w-[58ch]' : 't-body mb-6 max-w-[64ch] text-fg-2'
-                  }
-                >
-                  {para}
-                </p>
+      <article className="hx-wrap py-24">
+        <div className="mx-auto max-w-[52rem]">
+          <section aria-labelledby="situation" data-enter="up">
+            <h2 id="situation" className="hx-h2 m-0">
+              The situation
+            </h2>
+            <div className="hx-prose mt-6">
+              {(projected ? study.situation : study.situation.slice(1)).map((p) => (
+                <p key={p.slice(0, 30)}>{p}</p>
               ))}
             </div>
-          </div>
-        </div>
-      </Surface>
+          </section>
 
-      <Surface surface="void" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <SectionMarker as="h2" index="02" label="What we found" className="mb-14" />
-          <RecordTable
-            caption="Leakage identified before the build"
-            columns={[
-              { key: 'leak', label: 'Leak' },
-              { key: 'figure', label: 'Cost', numeric: true, tone: 'loss' },
-            ]}
-            /* An unpriced leak leaves the cell empty rather than carrying a
-               placeholder. Some of these are real and were never quantified,
-               and a dash in a costed column invites the reader to read it as
-               zero. */
-            rows={study.whatWeFound.map((f, i) => ({
-              id: String(i),
-              cells: { leak: f.leak, figure: f.figure ?? '' },
-            }))}
-          />
-        </div>
-      </Surface>
-
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker as="h2" index="03" label="What we built" className="mb-14" />
-          <div className="col-12">
-            <ul className="[grid-column:1/9] border-t border-line">
-              {study.whatWeBuilt.map((item) => (
-                <li key={item} className="t-body border-b border-line py-6 text-fg-2">
-                  {item}
+          <section aria-labelledby="found" className="mt-20" data-enter="up">
+            <h2 id="found" className="hx-h2 m-0">
+              What we found
+            </h2>
+            <ul className="m-0 mt-8 flex list-none flex-col gap-3 p-0">
+              {study.whatWeFound.map((f) => (
+                <li key={f.leak} className="flex flex-wrap items-center justify-between gap-4 rounded-2xl px-6 py-5" style={{ background: 'var(--hx-cyan-soft)' }}>
+                  <span className="max-w-[32rem] text-[16px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                    {f.leak}
+                  </span>
+                  {f.figure && (
+                    <span className="hx-serif text-[24px]" style={{ color: 'var(--hx-teal)' }}>
+                      {f.figure}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </Surface>
+          </section>
 
-      <Surface surface="void" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <SectionMarker
-            as="h2"
-            index="04"
-            label={isProjected ? 'What is expected' : 'What changed'}
-            className="mb-14"
-          />
+          <section aria-labelledby="built" className="mt-20" data-enter="up">
+            <h2 id="built" className="hx-h2 m-0">
+              What we built
+            </h2>
+            <ol className="m-0 mt-8 flex list-none flex-col gap-4 p-0">
+              {study.whatWeBuilt.map((b, i) => (
+                <li key={b.slice(0, 30)} className="flex gap-5">
+                  <span className="hx-serif flex h-9 w-9 flex-none items-center justify-center rounded-full text-[16px]" style={{ background: 'var(--hx-teal)', color: '#FFFFFF' }}>
+                    {i + 1}
+                  </span>
+                  <span className="pt-1 text-[17px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
 
-          {/* ⚠️ ON A PROJECTED STUDY THIS PARAGRAPH GOES FIRST. It used to sit
-              under the before-and-after table and say "the figures below",
-              which left the table above it uncovered by the very qualifier it
-              exists to apply. Everything in this section is now inside it. */}
-          {isProjected && (
-            <div className="col-12 mb-14">
-              <div className="[grid-column:1/9]">
-                <p className="t-body max-w-[64ch] text-fg-2">
-                  Nothing in this section is a measured result. The before-and-after figures are
-                  the delivered system as the client reports it, and everything after them is a
-                  projection from the measurements taken before the build. None of it has been
-                  measured against a period after the system went live.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {study.whatChanged && study.whatChanged.length > 0 && (
-            <RecordTable
-              caption={isProjected ? 'Reported before and after' : 'Measured before and after'}
-              columns={[
-                { key: 'metric', label: 'Metric' },
-                { key: 'before', label: 'Before', numeric: true },
-                { key: 'after', label: 'After', numeric: true, tone: 'brand' },
-              ]}
-              rows={study.whatChanged.map((c, i) => ({
-                id: String(i),
-                cells: { metric: c.metric, before: c.before, after: c.after },
-              }))}
-            />
-          )}
-
-          <div className="col-12 mt-14">
-            <div className="[grid-column:1/9]">
-              <ul className="border-t border-line">
-                {study.outcomes.map((item) => (
-                  <li key={item} className="t-body border-b border-line py-6 text-fg-2">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </Surface>
-
-      <Surface surface="paper">
-        <div className="shell">
-          <SectionMarker
-            as="h2"
-            index="05"
-            label={isProjected ? 'What has and has not been measured' : 'How this was measured'}
-            className="mb-14"
-          />
-          <div className="col-12">
-            <div className="[grid-column:1/8]">
-              {/* Never optional, and never softened. This paragraph is what
-                  separates a case study from a testimonial, and on a projected
-                  study it is the most important text on the page. */}
-              <p className="t-lead mb-8 max-w-[58ch] text-fg">{study.verification}</p>
-              {!study.clientName && (
-                <p className="t-small max-w-[58ch] text-fg-3">
-                  The client is not named here. Their name is withheld by agreement, and the
-                  figures are unaltered.
-                </p>
-              )}
-              <p className="mt-10">
-                <TextLink href="/evidence">All case studies</TextLink>
+          <section aria-labelledby="changed" className="mt-20" data-enter="up">
+            <h2 id="changed" className="hx-h2 m-0">
+              {projected ? 'What is expected' : 'What changed'}
+            </h2>
+            {projected && (
+              <p className="m-0 mt-6 text-[17px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                Nothing in this section is a measured result. Any before-and-after figures are the
+                delivered system as the client reports it, and everything else is a projection from
+                measurements taken before the build.
               </p>
-            </div>
-          </div>
-        </div>
-      </Surface>
-
-      <Surface surface="void" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/9]">
-              <h2 className="t-display-1 mb-16">
-                This began the same way
-                <br className="hidden sm:inline" />
-                yours would.
-              </h2>
-              <div className="flex flex-col items-start gap-8">
-                <Button href="/commission">
-                  Commission a diagnostic <span aria-hidden="true">→</span>{' '}
-                  {DIAGNOSTIC.priceFormatted}
-                </Button>
-                <TextLink href="/diagnostic#discuss">Discuss it first</TextLink>
+            )}
+            {study.whatChanged && study.whatChanged.length > 0 && (
+              <div className="mt-8 overflow-x-auto rounded-3xl" style={{ border: '1px solid var(--hx-line)' }}>
+                <table className="w-full min-w-[520px] border-collapse text-left text-[16px]">
+                  <caption className="sr-only">{projected ? 'Reported before and after' : 'Measured before and after'}</caption>
+                  <thead>
+                    <tr style={{ background: 'var(--hx-cyan-soft)' }}>
+                      <th scope="col" className="p-4 font-semibold" style={{ fontFamily: 'inherit' }}>Metric</th>
+                      <th scope="col" className="p-4 font-semibold" style={{ fontFamily: 'inherit' }}>Before</th>
+                      <th scope="col" className="p-4 font-semibold" style={{ fontFamily: 'inherit', color: 'var(--hx-teal)' }}>After</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {study.whatChanged.map((c) => (
+                      <tr key={c.metric} style={{ borderTop: '1px solid var(--hx-line)' }}>
+                        <th scope="row" className="p-4 font-medium" style={{ fontFamily: 'inherit' }}>{c.metric}</th>
+                        <td className="p-4" style={{ color: 'var(--hx-ink-2)' }}>{c.before}</td>
+                        <td className="p-4 font-semibold" style={{ color: 'var(--hx-teal)' }}>{c.after}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            </div>
-          </div>
-        </div>
-      </Surface>
-    </>
-  );
-}
+            )}
+            <ul className="m-0 mt-8 grid list-none gap-3 p-0 sm:grid-cols-2">
+              {study.outcomes.map((o) => (
+                <li key={o} className="flex gap-3 rounded-2xl p-5" style={{ border: '1px solid var(--hx-line)' }}>
+                  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hx-cyan)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 flex-none">
+                    <path d="M5 12l5 5L20 7" />
+                  </svg>
+                  <span className="text-[16px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                    {o}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-/**
- * EngagementRecord → CaseStudy, so there is one page to maintain rather than
- * two that drift apart.
- *
- * ⚠️ THE ADAPTER MUST NOT LAUNDER THE STRICT CLASS INTO THE LOOSE ONE. A
- * record's `sealed` is annualised recovery measured after implementation and
- * always smaller than `found`; a case study's `result` carries no such promise.
- * So the mapping keeps the record's own vocabulary in the text it produces, and
- * revenue, headcount and payback, which a case study has no field for, are
- * carried into `outcomes` rather than dropped.
- */
-function fromRecord(r: (typeof RECORDS)[number]): CaseStudy {
-  return {
-    slug: r.slug,
-    index: r.index,
-    industry: r.industry,
-    sector: r.sector,
-    region: `${r.region}, ${r.year}`,
-    basis: 'measured',
-    headline: { figure: r.sealed, label: 'Annualised recovery, measured' },
-    found: r.found,
-    foundFigure: r.found,
-    result: r.sealed,
-    window: r.payback,
-    title: r.title,
-    situation: r.situation,
-    whatWeFound: r.whatWeFound.map((f) => ({ leak: f.leak, figure: f.annualised })),
-    whatWeBuilt: r.whatWeBuilt,
-    whatChanged: r.whatChanged,
-    outcomes: [
-      `Client revenue at the time of the engagement: ${r.revenue}, ${r.headcount}`,
-      `Annualised leakage identified: ${r.found}`,
-      `Annualised recovery measured after implementation: ${r.sealed}`,
-      `Payback, meaning weeks for measured recovery to equal total fees paid: ${r.payback}`,
-    ],
-    verification: r.verification,
-  };
+          <section aria-labelledby="measured" className="mt-20 rounded-3xl p-8" style={{ background: 'var(--hx-mist)' }} data-enter="up">
+            <h2 id="measured" className="hx-h3 m-0">
+              {projected ? 'What has and has not been measured' : 'How this was measured'}
+            </h2>
+            <p className="m-0 mt-4 text-[17px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+              {study.verification}
+            </p>
+            {!study.clientName && (
+              <p className="m-0 mt-4 text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
+                The client&rsquo;s name is withheld by agreement. The figures are unaltered.
+              </p>
+            )}
+          </section>
+        </div>
+      </article>
+
+      {(employees.length > 0 || industries.length > 0) && (
+        <section aria-labelledby="related" style={{ background: 'var(--hx-cyan-soft)' }}>
+          <div className="hx-wrap py-24">
+            <h2 id="related" className="hx-h2 m-0" data-enter="up">
+              The AI employees behind results like this
+            </h2>
+            {employees.length > 0 && (
+              <div className="mt-10 grid gap-4 md:grid-cols-3">
+                {employees.slice(0, 3).map((e, i) => (
+                  <RoleCard key={e.slug} employee={e} index={i + 1} />
+                ))}
+              </div>
+            )}
+            {industries.length > 0 && (
+              <p className="m-0 mt-10 flex flex-wrap items-center gap-3" data-enter="up">
+                <span className="text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
+                  Industries:
+                </span>
+                {industries.map((ind) => (
+                  <Link key={ind.slug} href={`/industries/${ind.slug}`} className="hx-pill" style={{ background: '#FFFFFF' }}>
+                    {ind.name} <span aria-hidden="true" className="ml-2">→</span>
+                  </Link>
+                ))}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+    </div>
+  );
 }

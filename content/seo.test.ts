@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { ENTITY_SENTENCE, PROFILES } from './firm';
-import { DIAGNOSTIC_FAQS, EVIDENCE_FAQS, IMPLEMENTATION_FAQS } from './faqs';
+import { EVIDENCE_FAQS, FIRM_FAQS } from './faqs';
+import { employeesWithPages } from './employees';
+import { industriesWithPages } from './industries';
 import { postWordCount, publishedPosts } from './insights';
 
 /**
@@ -63,8 +65,8 @@ describe('Ticket 5 — the entity sentence', () => {
 describe('Ticket 6 — the blog', () => {
   const posts = publishedPosts();
 
-  it('publishes ten posts', () => {
-    expect(posts.length).toBeGreaterThanOrEqual(10);
+  it('publishes at least five posts', () => {
+    expect(posts.length).toBeGreaterThanOrEqual(5);
   });
 
   it.each(posts.map((p) => [p.slug, p] as const))('%s is at least 800 words', (_slug, post) => {
@@ -141,15 +143,21 @@ describe('Ticket 6 — the blog', () => {
 
 describe('Ticket 7 — FAQ blocks', () => {
   it.each([
-    ['diagnostic', DIAGNOSTIC_FAQS],
-    ['implementation', IMPLEMENTATION_FAQS],
+    ['about', FIRM_FAQS],
+    ...employeesWithPages().map((e) => [e.slug, e.page!.faqs] as const),
+    ...industriesWithPages().map((i) => [`industries/${i.slug}`, i.page!.faqs] as const),
     ['evidence', EVIDENCE_FAQS],
   ] as const)('%s has at least five Q&A pairs', (_page, faqs) => {
     expect(faqs.length).toBeGreaterThanOrEqual(5);
   });
 
   it('has no empty or stub answers anywhere', () => {
-    const every = [...DIAGNOSTIC_FAQS, ...IMPLEMENTATION_FAQS, ...EVIDENCE_FAQS];
+    const every = [
+      ...EVIDENCE_FAQS,
+      ...FIRM_FAQS,
+      ...employeesWithPages().flatMap((e) => e.page!.faqs),
+      ...industriesWithPages().flatMap((i) => i.page!.faqs),
+    ];
     for (const faq of every) {
       expect(faq.question.trim().length).toBeGreaterThan(0);
       expect(faq.answer.trim().length).toBeGreaterThan(40);
@@ -160,7 +168,12 @@ describe('Ticket 7 — FAQ blocks', () => {
     // content/firm.ts insists on this everywhere, and an FAQ is the surface most
     // likely to be quoted back. "Two weeks" without the anchor is the claim that
     // reads as a bait-and-switch the first time it slips.
-    const every = [...DIAGNOSTIC_FAQS, ...IMPLEMENTATION_FAQS, ...EVIDENCE_FAQS];
+    const every = [
+      ...EVIDENCE_FAQS,
+      ...FIRM_FAQS,
+      ...employeesWithPages().flatMap((e) => e.page!.faqs),
+      ...industriesWithPages().flatMap((i) => i.page!.faqs),
+    ];
     for (const faq of every) {
       if (/two week/i.test(faq.answer)) {
         expect(faq.answer, `"${faq.question}" says two weeks without the access anchor`).toMatch(

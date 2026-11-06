@@ -226,7 +226,8 @@ export const POSTS: Post[] = [
       'This firm charges a fixed $5,000 for a leakage diagnostic, credited in full against implementation if you proceed. So if you build, the diagnostic effectively cost nothing; if you do not, you keep the report and the roadmap anyway. The figure to compare it against is not other firms’ fees — it is the annualised leakage the diagnostic is looking for, which at a company doing $3M to $15M is routinely two orders of magnitude larger than the fee. That asymmetry is the only reason a fixed price works at all.',
     category: 'Cost',
     datePublished: '2026-09-23',
-    published: true,
+    // v3: retired with the diagnostic offer; the URL 301s (next.config.ts).
+    published: false,
     body: [
       { t: 'h2', text: 'Why it is fixed rather than scoped' },
       {
@@ -326,7 +327,8 @@ export const POSTS: Post[] = [
       'Ten business days from systems access. The anchor is the important half of that sentence: between commissioning and access sit kickoff scheduling and credential provisioning, which realistically add a further five to ten days, so two weeks from purchase is not the same claim and should never be made. Most of the ten days goes on instrumentation — tracing every path a lead can take through the systems and finding where each one stops — and almost none of it is visible to the client while it happens.',
     category: 'Engagement',
     datePublished: '2026-09-23',
-    published: true,
+    // v3: retired with the diagnostic offer; the URL 301s (next.config.ts).
+    published: false,
     todo:
       '⚠️ Stronger with the real distribution: median and range of actual elapsed time from access to readout across engagements to date, and the median provisioning delay. Both are knowable from the firm’s own records and neither is published anywhere yet.',
     body: [
@@ -525,7 +527,8 @@ export const POSTS: Post[] = [
       'The difference is what a deliverable is allowed to contain. Management consulting produces recommendations supported by interviews, benchmarks and analysis; operational diligence of this kind produces figures measured inside your own systems, with the system and the period named against each one, and excludes anything it cannot measure there. That exclusion is the whole distinction. It makes the output narrower, considerably cheaper — a fixed $5,000 rather than a scoped engagement — and testable, because every number in it can be re-derived by somebody who does not trust you.',
     category: 'Comparison',
     datePublished: '2026-09-23',
-    published: true,
+    // v3: retired with the diagnostic offer; the URL 301s (next.config.ts).
+    published: false,
     body: [
       { t: 'h2', text: 'The rule that separates them' },
       {
@@ -957,7 +960,8 @@ export const POSTS: Post[] = [
       'Read access to every system that touches a lead — CRM, inbound channels, calendar, ticketing — plus twelve months of whatever history those systems already hold. That is narrower than most buyers expect: it does not require financial systems, HR records, document stores or payment details. In return you should demand read-only access wherever the system supports it, a named engagement team, a stated retention period, and a defined answer for what happens to the credentials at the end. A firm that has not thought those through has not done many of these.',
     category: 'Engagement',
     datePublished: '2026-09-23',
-    published: true,
+    // v3: retired with the diagnostic offer; the URL 301s (next.config.ts).
+    published: false,
     todo:
       '⚠️ This post lists the questions a buyer should ask and deliberately does NOT answer them on this firm’s behalf. CONFIDENTIALITY in content/diagnostic.ts is empty by design — an invented security posture is worse than an absent one, and a specific false one is actionable. When that section is filled in, link to it from here and add a short section stating the firm’s own answers.',
     body: [
@@ -1074,7 +1078,8 @@ export const POSTS: Post[] = [
       'The report says so in its first paragraph and the firm tells you not to hire it. That should be a written term of the engagement rather than a reassurance on a call, because it is the only structural counterweight to a fee that is credited against implementation — without it, the firm is paid for finding something. In practice a fully null result is rare at $3M to $15M, but a result too small to justify a build is not rare at all, and the two should be treated the same way.',
     category: 'Engagement',
     datePublished: '2026-09-23',
-    published: true,
+    // v3: retired with the diagnostic offer; the URL 301s (next.config.ts).
+    published: false,
     body: [
       { t: 'h2', text: 'Why this question is really about incentives' },
       {

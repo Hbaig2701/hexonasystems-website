@@ -326,7 +326,7 @@ export const PRINCIPAL = {
 
   bio: [
     'I have spent five years building Hexona Systems, and I was putting automation into operating companies before ChatGPT existed.',
-    'A thousand client engagements have run through the firm since. That number is the reason the diagnostic works rather than a claim about volume: the same short list of failures turns up in almost every company, and I have seen each of them often enough now to know which one to look for first.',
+    'A thousand client engagements have run through the firm since. That number matters for one reason, not for bragging: the same short list of failures turns up in almost every business, and I have seen each of them often enough now to know which one to fix first.',
     'I also run one of the largest AI automation communities in the world, at over 45,000 members. Several of the operators I trained there now do this work inside companies considerably larger than my own.',
   ],
 
@@ -398,26 +398,26 @@ export const TEAM = [
  */
 export const COMMITMENTS = [
   {
-    term: 'We tell you when there is nothing to find',
+    term: 'We only build what moves your value',
     detail:
-      'If the leakage is immaterial, the report says so in its first paragraph and we tell you not to hire us.',
+      'If an AI employee will not capture revenue, cut cost or make the business less dependent on you, we will not sell it to you.',
   },
   {
     term: 'Every figure names its source',
     detail:
-      'Each number is published with the system it was measured in and the period it covers. A figure without both is a claim, not a measurement.',
+      'Results are reported from your own systems, against the period before the build. A number without a source is a claim, not a measurement.',
   },
   {
-    term: 'Fixed scope, fixed fee',
+    term: 'Fixed scope, fixed price',
     detail:
-      'The fee is agreed before work begins and credited in full against implementation. Scope does not move once access is granted.',
+      'You get the scope and the price before any work starts, and they do not move once we begin.',
   },
   {
-    term: 'The roadmap is yours, including if you leave',
+    term: 'You own what we build',
     detail:
-      'The report and the build plan are written so that another firm could execute them without us. You keep both whether you hire us or not, because a plan you cannot take elsewhere is a hostage rather than a plan.',
+      'The accounts, the data and the workflows are yours. If you ever leave, everything we built stays with your business.',
   },
-];
+]
 
 /**
  * AWARDS. These live HERE and not on the homepage. §1.3's reasoning stands:
@@ -570,19 +570,17 @@ export const SEGMENTS = {
  */
 export const KEY_FACTS: { field: string; value: string }[] = [
   { field: 'Company name', value: FIRM.name },
-  { field: 'Type', value: 'Operational diligence and revenue recovery firm' },
+  { field: 'Type', value: 'AI implementation firm' },
   { field: 'Founded', value: '2021' },
   { field: 'Founder', value: FIRM.principal },
   { field: 'Headquarters', value: 'Toronto, Ontario, Canada' },
-  { field: 'Website', value: 'https://hexonasystems.com' },
-  { field: 'Core offering', value: 'The Leakage Diagnostic, a fixed-fee revenue leakage audit' },
-  { field: 'Pricing', value: '$5,000 for the diagnostic. $15,000 to $75,000 typical for implementation, across phases' },
-  { field: 'Contract terms', value: 'Fixed scope and fixed fee. The diagnostic fee is credited in full against implementation. No obligation at any point' },
-  { field: 'Delivery', value: 'Two week intensive, ten business days from systems access' },
-  { field: 'Services', value: 'Leakage diagnostics, process automation, CRM implementation, custom software, reporting, operational structure' },
-  { field: 'Operating range', value: FIRM.operatingRange },
+  { field: 'Market served', value: 'United States and Canada' },
+  { field: 'Website', value: 'https://www.hexonasystems.com' },
+  { field: 'Core offering', value: 'AI employees, built and run for service businesses' },
+  { field: 'AI employees', value: 'AI receptionist, sales follow-up, dispatcher, office admin, collections, retention' },
+  { field: 'How engagements start', value: 'A free one-hour consult, then a fixed scope and fixed price' },
   { field: 'Businesses served', value: '1,500+' },
-  { field: 'Client engagements', value: '1,000+' },
-  { field: 'Operators trained', value: '45,000+' },
+  { field: 'Agencies running on Hexona', value: '1,000+' },
+  { field: 'Community members trained', value: '45,000+' },
   { field: 'Contact', value: FIRM.email },
 ].filter((r) => r.value && r.value.trim().length > 0);

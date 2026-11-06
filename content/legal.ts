@@ -43,7 +43,7 @@ export const TERMS: LegalDoc = {
     {
       heading: 'Engagements are contracted separately',
       body: [
-        'Nothing on this site is an offer capable of acceptance. Prices, scopes and timelines described here are a general description of our services. Any diagnostic or implementation engagement is governed by a separate written agreement signed by both parties, and where that agreement conflicts with anything on this site, the agreement governs.',
+        'Nothing on this site is an offer capable of acceptance. Prices, scopes and timelines described here are a general description of our services. Any engagement is governed by a separate written agreement signed by both parties, and where that agreement conflicts with anything on this site, the agreement governs.',
         'Submitting the intake form does not create an engagement or any obligation on either side.',
       ],
     },

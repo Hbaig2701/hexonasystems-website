@@ -17,6 +17,7 @@ const NAV = [
   { label: 'Case Studies', href: '/evidence' },
   { label: 'Articles', href: '/insights' },
   { label: 'About', href: '/firm' },
+  { label: 'Value Score', href: '/score' },
 ];
 
 const CTA = { label: 'Book a free consult', href: '/book' };
@@ -66,7 +67,7 @@ export function Header() {
             <Wordmark />
           </Link>
 
-          <nav aria-label="Primary" className="hx-nav hidden items-center gap-7 lg:flex">
+          <nav aria-label="Primary" className="hx-nav hidden items-center gap-7 whitespace-nowrap xl:flex">
             {NAV.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + '/');
               return (
@@ -77,7 +78,7 @@ export function Header() {
             })}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <Link href={CTA.href} className="hx-btn hx-btn-primary !min-h-[44px] !px-5 !py-3 text-[15px]">
               {CTA.label}
             </Link>
@@ -89,7 +90,7 @@ export function Header() {
             aria-expanded={open}
             aria-controls="menu"
             onClick={() => setOpen((v) => !v)}
-            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full xl:hidden"
           >
             <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E1E24" strokeWidth="1.8" strokeLinecap="round">
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -101,7 +102,7 @@ export function Header() {
       <div
         id="menu"
         hidden={!open}
-        className="hx fixed inset-0 z-40 lg:hidden"
+        className="hx fixed inset-0 z-40 xl:hidden"
         style={{ paddingTop: HEADER_H, background: '#FFFFFF' }}
       >
         <div className="hx-wrap flex h-full flex-col justify-between py-8">

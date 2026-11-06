@@ -111,6 +111,9 @@ export function Value() {
             one or the other, and we measure which.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Link href="/score" className="hx-btn hx-btn-primary">
+              Get your Enterprise Value Score <span className="hx-arrow" aria-hidden="true">→</span>
+            </Link>
             <div
               className="hx-serif flex flex-wrap items-baseline gap-3 rounded-2xl px-6 py-4 text-[22px]"
               style={{ background: 'var(--hx-cyan-soft)', color: 'var(--hx-teal)' }}

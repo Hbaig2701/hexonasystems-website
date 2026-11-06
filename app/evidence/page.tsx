@@ -1,253 +1,134 @@
 import type { Metadata } from 'next';
-import { Faqs } from '@/components/sections/Faqs';
+import Link from 'next/link';
 import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
 import { EVIDENCE_FAQS } from '@/content/faqs';
-import { Surface } from '@/components/ui/Surface';
-import { Lattice } from '@/components/ui/Lattice';
-import { SectionMarker } from '@/components/layout/SectionMarker';
-import { RecordTable, ColumnKey, type Column } from '@/components/ui/RecordTable';
-import { Button, TextLink } from '@/components/ui/Button';
-import { DIAGNOSTIC } from '@/content/firm';
-import { IndustryFilter } from '@/components/ui/IndustryFilter';
-import {
-  CASE_COLUMN_DEFINITIONS,
-  CASE_PREAMBLE,
-  COLUMN_DEFINITIONS,
-  INTERIM_NOTICE,
-  RECORD_PREAMBLE,
-  caseStudiesByIndustry,
-  hasCaseStudies,
-  industryLabel,
-  recordsByIndustry,
-} from '@/content/evidence';
+import { caseStudiesByIndustry, industryLabel, populatedIndustries } from '@/content/evidence';
+import { PageHero } from '@/components/hx/PageHero';
+import { Tilt } from '@/components/hx/Interactive';
+import { CtaPair, FaqList, delay } from '@/components/hx/Blocks';
 
 /**
- * /evidence — the library.
+ * /evidence — Case Studies. The URL is kept because every case page under it
+ * is already indexed and linked; the label everywhere is "Case Studies".
  *
- * ⚠️ TWO CLASSES, RENDERED APART. content/evidence.ts explains why at length.
- * The short version: an ENGAGEMENT RECORD is the strict §5 class and RECORDS is
- * still empty; a CASE STUDY is implementation work and there are ten. They
- * never share a table, because found and sealed mean something narrower in an
- * engagement record than anything a case study claims, and the whole argument
- * of this page is that a published figure means one specific thing.
- *
- * ⚠️ THE NOT-YET-MEASURED CARRY THEIR QUALIFIER IN THE ROW, NOT IN A SEPARATE
- * TABLE. Three of the ten shipped and have not been measured. They used to sit
- * under their own heading below the measured ones; they now sit in the one
- * table and print "Final results in progress" where a result would go. That
- * is the stronger position for it. A reader scanning Result meets the
- * qualifier on the row itself, rather than having to notice which of two tables
- * they had scrolled into, and the row is the thing that gets screenshotted.
- *
- * What must never happen is a projection appearing in that cell. The record
- * pages carry the full treatment: a status block instead of a result, section
- * 04 titled "What is expected", a paragraph above every figure in it, and a
- * verification paragraph naming what was not measured.
- *
- * The publication standard and the expanded column definitions were cut at the
- * founder's request: the page led with seven requirements a record must clear
- * before showing any, which put a page of qualifications in front of the work.
- * The work now opens the page. What survives of that discipline is the
- * ColumnKey beneath each table, because an undefined column is an unfalsifiable
- * claim. PUBLICATION_STANDARD is still in content/evidence.ts if it is wanted.
- *
- * Grounds: the library is PAPER, the two ends VOID, and the close shares the
- * footer's ground so the page goes quiet into it.
+ * The industry filter is a plain link with ?industry=, so it works without JS.
  */
 
 export const metadata: Metadata = {
-  /**
-   * `absolute` stops the layout template appending " · Hexona Systems" to a
-   * title that already ends in it. Without it this rendered as
-   * "Case studies: Hexona Systems · Hexona Systems", which was live in Google's results.
-   *
-   * The string itself is unchanged — this only stops it being said twice.
-   */
-  title: { absolute: 'Case studies: Hexona Systems' },
+  title: { absolute: 'Case Studies: Hexona Systems' },
   description:
-    'Ten implementation case studies across home services, hospitality, coaching, health and automotive. Every figure names the system it was measured in.',
+    'Ten AI and automation case studies across home services, construction, hospitality, health, coaching and automotive. Every figure names the system it was measured in.',
   alternates: { canonical: '/evidence' },
 };
-
-/** The strict class. Only renders once RECORDS has entries. */
-const RECORD_COLUMNS: Column[] = [
-  { key: 'sector', label: 'Sector' },
-  { key: 'revenue', label: 'Revenue', numeric: true },
-  { key: 'found', label: 'Found', numeric: true, tone: 'loss' },
-  { key: 'sealed', label: 'Sealed', numeric: true, tone: 'brand' },
-  { key: 'payback', label: 'Payback', numeric: true },
-];
-
-/* No Window column, deliberately. Four of the seven source documents do not
-   state a measurement window, so the column carried "Not stated" more often
-   than it carried information while squeezing the two columns that matter. The
-   window is not dropped, it is moved: every record page carries it as a figure
-   block, and where it is absent the block says so and the verification
-   paragraph explains why. A directory is not the place to litigate it. */
-const CASE_COLUMNS: Column[] = [
-  { key: 'sector', label: 'Sector' },
-  { key: 'found', label: 'Found', numeric: true, tone: 'loss' },
-  { key: 'result', label: 'Result', numeric: true, tone: 'brand' },
-];
 
 export default async function EvidencePage({
   searchParams,
 }: {
   searchParams: Promise<{ industry?: string }>;
 }) {
-  /* The filter is a URL, not component state. See IndustryFilter. */
   const { industry } = await searchParams;
-  const shelf = industryLabel(industry ?? '') ? industry : undefined;
-
+  const shelf = industry && industryLabel(industry) ? industry : undefined;
   const studies = caseStudiesByIndustry(shelf);
-  const records = recordsByIndustry(shelf);
+  const shelves = populatedIndustries();
+  const trail = [
+    { name: 'Home', path: '/' },
+    { name: 'Case Studies', path: '/evidence' },
+  ];
 
   return (
-    <>
+    <div className="hx">
       <JsonLd data={faqPageLd(EVIDENCE_FAQS, '/evidence')} />
-      <JsonLd
-        data={breadcrumbLd([
-          { name: 'Home', path: '/' },
-          { name: 'Evidence', path: '/evidence' },
-        ])}
-      />
-      {/* --- Opening ------------------------------------------------------- */}
-      <Surface surface="void" rule={false} as="header" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/9]">
-              <p className="t-label mb-14 text-fg-3">
-                <span className="text-brand">Hexona Systems</span>
-                <span className="px-1.5 text-brand opacity-50">·</span> Case studies
-              </p>
-              <h1 className="t-display-1 mb-12">
-                A series of transformed
-                <br className="hidden sm:inline" />
-                organisations.
-              </h1>
-              <p className="t-lead max-w-[56ch] text-fg-2">
-                Browse a record of our recent implementations across a variety of industries.
-              </p>
+      <JsonLd data={breadcrumbLd(trail)} />
+
+      <PageHero
+        trail={trail}
+        eyebrow="Case studies"
+        title={
+          <>
+            Results, <span className="hx-mark">measured.</span>
+          </>
+        }
+        answer="What each business was losing, what we built, and what changed, measured in the client's own systems. Client names are withheld by agreement."
+      >
+        <CtaPair />
+      </PageHero>
+
+      <section id="records" aria-labelledby="list" className="hx-wrap scroll-mt-24 pb-28">
+        <h2 id="list" className="sr-only">
+          {shelf ? `Case studies: ${industryLabel(shelf)}` : 'All case studies'}
+        </h2>
+        <nav aria-label="Filter by industry" className="mb-10">
+          <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+            {[{ id: '', label: 'All' }, ...shelves].map((s) => {
+              const active = (s.id || undefined) === shelf;
+              return (
+                <li key={s.id || 'all'}>
+                  <Link
+                    href={s.id ? `/evidence?industry=${s.id}#records` : '/evidence#records'}
+                    aria-current={active ? 'page' : undefined}
+                    className="hx-pill"
+                    style={active ? { background: 'var(--hx-teal)', color: '#FFFFFF' } : undefined}
+                  >
+                    {s.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          {studies.map((c, i) => (
+            <div key={c.slug} data-enter="up" style={delay((i % 2) * 100)}>
+              <Tilt
+                href={`/evidence/${c.slug}`}
+                max={3}
+                className="hx-card flex h-full flex-col gap-4 no-underline"
+                style={{
+                  background: '#FFFFFF',
+                  color: 'var(--hx-ink)',
+                  border: '1px solid var(--hx-line)',
+                  borderTop: `6px solid ${['var(--hx-cyan)', 'var(--hx-teal)', 'var(--hx-cyan-light)'][i % 3]}`,
+                  boxShadow: 'var(--hx-shadow-1)',
+                }}
+              >
+                <span className="flex flex-wrap items-center justify-between gap-3 text-[14px]" style={{ color: 'var(--hx-ink-3)' }}>
+                  <span>{c.sector}</span>
+                  {c.basis !== 'measured' && (
+                    <span className="rounded-full px-3 py-1 text-[12px] font-semibold" style={{ background: 'var(--hx-mist)', color: 'var(--hx-ink-2)' }}>
+                      Results in progress
+                    </span>
+                  )}
+                </span>
+                <span className="flex flex-wrap items-baseline gap-x-3">
+                  <span className="hx-serif text-[48px] leading-none" style={{ color: 'var(--hx-teal)' }}>
+                    {c.headline.figure}
+                  </span>
+                  <span className="text-[15px] font-medium" style={{ color: 'var(--hx-ink-2)' }}>
+                    {c.headline.label}
+                  </span>
+                </span>
+                <span className="hx-serif text-[22px] leading-snug">{c.title}</span>
+                <span className="mt-auto pt-2 text-[15px] font-medium" style={{ color: 'var(--hx-teal)' }}>
+                  Read the case study <span aria-hidden="true">→</span>
+                </span>
+              </Tilt>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="faq" style={{ background: 'var(--hx-cyan-soft)' }}>
+        <div className="hx-wrap grid gap-12 py-28 lg:grid-cols-[0.8fr_1.2fr]">
+          <div data-enter="up">
+            <p className="hx-kicker m-0 mb-4">Questions</p>
+            <h2 id="faq" className="hx-h2 m-0">
+              About these results
+            </h2>
           </div>
+          <FaqList faqs={EVIDENCE_FAQS} />
         </div>
-      </Surface>
-
-      {/* --- 01 The record -------------------------------------------------
-          id="records" is the no-JS landing point for the industry filter. See
-          IndustryFilter. scroll-mt clears the fixed header. */}
-      <Surface surface="paper" id="records" className="scroll-mt-20">
-        <div className="shell">
-          <SectionMarker index="01" label="The record" className="mb-14" />
-
-          {hasCaseStudies() ? (
-            <>
-              <IndustryFilter active={shelf} />
-
-              {/* The strict class, above the case studies and never mixed with
-                  them. Absent until §5 is cleared by a real engagement. */}
-              {records.length > 0 && (
-                <div className="mb-24">
-                  <h2 className="t-display-2 mb-8">Engagement records</h2>
-                  <p className="t-lead mb-12 text-fg">{RECORD_PREAMBLE}</p>
-                  <RecordTable
-                    caption="Engagement records"
-                    columns={RECORD_COLUMNS}
-                    rows={records.map((r) => ({
-                      id: r.slug,
-                      href: `/evidence/${r.slug}`,
-                      cells: {
-                        sector: r.sector,
-                        revenue: r.revenue,
-                        found: r.found,
-                        sealed: r.sealed,
-                        payback: r.payback,
-                      },
-                    }))}
-                  />
-                  <ColumnKey items={COLUMN_DEFINITIONS} />
-                </div>
-              )}
-
-              <p className="t-lead mb-12 max-w-[72ch] text-fg">{CASE_PREAMBLE}</p>
-
-              <RecordTable
-                caption={shelf ? `Case studies: ${industryLabel(shelf)}` : 'Case studies'}
-                columns={CASE_COLUMNS}
-                rows={studies.map((c) => ({
-                  id: c.slug,
-                  href: `/evidence/${c.slug}`,
-                  cells: {
-                    sector: c.sector,
-                    found: c.found ?? '',
-                    /* ⚠️ NEVER A PROJECTION IN THIS CELL. The column is toned
-                       brand, which reads as an achieved result, so a study with
-                       no measurement says so in muted text instead. The span
-                       sets its own colour and therefore beats the toned cell it
-                       sits in. */
-                    result:
-                      c.basis === 'measured' ? (
-                        (c.result ?? '')
-                      ) : (
-                        <span className="text-fg-3">Final results in progress</span>
-                      ),
-                  },
-                }))}
-              />
-              {/* Found and Result. The Window definition stays in the content
-                  module and prints on the record pages, which is where the
-                  column now lives. */}
-              <ColumnKey items={CASE_COLUMN_DEFINITIONS.slice(0, 2)} />
-            </>
-          ) : (
-            /* §5's interim, verbatim. Stronger than a padded page and, unlike a
-               caught exaggeration, recoverable. */
-            <div className="col-12">
-              <div className="[grid-column:1/9]">
-                <p className="t-display-2 mb-10">
-                  {INTERIM_NOTICE.month
-                    ? `${INTERIM_NOTICE.body} ${INTERIM_NOTICE.firstPublish(INTERIM_NOTICE.month)}`
-                    : INTERIM_NOTICE.body}
-                </p>
-                <p className="t-body max-w-[62ch] text-fg-2">{INTERIM_NOTICE.reassurance}</p>
-              </div>
-            </div>
-          )}
-        </div>
-      </Surface>
-
-      {/* --- Ticket 7 FAQ block --------------------------------------------- */}
-      <Faqs
-        items={EVIDENCE_FAQS}
-        index="02"
-        surface="void"
-        heading="What people ask about this page."
-        lede="Starting with how to read the figures, and why some of them are missing."
-      />
-
-      {/* --- Close ---------------------------------------------------------- */}
-      <Surface surface="void" className="hex-stage">
-        <Lattice />
-        <div className="shell">
-          <div className="col-12">
-            <div className="[grid-column:1/9]">
-              <h2 className="t-display-1 mb-16">
-                Every engagement begins
-                <br className="hidden sm:inline" />
-                with a diagnostic.
-              </h2>
-              <div className="flex flex-col items-start gap-8">
-                <Button href="/commission">
-                  Commission a diagnostic <span aria-hidden="true">→</span>{' '}
-                  {DIAGNOSTIC.priceFormatted}
-                </Button>
-                <TextLink href="/diagnostic#discuss">Discuss it first</TextLink>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Surface>
-    </>
+      </section>
+    </div>
   );
 }

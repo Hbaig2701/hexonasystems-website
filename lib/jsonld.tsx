@@ -1,6 +1,5 @@
 import { SITE, absolute } from './site';
 import {
-  DIAGNOSTIC,
   ENTITY_SENTENCE,
   FIRM,
   ORIGIN,
@@ -8,7 +7,6 @@ import {
   TEAM,
   verifiedProfileUrls,
 } from '@/content/firm';
-import { IMPLEMENTATION } from '@/content/diagnostic';
 
 /**
  * STRUCTURED DATA — AI SEO Developer Guide, Ticket 2.
@@ -163,72 +161,6 @@ export function webSiteLd() {
     url: SITE.url,
     publisher: orgRef,
     inLanguage: 'en-CA',
-  });
-}
-
-/**
- * Ticket 2b — Service, one per thing the firm sells.
- *
- * `provider` is a REFERENCE, not a copy. That reference is the edge joining the
- * service to the firm in the graph; inlining the organization here would produce
- * a second, competing description of the same company.
- */
-export function diagnosticServiceLd() {
-  return prune({
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': absolute('/diagnostic') + '#service',
-    name: DIAGNOSTIC.name,
-    serviceType: 'Revenue leakage diagnostic',
-    provider: orgRef,
-    url: absolute('/diagnostic'),
-    description:
-      'A fixed-fee diagnostic that traces every path a lead can take through an operation, prices each leak against the company’s own numbers, and ranks them by recoverable dollars. Delivered as a written report, a ninety-minute readout, and a sequenced build plan.',
-    areaServed: [
-      { '@type': 'Country', name: 'Canada' },
-      { '@type': 'Country', name: 'United States' },
-    ],
-    audience: {
-      '@type': 'BusinessAudience',
-      name: `Operating companies, ${FIRM.operatingRange}`,
-    },
-    // $5,000 is published on the page, so it is publishable here. The term
-    // length is the honest one: ten business days FROM SYSTEMS ACCESS, which is
-    // the anchor content/firm.ts insists on everywhere.
-    offers: {
-      '@type': 'Offer',
-      price: String(DIAGNOSTIC.price),
-      priceCurrency: DIAGNOSTIC.currency,
-      availability: 'https://schema.org/InStock',
-      description: `${DIAGNOSTIC.duration}. Credited in full against implementation, if you proceed.`,
-    },
-  });
-}
-
-export function implementationServiceLd() {
-  const typical = IMPLEMENTATION.terms.find((t) => t.term === 'Typical total')?.value ?? '';
-  return prune({
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': absolute('/implementation') + '#service',
-    name: 'Implementation',
-    serviceType: 'Process automation and systems implementation',
-    provider: orgRef,
-    url: absolute('/implementation'),
-    description:
-      'Closing the leaks the diagnostic priced, in the order the report ranks them: process automation, CRM rebuilds, custom software, reporting, routing and the operational ownership around them. Fixed price per phase, and recovery measured after each phase in the system the leak was found in.',
-    areaServed: [
-      { '@type': 'Country', name: 'Canada' },
-      { '@type': 'Country', name: 'United States' },
-    ],
-    // A range, not a price, because a range is what the page publishes. An
-    // invented point price here would contradict the one honest thing the
-    // pricing says: nobody knows the total before the diagnostic.
-    offers: prune({
-      '@type': 'Offer',
-      priceCurrency: DIAGNOSTIC.currency,
-      description: typical ? `${typical} across all phases, priced one phase at a time.` : '',
-    }),
   });
 }
 

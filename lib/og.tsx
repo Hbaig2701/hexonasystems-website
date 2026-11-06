@@ -31,12 +31,13 @@ export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = 'image/png';
 
 /* Literals from globals.css. See the note above about why they are copied. */
-const VOID = '#0B0D0C';
-const ON_VOID = '#F2F0EA';
-const ON_VOID_3 = '#8E928E';
-const ACCENT_ON_VOID = '#22D3EE';
+// v3: the site's light ground and brand colours.
+const VOID = '#FFFFFF';
+const ON_VOID = '#0E1E24';
+const ON_VOID_3 = '#52656B';
+const ACCENT_ON_VOID = '#35C6D1';
+const TEAL = '#0B5566';
 
-const asset = (...p: string[]) => readFile(join(process.cwd(), ...p));
 
 /**
  * The same hex field as the site background, flattened to one SVG and handed to
@@ -67,7 +68,7 @@ function latticeUri(): string {
 
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
-    `<g fill="none" stroke="${ACCENT_ON_VOID}" stroke-width="1" stroke-opacity="0.13">` +
+    `<g fill="none" stroke="${TEAL}" stroke-width="1" stroke-opacity="0.1">` +
     paths.map((d) => `<path d="${d}"/>`).join('') +
     `</g></svg>`;
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
@@ -94,9 +95,10 @@ export async function ogImage({
   note?: string;
 }) {
   const [display, mono, mark] = await Promise.all([
-    asset('assets/fonts', 'Newsreader-500.ttf'),
-    asset('assets/fonts', 'GeistMono-500.ttf'),
-    asset('public', 'hexona-mark.svg'),
+    // Literal paths, so the build traces these three files rather than the whole project.
+    readFile(join(process.cwd(), 'assets/fonts/Newsreader-500.ttf')),
+    readFile(join(process.cwd(), 'assets/fonts/GeistMono-500.ttf')),
+    readFile(join(process.cwd(), 'public/hexona-mark.svg')),
   ]);
   const markUri = `data:image/svg+xml;base64,${mark.toString('base64')}`;
 
@@ -149,7 +151,7 @@ export async function ogImage({
               fontFamily: 'Mono',
               fontSize: 19,
               letterSpacing: '0.16em',
-              color: ACCENT_ON_VOID,
+              color: TEAL,
               marginBottom: 22,
             }}
           >
@@ -170,7 +172,7 @@ export async function ogImage({
         </div>
 
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', width: 120, height: 3, background: ACCENT_ON_VOID }} />
+          <div style={{ display: 'flex', width: 160, height: 8, borderRadius: 4, background: ACCENT_ON_VOID }} />
           {note ? (
             <div
               style={{

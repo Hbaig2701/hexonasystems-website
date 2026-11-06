@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { PageHero } from '@/components/hx/PageHero';
 import { delay } from '@/components/hx/Blocks';
-import { CommissionForm } from '@/app/commission/CommissionForm';
+import { ConsultForm } from './ConsultForm';
 import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
 import { FIRM } from '@/content/firm';
 
@@ -41,7 +41,7 @@ export default function BookPage() {
             className="rounded-3xl p-6 sm:p-10"
             style={{ background: '#FFFFFF', border: '1px solid var(--hx-line)', boxShadow: 'var(--hx-shadow-2)' }}
           >
-            <CommissionForm />
+            <ConsultForm />
           </div>
           <aside data-enter="up" style={delay(120)}>
             <h2 className="hx-h3 m-0">What happens next</h2>

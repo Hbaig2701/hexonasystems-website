@@ -68,6 +68,7 @@ export function GET() {
     `- [Case studies](${absolute('/evidence')}): results, with the measurement method published against each.`,
     `- [Articles](${absolute('/insights')}): written answers to the questions owners ask.`,
     `- [About](${absolute('/firm')}): origin, team and record.`,
+    `- [Enterprise Value Score](${absolute('/score')}): a free 20-question assessment of a business on the 10 drivers of enterprise value.`,
     `- [Book a free consult](${absolute('/book')})`,
   ];
 

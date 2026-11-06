@@ -1,7 +1,7 @@
 import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og';
 import { publishedPosts } from '@/content/insights';
 
-export const alt = 'Hexona Systems insight';
+export const alt = 'Hexona Systems article';
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
@@ -15,8 +15,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const { slug } = await params;
   const post = publishedPosts().find((p) => p.slug === slug);
   return ogImage({
-    eyebrow: 'Insight',
-    title: post?.title ?? 'Written to the question, not to the keyword.',
+    eyebrow: 'Article',
+    title: post?.title ?? 'Straight answers for owners.',
     note: 'hexonasystems.com',
   });
 }

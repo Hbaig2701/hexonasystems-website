@@ -30,7 +30,7 @@ import { cn } from '@/lib/cn';
 const initial: FormState = { status: 'idle' };
 const EMAIL = FIRM.email;
 
-export function CommissionForm() {
+export function ConsultForm() {
   const [state, formAction, pending] = useActionState(commission, initial);
 
   if (state.status === 'sent') {
