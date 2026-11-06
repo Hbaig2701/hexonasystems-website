@@ -37,7 +37,7 @@ export function ArticleView({ article: a }: { article: BlogArticle }) {
             <p className="hx-eyebrow m-0 mb-6" data-enter="up">
               {a.kind} · {categoryLabel(a.category)}
             </p>
-            <h1 className="hx-h1 m-0" style={{ fontSize: 'clamp(2.25rem, 4.6vw, 3.5rem)', ...delay(80) }} data-enter="up">
+            <h1 className="hx-h1 m-0" style={{ fontSize: 'clamp(2.25rem, 4.6vw, 3.5rem)', ...delay(80) }} data-enter="rise">
               {a.title}
             </h1>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px]" style={{ color: 'var(--hx-ink-3)', ...delay(140) }} data-enter="up">

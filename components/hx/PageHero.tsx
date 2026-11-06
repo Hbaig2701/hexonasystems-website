@@ -32,10 +32,10 @@ export function PageHero({
           <p className="hx-eyebrow m-0 mb-6" data-enter="up">
             {eyebrow}
           </p>
-          <h1 className="hx-h1 m-0 max-w-[18ch]" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)', ...delay(80) }} data-enter="up">
+          <h1 className="hx-h1 m-0 max-w-[18ch]" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)', ...delay(80) }} data-enter="rise">
             {title}
           </h1>
-          <p className="hx-lead m-0 mt-7 max-w-[42rem]" data-enter="up" style={delay(180)}>
+          <p className="hx-lead m-0 mt-7 max-w-[42rem]" data-enter="rise" style={delay(180)}>
             {answer}
           </p>
           {children && (

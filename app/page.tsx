@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
 import { FromTheBlog, HowItWorks, Industries, ResultsBand, Results, Team, Value } from '@/components/home/Sections';
 import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
-import { ENTITY_SENTENCE } from '@/content/firm';
 
 /**
  * THE HOMEPAGE — v3.
@@ -18,8 +17,11 @@ import { ENTITY_SENTENCE } from '@/content/firm';
 
 export const metadata: Metadata = {
   title: { absolute: 'Hexona Systems: AI that increases enterprise value' },
-  // Ticket 5: the meta description is the entity sentence, verbatim.
-  description: ENTITY_SENTENCE,
+  // The entity sentence (358 characters) still renders in the hero and the
+  // Organization schema; the meta description is its own 160-character line so
+  // search results don't truncate it and it doesn't duplicate /firm.
+  description:
+    'Hexona Systems builds and runs AI employees for service businesses in the US and Canada: AI receptionists, sales follow-up, dispatch and back office.',
   alternates: { canonical: '/' },
 };
 

@@ -17,7 +17,7 @@ import { CtaPair, FaqList, delay } from '@/components/hx/Blocks';
 export const metadata: Metadata = {
   title: { absolute: 'Case Studies: Hexona Systems' },
   description:
-    'Ten AI and automation case studies across home services, construction, hospitality, health, coaching and automotive. Every figure names the system it was measured in.',
+    'Ten AI and automation case studies across home services, construction, hospitality, health, coaching and automotive, each measured in the client\'s systems.',
   alternates: { canonical: '/evidence' },
 };
 

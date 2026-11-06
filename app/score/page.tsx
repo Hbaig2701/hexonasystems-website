@@ -8,7 +8,7 @@ import { ScoreTool } from './ScoreTool';
 export const metadata: Metadata = {
   title: 'Enterprise Value Score: Free Assessment',
   description:
-    'What is your business worth to a buyer? Score it on the 10 drivers of enterprise value in about five minutes. Free, no email needed, and it shows you what to fix first.',
+    'Would a buyer want your business? Score it on the 10 drivers of enterprise value in about five minutes. Free, no email needed, and it shows what to fix first.',
   alternates: { canonical: '/score' },
 };
 

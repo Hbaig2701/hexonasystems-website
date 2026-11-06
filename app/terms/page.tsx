@@ -5,7 +5,7 @@ import { TERMS } from '@/content/legal';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of use for hexonasystems.com.',
+  description: 'The terms that apply when you use hexonasystems.com, read its articles or send us a consult request. Client work is covered by its own signed agreement.',
   alternates: { canonical: '/terms' },
 };
 
