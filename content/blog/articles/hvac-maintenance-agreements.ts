@@ -2,13 +2,14 @@
 // "hvac service agreement", "hvac membership program", "recurring revenue
 // service business".
 // Published plan prices read Nov 6, 2026: Housecall Pro's HVAC service plan
-// template ($175 a year or $16 a month, 2 visits); Champion Air's ChampionCare
-// page ($23 a month for the first system, one AC and one heating tune-up, 15%
-// off repairs, $0 diagnostic fees; a promotions page showed $19, so the page
-// price is used and the discrepancy noted); One Hour Heating & Air Conditioning
-// Las Vegas Club Membership ($19.99 a month per system, two tune-ups, 15% off
-// repairs, 10% off indoor air quality products, 5% off equipment, priority
-// service). ENERGY STAR's maintenance checklist for the spring/fall contractor
+// template ($175 a year or $16 a month, 2 visits, 15% off repairs); Champion Air's
+// ChampionCare page ($23 a month for the first system, one AC and one heating
+// tune-up, 15% off repairs, $0 diagnostic fee vs $89, no contract). The earlier
+// note that a promotions page showed $19 was wrong: championair.com/promotions
+// also shows $23 on Nov 6, 2026. One Hour Heating & Air Conditioning Las Vegas
+// Comfort Club ($19.99 a month per system, two tune-ups, 15% off repairs, 10% off
+// indoor air quality products, 5% off equipment, priority service, 12-month
+// commitment). ENERGY STAR's maintenance checklist for the spring/fall contractor
 // check. Relay's HVAC valuation guide for the "single biggest driver" quote.
 // No valuation premium percentage is quoted: the figures circulating online
 // (often attributed to a ServiceTitan report) could not be verified.
@@ -29,15 +30,15 @@ const article: Article = {
   cover: { style: 'stat', value: '$16 to $23', label: 'a month for two tune-ups, in published HVAC plans (Nov 2026)' },
   coverAlt: 'The figure $16 to $23 a month in large type, labelled as the range for two tune-ups in published HVAC maintenance plans.',
   intro: [
-    'An HVAC maintenance agreement is a yearly plan where a homeowner pays a set fee, usually monthly, for two tune-ups (one for cooling, one for heating) plus perks like priority service and a repair discount. The published plans we looked at on Nov 6, 2026 ran from about $16 to $23 a month per system, or $175 a year paid upfront.',
+    'An HVAC maintenance agreement is a yearly plan where a homeowner pays a set fee, usually monthly, for two tune-ups (one for cooling, one for heating) plus perks like priority service and a repair discount. The published plans we looked at on Nov 6, 2026 ran from about $16 to $23 a month for one system, or $175 a year paid upfront.',
     'For the HVAC company, the agreement is worth far more than the fee. It fills the shoulder seasons with booked work, turns one-off callers into customers who call you first, and builds the recurring revenue that buyers pay a premium for. The hard part isn’t selling the first year. It is the renewals and the visit scheduling, which is exactly where most programs quietly leak.',
   ],
   tldr: [
-    'A typical plan: two tune-ups a year, priority scheduling, 10% to 15% off repairs, no or reduced diagnostic fees.',
+    'A typical plan: two tune-ups a year, priority scheduling, 15% off repairs (in all three plans we checked), no or reduced diagnostic fees.',
     'Published prices we found: $16 a month or $175 a year (Housecall Pro’s template), $19.99 a month (One Hour, Las Vegas), $23 a month (Champion Air, Phoenix area).',
     'Sell it on every service call and every install, and make monthly payment the default.',
     'Most plans are lost at renewal and at visit booking. Automate both.',
-    'Valuation guides treat maintenance agreements as one of the biggest drivers of an HVAC company’s sale price.',
+    'Relay’s HVAC valuation guide calls maintenance agreements the single biggest driver of where a business lands in its valuation range.',
   ],
   sections: [
     {
@@ -76,9 +77,9 @@ const article: Article = {
           { key: 'includes', label: 'What it includes' },
         ],
         rows: [
-          { plan: 'Housecall Pro HVAC service plan template', price: '$175 a year or $16 a month', includes: 'Two visits a year. A template contractors can adapt, not a live company plan.' },
-          { plan: 'One Hour Heating & Air Conditioning, Las Vegas Club Membership', price: '$19.99 a month per system', includes: 'Two tune-ups and safety inspections, 15% off repairs, 10% off indoor air quality products, 5% off equipment, priority service' },
-          { plan: 'Champion Air, ChampionCare (Phoenix area)', price: '$23 a month, first system', includes: 'One AC and one heating tune-up a year, 15% off repairs, $0 diagnostic fees, priority scheduling. A separate promotions page showed $19 a month.' },
+          { plan: 'Housecall Pro HVAC service plan template', price: '$175 a year or $16 a month', includes: 'Two visits a year, 15% off repairs, priority scheduling, reduced diagnostic charges, 24-hour emergency service. A template contractors can adapt, not a live company plan.' },
+          { plan: 'One Hour Heating & Air Conditioning, Las Vegas Comfort Club', price: '$19.99 a month per system', includes: 'Two tune-ups and safety inspections, 15% off repairs, 10% off indoor air quality products, 5% off equipment replacement, priority service. A 12-month commitment.' },
+          { plan: 'Champion Air, ChampionCare (Phoenix area)', price: '$23 a month, first system', includes: 'One AC and one heating tune-up a year, 15% off repairs, parts and indoor air quality products, $0 diagnostic fee (normally $89), priority scheduling. No contract.' },
         ],
       },
     },
@@ -101,7 +102,7 @@ const article: Article = {
       heading: 'How do you sell more maintenance agreements?',
       paragraphs: [
         'The best time to sell a plan is when the customer has just seen you fix something. Every service call and every install should end with the offer, framed around what they just went through: "If you were on the plan, today’s diagnostic would have been free and you’d have skipped the queue."',
-        'Then follow up the ones who said "maybe". A text the next day with a one-tap sign-up link converts far better than a brochure on the counter. That follow-up is what our /ai-employees/ai-sales-follow-up does, alongside quotes and estimates.',
+        'Then follow up the ones who said "maybe". In our experience, a text the next day with a one-tap sign-up link does far more than a brochure left on the counter. That follow-up is what our /ai-employees/ai-sales-follow-up does, alongside quotes and estimates.',
       ],
       bullets: [
         'Offer it at the end of every service call and every replacement, in the tech’s own words.',
@@ -125,7 +126,7 @@ const article: Article = {
       bullets: [
         '**Book the visits for them.** Text members a few weeks before each season with two times to choose from. Our /ai-employees/ai-dispatcher fits the visits around the regular schedule.',
         '**Remind before the renewal.** A friendly text 30 days out listing what they got this year (two tune-ups, the repair discount they used) makes the renewal an easy yes.',
-        '**Chase failed payments.** Expired cards are the most common cause of accidental cancellations. A text with a secure link to update the card fixes most of them.',
+        '**Chase failed payments.** Expired cards are a common cause of accidental cancellations. A text with a secure link to update the card fixes most of them.',
         '**Win back the lapsed.** Members who didn’t renew are your warmest list for the next pre-season campaign. That is the job of our /ai-employees/ai-retention.',
       ],
     },
@@ -135,7 +136,7 @@ const article: Article = {
       paragraphs: [
         'Because a maintenance agreement is revenue that is likely to come back next year without new marketing. Buyers price risk, and a documented base of customers who already pay you every month is the least risky revenue an HVAC company has. Relay’s HVAC valuation guide calls maintenance agreements "the single biggest driver" of where a business lands in its valuation range.',
         'You will see specific premiums quoted online, often attributed to industry reports. We couldn’t verify those figures against their original sources, so we’re not repeating them. What is consistent across broker and buyer guides is the direction: more recurring revenue, with good renewal rates and clean records, supports a higher multiple.',
-        'That is why recurring revenue is one of the ten drivers in /score. If you want to see the other places an HVAC company loses money it already earned, /blog/what-is-revenue-leakage covers them.',
+        'That is why recurring revenue is one of the ten drivers in /score. If you want to see how buyers value an HVAC company, and the other places it loses value without noticing, /blog/hvac-business-valuation covers it.',
       ],
     },
     {
@@ -151,7 +152,7 @@ const article: Article = {
     {
       question: 'How much should an HVAC maintenance agreement cost?',
       answer:
-        'Published plans we checked on Nov 6, 2026 ranged from $16 to $23 a month per system, or $175 a year paid upfront, for two tune-ups plus perks. Price your own plan from the cost of delivering the two visits and the discounts, plus a margin.',
+        'Published plans we checked on Nov 6, 2026 ranged from $16 to $23 a month for one system, or $175 a year paid upfront, for two tune-ups plus perks. Price your own plan from the cost of delivering the two visits and the discounts, plus a margin.',
     },
     {
       question: 'What is included in an HVAC maintenance plan?',
@@ -176,24 +177,24 @@ const article: Article = {
     {
       question: 'Do maintenance agreements increase the value of an HVAC business?',
       answer:
-        'Yes. Buyers treat maintenance agreements as recurring revenue that lowers risk, and HVAC valuation guides describe them as one of the biggest drivers of the sale price, especially with strong renewal rates and clean records.',
+        'Yes. Buyers treat maintenance agreements as recurring revenue that lowers risk. Relay’s HVAC valuation guide calls them the single biggest driver of where a business lands in its valuation range, and they count for most with strong renewal rates and clean records.',
     },
   ],
   sources: [
     {
       label: 'Housecall Pro, Service Plan Template for HVAC',
       url: 'https://help.housecallpro.com/en/articles/2463437-service-plan-template-for-hvac',
-      note: 'Template plan: two visits, $175 a year or $16 a month. Read Nov 6, 2026.',
+      note: 'Template plan: two visits, $175 a year or $16 a month, 15% off repairs. Read Nov 6, 2026.',
     },
     {
-      label: 'One Hour Heating & Air Conditioning Las Vegas, Club Membership',
+      label: 'One Hour Heating & Air Conditioning Las Vegas, Comfort Club',
       url: 'https://www.onehourheatandair.com/las-vegas/about-us/club-membership/',
-      note: '$19.99 a month per system and plan inclusions. Read Nov 6, 2026.',
+      note: '$19.99 a month per system, plan inclusions and 12-month commitment. Read Nov 6, 2026.',
     },
     {
       label: 'Champion Air, ChampionCare Maintenance Plan',
       url: 'https://www.championair.com/championcare',
-      note: '$23 a month for the first system and plan inclusions; a promotions page showed $19. Read Nov 6, 2026.',
+      note: '$23 a month for the first system, no contract, $0 diagnostic fee and plan inclusions. The promotions page showed the same $23. Read Nov 6, 2026.',
     },
     {
       label: 'ENERGY STAR, Maintenance checklist',

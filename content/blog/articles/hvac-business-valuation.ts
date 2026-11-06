@@ -1,8 +1,12 @@
 // Target: "hvac business valuation" (110/mo US, DataforSEO Nov 6, 2026), "how much is
 // my hvac business worth", "how to sell an hvac business". Deal multiples from
-// Capstone Partners' HVAC Services M&A Update (July 2026) and PKF O'Connor Davies'
-// US HVAC M&A Industry Update (Summer 2026); small business multiples from
-// BizBuySell. Plumbing case is basis 'projected': only the waste found is quoted.
+// Capstone Partners' HVAC Services M&A Update (Jul 27, 2026; averages, sample not
+// stated) and PKF O'Connor Davies' US HVAC M&A Industry Update (Aug 4, 2026). NOTE:
+// PKF's "6x to 8x EBITDA and greater" is for HVAC DISTRIBUTION, not contractors;
+// for services PKF says "north of 10x" for high-visibility, high-margin businesses
+// with a large service component. Size bands from the IBBA Market Pulse Q2 2026
+// highlights PDF. BizBuySell's 2.58x confirmed via Hyperresearch (BizBuySell
+// returned 403). Plumbing case is basis 'projected': only the waste found is quoted.
 
 import type { Article } from '../types';
 
@@ -30,13 +34,13 @@ const article: Article = {
   },
   coverAlt: 'A two-column comparison of HVAC companies that sell for less and for more: owner-run dispatch versus dispatch that runs itself, no service plans versus a large plan base, and similar contrasts.',
   intro: [
-    'Most HVAC businesses are valued as a multiple of earnings: smaller owner-run shops on seller’s discretionary earnings (SDE), larger ones on EBITDA. Capstone Partners puts the average for HVAC services deals at 9.5x EBITDA from 2024 to mid-2026, but that is the top of the market; a small residential shop that depends on its owner sells for a fraction of that.',
+    'Most HVAC businesses are valued as a multiple of earnings: smaller owner-run shops on seller’s discretionary earnings (SDE), larger ones on EBITDA. Capstone Partners puts the average for HVAC services at 9.5x EBITDA from 2024 to year to date 2026, but that is the top of the market; a small residential shop that depends on its owner sells for a fraction of that.',
     'The gap between those two numbers is the opportunity. Private equity has been buying HVAC companies for years because the work is steady and a lot of it recurs. The shops that get the strong offers are the ones that look like they will keep running after the founder leaves.',
     'This is a guide to how buyers think, not a valuation of your company. For a real number, talk to a broker or a valuation professional who knows HVAC.',
   ],
   tldr: [
     'Capstone Partners reports HVAC services deals averaged 9.5x EV/EBITDA from 2024 to year to date 2026, down from 13.3x in 2021 to 2023.',
-    'PKF O’Connor Davies puts the range at roughly 6x to 8x EBITDA, and higher for companies with real scale.',
+    'PKF O’Connor Davies says high-margin HVAC services companies with a large service component trade north of 10x EBITDA, and that larger companies typically trade higher.',
     'Small owner-run shops trade on SDE at far lower multiples. The BizBuySell all-industry average is 2.58x cash flow.',
     'The biggest levers: a maintenance agreement base, a commercial service mix, technician retention, owner independence and clean books.',
   ],
@@ -46,7 +50,8 @@ const article: Article = {
       heading: 'What are HVAC businesses selling for in 2026?',
       paragraphs: [
         'There are really two HVAC markets, and mixing them up is how owners end up disappointed.',
-        'The first is the deal market that gets reported: companies large enough for private equity platforms and big strategic buyers. Capstone Partners’ July 2026 HVAC services update reports average multiples of 2.0x revenue and 9.5x EBITDA across 2024 to year to date 2026, down from 13.3x EBITDA in the 2021 to 2023 run. PKF O’Connor Davies’ summer 2026 update describes a range of roughly 6x to 8x EBITDA, and more for businesses with critical scale.',
+        'The first is the deal market that gets reported: companies large enough for private equity platforms and big strategic buyers. Capstone Partners’ July 2026 HVAC services update reports average multiples of 2.0x revenue and 9.5x EBITDA across 2024 to year to date 2026, down from 13.3x EBITDA in the 2021 to 2023 run. PKF O’Connor Davies’ August 2026 update says HVAC services multiples are north of 10x EBITDA for high-margin businesses with predictable revenue and a large service component, and that larger companies typically trade at higher multiples. (Its often-quoted 6x to 8x range is for HVAC distributors, not contractors.)',
+        'In between sit companies worth $2M to $50M. Across all industries, the IBBA and M&A Source Market Pulse for Q2 2026 put multiples at about 4x EBITDA for businesses worth $2M to $5M and about 5.8x for $5M to $50M. That gives a sense of how fast the multiple climbs with size.',
         'The second is the Main Street market: one to ten trucks, owner on the tools or on the phone, priced on SDE and often bought by an individual with an SBA loan. Those businesses trade far lower. BizBuySell’s average across all industries is 2.58x cash flow for sales from Q3 2021 through Q2 2026.',
       ],
       table: {
@@ -58,7 +63,8 @@ const article: Article = {
           { key: 'multiple', label: 'Reported multiples' },
         ],
         rows: [
-          { market: 'Larger HVAC services companies', buyer: 'Private equity platforms, large strategics', earnings: 'EBITDA', multiple: '9.5x average, 2024 to YTD 2026 (Capstone); about 6x to 8x and up (PKF O’Connor Davies)' },
+          { market: 'Larger HVAC services companies', buyer: 'Private equity platforms, large strategics', earnings: 'EBITDA', multiple: '9.5x average, 2024 to YTD 2026 (Capstone); north of 10x for high-margin, service-heavy companies (PKF O’Connor Davies)' },
+          { market: 'Mid-sized companies, $2M to $50M in value (all industries)', buyer: 'Private equity add-ons, larger competitors', earnings: 'EBITDA', multiple: 'About 4x ($2M to $5M) to 5.8x ($5M to $50M), IBBA Q2 2026' },
           { market: 'Owner-run residential shops', buyer: 'Individual buyers, local competitors, add-on buyers', earnings: 'SDE', multiple: 'BizBuySell all-industry average 2.58x cash flow' },
         ],
       },
@@ -70,7 +76,7 @@ const article: Article = {
       heading: 'Why is private equity buying so many HVAC companies?',
       paragraphs: [
         'Because the work does not go away. Systems break in every season, equipment has to be replaced, and a lot of homeowners and building owners pay every year for maintenance. To an investor that looks like dependable cash flow in a market full of small owners who are getting close to retirement.',
-        'Capstone counts 92 announced or completed HVAC services deals in its latest period, with total volume down 4.2% year over year, and financial sponsors holding steadier than strategic buyers. The buying has cooled from the peak, which is why multiples came down, but it hasn’t stopped.',
+        'Capstone counts 92 announced or completed HVAC services deals in 2026 through its July update, down 4.2% on the same period a year earlier. Financial sponsors held steady (47 deals, up from 46) while strategic buyers did fewer (45, down from 50). Multiples are down from the 2021 to 2023 peak, but the buying hasn’t stopped.',
         'For an owner, the practical point is that the buyers paying the most are paying for systems and recurring revenue. Trucks and a phone number are the cheap part.',
       ],
     },
@@ -129,12 +135,12 @@ const article: Article = {
     {
       question: 'How much is my HVAC business worth?',
       answer:
-        'Most HVAC businesses are worth a multiple of their earnings. Larger companies sold to private equity have averaged around 9.5x EBITDA from 2024 to mid-2026, according to Capstone Partners, while small owner-run shops trade on seller’s discretionary earnings at much lower multiples. A broker or valuation professional can give you a real number.',
+        'Most HVAC businesses are worth a multiple of their earnings. Larger HVAC services companies have averaged 9.5x EBITDA from 2024 to year to date 2026, according to Capstone Partners, while small owner-run shops trade on seller’s discretionary earnings at much lower multiples. A broker or valuation professional can give you a real number.',
     },
     {
       question: 'What multiple do HVAC companies sell for?',
       answer:
-        'Reported multiples for HVAC services deals averaged 9.5x EV/EBITDA from 2024 to year to date 2026, down from 13.3x in 2021 to 2023 (Capstone Partners, July 2026). PKF O’Connor Davies describes roughly 6x to 8x EBITDA, higher with scale. Smaller shops priced on SDE sell for much less.',
+        'Reported multiples for HVAC services deals averaged 9.5x EV/EBITDA from 2024 to year to date 2026, down from 13.3x in 2021 to 2023 (Capstone Partners, July 2026). PKF O’Connor Davies puts high-margin, service-heavy HVAC companies north of 10x EBITDA. Smaller shops priced on SDE sell for much less.',
     },
     {
       question: 'Do maintenance agreements increase the value of an HVAC company?',
@@ -144,7 +150,7 @@ const article: Article = {
     {
       question: 'Who buys HVAC companies?',
       answer:
-        'Private equity-backed platforms and large strategic buyers acquire established HVAC companies, often as add-ons to a regional platform. Smaller shops are more often bought by individuals, local competitors or managers inside the business, frequently with SBA financing.',
+        'Private equity-backed platforms and large strategic buyers acquire established HVAC companies, often as add-ons to a regional platform. Smaller shops are more often bought by individuals, local competitors or managers inside the business, sometimes with an SBA-backed loan.',
     },
     {
       question: 'How do I sell my HVAC business for more?',
@@ -161,17 +167,22 @@ const article: Article = {
     {
       label: 'Capstone Partners, HVAC Services M&A Update (July 2026)',
       url: 'https://www.capstonepartners.com/insights/article-hvac-services-ma-update/',
-      note: '2.0x EV/revenue and 9.5x EV/EBITDA average for 2024 to YTD 2026, down from 13.3x in 2021 to 2023; 92 transactions, volume down 4.2% year over year. Read Nov 6, 2026.',
+      note: 'Dated Jul 27, 2026. Averages of 2.0x EV/revenue and 9.5x EV/EBITDA for 2024 to YTD 2026, down from 13.3x in 2021 to 2023 (sample not stated); 92 transactions YTD 2026, down 4.2% year over year. Read Nov 6, 2026.',
     },
     {
       label: 'PKF O’Connor Davies, US HVAC M&A Industry Update (Summer 2026)',
       url: 'https://www.pkfod.com/insights/u-s-hvac-ma-industry-update-summer-2026/',
-      note: 'Range of roughly 6x to 8x EBITDA and greater for businesses with critical scale. Read Nov 6, 2026.',
+      note: 'Dated Aug 4, 2026. HVAC services multiples north of 10x EBITDA for high-visibility, high-margin, service-heavy businesses; the 6x to 8x range is for HVAC distribution. Read Nov 6, 2026.',
     },
     {
-      label: 'BizBuySell, Business valuation multiples by industry',
-      url: 'https://www.bizbuysell.com/learning-center/industry-valuation-multiples/',
-      note: 'All-sector average of 2.58x cash flow for sales from Q3 2021 through Q2 2026. Read Nov 6, 2026.',
+      label: 'IBBA and M&A Source, Market Pulse Q2 2026 highlights',
+      url: 'https://www.ibba.org/wp-content/uploads/2026/08/mp-highlights-q2-2026.pdf',
+      note: 'Q2 2026 multiples by deal size, all industries: about 4x EBITDA for $2M to $5M and 5.8x for $5M to $50M. Read Nov 6, 2026.',
+    },
+    {
+      label: 'Hyperresearch, Small business valuation multiples by industry (2026)',
+      url: 'https://hyperresearch.ai/guides/small-business-valuation-multiples',
+      note: 'BizBuySell’s all-sector average of 2.58x (sale price over SDE) for sales from Q3 2021 through Q2 2026. BizBuySell’s own page refused our automated reader on Nov 6, 2026. Read Nov 6, 2026.',
     },
     {
       label: 'Hexona case study: plumbing and field services',

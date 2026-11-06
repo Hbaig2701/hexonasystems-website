@@ -2,9 +2,11 @@
 // up on estimates", "estimate follow up email" (DataforSEO Nov 6, 2026). Case
 // figures quoted exactly from content/evidence.ts (solar-dormant-database,
 // home-improvement-sales-workflow). TCPA context from law-firm alerts on the
-// Eleventh Circuit's Jan 24, 2025 decision vacating the FCC one-to-one consent rule
-// and on the FCC's consent revocation rules (Apr 2025, revised by FCC 26-67, Sep 30,
-// 2026). General information, not legal advice.
+// Eleventh Circuit's late January 2025 decision vacating the FCC one-to-one consent
+// rule (MoFo, Jan 30, 2025; the exact decision date was not on a page we opened),
+// the FCC's consent revocation rules (effective Apr 11, 2025), and the FCC order
+// itself, FCC 26-67 (adopted Sep 30, 2026, released Oct 1, 2026, effective 30 days
+// after Federal Register publication). General information, not legal advice.
 
 import type { Article } from '../types';
 
@@ -23,7 +25,7 @@ const article: Article = {
   coverAlt: 'A cover showing "$24,500" in large type with the caption "net profit from 4,000 leads nobody had followed up".',
   intro: [
     'Database reactivation means going back to people who already asked you for a quote or a booking and never bought, and restarting the conversation, usually by text. It works because these people already know who you are and already had the problem; most of them just got busy, went quiet, or never heard back.',
-    'For most service businesses it is the fastest money available, because the leads are already paid for. A solar installer we worked with had more than 4,000 homeowners sitting in a list nobody touched. A three-week reactivation campaign re-engaged 832 of them, booked 38 appointments and produced $24,500 in net profit, with no manual outreach from the sales team.',
+    'For most service businesses it is the fastest money available, because the leads are already paid for. A solar installer we worked with had more than 4,000 homeowners sitting in a list nobody touched. A reactivation campaign that ran for under three weeks re-engaged 832 of them, booked 38 appointments and produced $24,500 in net profit, with no manual outreach from the sales team.',
   ],
   tldr: [
     'Your old leads and unsigned estimates are a list of people who already raised their hand.',
@@ -63,7 +65,7 @@ const article: Article = {
       heading: 'Is it legal to text old leads?',
       paragraphs: [
         'Often yes, but check before you send anything. In the US, marketing texts are governed by the Telephone Consumer Protection Act (TCPA), and the safe rule is simple: only text people who gave you their number and agreed to be contacted by your business, and stop the moment anyone asks you to.',
-        'Two recent changes are worth knowing. In January 2025 a federal appeals court struck down the FCC’s "one-to-one consent" rule before it took effect. And the FCC’s rules on revoking consent took effect in April 2025: people can opt out by any reasonable means, and you must honor it within ten business days. In September 2026 the FCC voted to let businesses designate specific opt-out methods such as replying STOP. Check where those rules stand when you run your campaign.',
+        'Two recent changes are worth knowing. In January 2025 a federal appeals court struck down the FCC’s "one-to-one consent" rule before it took effect. And the FCC’s rules on revoking consent took effect in April 2025: people can opt out by any reasonable means, and you must honor it within ten business days. On Sep 30, 2026 the FCC voted (order FCC 26-67) to let businesses designate a specific opt-out method, such as replying STOP, as long as it is clearly disclosed in the text. Those changes take effect 30 days after they are published in the Federal Register, and the ten business day deadline stays. Check where the rules stand when you run your campaign.',
       ],
       bullets: [
         '**Don’t text** purchased lists, scraped numbers or anyone who previously opted out.',
@@ -82,7 +84,7 @@ const article: Article = {
         { title: 'Split it into groups', detail: 'Unsigned estimates, old enquiries, past customers due for service. Each group gets its own message.' },
         { title: 'Write a first message that asks a question', detail: 'Short, plain, specific to what they asked about. No links in the first text, no discount yet.' },
         { title: 'Send in waves', detail: 'A few hundred a day, not the whole list at once, so your team (or AI) can answer the replies fast and carriers don’t flag a sudden spike.' },
-        { title: 'Answer every reply within minutes', detail: 'This is where campaigns are won or lost. Qualify the job, handle the common questions and book the appointment into your calendar.' },
+        { title: 'Answer every reply within minutes', detail: 'This is where campaigns are won or lost, for the same reasons covered in /blog/speed-to-lead. Qualify the job, handle the common questions and book the appointment into your calendar.' },
         { title: 'Follow up the quiet ones', detail: 'One or two more messages over the next week, then move them to a slow, monthly nurture.' },
         { title: 'Make it permanent', detail: 'After the campaign, every new estimate gets an automatic follow-up on day 3, day 7 and day 14, so the list never piles up again.' },
       ],
@@ -100,10 +102,10 @@ const article: Article = {
           { key: 'msg', label: 'Example first message' },
         ],
         rows: [
-          { group: 'Unsigned estimate', msg: 'Hi [Name], it’s [Your name] from [Business]. Did you ever get the [kitchen/roof/AC] sorted, or is it still on the list? Reply STOP to opt out.' },
+          { group: 'Unsigned estimate', msg: 'Hi [Name], it\'s [Your name] from [Business]. Did you ever get the [kitchen/roof/AC] sorted, or is it still on the list? Reply STOP to opt out.' },
           { group: 'Old enquiry, no quote', msg: 'Hi [Name], [Business] here. You asked us about [service] a while back. Is that still something you need help with?' },
-          { group: 'Past customer due for service', msg: 'Hi [Name], it’s been about a year since we [serviced your furnace]. Want me to get you on the schedule before the cold hits?' },
-          { group: 'Med spa or clinic', msg: 'Hi [Name], it’s [Business]. You asked about [treatment] earlier this year. Are you still thinking about it? Happy to answer any questions.' },
+          { group: 'Past customer due for service', msg: 'Hi [Name], it\'s been about a year since we [serviced your furnace]. Want me to get you on the schedule before the cold hits?' },
+          { group: 'Med spa or clinic', msg: 'Hi [Name], it\'s [Business]. You asked about [treatment] earlier this year. Are you still thinking about it? Happy to answer any questions.' },
           { group: 'Follow-up if no reply', msg: 'Hi [Name], just bumping this in case it got buried. Should I close your file or keep it open?' },
         ],
       },
@@ -115,7 +117,7 @@ const article: Article = {
       heading: 'How do you follow up on estimates so they don’t go cold?',
       paragraphs: [
         'Reactivation cleans up the past. Estimate follow-up stops the pile from growing back. The pattern that works for contractors: send the estimate, text the next day to make sure it arrived, follow up on day 3 and day 7 with a specific question, and on day 14 ask whether to keep the file open.',
-        'A roofing and remodelling company we worked with built exactly that, with quotes generated as branded PDFs and three-day and seven-day reminders firing automatically. Lead-to-quote time dropped from three days to under 24 hours and lead conversion rose 22% (/evidence/home-improvement-sales-workflow).',
+        'A roofing and remodelling company we worked with built a version of this: an instant reply with a booking link for a site visit, three-day and seven-day reminders if nobody booked, quotes generated as branded PDFs, and a long-term follow-up sequence for leads that didn’t convert. Lead-to-quote time dropped from three days to under 24 hours and lead conversion rose 22% (/evidence/home-improvement-sales-workflow).',
         'The AI employee that runs this is /ai-employees/ai-sales-follow-up. If you are a contractor, /industries/construction shows how it fits with the rest of the office work.',
       ],
     },
@@ -182,22 +184,27 @@ const article: Article = {
     {
       label: 'Hexona case study: home improvement sales workflow',
       url: 'https://www.hexonasystems.com/evidence/home-improvement-sales-workflow',
-      note: 'Estimate follow-up timing, lead-to-quote time and conversion, quoted as published. Checked Nov 6, 2026.',
+      note: 'Booking reminders, quoting, lead-to-quote time and conversion, quoted as published. Checked Nov 6, 2026.',
     },
     {
       label: 'Morrison Foerster, Eleventh Circuit vacates FCC’s TCPA one-to-one consent rule',
       url: 'https://www.mofo.com/resources/insights/250130-eleventh-circuit-vacates-fcc-s-tcpa-one-to-one-consent-rule',
-      note: 'The Jan 24, 2025 decision in Insurance Marketing Coalition v. FCC. Read Nov 6, 2026.',
+      note: 'Insurance Marketing Coalition v. FCC, decided days before the rule’s Jan 27, 2025 effective date (alert dated Jan 30, 2025). Read Nov 6, 2026.',
     },
     {
       label: 'DLA Piper, FCC TCPA rule (October 2026)',
       url: 'https://www.dlapiper.com/en/insights/publications/2026/10/fcc-tcpa-rule',
-      note: 'The FCC’s Sep 30, 2026 order on designated opt-out methods. Read Nov 6, 2026.',
+      note: 'Summary of FCC Order 26-67 (Sep 30, 2026) on designated opt-out methods and the ten business day deadline. Read Nov 6, 2026.',
+    },
+    {
+      label: 'FCC, Report and Order FCC 26-67 (consent revocation)',
+      url: 'https://docs.fcc.gov/public/attachments/FCC-26-67A1.pdf',
+      note: 'Adopted Sep 30, 2026, released Oct 1, 2026: exclusive revocation methods including replying STOP, effective 30 days after Federal Register publication. Read Nov 6, 2026.',
     },
     {
       label: 'Kelley Drye, FCC sets effective date for TCPA reasonable consent revocation rules',
       url: 'https://www.kelleydrye.com/viewpoints/blogs/ad-law-access/fcc-sets-effective-date-for-tcpa-reasonable-consent-revocation-rules',
-      note: 'The April 2025 revocation rule and the ten business day deadline. Read Nov 6, 2026.',
+      note: 'The revocation rules’ Apr 11, 2025 effective date and the ten business day deadline. Read Nov 6, 2026.',
     },
   ],
   related: ['speed-to-lead', 'missed-call-text-back', 'a2p-10dlc-explained'],

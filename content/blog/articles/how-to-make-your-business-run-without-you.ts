@@ -1,8 +1,13 @@
 // Target: "how to make my business run without me", "owner dependent business",
 // "reduce owner dependence", "how to step back from my business". The 10 drivers
 // are from content/drivers.ts (shared with The Automation Institute's score).
-// Value Builder System's eight drivers page and BizBuySell's 2025 review are the
-// outside sources. Case figures from content/evidence.ts, quoted as published.
+// Value Builder System's eight drivers page lists the names only (incl. "Hub and
+// Spoke" and "The Switzerland Structure"); what those mean is from Built to Sell's
+// own post (Switzerland Structure) and a Value Builder adviser (Hub and Spoke =
+// how well the company could thrive without you). The old claim that the drivers
+// are "built on surveys of business owners" was not on any page we opened and was
+// cut. BizBuySell's 2.61x is confirmed via Business Exits (BizBuySell returned 403).
+// Case figures from content/evidence.ts, quoted as published.
 
 import type { Article } from '../types';
 
@@ -25,7 +30,7 @@ const article: Article = {
     'I have spent the last few years building the systems that take this work off owners. This is the order we do it in.',
   ],
   tldr: [
-    'Owner dependence is the biggest single reason small service businesses sell for less than they could.',
+    'Owner dependence is one of the biggest risks a buyer prices into a small service business.',
     'Start by tracking a normal week and listing everything that stops when you stop.',
     'Hand off the repetitive work first (calls, follow-up, scheduling, invoices), then the judgement calls, with rules.',
     'Run the two-week test: take time away, keep a list of every time someone needed you, and fix those first.',
@@ -37,8 +42,8 @@ const article: Article = {
       heading: 'Why does an owner-dependent business sell for less?',
       paragraphs: [
         'A buyer is paying today for profit they hope to collect over the next several years. If that profit depends on your relationships, your quotes and your phone, it walks out the door with you at closing. So the buyer either pays less, asks you to stay on for years, or ties part of the price to future results.',
-        'John Warrillow’s Value Builder System, built on surveys of business owners, lists owner dependence as one of its eight drivers of company value, alongside recurring revenue and not relying on a single customer, employee or supplier. The 10 drivers we score in /score put it in the same place: "less owner dependence" counts double.',
-        'BizBuySell reports an average multiple of 2.61x cash flow on small businesses sold in 2025. Owner-dependent businesses tend to land at or below that; the ones that run without their owner are the ones that get above it. More on the math in /blog/what-is-my-business-worth.',
+        'John Warrillow’s Value Builder System scores companies on eight drivers of value. One of them, which it calls "Hub and Spoke", is how well the company could do without its owner. Others include recurring revenue and what it calls the "Switzerland Structure": not relying too heavily on any one customer, employee or supplier. The 10 drivers we score in /score put it in the same place: "less owner dependence" counts double.',
+        'BizBuySell reports an average multiple of 2.61x cash flow on small businesses sold in 2025. It doesn’t split that number by how much a business leans on its owner, but the multiple is a price on risk, and an owner who holds everything together is one of the first risks a buyer looks for. More on the math in /blog/what-is-my-business-worth.',
       ],
     },
     {
@@ -79,7 +84,7 @@ const article: Article = {
       paragraphs: [
         'Hand off by hours, not by importance. The repetitive work eats the most time and is the easiest to hand over without risk, so it goes first.',
         'This is where AI employees fit. An AI receptionist can answer every call and book the job (/ai-employees/ai-receptionist). An office admin agent can send the forms and chase signatures (/ai-employees/ai-office-admin). A collections agent can follow up every unpaid invoice on a schedule. None of them get tired of the boring part, which is why the boring part is where they belong.',
-        'One renovation contractor we worked with automated forms, approvals and estimate follow-up and grew to more than 27 active projects without adding admin staff, with project delays down 41% (/evidence/construction-project-pipeline). That is what lower owner dependence looks like on paper.',
+        'One renovation contractor we worked with automated forms, approvals and estimate follow-up and scaled to 27 or more active projects without adding admin staff, with project delays down 41% (/evidence/construction-project-pipeline). That is what lower owner dependence looks like on paper.',
       ],
       steps: [
         { title: 'Calls and messages', detail: 'Someone, or something, other than you answers every call, text and web form, books the job and logs it.' },
@@ -147,24 +152,34 @@ const article: Article = {
     {
       question: 'Do buyers really pay more for a business that runs without its owner?',
       answer:
-        'Buyers price risk, and an owner who holds the business together is one of the biggest risks they see. The Value Builder System lists owner dependence as one of its eight drivers of company value, and owner-dependent sellers are often asked to stay on or accept part of the price as an earnout.',
+        'Buyers price risk, and an owner who holds the business together is one of the biggest risks they see. The Value Builder System counts how well a company does without its owner as one of its eight drivers of company value. Owner-dependent sellers can also be asked to stay on after the sale or to take part of the price as an earnout.',
     },
   ],
   sources: [
     {
       label: 'Value Builder System, Key drivers of company value',
       url: 'https://valuebuildersystem.com/eight-drivers',
-      note: 'The eight drivers of company value, including owner dependence and reliance on single customers, employees or suppliers. Read Nov 6, 2026.',
+      note: 'The names of the eight drivers, including Hub and Spoke, Recurring Revenue and The Switzerland Structure. Read Nov 6, 2026.',
     },
     {
-      label: 'BizBuySell, 2025 Year in Review',
-      url: 'https://www.bizbuysell.com/blog/2025-year-in-review/',
-      note: 'Average cash flow multiple of 2.61x for small businesses sold in 2025. Read Nov 6, 2026.',
+      label: 'Built to Sell, Eight key drivers of company value: The Switzerland Structure',
+      url: 'https://builttosell.com/?p=1661',
+      note: 'What the Switzerland Structure measures: reliance on a single customer, employee or supplier (Nov 30, 2020). Read Nov 6, 2026.',
+    },
+    {
+      label: 'ActionCOACH, If your business is becoming too reliant on you',
+      url: 'https://actioncoach.co.uk/2018/11/07/is-your-business-too-reliant-on-you/',
+      note: 'A Value Builder adviser describing Hub and Spoke as a measure of how well a company could thrive without its owner (Nov 7, 2018). Read Nov 6, 2026.',
+    },
+    {
+      label: 'Business Exits, BizBuySell’s 2025 market recap',
+      url: 'https://businessexits.com/bizbuysells-2025-market-recap-what-the-data-shows-for-business-sellers/',
+      note: 'Average cash flow multiple of 2.61x for small businesses sold on BizBuySell in 2025. BizBuySell’s own page refused our automated reader on Nov 6, 2026. Read Nov 6, 2026.',
     },
     {
       label: 'Hexona case study: renovation contractor',
       url: 'https://www.hexonasystems.com/evidence/construction-project-pipeline',
-      note: 'Project delays down 41% and more than 27 active projects without adding admin staff, measured in the client’s CRM. Checked Nov 6, 2026.',
+      note: 'Project delays down 41% and 27 or more active projects without adding admin staff, measured in the client’s CRM. Checked Nov 6, 2026.',
     },
   ],
   related: ['what-is-my-business-worth', 'ai-agent-examples', 'hvac-business-valuation'],

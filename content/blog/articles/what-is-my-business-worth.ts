@@ -1,8 +1,13 @@
 // Target: "what is my business worth" (1,300/mo US, DataforSEO Nov 6, 2026), "how to
 // value a small business" (390), "business valuation multiples" (110), "sde
 // multiple" (140), "ebitda multiple small business". Market data from BizBuySell
-// (2025 year in review; industry multiples page covering Q3 2021 to Q2 2026) and
-// the IBBA / M&A Source Market Pulse (Q2 2026). Hexona figures from content/evidence.ts.
+// (2025 year in review; industry multiples page covering Q3 2021 to Q2 2026). Both
+// BizBuySell pages returned HTTP 403 to our reader on Nov 6, 2026, so the figures
+// were confirmed on Business Exits' recap (2.61x average, $158,950 median cash flow)
+// and Hyperresearch's guide (2.58x average of price/SDE, Q3 2021 to Q2 2026). The
+// "up 1%" change could not be confirmed and was cut. IBBA / M&A Source Market Pulse
+// Q2 2026 highlights PDF for segment definitions and multiples (the full results
+// page is password protected). Hexona figures from content/evidence.ts.
 
 import type { Article } from '../types';
 
@@ -52,7 +57,7 @@ const article: Article = {
       paragraphs: [
         '**SDE (seller’s discretionary earnings)** is profit before taxes, interest, depreciation and amortization, with the owner’s own salary and personal perks added back. It answers: how much does this business pay one owner-operator who runs it full time? Buyers use it for Main Street businesses, where the new owner is usually going to work in the business.',
         '**EBITDA** also adds back interest, taxes, depreciation and amortization, but it treats a market-rate salary for the manager as a real cost. It answers: how much does this business earn if someone is paid to run it? Private equity and larger buyers use it because they are not planning to run the trucks themselves.',
-        'The IBBA and M&A Source, the two main US broker associations, draw the line at deal size: they call businesses valued up to $2M "Main Street" and $2M to $50M the "lower middle market". Main Street deals are mostly priced on SDE, larger ones mostly on EBITDA.',
+        'The IBBA and M&A Source, two US associations of business brokers and M&A advisors, draw the line at deal size in their Market Pulse survey: they call businesses valued up to $2M "Main Street" and $2M to $50M the "lower middle market". Main Street deals are mostly priced on SDE, larger ones mostly on EBITDA.',
       ],
       table: {
         caption: 'SDE vs EBITDA at a glance.',
@@ -75,13 +80,14 @@ const article: Article = {
       id: 'market',
       heading: 'What multiples are small businesses selling for in 2026?',
       paragraphs: [
-        'BizBuySell, the largest small business marketplace in the US, publishes what businesses on its site actually sold for. Its 2025 year in review reports an average cash flow multiple of 2.61x, up 1% on 2024, and median cash flow of $158,950 for businesses that sold.',
-        'Its industry multiples page, which uses sales from Q3 2021 through Q2 2026, puts the average across all sectors at 2.58x cash flow. Those are mostly Main Street businesses priced on SDE.',
-        'Larger, systemized businesses priced on EBITDA trade higher. In HVAC services, for example, Capstone Partners reports average multiples of 9.5x EBITDA across 2024 to mid-2026 deals. That is a different market: companies big enough to report their deals, often bought by private equity. We break that one down in /blog/hvac-business-valuation.',
+        'BizBuySell, one of the biggest online marketplaces for buying and selling small businesses, publishes what businesses reported through it actually sold for. Its 2025 year in review reports an average cash flow multiple of 2.61x and median cash flow of $158,950 for businesses that sold. Note the mix: the multiple is an average, the cash flow figure is a median.',
+        'Its industry multiples page, which uses sales from Q3 2021 through Q2 2026, puts the average across all sectors at 2.58x cash flow (sale price divided by SDE, which BizBuySell calls cash flow). Those are mostly Main Street businesses.',
+        'The broker associations see the same split by size. In the IBBA and M&A Source Market Pulse for Q2 2026, Main Street businesses sold for about 2x SDE under $500,000 in value, rising to about 3x SDE between $1M and $2M. Above $2M, where the survey switches to EBITDA, multiples were about 4x for $2M to $5M and about 5.8x for $5M to $50M.',
+        'Larger, systemized businesses priced on EBITDA trade higher still. In HVAC services, for example, Capstone Partners’ July 2026 update puts the average at 9.5x EBITDA for 2024 to year to date 2026. That is a different market: companies big enough for their deals to be reported, often bought by private equity. We break that one down in /blog/hvac-business-valuation.',
       ],
       figure: {
         kind: 'stats',
-        caption: 'what small business buyers paid, from BizBuySell reports read Nov 6, 2026',
+        caption: 'what small business buyers paid, BizBuySell figures as reported by Business Exits and Hyperresearch (read Nov 6, 2026)',
         items: [
           { value: '2.61x', label: 'Average cash flow multiple, businesses sold in 2025' },
           { value: '$158,950', label: 'Median cash flow of businesses sold in 2025' },
@@ -138,8 +144,8 @@ const article: Article = {
         'Most of the things buyers pay for are also the things that make the business easier to own right now. Start with the ones that show up in your numbers fastest.',
       ],
       steps: [
-        { title: 'Stop losing revenue you already paid for', detail: 'Missed calls, slow replies and old estimates nobody followed up. A tire shop we worked with recovered over $50,000 just by answering the calls that went to voicemail (/evidence/tire-shop-missed-calls).' },
-        { title: 'Build a recurring base', detail: 'Maintenance plans, service agreements and memberships. Buyers value revenue that shows up next year without a new sale. A coffee chain we worked with took retention from 27% to 68% with automated win-backs (/evidence/coffee-loyalty-programme).' },
+        { title: 'Stop losing revenue you already paid for', detail: 'Missed calls, slow replies and old estimates nobody followed up. A tire shop we worked with recovered over $50,000 after we set up instant text replies to missed calls, social media chat and online booking (/evidence/tire-shop-missed-calls).' },
+        { title: 'Build a recurring base', detail: 'Maintenance plans, service agreements and memberships. Buyers value revenue that shows up next year without a new sale. A coffee chain we worked with took retention from 27% to 68% with a text-based loyalty programme that included automated win-backs (/evidence/coffee-loyalty-programme).' },
         { title: 'Get the work out of your head', detail: 'Write down how jobs are quoted, scheduled and closed out. Hand the repetitive parts to people or to /ai-employees, so the business does not stop when you do. The full playbook is in /blog/how-to-make-your-business-run-without-you.' },
         { title: 'Close the books every month', detail: 'Clean monthly financials are the first thing a buyer’s accountant asks for, and the fastest way to lose a buyer’s trust is numbers that change every time you send them.' },
         { title: 'Measure where you stand', detail: 'Take the Enterprise Value Score at /score. It rates you on the 10 things buyers look at and shows your two biggest gaps in about five minutes.' },
@@ -190,25 +196,35 @@ const article: Article = {
     {
       label: 'BizBuySell, 2025 Year in Review',
       url: 'https://www.bizbuysell.com/blog/2025-year-in-review/',
-      note: 'Average cash flow multiple of 2.61x (up 1%) and median cash flow of $158,950 for businesses sold in 2025. Read Nov 6, 2026.',
+      note: 'Primary source for the 2025 figures. The page refused our automated reader (HTTP 403) on Nov 6, 2026; figures confirmed via the Business Exits recap below.',
+    },
+    {
+      label: 'Business Exits, BizBuySell’s 2025 market recap',
+      url: 'https://businessexits.com/bizbuysells-2025-market-recap-what-the-data-shows-for-business-sellers/',
+      note: 'Average cash flow multiple of 2.61x and median cash flow of $158,950 for businesses sold on BizBuySell in 2025. Read Nov 6, 2026.',
     },
     {
       label: 'BizBuySell, Business valuation multiples by industry',
       url: 'https://www.bizbuysell.com/learning-center/industry-valuation-multiples/',
-      note: 'All-sector average of 2.58x cash flow, based on businesses sold from Q3 2021 through Q2 2026. Read Nov 6, 2026.',
+      note: 'Primary source for the 2.58x all-sector average. Refused our automated reader (HTTP 403) on Nov 6, 2026; figure confirmed via the Hyperresearch guide below.',
     },
     {
-      label: 'IBBA and M&A Source, Market Pulse Q2 2026',
-      url: 'https://www.ibba.org/market-pulse-q2-2026-survey-results/',
-      note: 'Main Street (values up to $2M) and lower middle market ($2M to $50M) segments, and deal timelines. Read Nov 6, 2026.',
+      label: 'Hyperresearch, Small business valuation multiples by industry (2026)',
+      url: 'https://hyperresearch.ai/guides/small-business-valuation-multiples',
+      note: 'BizBuySell’s five-year all-sector average of 2.58x (sale price over SDE), Q3 2021 to Q2 2026. Read Nov 6, 2026.',
+    },
+    {
+      label: 'IBBA and M&A Source, Market Pulse Q2 2026 highlights',
+      url: 'https://www.ibba.org/wp-content/uploads/2026/08/mp-highlights-q2-2026.pdf',
+      note: 'Main Street (under $2M) and lower middle market ($2M to $50M) segments, and Q2 2026 multiples by size: SDE under $2M, EBITDA above. Read Nov 6, 2026.',
     },
     {
       label: 'Capstone Partners, HVAC Services M&A Update (July 2026)',
       url: 'https://www.capstonepartners.com/insights/article-hvac-services-ma-update/',
-      note: 'Average of 9.5x EV/EBITDA for HVAC services deals from 2024 to year to date 2026. Read Nov 6, 2026.',
+      note: 'Average of 9.5x EV/EBITDA for HVAC services from 2024 to year to date 2026 (dated Jul 27, 2026; the sample behind the average is not stated). Read Nov 6, 2026.',
     },
   ],
-  related: ['how-to-make-your-business-run-without-you', 'hvac-business-valuation', 'how-to-price-a-revenue-leak-in-ebitda'],
+  related: ['how-to-make-your-business-run-without-you', 'hvac-business-valuation', 'hvac-maintenance-agreements'],
   queries: ['what is my business worth', 'how to value a small business', 'business valuation multiples', 'sde multiple', 'ebitda multiple small business'],
 };
 

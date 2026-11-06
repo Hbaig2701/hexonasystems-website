@@ -20,7 +20,7 @@ const article: Article = {
   cover: {
     style: 'chat',
     messages: [
-      { from: 'ai', text: 'Sorry we missed you, we’re out on a job. Repair or a quote?' },
+      { from: 'ai', text: 'Sorry we missed you, we\'re out on a job. Repair or a quote?' },
       { from: 'them', text: 'Repair. Water heater is leaking.' },
       { from: 'ai', text: 'Got it. I can get someone there at 3. Does that work?' },
     ],
@@ -57,8 +57,8 @@ const article: Article = {
       heading: 'How much do missed calls actually cost a small business?',
       paragraphs: [
         'You can work it out from your own call log in ten minutes. Count the missed calls from numbers that aren’t already customers, multiply by how often a new caller turns into a job, then by what a job is worth.',
-        'That is exactly the math one of our clients, a busy tire shop in Toronto, did on its own logs: 270 first-time missed callers a month, a $500 average customer value and a 30% close rate, which came to $40,000 to $50,000 a month walking out the door. The owner works in the shop himself, so in winter tire season nobody was manning the phones full time.',
-        'We started with a simple missed call text back that replied within seconds and kept the conversation going toward a booking. Over $50,000 in revenue was recovered and booked appointments went up 50%. The full write-up, including how it was measured, is in /evidence/tire-shop-missed-calls.',
+        'That is exactly the math one of our clients, a busy tire shop in Toronto, did on its own logs: 270 first-time missed callers a month, a $500 average customer value and a 30% close rate, which came to $40,000 to $50,000 a month walking out the door. There was no full-time receptionist and the owner was working in the shop, so in winter tire season, the busiest time of year, nobody was sitting by the phone.',
+        'The core of what we built was a missed call text back that replied within seconds and kept the conversation going toward a booking, alongside Facebook and Instagram chat, tagging of leads that needed a person, and a booking link with reminders. Once it went live, 40% of missed leads re-engaged, booked appointments went up 50% and over $50,000 in revenue was recovered. Those results are for the whole build, not the text alone. The full write-up, including how it was measured, is in /evidence/tire-shop-missed-calls.',
       ],
       figure: {
         kind: 'stats',
@@ -74,9 +74,9 @@ const article: Article = {
       id: 'a2p',
       heading: 'Do you need A2P 10DLC registration to text back missed calls?',
       paragraphs: [
-        'Yes, if you text US customers from a normal 10 digit local number, which is what nearly every missed call setup does. US carriers require business texting on local numbers to be registered through The Campaign Registry, a system the carriers set up to cut spam. Unregistered business texts get filtered or blocked.',
+        'Yes, if you text US customers from a normal 10 digit local number, which is what nearly every missed call setup does. US carriers require business texting on local numbers to be registered through The Campaign Registry, which verifies brands and campaigns before they are allowed to send. You don’t register with it directly; your phone provider submits it for you. Unregistered business texts get filtered or blocked.',
         'Registration has two parts. The **brand** is your business, with its legal name and tax ID exactly as on file. The **campaign** is what you send and how people agree to get it, with sample messages. Put your missed call text in as a sample. Have a live website with a privacy policy before you start, because reviewers check it.',
-        'Toll-free numbers go through a separate toll-free verification instead. Either way, plan for a few days to a couple of weeks before texts flow reliably, and don’t switch the automation on until registration is approved.',
+        'Toll-free numbers go through a separate toll-free verification instead. Either way, plan for a few days to a couple of weeks before texts flow reliably, and don’t switch the automation on until registration is approved. The full process is in /blog/a2p-10dlc-explained.',
       ],
       callout:
         'This is general information, not legal advice. Texting rules change, so check your phone provider’s current requirements before you go live.',
@@ -94,12 +94,12 @@ const article: Article = {
           { key: 'text', label: 'Example text' },
         ],
         rows: [
-          { when: 'During business hours', text: 'Hi, it’s [Business]. Sorry we missed your call, we’re with a customer. What can we help with? Reply here and we’ll get right back to you.' },
-          { when: 'After hours', text: 'Hi, it’s [Business]. We’re closed but we saw your call. What do you need? Reply here and we’ll text you first thing in the morning.' },
-          { when: 'Trades, on a job site', text: 'Hi from [Business], sorry we missed you, we’re out on a job. Is this for a repair or a quote? Reply here and we’ll get you booked.' },
-          { when: 'Med spa or clinic', text: 'Hi, it’s [Business]. Sorry we couldn’t pick up, we’re with a client. Are you looking to book, or do you have a question? Just reply here.' },
-          { when: 'Property management', text: 'Hi, this is [Company]. We missed your call. Is this about a current unit or a vacancy? If it’s an emergency like a leak, reply EMERGENCY.' },
-          { when: 'Second call in a few minutes', text: 'Saw you tried us again. Still tied up for a few minutes. Text what you need and we’ll sort it out.' },
+          { when: 'During business hours', text: 'Hi, it\'s [Business]. Sorry we missed your call, we\'re with a customer. What can we help with? Reply here and we\'ll get right back to you.' },
+          { when: 'After hours', text: 'Hi, it\'s [Business]. We\'re closed but we saw your call. What do you need? Reply here and we\'ll text you first thing in the morning.' },
+          { when: 'Trades, on a job site', text: 'Hi from [Business], sorry we missed you, we\'re out on a job. Is this for a repair or a quote? Reply here and we\'ll get you booked.' },
+          { when: 'Med spa or clinic', text: 'Hi, it\'s [Business]. Sorry we couldn\'t pick up, we\'re with a client. Are you looking to book, or do you have a question? Just reply here.' },
+          { when: 'Property management', text: 'Hi, this is [Company]. We missed your call. Is this about a current unit or a vacancy? If it\'s an emergency like a leak, reply EMERGENCY.' },
+          { when: 'Second call in a few minutes', text: 'Saw you tried us again. Still tied up for a few minutes. Text what you need and we\'ll sort it out.' },
         ],
       },
       callout:
@@ -111,7 +111,7 @@ const article: Article = {
       steps: [
         { title: 'Get a number that can text', detail: 'Your calls need to ring through a phone system that can also send texts, so it can see when a call is missed. You can usually keep your existing number by forwarding it.' },
         { title: 'Register for A2P 10DLC', detail: 'Brand plus campaign, with the missed call message as a sample. Wait for approval before sending.' },
-        { title: 'Set when a call counts as missed', detail: 'About 15 to 20 seconds of ringing is typical. Too short and your staff never get a chance to pick up.' },
+        { title: 'Set when a call counts as missed', detail: 'HighLevel recommends a ring time of 10 to 20 seconds. Too short and your staff never get a chance to pick up.' },
         { title: 'Write two messages', detail: 'One for business hours, one for after hours. Use the templates above as a start.' },
         { title: 'Stop repeat texts', detail: 'Add a rule so the same caller doesn’t get a new text every time they redial within a few minutes.' },
         { title: 'Decide who answers the reply', detail: 'Alert the owner or front desk, or hand the conversation to an AI that can answer questions and book. This is the step most setups skip.' },
@@ -125,7 +125,7 @@ const article: Article = {
       id: 'cost',
       heading: 'How much does it cost to run?',
       paragraphs: [
-        'The texts themselves cost pennies. On HighLevel’s phone system, as of Oct 31, 2026, a US or Canadian text was $0.00747 per segment plus a carrier fee of up to half a cent, so 100 missed call texts a month comes to roughly $1.25 before replies. Registration adds a one-time fee and a small monthly campaign fee.',
+        'The texts themselves cost pennies. On HighLevel’s phone system, as of Oct 31, 2026, a US or Canadian text was $0.00747 per segment plus a carrier fee of $0.0035 to $0.005, so 100 missed call texts a month comes to roughly $1.10 to $1.25 before replies. A2P registration adds a one-time fee ($22.50 for HighLevel’s low volume and sole proprietor options) and a monthly campaign fee.',
         'The real cost is the time it takes someone to answer the replies. That is what decides whether you should text back at all or have the call answered.',
       ],
     },
@@ -193,12 +193,12 @@ const article: Article = {
     {
       label: 'Hamza Baig, Missed call text back in GoHighLevel',
       url: 'https://hamzaautomates.com/gohighlevel/tutorials/missed-call-text-back',
-      note: 'Setup steps, message templates and HighLevel per-text rates as read Oct 31, 2026. Read Nov 6, 2026.',
+      note: 'Setup steps, ring timeout, message templates, HighLevel per-text rates and A2P fees as checked Oct 31, 2026. Read Nov 6, 2026.',
     },
     {
       label: 'The Campaign Registry',
       url: 'https://www.campaignregistry.com/',
-      note: 'The carrier-run registry for A2P 10DLC brand and campaign registration. Read Nov 6, 2026.',
+      note: 'The registry that verifies A2P 10DLC brands and campaigns; brands register through their messaging provider, not directly. Read Nov 6, 2026.',
     },
   ],
   related: ['speed-to-lead', 'after-hours-answering-service', 'a2p-10dlc-explained'],
