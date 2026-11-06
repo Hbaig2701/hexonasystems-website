@@ -1,12 +1,15 @@
 // Target: "speed to lead" (880/mo US), "speed to lead statistics" (110), "lead
 // response time statistics" (DataforSEO Nov 6, 2026). Research: Oldroyd,
-// McElheran & Elkington, "The Short Life of Online Sales Leads", HBR, March 2011
-// (bibliographic record at BYU ScholarsArchive; figures as reported by
-// SmartCompany, Jul 4, 2011), and the Lead Response Management study by James
-// Oldroyd with InsideSales (summary PDF hosted by Mortech). The viral "21x" and
-// "100x" figures are described here exactly as the study frames them (5 vs 30
-// minutes), not as the common "5 vs 10 minutes" misquote. Case figures from
-// content/evidence.ts.
+// McElheran & Elkington, "The Short Life of Online Sales Leads", HBR, March 2011.
+// The HBR article itself is paywalled (only its first line is public), so its
+// figures are as reported by SmartCompany (Jul 1, 2011): the 2,241-company audit
+// (37/16/24/23%, 42 hour average) and a SEPARATE analysis of 1.25 million leads at
+// 42 companies (the 7x and 60x qualification figures). Do not attach the 7x to the
+// 2,241 audit. Lead Response Management study (Oldroyd and InsideSales, presented
+// Oct 16, 2007; summary PDF hosted by Mortech, read in full Nov 6, 2026): 6
+// companies, 3 years, 15,000+ leads, 100,000+ call attempts; 5 vs 30 minutes:
+// contact odds down 100x, qualify odds down 21x; 5 vs 10 minutes: 5x and 4x. It
+// did not study close rates. Case figures from content/evidence.ts.
 
 import type { Article } from '../types';
 
@@ -24,13 +27,13 @@ const article: Article = {
   cover: { style: 'stat', value: '5 min', label: 'the window to answer a new lead while they’re still looking' },
   coverAlt: 'A cover showing "5 min" in large type with the caption "the window to answer a new lead while they’re still looking".',
   intro: [
-    'Answer a new lead within five minutes if you can, and within the hour at the very latest. The research behind that is old but consistent: in a 2011 Harvard Business Review study of 2,241 US companies, firms that responded within an hour were nearly seven times as likely to qualify the lead as firms that waited even one hour longer.',
-    'Speed to lead just means the time between a customer reaching out (a form, a call, a message) and your first real response. For a service business it decides who gets the job, because the person asking for a quote is usually asking two or three of your competitors at the same time.',
+    'Answer a new lead within five minutes if you can, and within the hour at the very latest. The research behind that is old but consistent: in an analysis of 1.25 million leads reported in Harvard Business Review in 2011, firms that contacted a lead within an hour were nearly seven times as likely to qualify it as firms that waited an hour longer.',
+    'Speed to lead just means the time between a customer reaching out (a form, a call, a message) and your first real response. For a service business it often decides who gets the job, because the person asking for a quote may well be calling your competitors at the same time.',
   ],
   tldr: [
     'Aim for under five minutes for a first response, and never more than an hour.',
-    'In the HBR study, 23% of companies never responded to a web lead at all.',
-    'The famous "21 times" figure compares 5 minutes with 30 minutes, not 5 with 10.',
+    'When HBR’s researchers sent a test web lead to 2,241 US companies, 23% never responded at all.',
+    'The famous "21 times" figure compares calling at 5 minutes with 30 minutes, not 5 with 10, and it measured qualifying a lead, not closing a sale.',
     'An instant text plus a call attempt covers most leads. After hours needs automation or an answering service.',
     'Measure your own response time from your CRM before you buy anything.',
   ],
@@ -40,7 +43,7 @@ const article: Article = {
       heading: 'What is speed to lead?',
       paragraphs: [
         'Speed to lead is how long it takes your business to reply to a new enquiry. The clock starts when the form is submitted, the call is missed or the message lands, and stops at the first human (or useful automated) response. An auto-reply that says "thanks, we’ll be in touch" doesn’t stop the clock, because it doesn’t answer anything.',
-        'For a contractor, a med spa or a property manager, it is the cheapest lead you will ever get: you already paid for it with your ads, your Google profile or your referrals. Losing it to a slow reply is how money quietly goes missing. We wrote more about that kind of loss in /blog/what-is-revenue-leakage.',
+        'For a contractor, a med spa or a property manager, it is the cheapest lead you will ever get: you already paid for it with your ads, your Google profile or your referrals. Losing it to a slow reply is how money quietly goes missing. A call that rings out is the same leak in a different form, which we cover in /blog/missed-call-text-back.',
       ],
     },
     {
@@ -48,8 +51,9 @@ const article: Article = {
       heading: 'What does the research say about lead response time?',
       paragraphs: [
         'Two studies get quoted for almost every speed to lead claim. Both trace back to James Oldroyd, who was at MIT and later BYU.',
-        '**Harvard Business Review, 2011.** Oldroyd, Kristina McElheran and David Elkington sent test web leads to 2,241 US companies and timed the replies. About 37% responded within an hour, 16% within 1 to 24 hours, 24% took longer than a day, and 23% never responded. Companies that contacted a lead within an hour were nearly seven times as likely to qualify it as those that waited an hour longer, and more than 60 times as likely as those that waited 24 hours or more.',
-        '**The Lead Response Management study** (Oldroyd with InsideSales.com, presented in 2007) analysed call attempts on more than 15,000 leads across several companies. Its summary reports that the odds of reaching a lead fell about 100 times between calling at 5 minutes and calling at 30 minutes, and the odds of qualifying the lead fell about 21 times over the same gap.',
+        '**Harvard Business Review, 2011.** Oldroyd, Kristina McElheran and David Elkington did two things. First they sent a test web lead to 2,241 US companies and timed the replies: 37% responded within an hour, 16% within 1 to 24 hours, 24% took longer than a day, and 23% never responded. Among companies that replied within 30 days, the average wait was 42 hours.',
+        'Second, they looked at 1.25 million leads received by 42 US companies (29 selling to consumers, 13 to businesses). Companies that tried to contact a lead within an hour were nearly seven times as likely to qualify it, meaning have a meaningful conversation with a decision maker, as those that waited an hour longer, and more than 60 times as likely as those that waited 24 hours or more. Those two figures come from the 1.25 million leads, not from the 2,241 company test.',
+        '**The Lead Response Management study** (Oldroyd with InsideSales.com, presented in October 2007) used three years of data from six companies: more than 15,000 web leads and more than 100,000 call attempts. It reports that the odds of reaching a lead fell 100 times between calling at 5 minutes and calling at 30 minutes, and the odds of qualifying it fell 21 times over the same gap. Between 5 and 10 minutes, the drop was 5 times for reaching the lead and 4 times for qualifying it. A qualified lead here means one willing to enter the sales process, such as setting an appointment. The study says plainly that it did not look at close rates.',
       ],
       figure: {
         kind: 'bars',
@@ -77,9 +81,9 @@ const article: Article = {
           { key: 'actual', label: 'What the source compared' },
         ],
         rows: [
-          { claim: '"21x more likely to convert if you call within 5 minutes vs 10"', actual: 'The Lead Response Management study compared 5 minutes with 30 minutes, and the 21x was about qualifying the lead, not closing a sale.' },
-          { claim: '"Harvard found you’re 100x more likely to close"', actual: 'The 100x is from the Lead Response Management study, about the odds of making contact, comparing 5 and 30 minutes.' },
-          { claim: '"7x more likely to convert within an hour"', actual: 'HBR’s figure was about qualifying the lead (having a meaningful conversation with a decision maker), within an hour versus an hour later.' },
+          { claim: '"21x more likely to convert if you call within 5 minutes vs 10"', actual: 'The Lead Response Management study compared 5 minutes with 30 minutes, and the 21x was about qualifying the lead, not closing a sale. Between 5 and 10 minutes it found about 4x for qualifying.' },
+          { claim: '"Harvard found you’re 100x more likely to close"', actual: 'The 100x is from the Lead Response Management study, not Harvard. It is about the odds of reaching the lead by phone, comparing 5 and 30 minutes, and the study did not measure closed sales.' },
+          { claim: '"7x more likely to convert within an hour"', actual: 'HBR’s figure was about qualifying the lead (having a meaningful conversation with a decision maker), within an hour versus an hour later, across 1.25 million leads at 42 companies.' },
         ],
       },
     },
@@ -132,12 +136,12 @@ const article: Article = {
     {
       question: 'What is a good lead response time?',
       answer:
-        'Under five minutes for the first response, and under an hour at worst. Research by James Oldroyd and colleagues found the odds of reaching and qualifying a lead drop sharply within the first hour.',
+        'Under five minutes for the first response, and under an hour at worst. In the Lead Response Management study by James Oldroyd and InsideSales, the odds of reaching a lead by phone fell more than 10 times over the first hour, and the odds of qualifying it more than 6 times.',
     },
     {
       question: 'Is the 5 minute rule for leads real?',
       answer:
-        'Yes, it comes from the Lead Response Management study, which found the odds of contacting a lead fell about 100 times between 5 and 30 minutes. It compared 5 with 30 minutes, not 5 with 10 as it is often quoted.',
+        'It comes from the Lead Response Management study, which found the odds of contacting a lead fell 100 times between calling at 5 and at 30 minutes, and the odds of qualifying it 21 times. It is often misquoted as 5 versus 10 minutes, where the study found a smaller drop (5 times for contact, 4 times for qualifying). It did not measure closed sales.',
     },
     {
       question: 'What percentage of companies never respond to leads?',
@@ -157,10 +161,15 @@ const article: Article = {
     {
       question: 'Does speed to lead matter for service businesses or just sales teams?',
       answer:
-        'It matters more for service businesses, because customers asking for a repair or a quote usually contact two or three companies at once and book whoever answers first.',
+        'Yes. The studies looked at web leads in sales teams, but the logic is the same for a service business: a customer asking for a repair or a quote can call the next company on the list in seconds, and often books whoever answers first.',
     },
   ],
   sources: [
+    {
+      label: 'Harvard Business Review, The Short Life of Online Sales Leads (March 2011)',
+      url: 'https://hbr.org/2011/03/the-short-life-of-online-sales-leads',
+      note: 'Article page, authors and issue. The full text is behind HBR’s paywall, so the figures are taken from SmartCompany’s report below. Read Nov 6, 2026.',
+    },
     {
       label: 'Oldroyd, McElheran and Elkington, The Short Life of Online Sales Leads (record)',
       url: 'https://scholarsarchive.byu.edu/facpub/9711',
@@ -169,12 +178,12 @@ const article: Article = {
     {
       label: 'SmartCompany, Are you letting online leads go cold?',
       url: 'https://www.smartcompany.com.au/marketing/20110704-are-you-letting-online-leads-go-cold/',
-      note: 'Report of the HBR study’s sample and response-time breakdown, Jul 4, 2011. Read Nov 6, 2026.',
+      note: 'Report of the HBR research, Jul 1, 2011: the 2,241 company audit and response-time breakdown, and the separate 1.25 million lead analysis behind the 7x and 60x figures. Read Nov 6, 2026.',
     },
     {
       label: 'Lead Response Management study summary (Oldroyd, InsideSales)',
       url: 'https://www.mortech.com/hs-fs/hub/25649/file-13535879-pdf/docs/mit_study.pdf',
-      note: 'Source of the 5 versus 30 minute contact and qualification odds. Read Nov 6, 2026.',
+      note: 'Full summary as presented Oct 16, 2007: six companies, 15,000+ leads, 100,000+ call attempts; the 5 versus 30 and 5 versus 10 minute contact and qualification odds. Read Nov 6, 2026.',
     },
     {
       label: 'Hexona case study: home improvement sales workflow',
