@@ -42,30 +42,6 @@ function ratio(a, b) {
 
 const T = tokens();
 
-/**
- * Derived grounds. A token is not always what text actually sits on: the
- * lattice paints a cyan stroke over the dark surfaces at stroke-opacity 0.16
- * inside an element at opacity 0.75, so text crossed by a lattice line is
- * really on that blend, not on the flat token. Checking only the flat tokens
- * is what let --on-void-3 ship at 4.10:1 against the ground it meets in
- * practice while reporting 5.00:1 against one it never meets alone.
- *
- * Keep these two constants in step with .lattice / .lattice-cell in
- * globals.css. If the lattice gets louder, this gets stricter, which is the
- * correct direction for it to fail in.
- */
-
-function over(bgHex, fgHex, alpha) {
-  const ch = (i) => {
-    const b = parseInt(bgHex.slice(1 + i * 2, 3 + i * 2), 16);
-    const f = parseInt(fgHex.slice(1 + i * 2, 3 + i * 2), 16);
-    return Math.round(b + (f - b) * alpha)
-      .toString(16)
-      .padStart(2, '0');
-  };
-  return `#${ch(0)}${ch(1)}${ch(2)}`;
-}
-
 /** [foreground, background, minimum, label]. v3 (hx-) tokens, as the pages actually pair them. */
 const PAIRS = [
   ['hx-ink', 'hx-bg', 4.5, 'body and headings on white'],

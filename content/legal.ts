@@ -11,8 +11,10 @@ import { FIRM } from './firm';
  *   - Submissions go to GoHighLevel (the CRM), with the submitter's IP address.
  *     The IP is also used for rate limiting (Upstash).
  *   - The site is hosted on Vercel.
- *   - Vercel Web Analytics is loaded (app/layout.tsx). It sets no cookies and
- *     stores no IP addresses. No tracking pixels or advertising cookies. Adding
+ *   - Vercel Web Analytics (cookie-free) and Google Tag Manager GTM-KZ9XN392
+ *     (Google Analytics, which sets cookies) are loaded in app/layout.tsx.
+ *     Any tag added inside GTM, especially advertising pixels, means updating
+ *     this policy first. Adding
  *     any other analytics or tracking tool means updating this policy first.
  *
  * Client engagements are governed by their own signed agreement, not by these
@@ -114,7 +116,8 @@ export const PRIVACY: LegalDoc = {
     {
       heading: 'Cookies and tracking',
       body: [
-        'We use Vercel Web Analytics to count visits and see which pages are read and which sites refer visitors to us. It does not use cookies, does not store IP addresses, and does not identify you or follow you across other websites.',
+        'We use Vercel Web Analytics to count visits and see which pages are read and which sites refer visitors to us. It does not use cookies or store IP addresses.',
+        'We also use Google Analytics, loaded through Google Tag Manager, to understand how visitors find and use the site. Google Analytics sets cookies and collects information such as the pages you visit, how long you stay, your approximate location and your device and browser. Google processes this information under its own privacy policy. You can opt out with the Google Analytics opt-out browser add-on (tools.google.com/dlpage/gaoptout) or by blocking cookies in your browser.',
         'The site does not use advertising cookies or tracking pixels. Our hosting provider keeps standard server logs, such as IP addresses and requested pages, for security and operational purposes.',
       ],
     },
