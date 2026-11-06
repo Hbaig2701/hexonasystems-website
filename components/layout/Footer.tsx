@@ -21,6 +21,9 @@ const LEGAL = [
   { label: 'Terms', href: '/terms' },
 ];
 
+/** The software's sign-in, on the app subdomain (also reachable at /login). */
+const CLIENT_LOGIN = 'https://app.hexonasystems.com/';
+
 export function Footer() {
   return (
     <footer className="hx" style={{ background: 'var(--hx-teal-deep)', color: '#FFFFFF' }}>
@@ -97,6 +100,11 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a href={CLIENT_LOGIN} className="text-[15px] no-underline hover:underline" style={{ color: 'var(--hx-on-teal)' }}>
+                  Client login
+                </a>
+              </li>
             </ul>
           </div>
         </div>

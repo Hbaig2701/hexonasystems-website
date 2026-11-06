@@ -243,15 +243,15 @@ export const PRINCIPAL = {
 
   bio: [
     'I have spent five years building Hexona Systems, and I was putting automation into operating companies before ChatGPT existed.',
-    'A thousand client engagements have run through the firm since. That number matters for one reason, not for bragging: the same short list of failures turns up in almost every business, and I have seen each of them often enough now to know which one to fix first.',
+    'More than 1,500 businesses have been served through the firm since, and more than 1,000 agencies run on Hexona\'s AI and systems. Those numbers matter for one reason, not for bragging: the same short list of failures turns up in almost every business, and I have seen each of them often enough now to know which one to fix first.',
     'I also run one of the largest AI automation communities in the world, at over 45,000 members. Several of the operators I trained there now do this work inside companies considerably larger than my own.',
   ],
 
-  /** Both are checkable, which is the only reason they are figures and not
-   *  sentences. The engagements are a superset of the 500 audits in §1; if
-   *  either number moves, check they still agree. */
+  /** The brand figures. One set, used everywhere (see BRAND FIGURES in
+   *  LAUNCH-CHECKLIST.md): 45,000+ community members, 1,500+ businesses
+   *  served, 1,000+ agencies, founded 2021. */
   figures: [
-    { label: 'Client engagements', figure: '1,000+' },
+    { label: 'Businesses served', figure: '1,500+' },
     { label: 'Community members trained', figure: '45,000+' },
   ],
 } as const;
@@ -276,7 +276,7 @@ export const ORIGIN = {
   figures: [
     { label: 'Operating since', figure: '2021' },
     { label: 'Businesses served', figure: '1,500+' },
-    { label: 'Operators trained', figure: '45,000+' },
+    { label: 'Community members trained', figure: '45,000+' },
   ],
 };
 

@@ -1,0 +1,32 @@
+# Runs the same gate as `npm run verify` on every pull request and every push
+# to main: types, tests, lint, contrast, SEO checks and a production build.
+# Vercel still deploys on its own; this makes a broken change visible on the PR
+# before it is merged.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'

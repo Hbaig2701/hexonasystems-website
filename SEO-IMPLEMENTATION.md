@@ -1,5 +1,9 @@
 # AI SEO Developer Guide — implementation record
 
+> **Historical record (v2, September 2026).** The site was rebuilt around AI
+> employees in November 2026. The checks below still run via `npm run check:seo`,
+> but figures and positioning described here are out of date; see README.md.
+
 Against **Hexona Systems · AI SEO Fixes — Developer Implementation Guide v1.0**,
 implemented on v2.
 
