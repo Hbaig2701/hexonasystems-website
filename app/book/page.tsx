@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { PageHero } from '@/components/hx/PageHero';
 import { delay } from '@/components/hx/Blocks';
 import { ConsultForm } from './ConsultForm';
+import { ReviewsCompact } from '@/components/hx/Reviews';
 import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
 import { FIRM } from '@/content/firm';
 
@@ -36,7 +37,6 @@ export default function BookPage() {
       <section aria-label="Booking form" className="hx-wrap pb-28">
         <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
           <div
-            data-surface="paper"
             data-enter="up"
             className="rounded-3xl p-6 sm:p-10"
             style={{ background: '#FFFFFF', border: '1px solid var(--hx-line)', boxShadow: 'var(--hx-shadow-2)' }}
@@ -60,6 +60,9 @@ export default function BookPage() {
                 </li>
               ))}
             </ol>
+            <div className="mt-8">
+              <ReviewsCompact />
+            </div>
             <p className="m-0 mt-6 text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
               Rather email? <a className="hx-link" href={`mailto:${FIRM.email}`}>{FIRM.email}</a>
             </p>

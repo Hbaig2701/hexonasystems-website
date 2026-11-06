@@ -54,7 +54,6 @@ const T = tokens();
  * globals.css. If the lattice gets louder, this gets stricter, which is the
  * correct direction for it to fail in.
  */
-const LATTICE_ALPHA = 0.16 * 0.75;
 
 function over(bgHex, fgHex, alpha) {
   const ch = (i) => {
@@ -67,51 +66,33 @@ function over(bgHex, fgHex, alpha) {
   return `#${ch(0)}${ch(1)}${ch(2)}`;
 }
 
-/** [foreground, background, minimum, label] */
+/** [foreground, background, minimum, label]. v3 (hx-) tokens, as the pages actually pair them. */
 const PAIRS = [
-  // --- PAPER --------------------------------------------------------------
-  ['ink', 'paper', 4.5, 'body and headings'],
-  ['ink-2', 'paper', 4.5, 'secondary copy'],
-  ['ink-3', 'paper', 4.5, 'smallest permitted text'],
-  ['ink', 'paper-sunk', 4.5, 'figure block figure'],
-  ['ink-2', 'paper-sunk', 4.5, 'sunk panel copy'],
-  ['ink-3', 'paper-sunk', 4.5, 'figure block annotation'],
-  ['ink', 'paper-raised', 4.5, 'text on raised white'],
-  ['accent', 'paper', 4.5, 'accent text and rules'],
-  ['paper', 'accent', 4.5, 'PRIMARY BUTTON label on paper surface'],
-  ['loss', 'paper', 4.5, 'loss figure'],
-  ['loss', 'paper-sunk', 4.5, 'loss figure on sunk panel'],
-
-  // --- VOID ---------------------------------------------------------------
-  ['on-void', 'void', 4.5, 'body and headings'],
-  ['on-void-2', 'void', 4.5, 'secondary copy'],
-  ['on-void-3', 'void', 4.5, 'tertiary, table headers'],
-  ['on-void-2', 'void-raised', 4.5, 'zebra row copy'],
-  ['on-void-3', 'void-raised', 4.5, 'table header on zebra'],
-  ['accent-on-void', 'void', 4.5, 'accent text on dark'],
-  ['ink', 'paper', 4.5, 'PRIMARY BUTTON on void: paper fill, ink text'],
-  ['void', 'accent-on-void', 4.5, 'primary button hover on void'],
-  ['loss-on-void', 'void', 4.5, 'loss figure on dark'],
-  ['loss-on-void', 'void-raised', 4.5, 'loss figure on zebra'],
-
-  // --- VOID, UNDER THE LATTICE --------------------------------------------
-  // The grounds that text on a dark section actually meets.
-  ['on-void', '@lattice-void', 4.5, 'headings crossed by a lattice line'],
-  ['on-void-2', '@lattice-void', 4.5, 'body copy crossed by a lattice line'],
-  ['on-void-3', '@lattice-void', 4.5, 'SMALLEST TEXT crossed by a lattice line'],
-  ['loss-on-void', '@lattice-void', 4.5, 'loss figure crossed by a lattice line'],
-  ['accent-on-void', '@lattice-void', 4.5, 'accent text crossed by a lattice line'],
+  ['hx-ink', 'hx-bg', 4.5, 'body and headings on white'],
+  ['hx-ink-2', 'hx-bg', 4.5, 'secondary copy on white'],
+  ['hx-ink-3', 'hx-bg', 4.5, 'smallest text on white'],
+  ['hx-teal', 'hx-bg', 4.5, 'links, kickers and figures on white'],
+  ['hx-ink', 'hx-cyan-soft', 4.5, 'text on pale cyan sections and cards'],
+  ['hx-ink-2', 'hx-cyan-soft', 4.5, 'secondary copy on pale cyan'],
+  ['hx-ink-3', 'hx-cyan-soft', 4.5, 'smallest text on pale cyan'],
+  ['hx-teal', 'hx-cyan-soft', 4.5, 'kickers and pills on pale cyan'],
+  ['hx-ink-2', 'hx-mist', 4.5, 'secondary copy on mist cards'],
+  ['hx-ink-3', 'hx-mist', 4.5, 'smallest text on mist cards'],
+  ['hx-teal', 'hx-mist', 4.5, 'kickers on mist cards'],
+  ['hx-bg', 'hx-teal', 4.5, 'PRIMARY BUTTON label, white on teal'],
+  ['hx-cyan-light', 'hx-teal', 4.5, 'figures and kickers on the teal band'],
+  ['hx-on-teal', 'hx-teal', 4.5, 'body copy on the teal band'],
+  ['hx-bg', 'hx-teal-deep', 4.5, 'headings in the footer'],
+  ['hx-cyan-light', 'hx-teal-deep', 4.5, 'accents in the footer'],
+  ['hx-on-teal', 'hx-teal-deep', 4.5, 'body copy in the footer'],
+  ['hx-teal-ink', 'hx-cyan', 4.5, 'CYAN BUTTON label'],
 ];
 
-/** Non-text tokens. Documented, never asserted — they must never carry text. */
-const NON_TEXT = ['ink-mark', 'rule', 'rule-strong', 'void-rule'];
+/** Non-text tokens. Documented, never asserted: they must never carry text. */
+const NON_TEXT = ['hx-cyan', 'hx-cyan-pale', 'hx-line', 'hx-line-2'];
 
 let failures = 0;
 const rows = [];
-
-/* Derived grounds are named with a leading @ and computed, not looked up. */
-T['@lattice-void'] = over(T['void'], T['accent-on-void'], LATTICE_ALPHA);
-T['@lattice-void-raised'] = over(T['void-raised'], T['accent-on-void'], LATTICE_ALPHA);
 
 for (const [fg, bg, min, label] of PAIRS) {
   if (!T[fg] || !T[bg]) {
@@ -135,12 +116,12 @@ for (const row of rows) {
 console.log(`\nNon-text tokens (never render characters, so never asserted):`);
 for (const name of NON_TEXT) {
   if (!T[name]) continue;
-  const ground = name.startsWith('void') ? T.void : T.paper;
+  const ground = T['hx-bg'];
   console.log(`  ${name.padEnd(width)}  ${ratio(T[name], ground).toFixed(2).padStart(6)}:1`);
 }
 
 if (failures > 0) {
-  console.error(`\n✗ ${failures} pair(s) below the AA floor. §3.2: do not darken any text token.`);
+  console.error(`\n✗ ${failures} pair(s) below the AA floor. Adjust the token in app/globals.css.`);
   process.exit(1);
 }
-console.log(`\n✓ All ${rows.length} text pairs meet WCAG 2.2 AA on both surfaces.`);
+console.log(`\n✓ All ${rows.length} text pairs meet WCAG 2.2 AA.`);

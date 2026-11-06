@@ -17,7 +17,6 @@ const NAV = [
   { label: 'Case Studies', href: '/evidence' },
   { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/firm' },
-  { label: 'Value Score', href: '/score' },
 ];
 
 const CTA = { label: 'Book a free consult', href: '/book' };

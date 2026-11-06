@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono, Inter, Newsreader } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { Header, HEADER_H } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -9,40 +10,29 @@ import { ENTITY_SENTENCE, FIRM } from '@/content/firm';
 import { JsonLd, organizationLd, principalLd, webSiteLd } from '@/lib/jsonld';
 
 /**
- * §3.3 — the institutional research-note stack: serif display, grotesque body,
- * mono figures. All three free.
+ * Fonts are self-hosted from app/fonts (OFL-licensed, from Fontsource), not
+ * downloaded from Google Fonts at build time. That download failed
+ * intermittently and could fail a production deploy.
  *
- * Newsreader is loaded at 400 only. §3.3 is explicit that display type is serif
- * at weight 400 and NEVER bold, so shipping a bold cut would only make it
- * possible to violate the rule by accident.
+ * Newsreader: display serif, 400 and 500, normal and italic (the highlighted
+ * phrases are italic). Inter: one variable file covers every body weight.
  */
-
-const newsreader = Newsreader({
+const newsreader = localFont({
   variable: '--font-newsreader',
-  subsets: ['latin'],
-  // 500 is for the v3 card titles. v2's "never bold display" rule still holds:
-  // nothing heavier than 500 is shipped.
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
   display: 'swap',
+  src: [
+    { path: './fonts/newsreader-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/newsreader-latin-400-italic.woff2', weight: '400', style: 'italic' },
+    { path: './fonts/newsreader-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/newsreader-latin-500-italic.woff2', weight: '500', style: 'italic' },
+  ],
 });
 
-const inter = Inter({
+const inter = localFont({
   variable: '--font-inter',
-  subsets: ['latin'],
   display: 'swap',
-});
-
-const geist = Geist({
-  variable: '--font-geist',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-  display: 'swap',
+  src: './fonts/inter-latin-wght-normal.woff2',
+  weight: '100 900',
 });
 
 export const metadata: Metadata = {
@@ -74,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${inter.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${newsreader.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -108,6 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Footer />
         <Entrances />
+        <Analytics />
       </body>
     </html>
   );

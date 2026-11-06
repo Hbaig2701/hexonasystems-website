@@ -67,7 +67,6 @@ export function GET() {
     `- [Case studies](${absolute('/evidence')}): results, with the measurement method published against each.`,
     `- [Blog](${absolute('/blog')}): answers to the questions owners ask, with costs, playbooks and weekly AI news. RSS: ${absolute('/blog/feed.xml')}`,
     `- [About](${absolute('/firm')}): origin, team and record.`,
-    `- [Enterprise Value Score](${absolute('/score')}): a free 20-question assessment of a business on the 10 drivers of enterprise value.`,
     `- [Book a free consult](${absolute('/book')})`,
   ];
 

@@ -34,7 +34,10 @@ const LEGACY_COVER: Record<string, string> = {
 
 /** v2 posts, adapted: the answer becomes the intro, each h2 starts a section. */
 function fromLegacy(): BlogArticle[] {
-  return POSTS.filter((p) => p.published).map((p) => {
+  // A v2 post that has been rewritten as a v3 article file is skipped here, so
+  // the new file wins and the slug (and its URL) stays the same.
+  const rewritten = new Set(ARTICLE_FILES.map((a) => a.slug));
+  return POSTS.filter((p) => p.published && !rewritten.has(p.slug)).map((p) => {
     const sections: Section[] = [];
     let current: Section | null = null;
     for (const b of p.body) {

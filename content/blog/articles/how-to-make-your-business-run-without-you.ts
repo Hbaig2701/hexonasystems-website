@@ -42,7 +42,7 @@ const article: Article = {
       heading: 'Why does an owner-dependent business sell for less?',
       paragraphs: [
         'A buyer is paying today for profit they hope to collect over the next several years. If that profit depends on your relationships, your quotes and your phone, it walks out the door with you at closing. So the buyer either pays less, asks you to stay on for years, or ties part of the price to future results.',
-        'John Warrillow’s Value Builder System scores companies on eight drivers of value. One of them, which it calls "Hub and Spoke", is how well the company could do without its owner. Others include recurring revenue and what it calls the "Switzerland Structure": not relying too heavily on any one customer, employee or supplier. The 10 drivers we score in /score put it in the same place: "less owner dependence" counts double.',
+        'John Warrillow’s Value Builder System scores companies on eight drivers of value. One of them, which it calls "Hub and Spoke", is how well the company could do without its owner. Others include recurring revenue and what it calls the "Switzerland Structure": not relying too heavily on any one customer, employee or supplier. The 10 drivers we look at with clients put it in the same place: less owner dependence counts double.',
         'BizBuySell reports an average multiple of 2.61x cash flow on small businesses sold in 2025. It doesn’t split that number by how much a business leans on its owner, but the multiple is a price on risk, and an owner who holds everything together is one of the first risks a buyer looks for. More on the math in /blog/what-is-my-business-worth.',
       ],
     },
@@ -107,7 +107,7 @@ const article: Article = {
       heading: 'Step 4: how do you know it works without you?',
       paragraphs: [
         'Take two weeks away. Not "away but answering the phone". Tell the team you are unavailable except for real emergencies, and ask them to keep a list of every time they needed you.',
-        'That list is your next to-do list. Every item on it is either a missing process, a missing permission or a decision you never wrote rules for. Fix those, then do it again. The Enterprise Value Score asks the same question in one line: could the business run for three months without you? You can see how you score at /score.',
+        'That list is your next to-do list. Every item on it is either a missing process, a missing permission or a decision you never wrote rules for. Fix those, then do it again. The question we ask owners on a consult is the same one in a single line: could the business run for three months without you? If the honest answer is no, /book.',
       ],
       figure: {
         kind: 'steps',

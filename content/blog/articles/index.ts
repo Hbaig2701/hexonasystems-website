@@ -17,6 +17,7 @@ import batch4 from './batch-4';
 import batch5 from './batch-5';
 import batch6 from './batch-6';
 import batch7 from './batch-7';
+import batch8 from './batch-8';
 
 export const ARTICLE_FILES: Article[] = [
   whatIsAnAiAgent,
@@ -27,4 +28,5 @@ export const ARTICLE_FILES: Article[] = [
   ...batch5,
   ...batch6,
   ...batch7,
+  ...batch8,
 ];

@@ -110,7 +110,7 @@ const article: Article = {
       heading: 'Which AI agent should a service business start with?',
       paragraphs: [
         'Start with whatever leaks the most money today. For most trades and clinics that is the phone: missed calls and after-hours calls. For businesses with a big quote list it is follow-up. For businesses that bill after the job it is often unpaid invoices.',
-        'A simple way to find it: call your own business at 9 p.m., fill out your own website form, and look at how many estimates from last quarter got a second follow-up. Whichever one embarrasses you most is your first agent. Our filter at Hexona is the same one a buyer of your business would use: capture revenue you are losing, cut the cost of delivering the work, or make the business depend less on you. Take /score to see which of those is weakest, or /book and we will work it out with you.',
+        'A simple way to find it: call your own business at 9 p.m., fill out your own website form, and look at how many estimates from last quarter got a second follow-up. Whichever one embarrasses you most is your first agent. Our filter at Hexona is the same one a buyer of your business would use: capture revenue you are losing, cut the cost of delivering the work, or make the business depend less on you. If you want help picking, /book and we will work it out with you.',
       ],
     },
   ],

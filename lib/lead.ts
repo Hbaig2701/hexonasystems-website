@@ -168,7 +168,7 @@ async function deliver(lead: Lead, ip: string): Promise<void> {
     firstName,
     lastName: rest.join(' '),
     companyName: lead.company,
-    source: 'hexonasystems.com/commission',
+    source: 'hexonasystems.com/book',
     receivedAt: new Date().toISOString(),
     ip,
   };

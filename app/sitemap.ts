@@ -28,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/ai-employees', priority: 0.9 },
     { path: '/industries', priority: 0.8 },
     { path: '/book', priority: 0.8 },
-    { path: '/score', priority: 0.8 },
     ...employeesWithPages().map((e) => ({ path: `/ai-employees/${e.slug}`, priority: 0.9 })),
     ...industriesWithPages().map((i) => ({ path: `/industries/${i.slug}`, priority: 0.8 })),
     { path: '/evidence', priority: 0.7 },

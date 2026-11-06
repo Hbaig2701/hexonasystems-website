@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
 import { FromTheBlog, HowItWorks, Industries, ResultsBand, Results, Team, Value } from '@/components/home/Sections';
+import { Reviews } from '@/components/hx/Reviews';
 import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
 
 /**
@@ -36,6 +37,7 @@ export default function HomePage() {
       <Value />
       <HowItWorks />
       <Results />
+      <Reviews />
       <Industries />
       <FromTheBlog />
     </div>

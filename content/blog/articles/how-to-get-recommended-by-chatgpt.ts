@@ -133,7 +133,7 @@ const article: Article = {
         '**Special AI files as a magic fix.** Google says you don’t need them for its AI features. They don’t hurt, but they don’t replace the steps above.',
       ],
       callout:
-        'Want to see how your business shows up today and where the leaks are? /score covers the systems side, and /book gets you a free consult.',
+        'Want to see how your business shows up today and where the leaks are? Start with /blog/how-to-get-more-google-reviews, or /book and we will look at it with you.',
     },
   ],
   faq: [

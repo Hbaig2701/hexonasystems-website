@@ -61,7 +61,7 @@ export default function BlogPage() {
         }
         answer="What AI receptionists and automation really cost, how to stop losing leads you already paid for, what makes a service business worth more, and the AI news that matters this week. Every article answers its question in the first two sentences."
       >
-        <CtaPair secondary={{ label: 'Get your Value Score', href: '/score' }} />
+        <CtaPair secondary={{ label: 'Meet your AI team', href: '/ai-employees' }} />
       </PageHero>
 
       <section aria-label="Articles" className="hx-wrap pb-28">

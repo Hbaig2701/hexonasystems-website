@@ -130,7 +130,7 @@ const article: Article = {
       heading: 'Why does this matter for what your business is worth?',
       paragraphs: [
         'Buyers pay more for a business that runs on systems instead of on its owner. An agent that answers every call, follows up every estimate and chases every invoice turns work that lives in someone’s head into something a new owner can take over on day one.',
-        'That is the filter we use at Hexona: we only build agents that capture revenue you are losing, cut the cost of delivering the work, or make the business depend less on you. If you want to see where yours stands, take /score. If you’d rather talk it through, /book.',
+        'That is the filter we use at Hexona: we only build agents that capture revenue you are losing, cut the cost of delivering the work, or make the business depend less on you. If you want to see where yours stands, /book.',
       ],
     },
   ],

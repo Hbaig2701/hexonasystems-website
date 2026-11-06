@@ -148,7 +148,7 @@ const article: Article = {
         { title: 'Build a recurring base', detail: 'Maintenance plans, service agreements and memberships. Buyers value revenue that shows up next year without a new sale. A coffee chain we worked with took retention from 27% to 68% with a text-based loyalty programme that included automated win-backs (/evidence/coffee-loyalty-programme).' },
         { title: 'Get the work out of your head', detail: 'Write down how jobs are quoted, scheduled and closed out. Hand the repetitive parts to people or to /ai-employees, so the business does not stop when you do. The full playbook is in /blog/how-to-make-your-business-run-without-you.' },
         { title: 'Close the books every month', detail: 'Clean monthly financials are the first thing a buyer’s accountant asks for, and the fastest way to lose a buyer’s trust is numbers that change every time you send them.' },
-        { title: 'Measure where you stand', detail: 'Take the Enterprise Value Score at /score. It rates you on the 10 things buyers look at and shows your two biggest gaps in about five minutes.' },
+        { title: 'Measure where you stand', detail: 'Score yourself honestly on what buyers check: clean books, owner dependence, recurring revenue, customer concentration and growth. Pick your two biggest gaps. If you want a second opinion, /book.' },
       ],
     },
     {
@@ -187,9 +187,9 @@ const article: Article = {
         'It can give you a rough range, but it can’t see the things that move your multiple, such as how dependent the business is on you or how much revenue renews on its own. For a number you can rely on, use a business broker or a credentialed valuation professional.',
     },
     {
-      question: 'Is the Enterprise Value Score a valuation?',
+      question: 'Can I value my business myself?',
       answer:
-        'No. The Enterprise Value Score rates your business out of 100 on the 10 drivers buyers look at and shows your two biggest gaps. It tells you what to fix first, not what the business would sell for.',
+        'You can get a rough range by multiplying your SDE or EBITDA by the multiples for businesses of your size, but a buyer will adjust for owner dependence, recurring revenue and how clean the books are. For a number you can rely on, use a business broker or a valuation professional.',
     },
   ],
   sources: [

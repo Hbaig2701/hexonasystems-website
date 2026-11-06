@@ -7,7 +7,6 @@ export default function NotFound() {
     { href: '/ai-employees', label: 'AI employees' },
     { href: '/industries', label: 'Industries' },
     { href: '/blog', label: 'Blog' },
-    { href: '/score', label: 'Value Score' },
   ];
   return (
     <div className="hx">

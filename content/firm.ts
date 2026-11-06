@@ -14,8 +14,6 @@ export const FIRM = {
   /** ⚠️ [ASSET NEEDED] Public phone. The footer line hides itself until set. */
   phone: '' as string,
   principal: 'Hamza Baig',
-  operatingRange: '$3M–$15M revenue',
-  engagementBasis: 'Fixed scope, fixed fee, credited',
 } as const;
 
 /* ---------------------------------------------------------------------------
@@ -128,87 +126,6 @@ export const PROFILES: Profile[] = [
 export function verifiedProfileUrls(): string[] {
   return PROFILES.filter((p) => p.verified && p.url).map((p) => p.url);
 }
-
-export const DIAGNOSTIC = {
-  name: 'Leakage Diagnostic',
-  price: 5000,
-  priceFormatted: '$5,000',
-  currency: 'USD',
-  /**
-   * §4 warning: state the clock the same way everywhere, and ALWAYS ANCHORED
-   * TO SYSTEMS ACCESS, never to purchase. Between purchase and access sit
-   * kickoff scheduling and credential provisioning, realistically five to ten
-   * more days. Implying delivery two weeks after payment reads as a
-   * bait-and-switch the first time it slips, and it will slip.
-   *
-   * "Two week intensive" is the framing; ten business days is the precision.
-   * They are the same span, and the long form carries both because two weeks
-   * invites a reader to count fourteen calendar days. Wherever only one fits,
-   * use the short form and keep the anchor.
-   */
-  duration: 'A two week intensive, which is ten business days from systems access',
-  durationShort: 'Two week intensive',
-
-  /**
-   * Who is actually in the client's systems. This belongs in the ENGAGEMENT
-   * scope, not in the principal's biography: a buyer granting two weeks of
-   * access to a CRM asks it here, at the point of committing, and the answer
-   * is a term of the engagement rather than a fact about anyone's career.
-   *
-   * It also stops §3 implying a one-person firm. The principal section is
-   * first person and stays that way because he leads every engagement, which
-   * is precisely what makes the personal voice honest there.
-   */
-  delivery: 'Led by the principal, with one or two operators',
-} as const;
-
-/**
- * §4 section 2 — CREDENTIALS. Third-party, verifiable, linked.
- *
- * ⚠️ §1.3: two is the honest count and two is enough. Do NOT pad this to five
- * rows with facts about the offer; that is the same inflation in a different
- * costume. Do NOT add syndicated press logos: Yahoo Finance, Digital Journal
- * and Digital Media Net are press-release distribution, and a PE operating
- * partner recognises the format on sight. One real credential beats four that
- * invite scrutiny. McGill belongs on /firm as a fact about the principal, not
- * here as a credential of the firm.
- */
-export interface Credential {
-  year: string;
-  title: string;
-  detail: string;
-  href?: string;
-  verified: boolean;
-}
-
-/* An operating track record (period, company, role, outcome) was specified
-   here and never rendered by any page. Removed as dead code rather than left
-   as a gate that could not open. If the firm wants its operating history on
-   /firm, that is a section to design, not an array to fill. */
-
-export const CREDENTIALS: Credential[] = [
-  {
-    year: '2024',
-    title: 'Platinum SaaSPreneur Award',
-    detail: 'Top 0.01% of SaaS firms worldwide',
-    href: 'https://awards.gohighlevel.com/',
-    verified: true,
-  },
-  {
-    year: '2026',
-    title: 'AI & Middle Management',
-    detail: 'Published operational guidance',
-    href: '',
-    verified: false,
-  },
-];
-
-/** §4 section 2 — HOW WE WORK. Plain facts, no link. Never mixed with the above. */
-export const ENGAGEMENT_TERMS = [
-  { term: 'Operating range', value: FIRM.operatingRange },
-  { term: 'Engagement basis', value: FIRM.engagementBasis },
-  { term: 'Principal', value: FIRM.principal },
-];
 
 /**
  * The trusted-by band.
@@ -420,14 +337,42 @@ export const COMMITMENTS = [
 ]
 
 /**
- * AWARDS. These live HERE and not on the homepage. §1.3's reasoning stands:
- * a credential nobody can check is weaker than no credential at all on a page
- * whose argument is rigour, and the homepage is where that argument is made.
- * On the firm page they are biography rather than proof, which is a lower bar.
+ * KEY FACTS — the SOP's most important block, and the reason is mechanical: a
+ * model answering "when was Hexona founded" does not want to parse a paragraph,
+ * it wants a key and a value. This mirrors a Wikipedia infobox on purpose.
  *
- * ⚠️ Supply `href` for each and the verification link appears. Until then the
- * page says nothing about it to visitors and nags in development only.
+ * ⚠️ ROWS WITH NO VALUE DO NOT RENDER. Social handles and anything else still
+ * missing stay out rather than shipping as a blank or a placeholder.
+ *
+ * ⚠️ NOTABLE CLIENTS IS DELIBERATELY ABSENT. The trusted-by band says "teams
+ * at", which claims people at those organisations and not the organisations as
+ * clients of the firm. Promoting those names into a row headed Notable Clients
+ * would convert a careful statement into a false one, in the most machine-
+ * readable format on the site. Add this row only with named, consenting
+ * clients.
+ *
+ * ⚠️ COMPETITORS IS ABSENT BY DECISION. The SOP recommends naming them for
+ * entity co-occurrence. The firm's position is that it does not name an
+ * opponent it will not name in person, and the FAQ answers the comparison at
+ * the category level instead.
  */
+export const KEY_FACTS: { field: string; value: string }[] = [
+  { field: 'Company name', value: FIRM.name },
+  { field: 'Type', value: 'AI implementation firm' },
+  { field: 'Founded', value: '2021' },
+  { field: 'Founder', value: FIRM.principal },
+  { field: 'Headquarters', value: 'Toronto, Ontario, Canada' },
+  { field: 'Market served', value: 'United States and Canada' },
+  { field: 'Website', value: 'https://www.hexonasystems.com' },
+  { field: 'Core offering', value: 'AI employees, built and run for service businesses' },
+  { field: 'AI employees', value: 'AI receptionist, sales follow-up, dispatcher, office admin, collections, retention' },
+  { field: 'How engagements start', value: 'A free one-hour consult, then a fixed scope and fixed price' },
+  { field: 'Businesses served', value: '1,500+' },
+  { field: 'Agencies running on Hexona', value: '1,000+' },
+  { field: 'Community members trained', value: '45,000+' },
+  { field: 'Contact', value: FIRM.email },
+].filter((r) => r.value && r.value.trim().length > 0);
+
 export const AWARDS = [
   {
     year: '2026',
@@ -487,100 +432,3 @@ export const AWARDS = [
    the site and is being restated in one extractable place. If a figure changes,
    it changes at its source and these read from it.
    ======================================================================== */
-
-export const SERVICES = [
-  {
-    name: 'Leakage Diagnostic',
-    delivered:
-      'A two week intensive across every system that touches a lead, priced at $5,000 and credited in full against implementation.',
-    outcome:
-      'The client receives every leak priced as an annual figure, ranked by recoverable dollars against the effort to recover them.',
-  },
-  {
-    name: 'Process automation',
-    delivered:
-      'Lead capture, routing, conversion and follow-up rebuilt so that no step depends on a person remembering to take it.',
-    outcome:
-      'Inbound stops being lost between the form and the first human response.',
-  },
-  {
-    name: 'CRM implementation',
-    delivered:
-      'The system of record rebuilt or replaced where the CRM is itself the reason revenue is going missing.',
-    outcome:
-      'The workarounds people invented to avoid the old system stop being where deals disappear.',
-  },
-  {
-    name: 'Custom software',
-    delivered:
-      'Dashboards and internal tools, up to enterprise scale, built where nothing off the shelf matches how the business runs.',
-    outcome: 'The operation stops bending itself to fit a tool it did not choose.',
-  },
-  {
-    name: 'Reporting',
-    delivered:
-      'Measurement of the leak built into the systems it was found in, against the baseline the diagnostic established.',
-    outcome:
-      'A leak that was closed stays closed, because somebody can see it the week it reopens.',
-  },
-  {
-    name: 'Operational structure',
-    delivered:
-      'Ownership and workflow defined around the systems, so each process has a named person accountable for it.',
-    outcome: 'A tool nobody owns stops leaking again within a quarter.',
-  },
-];
-
-export const SEGMENTS = {
-  primary:
-    'Operating companies between $3M and $15M in revenue, where inbound demand already exists and is being paid for.',
-  industries: [
-    'Home services and construction',
-    'Automotive',
-    'Restaurant and hospitality',
-    'MedSpa and health',
-    'Agencies',
-    'Coaching and consultants',
-  ],
-  buyer:
-    'The engagement is bought by whoever owns operations and can grant access to the systems without escalating.',
-  notFor:
-    'Companies under $3M, where the leakage rarely justifies the fee. Hexona Systems says so rather than taking the engagement.',
-};
-
-/**
- * KEY FACTS — the SOP's most important block, and the reason is mechanical: a
- * model answering "when was Hexona founded" does not want to parse a paragraph,
- * it wants a key and a value. This mirrors a Wikipedia infobox on purpose.
- *
- * ⚠️ ROWS WITH NO VALUE DO NOT RENDER. Social handles and anything else still
- * missing stay out rather than shipping as a blank or a placeholder.
- *
- * ⚠️ NOTABLE CLIENTS IS DELIBERATELY ABSENT. The trusted-by band says "teams
- * at", which claims people at those organisations and not the organisations as
- * clients of the firm. Promoting those names into a row headed Notable Clients
- * would convert a careful statement into a false one, in the most machine-
- * readable format on the site. Add this row only with named, consenting
- * clients.
- *
- * ⚠️ COMPETITORS IS ABSENT BY DECISION. The SOP recommends naming them for
- * entity co-occurrence. The firm's position is that it does not name an
- * opponent it will not name in person, and the FAQ answers the comparison at
- * the category level instead.
- */
-export const KEY_FACTS: { field: string; value: string }[] = [
-  { field: 'Company name', value: FIRM.name },
-  { field: 'Type', value: 'AI implementation firm' },
-  { field: 'Founded', value: '2021' },
-  { field: 'Founder', value: FIRM.principal },
-  { field: 'Headquarters', value: 'Toronto, Ontario, Canada' },
-  { field: 'Market served', value: 'United States and Canada' },
-  { field: 'Website', value: 'https://www.hexonasystems.com' },
-  { field: 'Core offering', value: 'AI employees, built and run for service businesses' },
-  { field: 'AI employees', value: 'AI receptionist, sales follow-up, dispatcher, office admin, collections, retention' },
-  { field: 'How engagements start', value: 'A free one-hour consult, then a fixed scope and fixed price' },
-  { field: 'Businesses served', value: '1,500+' },
-  { field: 'Agencies running on Hexona', value: '1,000+' },
-  { field: 'Community members trained', value: '45,000+' },
-  { field: 'Contact', value: FIRM.email },
-].filter((r) => r.value && r.value.trim().length > 0);
