@@ -5,5 +5,5 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
 export default async function Image() {
-  return ogImage({ eyebrow: 'About Hexona', title: 'We were doing this before there was a name for it.', note: 'Toronto, since 2021' });
+  return ogImage({ eyebrow: 'About Hexona', title: 'We were doing this before there was a name for it.', note: 'Toronto, since 2022' });
 }

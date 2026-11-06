@@ -112,7 +112,7 @@ const article: Article = {
       heading: 'Step 5: How much do reviews matter for AI recommendations?',
       paragraphs: [
         'A lot. Google says more reviews and positive ratings can help a business’s local ranking, and assistants often summarize what reviewers say ("customers mention fast response on weekends"). The words in your reviews become the words in the recommendation.',
-        'The fix is a steady flow of recent reviews, not a burst. Ask every happy customer, the same day, with a direct link; /blog/how-to-get-more-google-reviews has the wording and timing. That is one of the jobs our /ai-employees/ai-retention handles automatically after each completed job.',
+        'The fix is a steady flow of recent reviews, not a burst. Ask every happy customer, the same day, with a direct link; /blog/how-to-get-more-google-reviews has the wording and timing. Our AI retention assistant does this automatically after each completed job; there is more on /ai-employees/ai-retention.',
       ],
     },
     {

@@ -102,7 +102,7 @@ const article: Article = {
       heading: 'How do you sell more maintenance agreements?',
       paragraphs: [
         'The best time to sell a plan is when the customer has just seen you fix something. Every service call and every install should end with the offer, framed around what they just went through: "If you were on the plan, today’s diagnostic would have been free and you’d have skipped the queue."',
-        'Then follow up the ones who said "maybe". In our experience, a text the next day with a one-tap sign-up link does far more than a brochure left on the counter. That follow-up is what our /ai-employees/ai-sales-follow-up does, alongside quotes and estimates.',
+        'Then follow up the ones who said "maybe". In our experience, a text the next day with a one-tap sign-up link does far more than a brochure left on the counter. Our AI sales follow-up handles that, alongside quotes and estimates; there is more on /ai-employees/ai-sales-follow-up.',
       ],
       bullets: [
         'Offer it at the end of every service call and every replacement, in the tech’s own words.',
@@ -127,7 +127,7 @@ const article: Article = {
         '**Book the visits for them.** Text members a few weeks before each season with two times to choose from. Our /ai-employees/ai-dispatcher fits the visits around the regular schedule.',
         '**Remind before the renewal.** A friendly text 30 days out listing what they got this year (two tune-ups, the repair discount they used) makes the renewal an easy yes.',
         '**Chase failed payments.** Expired cards are a common cause of accidental cancellations. A text with a secure link to update the card fixes most of them.',
-        '**Win back the lapsed.** Members who didn’t renew are your warmest list for the next pre-season campaign. That is the job of our /ai-employees/ai-retention.',
+        '**Win back the lapsed.** Members who didn’t renew are your warmest list for the next pre-season campaign. Our AI retention assistant runs that campaign for you; there is more on /ai-employees/ai-retention.',
       ],
     },
     {

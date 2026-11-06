@@ -47,7 +47,7 @@ or take the Value Score without being pushy about it.
 
 ## Voice
 
-- Hamza Baig is the author. Write in first person **only for things Hamza or Hexona actually did, saw or said**: building automation since 2021, more than 1,000 agencies running on Hexona's AI and systems, the case studies in `content/evidence.ts`, Hamza's published videos and hub articles on hamzaautomates.com. Everything else is stated as fact with a source.
+- Hamza Baig is the author. Write in first person **only for things Hamza or Hexona actually did, saw or said**: founded Hexona in 2022, more than 1,000 agencies running on Hexona's AI and systems, the case studies in `content/evidence.ts`, Hamza's published videos and hub articles on hamzaautomates.com. Everything else is stated as fact with a source.
 - Have opinions. Say what you'd pick and why, what's overrated, what breaks, who should not buy it.
 - Short paragraphs. Contractions. Plain words a plumber would use. Concrete numbers over adjectives.
 - Talk about jobs, calls, customers, cash, reviews, nights and weekends. Not "workflows", "synergy" or "digital transformation".

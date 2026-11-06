@@ -116,6 +116,18 @@ const REDIRECTS = [
   { source: '/missed-lead-capture', destination: '/book', statusCode: 301 },
   { source: '/e-commerce-automation', destination: '/ai-employees', statusCode: 301 },
   { source: '/ecommerce-automation', destination: '/ai-employees', statusCode: 301 },
+  // The software's sign-in lives on the app subdomain; most inbound links and
+  // "hexona login" searches expect it here (Tropika action plan, Nov 2026).
+  { source: '/login', destination: 'https://app.hexonasystems.com/', statusCode: 301 },
+  { source: '/contact', destination: '/book', statusCode: 301 },
+  // The default Vercel host served a full duplicate of the site. Exact host
+  // only, so preview deployments (…-git-….vercel.app) keep working.
+  {
+    source: '/:path*',
+    has: [{ type: 'host' as const, value: 'hexonasystems-website.vercel.app' }],
+    destination: 'https://www.hexonasystems.com/:path*',
+    statusCode: 301,
+  },
 ];
 
 const nextConfig: NextConfig = {
@@ -136,6 +148,7 @@ const nextConfig: NextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()' },
         ],
       },
     ];

@@ -112,7 +112,7 @@ const article: Article = {
       paragraphs: [
         'Keep your main number. Most businesses forward calls to the AI line only after hours, or only when nobody picks up within a few rings, so customers dial the same number they always have.',
         'Then connect it to the systems that matter: the calendar it books into, the CRM where the call is logged, and the phone of whoever is on call. Test it with real scenarios before you switch it on, including a fake emergency at 2 a.m. Read the first two weeks of transcripts and fix every question it got wrong.',
-        'If you only get a few after-hours calls a week, start smaller: /blog/missed-call-text-back. If you would rather have the full setup built and run for you, that is what our /ai-employees/ai-receptionist does. Or /book and we will look at your call logs with you first.',
+        'If you only get a few after-hours calls a week, start smaller: /blog/missed-call-text-back. If you would rather have the full setup built and run for you, that is what our AI receptionist does; there is more on /ai-employees/ai-receptionist. Or /book and we will look at your call logs with you first.',
       ],
     },
   ],

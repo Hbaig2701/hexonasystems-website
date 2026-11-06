@@ -1,69 +1,74 @@
 # Hexona Systems — website
 
-Built to `hexona-website-spec.md` v1.0. That document is the source of truth;
-code comments cite it by section (§) so any decision can be traced back.
+The site at https://www.hexonasystems.com. Next.js 16 (App Router), Tailwind v4,
+deployed on Vercel from `main`.
+
+**Positioning:** AI employees for US service businesses, built only where they
+raise enterprise value. Headline: "AI that increases enterprise value."
+
+> This Next.js has breaking changes from older versions. Read the guide in
+> `node_modules/next/dist/docs/` before changing framework code (see AGENTS.md).
+
+## Run it
 
 ```bash
-npm install
-cp .env.example .env.local
-npm run dev        # http://localhost:3000
+npm ci
+npm run dev       # http://localhost:3000
+npm run verify    # typecheck, tests, lint, contrast, SEO checks, build
 ```
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Development server |
-| `npm run build` | Production build |
-| `npm test` | Unit tests — includes the §8.3 worked example ($415,800) |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run check:claims` | **Launch gate.** Fails while any §12 claim is unverified or any statistic is hardcoded outside `content/claims.ts` |
-| `npm run verify` | typecheck → test → lint → build |
+CI (`.github/workflows/ci.yml`) runs `npm run verify` on every PR and push to
+main. Dependabot opens grouped weekly dependency PRs.
 
 ## Where things live
 
-```
-app/                  routes. One page per §3.1 sitemap entry
-  styleguide/         Phase 1 deliverable, noindex. Every component, every state
-  api/lead/           §9.1 lead pipeline — validation, rate limit, honeypot, Make.com
-  api/og/             §8.8 shareable audit OG image
-components/
-  lattice/            §5 — the WebGL lattice + SVG and static fallback tiers
-  audit/              §8 — the Revenue Leak Audit
-  sections/           one component per homepage section (§7.1)
-  ui/ layout/         the component library (§4.6)
-content/
-  claims.ts           ⚠️ EVERY statistic lives here and NOWHERE else (§12)
-  audit-model.ts      the model constants (§8.3)
-  cases.ts            case studies (§7.3)
-lib/
-  motion.ts           ease + duration tokens (§6.2)
-  lattice/            geometry, packet simulation, scroll/pointer state channel
-```
+| What | Where |
+|---|---|
+| Brand facts, team, awards, profiles | `content/firm.ts` |
+| AI employee pages (`/ai-employees/[slug]`) | `content/employees.ts` |
+| Industry pages (`/industries/[slug]`) | `content/industries.ts` |
+| Case studies (`/evidence`) | `content/evidence.ts` |
+| Google reviews on the homepage and `/book` | `content/reviews.ts` |
+| Blog articles | `content/blog/articles/*.ts`, registered in `content/blog/articles/index.ts` |
+| How to write an article | `content/blog/README.md`, ideas in `content/blog/BACKLOG.md` |
+| Privacy and terms | `content/legal.ts` |
+| Redirects and security headers | `next.config.ts` |
+| Structured data (JSON-LD) | `lib/jsonld.tsx` |
+| Design tokens and the `hx-` CSS layer | `app/globals.css` |
+| Fonts (self-hosted) | `app/fonts/` |
 
-## Two things to understand before changing anything
+Pages are data-driven: add an entry to the content file and the page, sitemap,
+llms.txt and llms-full.txt pick it up on the next build.
 
-**The lattice is the argument, not decoration** (§5). A fractured hexagonal
-lattice assembles as you scroll the homepage, driven by one normalized scroll
-value written by a single GSAP ScrollTrigger into `lib/lattice/state.ts`. The
-render loop reads that object directly — scroll must never trigger a React
-re-render. Exactly two canvases are permitted on the homepage: the background
-lattice and the audit panel.
+## Brand figures — one set, used everywhere
 
-**Every statistic imports from `content/claims.ts`** (§12). The old site
-published conflicting versions of the same figures across pages, and a buyer
-sophisticated enough to notice is the buyer worth having. `npm run check:claims`
-enforces this and will fail the launch gate if a number is hardcoded in a
-component.
+| Figure | Value |
+|---|---|
+| Founded | 2022 |
+| Businesses served | 1,500+ |
+| Agencies running on Hexona's AI and systems | 1,000+ |
+| Community members | 45,000+ |
+| Google rating | 4.8 from 74 reviews (update `content/reviews.ts` as it changes) |
 
-## Verifying the fallback tiers
+If any of these changes, change it here, in `content/firm.ts`, and tell whoever
+runs the other properties (hamzabaig.com, profiles, press) so they match.
 
-Append `?lattice=` to any URL to force a tier: `webgl`, `svg`, `static`, `off`.
-`static` is what `prefers-reduced-motion` gets. Turn JavaScript off entirely and
-every section still renders at full opacity — that path is a hard requirement
-(§14, Phase 4), not a nicety.
+## Leads, analytics and search
 
-## Before this goes live
+- **Leads:** the `/book` form posts to `LEAD_WEBHOOK_URL` (a GoHighLevel inbound
+  webhook) with `source: hexonasystems.com/book`. Unset, submissions are only
+  written to the Vercel logs (search for `[lead]`). See `.env.example`.
+- **Analytics:** Vercel Web Analytics (cookie-free) and Google Tag Manager
+  `GTM-KZ9XN392`, which carries GA4. Both are in `app/layout.tsx`; the privacy
+  policy in `content/legal.ts` must be updated before adding any other tag.
+- **Indexing:** `app/sitemap.ts`, `app/robots.ts`, `/llms.txt`, `/llms-full.txt`
+  and `/blog/feed.xml`. `.github/workflows/indexnow.yml` notifies Bing (and so
+  ChatGPT search) after content changes; `npm run indexnow -- --all` resubmits
+  everything by hand.
+- **Client login:** `/login` redirects to `https://app.hexonasystems.com/`, and
+  the footer links to it.
 
-Run `npm run check:claims`, then work the outstanding items in
-`LAUNCH-CHECKLIST.md`. Nothing marked **Asset pending** in the UI may survive
-into production — it is rendered as an obvious placeholder precisely so it
-cannot be missed.
+## Hidden for now
+
+`/score` (Enterprise Value Score) works by direct link but is `noindex`, out of
+the sitemap, nav and llms.txt until it is ready. Do not link it from articles.

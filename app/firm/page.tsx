@@ -18,12 +18,12 @@ import { CtaPair, FaqList, RoleCard, SectionHead, delay } from '@/components/hx/
 export const metadata: Metadata = {
   title: { absolute: 'About Hexona Systems' },
   description:
-    'About Hexona Systems: a Toronto AI implementation firm founded in 2021 by Hamza Baig. The team, our commitments, awards and how we work with clients.',
+    'About Hexona Systems: a Toronto AI implementation firm founded in 2022 by Hamza Baig. The team, our commitments, awards and how we work with clients.',
   alternates: { canonical: '/firm' },
 };
 
 const FIGURES = [
-  { value: '2021', label: 'Building automation since' },
+  { value: '2022', label: 'Founded' },
   { value: '1,500+', label: 'Businesses served' },
   { value: '1,000+', label: "Agencies run on Hexona's AI and systems" },
   { value: '45,000+', label: 'Community members trained' },
@@ -77,7 +77,7 @@ export default function FirmPage() {
         <div className="hx-wrap relative grid gap-8 py-14 sm:grid-cols-2 lg:grid-cols-4">
           {FIGURES.map((f, i) => (
             <div key={f.label} data-enter="up" style={delay(i * 90)}>
-              <div className="hx-figure">{f.value === '2021' ? f.value : <CountUp value={f.value} />}</div>
+              <div className="hx-figure">{f.value === '2022' ? f.value : <CountUp value={f.value} />}</div>
               <div className="mt-1 text-[14px]" style={{ color: 'var(--hx-on-teal)' }}>
                 {f.label}
               </div>

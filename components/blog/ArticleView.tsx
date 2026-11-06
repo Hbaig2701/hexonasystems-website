@@ -355,7 +355,7 @@ function AuthorCard() {
         <p className="hx-kicker m-0">Written by</p>
         <p className="hx-h3 m-0 mt-1">{PRINCIPAL.name}</p>
         <p className="m-0 mt-2 text-[15px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
-          Founder of Hexona Systems, building automation for businesses since 2021. More than 1,000 agencies run on Hexona&rsquo;s AI and systems, and
+          Founded Hexona Systems in 2022. Hexona has served more than 1,500 businesses, more than 1,000 agencies run on its AI and systems, and
           Hamza teaches AI automation to a community of more than 45,000 members.
         </p>
         <p className="m-0 mt-3 flex flex-wrap gap-4 text-[15px]">
