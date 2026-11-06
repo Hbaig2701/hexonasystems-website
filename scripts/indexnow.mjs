@@ -24,8 +24,8 @@
  * initial submission and warns when used.
  *
  * Usage:
- *   npm run indexnow -- https://www.hexonasystems.com/insights/some-post
- *   npm run indexnow -- --changed content/insights.ts app/firm/page.tsx
+ *   npm run indexnow -- https://www.hexonasystems.com/blog/some-post
+ *   npm run indexnow -- --changed content/blog/articles/some-post.ts app/firm/page.tsx
  *   npm run indexnow -- --all        # initial submission only
  *   npm run indexnow -- --dry-run …  # print what would be sent, send nothing
  */
@@ -97,10 +97,14 @@ function urlsForChangedFiles(files, all) {
   const section = (prefix) => all.filter((u) => new URL(u).pathname.startsWith(prefix));
 
   for (const f of files) {
-    if (f.startsWith('content/insights.ts')) section('/insights').forEach((u) => out.add(u));
+    // content/blog/articles/<slug>.ts maps to exactly one article, plus the indexes that list it.
+    const art = f.match(/^content\/blog\/articles\/([a-z0-9-]+)\.ts$/);
+    if (art && !art[1].startsWith('batch-') && art[1] !== 'index') {
+      [`${ORIGIN}/blog/${art[1]}`, `${ORIGIN}/blog`, `${ORIGIN}/blog/feed.xml`].forEach((u) => out.add(u));
+    } else if (f.startsWith('content/blog') || f.startsWith('content/insights.ts')) section('/blog').forEach((u) => out.add(u));
     else if (f.startsWith('content/evidence.ts')) section('/evidence').forEach((u) => out.add(u));
     else if (f.startsWith('content/faqs.ts')) {
-      [`${ORIGIN}/diagnostic`, `${ORIGIN}/implementation`, `${ORIGIN}/evidence`].forEach((u) => out.add(u));
+      [`${ORIGIN}/evidence`, `${ORIGIN}/firm`].forEach((u) => out.add(u));
     } else if (f.startsWith('content/firm.ts') || f.startsWith('content/diagnostic.ts')) {
       // These two feed nearly every page, including the entity sentence.
       all.forEach((u) => out.add(u));

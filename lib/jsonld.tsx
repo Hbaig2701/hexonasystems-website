@@ -148,7 +148,18 @@ export function principalLd() {
     // The first bio line is the plain declarative one; the rest argue.
     description: PRINCIPAL.bio[0],
     // Only the principal's own profiles, never the firm's.
-    sameAs: verifiedProfileUrls().filter((u) => u.includes('/in/')),
+    image: absolute('/images/hamza-baig.jpg'),
+    url: absolute('/firm'),
+    knowsAbout: ['AI automation', 'AI receptionists', 'GoHighLevel', 'Business process automation', 'AI agents'],
+    sameAs: [
+      ...verifiedProfileUrls().filter((u) => u.includes('/in/')),
+      'https://www.youtube.com/@hamza_automates',
+      'https://www.instagram.com/hamza_automates/',
+      'https://x.com/hamza_automates',
+      'https://www.tiktok.com/@hamza_automates',
+      'https://www.skool.com/automate',
+      'https://hamzaautomates.com/gohighlevel/hamza-baig',
+    ],
   });
 }
 
@@ -259,26 +270,30 @@ export function blogPostingLd(opts: {
   datePublished: string;
   dateModified?: string;
   wordCount?: number;
+  section?: string;
+  news?: boolean;
+  keywords?: string[];
 }) {
-  const url = absolute(`/insights/${opts.slug}`);
+  const url = absolute(`/blog/${opts.slug}`);
   return prune({
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': opts.news ? 'NewsArticle' : 'BlogPosting',
     '@id': url + '#post',
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     headline: opts.headline,
     description: opts.description,
     url,
+    image: [absolute(`/blog/${opts.slug}/opengraph-image`)],
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
     wordCount: opts.wordCount,
-    inLanguage: 'en-CA',
+    articleSection: opts.section,
+    keywords: opts.keywords && opts.keywords.length ? opts.keywords.join(', ') : undefined,
+    inLanguage: 'en-US',
     isPartOf: { '@id': WEBSITE_ID },
     publisher: orgRef,
-    // The principal writes them and the firm publishes them. Both are true and
-    // the distinction is the one a reader would draw.
-    author: { '@id': PRINCIPAL_ID },
-    about: orgRef,
+    // The principal writes them and the firm publishes them.
+    author: { '@type': 'Person', '@id': PRINCIPAL_ID, name: PRINCIPAL.name, url: absolute('/firm') },
   });
 }
 

@@ -3,7 +3,7 @@ import { ENTITY_SENTENCE, FIRM, PRINCIPAL } from '@/content/firm';
 import { EMPLOYEES } from '@/content/employees';
 import { INDUSTRY_LIST } from '@/content/industries';
 import { CASE_STUDIES } from '@/content/evidence';
-import { publishedPosts } from '@/content/insights';
+import { ARTICLES, CATEGORIES } from '@/content/blog';
 
 /**
  * /llms.txt — the AI-search counterpart to robots.txt and sitemap.xml.
@@ -30,7 +30,6 @@ import { publishedPosts } from '@/content/insights';
 export const dynamic = 'force-static';
 
 export function GET() {
-  const posts = publishedPosts();
   const measured = CASE_STUDIES.filter((c) => c.basis === 'measured');
   const projected = CASE_STUDIES.filter((c) => c.basis !== 'measured');
 
@@ -66,7 +65,7 @@ export function GET() {
     `- [AI employees](${absolute('/ai-employees')}): every role Hexona builds, and the number each one moves.`,
     `- [Industries](${absolute('/industries')}): how the AI employees fit construction, home services, med spas, property management and more.`,
     `- [Case studies](${absolute('/evidence')}): results, with the measurement method published against each.`,
-    `- [Articles](${absolute('/insights')}): written answers to the questions owners ask.`,
+    `- [Blog](${absolute('/blog')}): answers to the questions owners ask, with costs, playbooks and weekly AI news. RSS: ${absolute('/blog/feed.xml')}`,
     `- [About](${absolute('/firm')}): origin, team and record.`,
     `- [Enterprise Value Score](${absolute('/score')}): a free 20-question assessment of a business on the 10 drivers of enterprise value.`,
     `- [Book a free consult](${absolute('/book')})`,
@@ -97,13 +96,10 @@ export function GET() {
     );
   }
 
-  if (posts.length > 0) {
-    lines.push(
-      '',
-      '## Insights',
-      '',
-      ...posts.map((p) => `- [${p.title}](${absolute(`/insights/${p.slug}`)}): ${p.description}`),
-    );
+  for (const c of CATEGORIES) {
+    const list = ARTICLES.filter((x) => x.category === c.id);
+    if (list.length === 0) continue;
+    lines.push('', `## Blog: ${c.label}`, '', `_${c.blurb}_`, '', ...list.map((p) => `- [${p.title}](${absolute(`/blog/${p.slug}`)}): ${p.description}`));
   }
 
   lines.push(

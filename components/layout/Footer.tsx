@@ -12,7 +12,7 @@ const EXPLORE = [
   { label: 'AI Employees', href: '/ai-employees' },
   { label: 'Industries', href: '/industries' },
   { label: 'Case Studies', href: '/evidence' },
-  { label: 'Articles', href: '/insights' },
+  { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/firm' },
   { label: 'Value Score', href: '/score' },
 ];

@@ -37,7 +37,7 @@ const REDIRECTS = [
    * /about       About                 →  /firm
    * /incubator   Incubator             →  /firm
    * /solutions   Solutions             →  /implementation
-   * /blog        Blog                  →  /insights
+   * /blog        Blog                  →  served at /blog again (v3)
    * /get-started Get Started           →  /diagnostic
    * /programs    Programs              →  /firm
    * /general-1   A.I Appointment Setting  →  /implementation
@@ -48,8 +48,6 @@ const REDIRECTS = [
    * -------------------------------------------------------------------- */
   { source: '/about', destination: '/firm', statusCode: 301 },
   { source: '/solutions', destination: '/ai-employees', statusCode: 301 },
-  { source: '/blog', destination: '/insights', statusCode: 301 },
-  { source: '/blog/:slug', destination: '/insights/:slug', statusCode: 301 },
   { source: '/get-started', destination: '/book', statusCode: 301 },
 
   // The Automation Institute moves to a separate property under §1.2, so both
@@ -108,6 +106,10 @@ const REDIRECTS = [
   { source: '/insights/what-access-does-a-diagnostic-need', destination: '/book', statusCode: 301 },
   { source: '/insights/what-if-a-diagnostic-finds-nothing', destination: '/book', statusCode: 301 },
   { source: '/insights/operational-diligence-vs-management-consulting', destination: '/firm', statusCode: 301 },
+  // v3: the articles section moved from /insights to /blog. The specific
+  // retired posts above match first; everything else keeps its slug.
+  { source: '/insights', destination: '/blog', statusCode: 301 },
+  { source: '/insights/:slug', destination: '/blog/:slug', statusCode: 301 },
 
   /* --- Plausible inbound links that never existed as pages -------------- */
   { source: '/ai-appointment-setting', destination: '/ai-employees', statusCode: 301 },

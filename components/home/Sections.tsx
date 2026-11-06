@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { TRUSTED_BY } from '@/content/firm';
 import { EMPLOYEES } from '@/content/employees';
 import { INDUSTRY_LIST } from '@/content/industries';
+import { ARTICLES } from '@/content/blog';
+import { ArticleCard } from '@/components/blog/ArticleView';
 import { CountUp, Tilt } from '@/components/hx/Interactive';
 import { ProofCard, RoleCard, SectionHead, delay } from '@/components/hx/Blocks';
 
@@ -249,6 +251,40 @@ export function Industries() {
           </li>
         ))}
       </ul>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------------------------------
+ * From the blog: the three newest articles, so new posts get a link from the
+ * strongest page on the site the day they ship.
+ * ------------------------------------------------------------------------ */
+
+export function FromTheBlog() {
+  const latest = ARTICLES.slice(0, 3);
+  if (latest.length === 0) return null;
+  return (
+    <section aria-labelledby="blog" style={{ background: 'var(--hx-cyan-soft)' }}>
+      <div className="hx-wrap py-24">
+        <SectionHead
+          id="blog"
+          kicker="From the blog"
+          title="Straight answers for owners."
+          text={
+            <>
+              Costs, playbooks and this week&rsquo;s AI news.{' '}
+              <Link href="/blog" className="hx-link">
+                All articles
+              </Link>
+            </>
+          }
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {latest.map((a, i) => (
+            <ArticleCard key={a.slug} article={a} index={i} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

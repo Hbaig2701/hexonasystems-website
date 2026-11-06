@@ -227,7 +227,8 @@ const LIVE_WIX_URLS = [
   '/copy-of-about',
 ];
 const config = code('next.config.ts');
-const unredirected = LIVE_WIX_URLS.filter((u) => !config.includes(`source: '${u}'`));
+// Covered if redirected, or if the new site serves a real page at that URL (/about, /blog).
+const unredirected = LIVE_WIX_URLS.filter((u) => !config.includes(`source: '${u}'`) && !routeExists(u));
 if (unredirected.length > 0) {
   fail(
     'A live Wix URL has no redirect (Ticket 1). Each is a lost bookmark at cutover.',
@@ -259,12 +260,12 @@ if (config.includes('permanent: true')) {
 }
 
 /* --- TICKET 6: the blog is wired into nav and sitemap ------------------ */
-if (!code('components/layout/Header.tsx').includes("'/insights'")) {
+if (!code('components/layout/Header.tsx').includes("'/blog'")) {
   fail('The blog index is not in the primary navigation (Ticket 6).');
 } else {
   pass('Blog index is in the primary navigation.');
 }
-if (!read('app/sitemap.ts').includes('publishedPosts')) {
+if (!read('app/sitemap.ts').includes('ARTICLES')) {
   fail('Blog posts are not in sitemap.xml (Ticket 6).');
 } else {
   pass('Blog posts are in sitemap.xml.');

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
-import { HowItWorks, Industries, ResultsBand, Results, Team, Value } from '@/components/home/Sections';
+import { FromTheBlog, HowItWorks, Industries, ResultsBand, Results, Team, Value } from '@/components/home/Sections';
 import { JsonLd, breadcrumbLd } from '@/lib/jsonld';
 import { ENTITY_SENTENCE } from '@/content/firm';
 
@@ -35,6 +35,7 @@ export default function HomePage() {
       <HowItWorks />
       <Results />
       <Industries />
+      <FromTheBlog />
     </div>
   );
 }
