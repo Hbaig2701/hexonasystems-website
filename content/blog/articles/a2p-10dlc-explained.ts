@@ -127,7 +127,7 @@ const article: Article = {
         { title: 'A live website that matches', detail: 'It shows your business name and contact details, with a Privacy Policy and Terms page linked in the footer.' },
         { title: 'An opt-in that matches the campaign', detail: 'A checkbox on your form, not pre-ticked, that names your business, says what you will text, that message frequency varies, that message and data rates may apply, and how to reply STOP and HELP.' },
         { title: 'A privacy policy that says you don’t share numbers', detail: 'Carriers reject policies that mention selling or sharing leads. It should say mobile information is not shared with third parties for marketing.' },
-        { title: 'Sample messages that look like your real texts', detail: 'Include your business name and the opt-out line. "Hi Dana, it’s Northside Heating, your tune-up is tomorrow at 9. Reply STOP to opt out."' },
+        { title: 'Sample messages that look like your real texts', detail: 'Include your business name and the opt-out line. "Hi Dana, it\'s Northside Heating, your tune-up is tomorrow at 9. Reply STOP to opt out."' },
         { title: 'Link the number after approval', detail: 'Approval does nothing until your phone number is attached to the approved campaign. Don’t switch on texting automations until it is.' },
       ],
       callout:
@@ -142,7 +142,7 @@ const article: Article = {
       bullets: [
         '**Get consent before you text.** Replying to someone who texted you first is generally fine. Marketing texts (promotions, offers) need clear written consent, which is what that opt-in checkbox is for.',
         '**Honor opt-outs fast.** Since April 11, 2025 the FCC’s rules say customers can revoke consent "using any reasonable method", and a reply of stop, quit, end, revoke, opt out, cancel or unsubscribe always counts. You have no more than 10 business days to process it, and you can send one confirmation text with no marketing in it.',
-        '**The "stop one means stop all" rule is delayed.** The FCC’s rule that one opt-out covers every kind of message from your business was pushed to January 31, 2027 by an FCC order on January 6, 2026, while the FCC considers changing it. Watch for updates.',
+        '**The "stop one means stop all" rule has been loosened.** The FCC’s rule that one opt-out covers every kind of message from your business was first delayed to January 31, 2027. Then an FCC order adopted September 30, 2026 (in effect from November 25, 2026, per law firm alerts) lets you treat an opt-out from an informational text, like a payment reminder, as covering only that category. An opt-out from marketing still stops all marketing. Treating every STOP as a full stop is still allowed and is the safe default.',
         '**Respect sending hours.** Federal rules limit telephone solicitations to 8 a.m. to 9 p.m. in the customer’s time zone. Florida is stricter for sales calls: 8 a.m. to 8 p.m., and no more than three on the same subject in 24 hours. Florida’s hours rule is written for phone calls and doesn’t mention texts, so the safe move is to keep marketing texts to the same window.',
         '**Keep proof.** Save when and how each customer opted in. If a dispute comes up, the record is your defense.',
       ],
@@ -231,6 +231,11 @@ const article: Article = {
       label: 'FCC, Order DA 26-12 (Jan 6, 2026)',
       url: 'https://docs.fcc.gov/public/attachments/DA-26-12A1.pdf',
       note: 'Extends the revoke-all waiver to Jan 31, 2027; confirms the other revocation rules took effect Apr 11, 2025. Read Nov 6, 2026.',
+    },
+    {
+      label: 'FCC, Report and Order FCC 26-67 (adopted Sep 30, 2026)',
+      url: 'https://docs.fcc.gov/public/attachments/FCC-26-67A1.pdf',
+      note: 'Category-specific opt-outs for informational messages; effective 30 days after Federal Register publication (Nov 25, 2026 per Womble Bond Dickinson’s Oct 28, 2026 alert). Read Nov 6, 2026.',
     },
     {
       label: 'Privacy World, FCC extends waiver of TCPA consent rule providing stop one means stop all',

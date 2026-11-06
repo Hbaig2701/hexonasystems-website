@@ -6,8 +6,12 @@
 // (2016), Journal of Medical Systems: pooled odds ratio 1.62 across 13 RCTs;
 // timing did not significantly change the effect. Both are healthcare studies;
 // the article says so and doesn't extrapolate a percentage to trades.
-// TCPA: general description only (informational vs marketing, opt-outs), with
-// the FCC's consumer guide as the source, and "not legal advice".
+// TCPA: general description only (informational vs marketing, opt-outs), from
+// FCC 24-24 and 47 CFR 64.1200 (both read Nov 6, 2026), and "not legal advice".
+// Nov 6, 2026 check: Cochrane summary read; the Springer page redirects to a
+// login, so Boksmati figures are from its abstract as quoted in search results.
+// The FCC consumer guide returned 403 and was dropped. Example texts use
+// straight apostrophes so they stay in GSM encoding (160-character segments).
 
 import type { Article } from '../types';
 
@@ -27,7 +31,7 @@ const article: Article = {
     messages: [
       { from: 'ai', text: 'Reminder: your AC tune-up is tomorrow, 9 to 11 AM. Reply C to confirm or R to reschedule.' },
       { from: 'them', text: 'C' },
-      { from: 'ai', text: 'Confirmed. Mike will text when he’s on the way.' },
+      { from: 'ai', text: 'Confirmed. Mike will text when he\'s on the way.' },
     ],
   },
   coverAlt: 'A text exchange where a customer gets a reminder for an AC tune-up, replies C to confirm, and gets a confirmation back.',
@@ -48,7 +52,7 @@ const article: Article = {
       heading: 'Do appointment reminder texts actually reduce no-shows?',
       paragraphs: [
         'Yes, and this is one of the better-studied questions in small-business operations, mostly because hospitals care a lot about missed appointments.',
-        'A Cochrane review of mobile phone reminders (2013) found that text reminders increased attendance compared with no reminder, with a risk ratio of 1.14 across seven trials and 5,841 people. Against phone-call reminders, texts performed about the same (risk ratio 0.99), and two studies found the cost per attended appointment 55% and 65% lower with texts. A 2016 meta-analysis in the Journal of Medical Systems pooled 13 randomized trials and found a pooled odds ratio of 1.62 for attendance with text reminders.',
+        'A Cochrane review of mobile phone reminders (December 2013) found that text reminders increased attendance compared with no reminder, with a risk ratio of 1.14 across seven trials and 5,841 people: attendance was 78.6% with texts against 67.8% with no reminder. Against phone-call reminders, texts performed about the same (risk ratio 0.99), and two studies found the cost per attended appointment 55% and 65% lower with texts. The reviewers rated the evidence low to moderate quality. A 2016 meta-analysis in the Journal of Medical Systems pooled 13 randomized trials and found a pooled odds ratio of 1.62 for attendance with text reminders.',
         'Two honest caveats. These are healthcare studies, so the exact effect in an HVAC company or an auto shop will differ. And the studies measure attendance, not the rescheduled slots you refill, which is where a lot of the money is for a busy service business.',
       ],
       figure: {
@@ -65,7 +69,7 @@ const article: Article = {
       id: 'timing',
       heading: 'When should you send appointment reminders?',
       paragraphs: [
-        'The 2016 meta-analysis didn’t find that timing changed the effect much, so the schedule below is built around what you need operationally: enough notice to refill the slot, and a last nudge close to the time.',
+        'The 2016 meta-analysis found no significant difference by when the text was sent (about half the studies sent it within 48 hours of the appointment), so the schedule below is built around what you need operationally: enough notice to refill the slot, and a last nudge close to the time.',
       ],
       table: {
         caption: 'A reminder schedule that works for most service businesses. These are our starting points.',
@@ -87,7 +91,7 @@ const article: Article = {
       id: 'templates',
       heading: 'Appointment reminder text templates by industry',
       paragraphs: [
-        'Keep them under about 160 characters where you can, name the business, give the time window and one clear reply option. These are examples to adapt:',
+        'Keep them under about 160 characters where you can, and type plain straight apostrophes: Twilio notes that one curly quote or other non-standard character switches the whole text to an encoding that fits only 70 characters in a single message, so you pay for more segments. Name the business, give the time window and one clear reply option. These are examples to adapt:',
       ],
       table: {
         caption: 'Example reminder texts. Replace the details with your own and keep your business name in the first few words.',
@@ -110,7 +114,7 @@ const article: Article = {
           {
             industry: 'Auto shop',
             before: 'Maple Auto: your oil change and tire rotation is tomorrow at 8:30 AM. Reply C to confirm or R to reschedule.',
-            sameday: 'Maple Auto: see you at 8:30. Drop-off is at the side door, keys in the box if we’re busy.',
+            sameday: 'Maple Auto: see you at 8:30. Drop-off is at the side door, keys in the box if we\'re busy.',
           },
           {
             industry: 'Property showing',
@@ -150,7 +154,7 @@ const article: Article = {
       heading: 'What are the rules for texting appointment reminders?',
       paragraphs: [
         'Appointment reminders are usually treated as informational messages rather than marketing under the US Telephone Consumer Protection Act (TCPA). That still means the customer has to have given you their number and permission to be texted about their appointment. If you add a promotion ("and 20% off your next visit"), the message can become marketing, which needs stronger consent.',
-        'Make opting out easy and honor it right away. Customers can opt out by replying STOP or similar words, and under a 2024 FCC order businesses must honor opt-outs within ten business days at the latest; good texting platforms handle STOP automatically. If you send business texts in the US from a regular 10-digit number, your number also needs to be registered for A2P 10DLC through your texting provider, or carriers may block your messages.',
+        'Make opting out easy and honor it right away. Customers can opt out by any reasonable method, and a reply of STOP, quit, end, revoke, opt out, cancel or unsubscribe always counts. Under a February 2024 FCC order (in effect since April 11, 2025) businesses must honor opt-outs within ten business days at the latest; good texting platforms handle STOP automatically. If you send business texts in the US from a regular 10-digit number, your number also needs to be registered through your texting provider, or carriers may block your messages; /blog/a2p-10dlc-explained covers how.',
         'This is general information, not legal advice. Healthcare providers have extra rules about what a reminder can say, so keep reminders to the date, time and place, and check with your compliance advisor.',
       ],
     },
@@ -172,7 +176,7 @@ const article: Article = {
       id: 'next',
       heading: 'Where reminders fit in the bigger picture',
       paragraphs: [
-        'No-shows are one of the quieter ways a service business loses revenue it already earned: the marketing worked, the customer booked, and the slot still went empty. If you want to see where else that happens, /blog/what-is-revenue-leakage walks through it.',
+        'No-shows are one of the quieter ways a service business loses revenue it already earned: the marketing worked, the customer booked, and the slot still went empty. The same thing happens earlier in the process when calls go unanswered; /blog/missed-call-text-back covers that one.',
         'Our /ai-employees/ai-dispatcher handles reminders, reschedules and rebooking alongside the schedule itself. If you’d like to see what it would look like for your business, /book.',
       ],
     },
@@ -213,22 +217,27 @@ const article: Article = {
     {
       label: 'Cochrane, Mobile phone text messaging reminders for attendance at healthcare appointments (CD007458)',
       url: 'https://www.cochrane.org/CD007458/EPOC_mobile-phone-text-messaging-reminders-attendance-healthcare-appointments',
-      note: 'Gurol-Urganci et al., 2013 update: attendance and cost results. Read Nov 6, 2026.',
+      note: 'Gurol-Urganci et al., Dec 5, 2013 update: attendance rates, risk ratios, cost results and evidence quality. Read Nov 6, 2026.',
     },
     {
       label: 'Boksmati et al., The effectiveness of SMS reminders on appointment attendance: a meta-analysis',
       url: 'https://link.springer.com/article/10.1007/s10916-016-0452-2',
-      note: 'Journal of Medical Systems, 2016: pooled odds ratio 1.62 across 13 RCTs, timing not significant. Read Nov 6, 2026.',
-    },
-    {
-      label: 'FCC, Stop unwanted robocalls and texts',
-      url: 'https://www.fcc.gov/consumers/guides/stop-unwanted-robocalls-and-texts',
-      note: 'Consumer guide to TCPA consent and opt-outs for calls and texts, including informational vs commercial texts. Read Nov 6, 2026.',
+      note: 'Journal of Medical Systems, 2016: pooled odds ratio 1.62 (95% CI 1.35 to 1.94) across 13 RCTs, no significant difference by SMS timing. The article page redirected to a login on Nov 6, 2026; figures are from the abstract as shown in search results, not read on the page.',
     },
     {
       label: 'FCC, Report and Order FCC 24-24 on revoking consent',
       url: 'https://docs.fcc.gov/public/attachments/FCC-24-24A1.pdf',
-      note: 'Opt-out words such as STOP and the ten business day deadline to honor revocations. Read Nov 6, 2026.',
+      note: 'Adopted Feb 15, released Feb 16, 2024: revoking consent by reasonable means and the ten business day deadline. Read Nov 6, 2026.',
+    },
+    {
+      label: '47 CFR 64.1200 (Cornell Legal Information Institute)',
+      url: 'https://www.law.cornell.edu/cfr/text/47/64.1200',
+      note: 'The opt-out words in (a)(10) and the ten business day limit as codified. Read Nov 6, 2026.',
+    },
+    {
+      label: 'Twilio Docs, What is UCS-2 character encoding?',
+      url: 'https://www.twilio.com/docs/glossary/what-is-ucs-2-character-encoding',
+      note: 'Any non GSM-7 character, such as a smart quote, switches a text to UCS-2 with 70 characters per single message. Read Nov 6, 2026.',
     },
   ],
   related: ['missed-call-text-back', 'a2p-10dlc-explained', 'how-to-get-more-google-reviews'],

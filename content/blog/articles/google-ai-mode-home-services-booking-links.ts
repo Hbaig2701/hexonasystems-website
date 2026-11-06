@@ -1,7 +1,10 @@
 // Fast take on Google AI Mode's home services booking and quote links (Nov 4, 2026).
-// Sources: Angi and Housecall Pro press releases (Nov 4), Search Engine Land's
-// report of Robby Stein's announcement, Google Business Profile help. All read
-// Nov 6, 2026. Google's own selection criteria were not published; said so.
+// Nov 6, 2026 check: the primary announcement is Robby Stein's X post (X would
+// not load); Search Engine Land, ir.angi.com and GlobeNewswire returned 403. Read:
+// Search Engine Journal and Search Engine Roundtable reports, Angi's release on
+// Yahoo Finance, Google's Jul 16, 2025 business calling post. Housecall Pro and
+// Jobber terms are attributed to Search Engine Journal. Google's own selection
+// criteria were not published; said so.
 // Target: "google ai mode home services", "google ai mode booking",
 // "how to show up in google ai mode", "ai mode local business".
 
@@ -35,11 +38,11 @@ const article: Article = {
       id: 'what-changed',
       heading: 'What exactly did Google change?',
       paragraphs: [
-        'AI Mode is the chat-style search tab Google has been rolling out. Until now it could recommend businesses but the customer still had to click through, call or fill out a form somewhere. On November 4, Robby Stein of Google Search announced that AI Mode now links home service searches in the US to booking and quote requests through partners, as reported by Search Engine Land.',
-        'The partners said the same in their own releases. Angi says a homeowner who selects an Angi pro surfaced in AI Mode goes to that pro’s Angi profile to learn more and request a quote. Housecall Pro says its integration is coming soon to eligible US customers and that all its users will be able to show up in AI Mode at no additional charge.',
+        'AI Mode is the chat-style search tab Google has been rolling out. Until now it could recommend businesses but the customer still had to click through, call or fill out a form somewhere. On November 4, Robby Stein, a vice president of product at Google Search, announced in a post on X that AI Mode now has direct links to book home services in the US through partners, as reported by Search Engine Journal and Search Engine Roundtable. We could not find a Google blog post or help page about it.',
+        'Angi’s own release says a homeowner who selects an Angi pro surfaced in AI Mode goes to that pro’s Angi profile to learn more and request a quote. According to Search Engine Journal, Jobber says eligible US customers can take these requests now with no lead fees, if they have an active paid plan and a connected Google Business Profile at the same address, and Housecall Pro says its integration is coming soon to eligible US customers with no lead fees. Thumbtack was named by Google but had not announced its own plans as of November 4.',
       ],
       table: {
-        caption: 'Partners named for AI Mode home services links, as announced Nov 4, 2026.',
+        caption: 'Partners named for AI Mode home services links, as announced Nov 4, 2026. Jobber, Housecall Pro and Thumbtack status as reported by Search Engine Journal.',
         columns: [
           { key: 'partner', label: 'Partner' },
           { key: 'type', label: 'What it is' },
@@ -47,9 +50,9 @@ const article: Article = {
         ],
         rows: [
           { partner: 'Angi', type: 'Marketplace', status: 'Live: links to the pro’s Angi profile to request a quote' },
-          { partner: 'Thumbtack', type: 'Marketplace', status: 'Named as a partner' },
-          { partner: 'Housecall Pro', type: 'Field-service software', status: 'Coming soon to eligible US customers, no extra charge' },
-          { partner: 'Jobber', type: 'Field-service software', status: 'Named as a partner' },
+          { partner: 'Thumbtack', type: 'Marketplace', status: 'Named by Google; no Thumbtack announcement as of Nov 4' },
+          { partner: 'Housecall Pro', type: 'Field-service software', status: 'Coming soon to eligible US customers, no lead fees' },
+          { partner: 'Jobber', type: 'Field-service software', status: 'Live for eligible US customers on a paid plan, no lead fees' },
           { partner: 'ServiceTitan', type: 'Field-service software', status: 'Coming soon' },
         ],
       },
@@ -60,7 +63,7 @@ const article: Article = {
       bullets: [
         '**How Google chooses.** Neither Google nor the partners have said how AI Mode picks or ranks the pros it shows. Reviews, availability and profile completeness are reasonable guesses, but they are guesses.',
         '**Who pays.** Angi normally charges pros for leads. Its announcement doesn’t say whether a quote request that starts in AI Mode is billed the same way.',
-        '**Rollout.** Housecall Pro describes its side as coming soon, so not every pro on these platforms will appear yet.',
+        '**Rollout.** Housecall Pro and ServiceTitan are described as coming soon, and Jobber limits it to eligible paid customers, so not every pro on these platforms will appear yet.',
         '**Outside the US.** The announcement is US only. Canadian businesses should not expect this yet.',
       ],
     },
@@ -80,7 +83,7 @@ const article: Article = {
       heading: 'Why does answering speed matter more now?',
       paragraphs: [
         'When search was ten blue links, a homeowner might call three companies and wait. In AI Mode the customer is one tap from booking, and the AI is already offering alternatives. Whoever confirms first gets the job.',
-        'We see the same thing in our own work. A Toronto tire shop was sending more than 600 calls a month to voicemail. A missed-call assistant that replied by text within seconds recovered over $50,000 and lifted booked appointments 50% (/evidence/tire-shop-missed-calls). AI Mode doesn’t change that lesson. It makes it more expensive to ignore.',
+        'We see the same thing in our own work. A Toronto tire shop was missing more than 600 calls a month. After we put in a missed-call assistant that replied by text within seconds, along with chatbots and self-booking, the shop reported over $50,000 in recovered revenue and booked appointments up 50% (/evidence/tire-shop-missed-calls). For the numbers on reply speed in general, see /blog/speed-to-lead. AI Mode doesn’t change that lesson. It makes it more expensive to ignore.',
       ],
       callout:
         'If you can’t answer a request within 5 minutes during business hours and by morning after hours, fix that before you spend anything on visibility. More leads into a slow inbox just means more lost jobs.',
@@ -89,7 +92,7 @@ const article: Article = {
       id: 'bigger-picture',
       heading: 'Is this the start of AI booking for every local business?',
       paragraphs: [
-        'Probably, but slowly. Google already launched calling businesses on a customer’s behalf in the US, which businesses can opt out of in their Business Profile settings. Booking links for home services are the next step. Med spas, auto shops and restaurants already have booking platforms of their own, and it would be surprising if Google stopped at home services.',
+        'Probably, but slowly. In July 2025 Google started rolling out AI that calls local businesses on a searcher’s behalf to check prices and availability in the US, and says businesses stay in control through their Business Profile settings. Booking links for home services are the next step. Med spas, auto shops and restaurants already have booking platforms of their own, and it would be surprising if Google stopped at home services.',
         'The businesses that win this aren’t the ones with the cleverest AI. They are the ones with complete profiles, real reviews and someone (or something) answering every request. That is also what makes a business worth more when you sell it. If you want to see where yours stands, take /score, or read our AI receptionist page for home services at /industries/home-services.',
       ],
     },
@@ -108,7 +111,7 @@ const article: Article = {
     {
       question: 'Does Google charge for AI Mode booking links?',
       answer:
-        'Google has not announced a fee to pros. Housecall Pro says its users can show up at no additional charge. Angi normally charges for leads and has not said whether requests that start in AI Mode are billed the same way, so check with your platform.',
+        'Google has not announced a fee to pros. Jobber and Housecall Pro say there are no lead fees, as reported by Search Engine Journal. Angi normally charges for leads and has not said whether requests that start in AI Mode are billed the same way, so check with your platform.',
     },
     {
       question: 'Is Google AI Mode booking available in Canada?',
@@ -128,24 +131,34 @@ const article: Article = {
   ],
   sources: [
     {
-      label: 'Search Engine Land, Google AI Mode adds home services booking links',
-      url: 'https://searchengineland.com/google-ai-mode-adds-home-services-booking-links-500603',
-      note: 'Robby Stein’s Nov 4, 2026 announcement and the partner list. Read Nov 6, 2026.',
+      label: 'Robby Stein (Google Search) on X',
+      url: 'https://x.com/rmstein/status/2118027605018632408',
+      note: 'The Nov 4, 2026 announcement. X would not load for us; wording and partner list as quoted by the two reports below.',
+    },
+    {
+      label: 'Search Engine Journal, Google adds home service booking and quote links to AI Mode',
+      url: 'https://www.searchenginejournal.com/google-ai-mode-home-services-booking-quote-links/595871/',
+      note: 'Nov 4, 2026 report: partner list, US only, Jobber and Housecall Pro terms, Thumbtack status, open questions. Read Nov 6, 2026.',
+    },
+    {
+      label: 'Search Engine Roundtable, Google AI Mode with home services booking integration',
+      url: 'https://www.seroundtable.com/google-ai-mode-home-services-booking-42459.html',
+      note: 'Nov 5, 2026 report quoting Stein’s post. Read Nov 6, 2026.',
     },
     {
       label: 'Angi, Angi Leads Home Services into AI Search with Google',
-      url: 'https://ir.angi.com/news-releases/news-release-details/angi-leads-home-services-ai-search-google',
-      note: 'Press release, Nov 4, 2026, describing how Angi pros appear in AI Mode. Read Nov 6, 2026.',
+      url: 'https://finance.yahoo.com/technology/ai/articles/angi-leads-home-services-ai-170000739.html',
+      note: 'Press release (GlobeNewswire), Nov 4, 2026, on Yahoo Finance, describing how Angi pros appear in AI Mode. Read Nov 6, 2026.',
     },
     {
       label: 'Housecall Pro, Integrates with AI Mode in Google Search',
       url: 'https://www.globenewswire.com/news-release/2026/11/04/3395680/0/en/housecall-pro-integrates-with-ai-mode-in-google-search-to-turn-home-service-searches-into-booked-jobs.html',
-      note: 'Press release, Nov 4, 2026: coming soon to eligible US customers, no additional charge. Read Nov 6, 2026.',
+      note: 'Press release, Nov 4, 2026. Returned 403 on Nov 6, 2026, not read; terms as reported by Search Engine Journal.',
     },
     {
       label: 'Google, New AI features in Google Search: call a business',
       url: 'https://blog.google/products-and-platforms/products/search/deep-search-business-calling-google-search/',
-      note: 'Google calling businesses on a customer’s behalf, with a Business Profile opt-out. Read Nov 6, 2026.',
+      note: 'Jul 16, 2025 post: AI calling local businesses for pricing and availability, rolling out in the US, businesses in control via Business Profile settings. Read Nov 6, 2026.',
     },
   ],
   related: ['how-to-get-recommended-by-chatgpt', 'ai-news-week-of-november-2-2026', 'speed-to-lead'],
