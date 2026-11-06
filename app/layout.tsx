@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
+import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import { Header, HEADER_H } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -70,6 +71,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
       </head>
+      {/* Google Tag Manager container (GA4 and any tags configured in GTM). Loads after hydration. */}
+      <GoogleTagManager gtmId="GTM-KZ9XN392" />
       <body className="min-h-svh">
         {/* AI SEO Developer Guide, Ticket 2 — the entity graph, once per
             document rather than per page.
