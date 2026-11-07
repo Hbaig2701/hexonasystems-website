@@ -12,8 +12,8 @@ What is still outstanding after the November 2026 rebuild. Owner in brackets.
       Do not use an address where the business does not operate.
 - [ ] **Reviews that name a trade.** Ask clients in one or two target niches
       (e.g. HVAC, home services) for reviews that mention the trade.
-- [ ] **Awards.** `content/firm.ts` AWARDS lists six. Add a link for any that
-      has a public page, and remove any that cannot be documented.
+- [ ] **Awards and press.** `content/recognition.ts` (mirrors the GoHighLevel hub's About
+      page). Add the 2026 Affilionaire photo and any new interviews to both.
 - [ ] **Public phone number** (`FIRM.phone`). One number used everywhere, or none.
 - [ ] **Legal review** of `/privacy` and `/terms` by counsel.
 - [ ] **Founder photography** from the talk and, later, a proper shoot.
