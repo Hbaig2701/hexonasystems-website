@@ -12,7 +12,8 @@ import { FIRM } from './firm';
  *     The IP is also used for rate limiting (Upstash).
  *   - The site is hosted on Vercel.
  *   - Vercel Web Analytics (cookie-free) and Google Tag Manager GTM-KZ9XN392
- *     (Google Analytics, which sets cookies) are loaded in app/layout.tsx.
+ *     (Google Analytics, which sets cookies) and Microsoft Clarity
+ *     (heatmaps and session recordings, sets cookies) are loaded in app/layout.tsx.
  *     Any tag added inside GTM, especially advertising pixels, means updating
  *     this policy first. Adding
  *     any other analytics or tracking tool means updating this policy first.
@@ -28,7 +29,7 @@ export type LegalDoc = {
   sections: { heading: string; body: string[] }[];
 };
 
-const UPDATED = 'November 6, 2026';
+const UPDATED = 'November 7, 2026';
 const CONTACT = `${FIRM.name}, ${FIRM.address}, Canada. ${FIRM.email}.`;
 
 export const TERMS: LegalDoc = {
@@ -118,6 +119,7 @@ export const PRIVACY: LegalDoc = {
       body: [
         'We use Vercel Web Analytics to count visits and see which pages are read and which sites refer visitors to us. It does not use cookies or store IP addresses.',
         'We also use Google Analytics, loaded through Google Tag Manager, to understand how visitors find and use the site. Google Analytics sets cookies and collects information such as the pages you visit, how long you stay, your approximate location and your device and browser. Google processes this information under its own privacy policy. You can opt out with the Google Analytics opt-out browser add-on (tools.google.com/dlpage/gaoptout) or by blocking cookies in your browser.',
+        'We use Microsoft Clarity to see how visitors use our pages, through heatmaps and recordings of clicks, scrolling and mouse movement. Clarity sets cookies and masks text you type into forms. Microsoft processes this information under its own privacy statement. You can block it by blocking cookies in your browser.',
         'The site does not use advertising cookies or tracking pixels. Our hosting provider keeps standard server logs, such as IP addresses and requested pages, for security and operational purposes.',
       ],
     },
