@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { COMMITMENTS, ENTITY_SENTENCE, KEY_FACTS, ORIGIN, PRINCIPAL, TEAM } from '@/content/firm';
+import { ENTITY_SENTENCE, KEY_FACTS, ORIGIN, PRINCIPAL, TEAM } from '@/content/firm';
 import { AWARD_YEARS, EARLY_YEARS, HIGHLEVEL_BIO, INTERVIEWS, NOMINATIONS, PHOTOS, WORKED_WITH, type Photo } from '@/content/recognition';
-import { EMPLOYEES } from '@/content/employees';
 import { FIRM_FAQS } from '@/content/faqs';
 import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
 import { PageHero } from '@/components/hx/PageHero';
 import { CountUp, Tilt } from '@/components/hx/Interactive';
-import { CtaPair, FaqList, RoleCard, SectionHead, delay } from '@/components/hx/Blocks';
+import { CtaPair, FaqList, SectionHead, delay } from '@/components/hx/Blocks';
 
 /**
  * /firm — About. Kept at this URL because it already ranks and is linked.
@@ -143,21 +142,6 @@ export default function FirmPage() {
         </div>
       </section>
 
-      <section aria-labelledby="what" style={{ background: 'var(--hx-cyan-soft)' }}>
-        <div className="hx-wrap py-28">
-          <SectionHead
-            id="what"
-            kicker="What we build"
-            title="AI employees, each one tied to a number buyers pay for."
-            text="We build them into the tools you already use, run them for you, and report what they changed every month."
-          />
-          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {EMPLOYEES.map((e, i) => (
-              <RoleCard key={e.slug} employee={e} index={i + 1} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section aria-labelledby="team" className="hx-wrap py-28">
         <SectionHead id="team" kicker="The team" title="The people who do the work." />
@@ -187,30 +171,6 @@ export default function FirmPage() {
         </ul>
       </section>
 
-      <section aria-labelledby="commit" className="hx-band">
-        <div className="hx-wrap relative py-24">
-          <h2 id="commit" className="hx-h2 m-0 max-w-[20ch]" style={{ color: '#FFFFFF' }} data-enter="up">
-            Four commitments you can hold us to.
-          </h2>
-          <dl className="m-0 mt-12 grid gap-4 md:grid-cols-2">
-            {COMMITMENTS.map((c, i) => (
-              <div
-                key={c.term}
-                data-enter="up"
-                style={{ ...delay(i * 90), background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(127,227,234,0.2)' }}
-                className="rounded-2xl p-7"
-              >
-                <dt className="text-[19px] font-semibold" style={{ color: '#FFFFFF' }}>
-                  {c.term}
-                </dt>
-                <dd className="m-0 mt-2 text-[16px] leading-relaxed" style={{ color: 'var(--hx-on-teal)' }}>
-                  {c.detail}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
 
       <section aria-labelledby="awards" className="hx-wrap py-28">
         <SectionHead
@@ -289,7 +249,7 @@ export default function FirmPage() {
       <section aria-labelledby="outside" className="hx-wrap py-28">
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr]">
           <div data-enter="up">
-            <SectionHead id="outside" kicker="Outside HighLevel" title="Who Hamza has worked and learned with." />
+            <SectionHead id="outside" kicker="Outside HighLevel" title="Who Hamza has worked with." />
             <ul className="m-0 mt-8 flex list-none flex-col gap-3 p-0">
               {WORKED_WITH.items.map((it) => (
                 <li key={it} className="flex gap-3 text-[16px] leading-relaxed">
@@ -313,9 +273,15 @@ export default function FirmPage() {
             </ul>
           </div>
           <div className="grid items-start gap-5 sm:grid-cols-2" data-enter="up" style={delay(120)}>
-            {WORKED_WITH.photos.map((p) => (
-              <Shot key={p.src} photo={p} sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw" />
-            ))}
+            {WORKED_WITH.photos.map((p, i, all) => {
+              // An odd last photo spans both columns instead of sitting alone.
+              const wide = all.length % 2 === 1 && i === all.length - 1;
+              return (
+                <div key={p.src} className={wide ? 'sm:col-span-2' : undefined}>
+                  <Shot photo={p} sizes={wide ? '(min-width: 1024px) 560px, 100vw' : '(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw'} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
