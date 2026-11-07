@@ -6,6 +6,10 @@
  * line on Nov 2, 2026. Keep the two in step: if an award, date or interview
  * changes there, change it here.
  *
+ * Deliberate differences (Hamza, Nov 7, 2026): the Tai Lopez line describes
+ * the work itself, and meeting Neil Patel and visiting Acquisition.com are left
+ * out because they are not achievements.
+ *
  * Rules: every award is on HighLevel's public winners lists or in a photo;
  * interviews are on other people's shows (no press releases, no paid
  * placements); "worked with" lines say exactly what happened.
@@ -95,8 +99,8 @@ export const PHOTOS = {
   ),
   taiLopez: photo(
     'hamza-baig-tai-lopez-podcast', 1200, 1600,
-    'Hamza Baig with Tai Lopez after recording a podcast together',
-    'With Tai Lopez after recording a podcast',
+    'Hamza Baig with Tai Lopez, whose AI Automation Consultant program he contributed to',
+    'With Tai Lopez',
   ),
   brandonDawson: photo(
     'hamza-baig-brandon-dawson-cardone-ventures-10x-hq', 1200, 1600,
@@ -107,16 +111,6 @@ export const PHOTOS = {
     'hamza-baig-school-of-mentors-ai-automations-workshop', 1600, 1017,
     "Hamza Baig's AI Automations Workshop in School of Mentors, the School of Hard Knocks community",
     "The AI Automations Workshop in School of Mentors' workshop library",
-  ),
-  neilPatel: photo(
-    'hamza-baig-neil-patel-highlevel-event', 1086, 1448,
-    'Hamza Baig with Neil Patel at a HighLevel event',
-    'With Neil Patel at a HighLevel event',
-  ),
-  acquisitionCom: photo(
-    'hamza-baig-acquisition-com-hq-alex-hormozi', 1200, 1600,
-    "Hamza Baig outside Acquisition.com HQ, Alex Hormozi's company",
-    "At Acquisition.com HQ, Alex Hormozi's company",
   ),
 } as const;
 
@@ -191,11 +185,9 @@ export const INTERVIEWS = [
 /** Worded as exactly what happened: companies, not the founders personally, where that's the truth. */
 export const WORKED_WITH = {
   items: [
-    'Recorded a podcast with Tai Lopez.',
+    "Worked directly with Tai Lopez and his team to bring AI automation to his audience, and contributed to his AI Automation Consultant program.",
     "Worked with 10X and Cardone Ventures, Grant Cardone's companies, including time at 10X HQ in Scottsdale with Brandon Dawson, CEO of Cardone Ventures.",
     'Hosted the AI Automations Workshop in School of Mentors, the School of Hard Knocks community.',
-    'Met Neil Patel at a HighLevel event.',
-    "Visited Acquisition.com HQ, Alex Hormozi's company.",
   ],
-  photos: [PHOTOS.taiLopez, PHOTOS.brandonDawson, PHOTOS.schoolOfMentors, PHOTOS.neilPatel],
+  photos: [PHOTOS.taiLopez, PHOTOS.brandonDawson, PHOTOS.schoolOfMentors],
 };
