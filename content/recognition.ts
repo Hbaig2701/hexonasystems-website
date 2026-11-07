@@ -45,7 +45,7 @@ export const PHOTOS = {
   diamondWinners: photo(
     'hamza-baig-hexona-systems-saaspreneur-diamond-2025-winners', 1200, 1600,
     "Hamza Baig pointing to Hexona Systems on HighLevel's 2025 SaaSpreneur Diamond winners screen",
-    "Hexona Systems on HighLevel's 2025 Diamond winners list",
+    'Hexona Systems on the 2025 Diamond winners list',
   ),
   badge2025: photo(
     'hamza-baig-levelup-2025-vip-award-winner-badge', 1200, 1600,
@@ -62,35 +62,20 @@ export const PHOTOS = {
     'Hamza Baig with the HighLevel SaaSpreneur Platinum award plaque at the 2024 Summit',
     'The SaaSpreneur Platinum plaque at the 2024 Summit',
   ),
-  bronzeAffilionaire: photo(
-    'hamza-baig-bronze-affilionaire-2024-stage', 1600, 1067,
-    "Hamza Baig on stage receiving HighLevel's Bronze Affilionaire 2024 award",
-    'Receiving Bronze Affilionaire, 2024',
-  ),
-  affilionaireTrophy: photo(
-    'hamza-baig-affilionaire-award-2024', 1600, 1067,
-    'Hamza Baig holding the HighLevel Affilionaire trophy at the 2024 Summit',
-    'The Affilionaire trophy at the 2024 Summit',
-  ),
-  silverAffilionaire: photo(
-    'hamza-baig-silver-affilionaire-award-levelup', 1600, 1200,
-    "Hamza Baig on the LevelUp stage receiving HighLevel's Silver Affilionaire award",
-    'Receiving Silver Affilionaire on the LevelUp stage',
-  ),
   awardsHome: photo(
     'hamza-baig-highlevel-platinum-diamond-awards', 1200, 1600,
     'Hamza Baig with the HighLevel SaaSpreneur Platinum and Diamond plaques and Affilionaire trophies',
-    'The Platinum and Diamond plaques with both Affilionaire trophies',
+    "Hexona's Platinum and Diamond awards",
   ),
   speaking: photo(
     'hamza-baig-speaking-highlevel-stage', 834, 648,
     'Hamza Baig speaking on stage in front of a HighLevel backdrop',
-    "Speaking on HighLevel's stage",
+    'Speaking at LevelUp 2026',
   ),
   speakerPage: photo(
     'hamza-baig-highlevel-levelup-2026-speaker-page', 838, 1339,
     "Hamza Baig's speaker profile on HighLevel's official LevelUp 2026 website",
-    "Speaker profile on HighLevel's LevelUp 2026 site",
+    'LevelUp 2026 speaker profile',
   ),
   speaker2026: photo(
     'hamza-baig-levelup-2026-speaker', 900, 1600,
@@ -118,7 +103,7 @@ export const PHOTOS = {
 export const EARLY_YEARS = [
   {
     year: '2021',
-    items: ['Hamza found HighLevel and started building automations on it for local businesses.'],
+    items: ['Hamza started building automations for local businesses.'],
   },
   {
     year: '2022',
@@ -129,21 +114,21 @@ export const EARLY_YEARS = [
   },
 ];
 
-/** HighLevel's awards, by year, with the photos that show them. */
+/** Awards by year, with the photos that show them. Referral (Affilionaire) awards are left off: they mean nothing to a client. */
 export const AWARD_YEARS: { year: string; items: string[]; photos: Photo[] }[] = [
   {
     year: '2024',
-    items: ['SaaSpreneur Platinum (500+ client sub-accounts), our first HighLevel award. We skipped Gold.', 'Bronze Affilionaire.'],
-    photos: [PHOTOS.platinumStage, PHOTOS.platinumPlaque, PHOTOS.bronzeAffilionaire],
+    items: ["SaaSpreneur Platinum, for 500+ client accounts running on Hexona's platform. Our first award; we skipped Gold."],
+    photos: [PHOTOS.platinumStage, PHOTOS.platinumPlaque],
   },
   {
     year: '2025',
-    items: ['SaaSpreneur Diamond (1,000+ client sub-accounts), presented at LevelUp, Oct 13 to 16 in Dallas.', 'Silver Affilionaire.'],
-    photos: [PHOTOS.diamondWinners, PHOTOS.diamondPlaque, PHOTOS.silverAffilionaire],
+    items: ["SaaSpreneur Diamond, for 1,000+ client accounts running on Hexona's platform. Presented in Dallas in October."],
+    photos: [PHOTOS.diamondWinners, PHOTOS.diamondPlaque, PHOTOS.badge2025],
   },
   {
     year: '2026',
-    items: ['SaaSpreneur Diamond again.', 'Hamza spoke at LevelUp 2026, Oct 26 to 29 in Dallas.', 'Bronze Affilionaire.'],
+    items: ['SaaSpreneur Diamond again.', 'Hamza was a speaker at LevelUp 2026 in Dallas.'],
     photos: [PHOTOS.speaking, PHOTOS.speakerPage, PHOTOS.awardsHome],
   },
 ];
@@ -160,16 +145,7 @@ export const AWARD_NAMES = [
   'HighLevel SaaSpreneur Platinum (2024)',
   'HighLevel SaaSpreneur Diamond (2025)',
   'HighLevel SaaSpreneur Diamond (2026)',
-  'HighLevel Affilionaire, Bronze (2024) and Silver (2025)',
 ];
-
-/** Quoted word for word from HighLevel's LevelUp 2026 speaker page. */
-export const HIGHLEVEL_BIO = {
-  quote:
-    "Hamza Baig is the founder of Hexona Systems, a white-label platform built on HighLevel that powers over 1,000 agencies, and of The Automation Institute, where he's taught 45,000+ students to build agencies with AI. He won the Platinum SaaSPRENEUR Award in 2024 and the Diamond SaaSPRENEUR Award in 2025.",
-  source: 'https://levelup.gohighlevel.com/speakers',
-  read: 'Nov 2, 2026',
-};
 
 /** Interviews on other people's shows. Press releases and paid pieces are left out on purpose. */
 export const INTERVIEWS = [

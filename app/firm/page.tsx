@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ENTITY_SENTENCE, KEY_FACTS, ORIGIN, PRINCIPAL, TEAM } from '@/content/firm';
-import { AWARD_YEARS, EARLY_YEARS, HIGHLEVEL_BIO, INTERVIEWS, NOMINATIONS, PHOTOS, WORKED_WITH, type Photo } from '@/content/recognition';
+import { AWARD_YEARS, EARLY_YEARS, INTERVIEWS, NOMINATIONS, PHOTOS, WORKED_WITH, type Photo } from '@/content/recognition';
 import { FIRM_FAQS } from '@/content/faqs';
 import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
 import { PageHero } from '@/components/hx/PageHero';
@@ -178,10 +178,10 @@ export default function FirmPage() {
           kicker="Recognition"
           title={
             <>
-              Awarded by HighLevel, <span className="hx-mark">three years running.</span>
+              Award-winning, <span className="hx-mark">three years running.</span>
             </>
           }
-          text="SaaSpreneur awards count the client accounts an agency runs on HighLevel: Platinum for 500+, Diamond for 1,000+. Affilionaire awards are for referring new HighLevel customers."
+          text="HighLevel gives its SaaSpreneur awards to software companies by the number of client accounts they run: Platinum for 500+, Diamond for 1,000+."
         />
         <div className="mt-14 flex flex-col gap-16">
           {AWARD_YEARS.map((y) => (
@@ -199,7 +199,7 @@ export default function FirmPage() {
                   ))}
                 </ul>
               </div>
-              <div className="grid items-start gap-5 sm:grid-cols-3">
+              <div className={`grid items-start gap-5 ${y.photos.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>
                 {y.photos.map((p) => (
                   <Shot key={p.src} photo={p} sizes="(min-width: 1024px) 260px, (min-width: 640px) 33vw, 100vw" />
                 ))}
@@ -207,49 +207,28 @@ export default function FirmPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section aria-labelledby="introduced" style={{ background: 'var(--hx-cyan-soft)' }}>
-        <div className="hx-wrap grid gap-14 py-24 lg:grid-cols-[1.2fr_0.8fr]">
-          <div data-enter="up">
-            <p className="hx-kicker m-0 mb-4">In HighLevel&rsquo;s words</p>
-            <h2 id="introduced" className="hx-h2 m-0">How HighLevel introduces Hamza.</h2>
-            <blockquote className="hx-serif m-0 mt-8 border-l-4 pl-6 text-[22px] leading-snug" style={{ borderColor: 'var(--hx-teal)' }}>
-              &ldquo;{HIGHLEVEL_BIO.quote}&rdquo;
-            </blockquote>
-            <p className="m-0 mt-4 text-[14px]" style={{ color: 'var(--hx-ink-3)' }}>
-              From his speaker profile on{' '}
-              <a className="hx-link" href={HIGHLEVEL_BIO.source} rel="noopener">
-                HighLevel&rsquo;s LevelUp 2026 site
-              </a>
-              , read {HIGHLEVEL_BIO.read}.
-            </p>
-          </div>
-          <div data-enter="up" style={delay(120)}>
-            <h3 className="hx-h3 m-0">Nominations</h3>
-            <ul className="m-0 mt-6 flex list-none flex-col gap-3 p-0">
-              {NOMINATIONS.map((n) => (
-                <li key={n.title} className="flex items-center gap-5 rounded-2xl p-5" style={{ background: '#FFFFFF' }}>
-                  <span className="hx-serif text-[22px]" style={{ color: 'var(--hx-teal)' }}>
-                    {n.year}
-                  </span>
-                  <span>
-                    <span className="block text-[17px] font-semibold">{n.title}</span>
-                    <span className="block text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
-                      {n.who}, nominated
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="mt-16 grid gap-8 lg:grid-cols-[0.32fr_1fr]" data-enter="up">
+          <h3 className="hx-h3 m-0">Nominations</h3>
+          <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-3">
+            {NOMINATIONS.map((n) => (
+              <li key={n.title} className="rounded-2xl p-5" style={{ background: 'var(--hx-cyan-soft)' }}>
+                <span className="hx-serif block text-[20px]" style={{ color: 'var(--hx-teal)' }}>
+                  {n.year}
+                </span>
+                <span className="mt-1 block text-[16px] font-semibold">{n.title}</span>
+                <span className="block text-[14px]" style={{ color: 'var(--hx-ink-3)' }}>
+                  {n.who}, nominated
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       <section aria-labelledby="outside" className="hx-wrap py-28">
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr]">
           <div data-enter="up">
-            <SectionHead id="outside" kicker="Outside HighLevel" title="Who Hamza has worked with." />
+            <SectionHead id="outside" kicker="Partnerships" title="Who Hamza has worked with." />
             <ul className="m-0 mt-8 flex list-none flex-col gap-3 p-0">
               {WORKED_WITH.items.map((it) => (
                 <li key={it} className="flex gap-3 text-[16px] leading-relaxed">
