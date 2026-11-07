@@ -59,7 +59,7 @@ runs the other properties (hamzabaig.com, profiles, press) so they match.
   webhook) with `source: hexonasystems.com/book`. Unset, submissions are only
   written to the Vercel logs (search for `[lead]`). See `.env.example`.
 - **Analytics:** Vercel Web Analytics (cookie-free) and Google Tag Manager
-  `GTM-KZ9XN392`, which carries GA4. Both are in `app/layout.tsx`; the privacy
+  `GTM-KZ9XN392`, which carries GA4, and Microsoft Clarity `za1mxg117d` (heatmaps, recordings). All are in `app/layout.tsx`; the privacy
   policy in `content/legal.ts` must be updated before adding any other tag.
 - **Indexing:** `app/sitemap.ts`, `app/robots.ts`, `/llms.txt`, `/llms-full.txt`
   and `/blog/feed.xml`. `.github/workflows/indexnow.yml` notifies Bing (and so

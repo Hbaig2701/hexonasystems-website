@@ -61,6 +61,8 @@ export const viewport: Viewport = {
 const JS_FLAG = `document.documentElement.classList.add('js');`;
 
 const GTM_ID = 'GTM-KZ9XN392';
+/** Microsoft Clarity (heatmaps and session recordings), project za1mxg117d. */
+const CLARITY_INIT = `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","za1mxg117d");`;
 const GTM_INIT = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -77,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             script is async, so it does not block rendering. */}
         <script dangerouslySetInnerHTML={{ __html: GTM_INIT }} />
         <script async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} />
+        <script dangerouslySetInnerHTML={{ __html: CLARITY_INIT }} />
       </head>
       <body className="min-h-svh">
         {/* AI SEO Developer Guide, Ticket 2 — the entity graph, once per
