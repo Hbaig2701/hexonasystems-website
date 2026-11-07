@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { AWARDS, COMMITMENTS, ENTITY_SENTENCE, KEY_FACTS, ORIGIN, PRINCIPAL, TEAM } from '@/content/firm';
+import Image from 'next/image';
+import { COMMITMENTS, ENTITY_SENTENCE, KEY_FACTS, ORIGIN, PRINCIPAL, TEAM } from '@/content/firm';
+import { AWARD_YEARS, EARLY_YEARS, HIGHLEVEL_BIO, INTERVIEWS, NOMINATIONS, PHOTOS, WORKED_WITH, type Photo } from '@/content/recognition';
 import { EMPLOYEES } from '@/content/employees';
 import { FIRM_FAQS } from '@/content/faqs';
 import { JsonLd, breadcrumbLd, faqPageLd } from '@/lib/jsonld';
 import { PageHero } from '@/components/hx/PageHero';
-import { CountUp, PointerTilt, Tilt } from '@/components/hx/Interactive';
-import { LogoMark } from '@/components/hx/Logo';
+import { CountUp, Tilt } from '@/components/hx/Interactive';
 import { CtaPair, FaqList, RoleCard, SectionHead, delay } from '@/components/hx/Blocks';
 
 /**
@@ -21,6 +22,26 @@ export const metadata: Metadata = {
     'About Hexona Systems: a Toronto AI implementation firm founded in 2022 by Hamza Baig. The team, our commitments, awards and how we work with clients.',
   alternates: { canonical: '/firm' },
 };
+
+function Shot({ photo, sizes = '(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw', priority = false }: { photo: Photo; sizes?: string; priority?: boolean }) {
+  return (
+    <figure className="m-0">
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
+        sizes={sizes}
+        priority={priority}
+        className="block h-auto w-full rounded-2xl"
+        style={{ border: '1px solid var(--hx-line)' }}
+      />
+      <figcaption className="mt-2 text-[13px] leading-snug" style={{ color: 'var(--hx-ink-3)' }}>
+        {photo.caption}
+      </figcaption>
+    </figure>
+  );
+}
 
 const FIGURES = [
   { value: '2022', label: 'Founded' },
@@ -48,22 +69,11 @@ export default function FirmPage() {
             We were doing this before there was a <span className="hx-mark">name for it.</span>
           </>
         }
-        answer={`Hexona has been putting automation into businesses since ${ORIGIN.since}, long before the AI era began. Today we build and run AI employees for service businesses, and we only build the ones that make a business worth more.`}
+        answer={`Hamza Baig founded Hexona in ${ORIGIN.since} and was automating local businesses before ChatGPT launched. Today we build and run AI employees for service businesses, and we only build the ones that make a business worth more.`}
         aside={
-          <div className="relative aspect-square">
-            <div className="hx-orbit" aria-hidden="true">
-              <span style={{ top: '6%', left: '50%' }} />
-              <span style={{ bottom: '18%', left: '6%' }} />
-            </div>
-            <div className="hx-orbit hx-orbit-2" aria-hidden="true">
-              <span style={{ top: '-1%', left: '30%' }} />
-            </div>
-            <PointerTilt className="absolute inset-[20%]">
-              <div className="hx-float h-full w-full">
-                <LogoMark size="100%" draw className="hx-mark-shadow h-full w-full" />
-              </div>
-            </PointerTilt>
-          </div>
+          <Tilt max={4} className="overflow-hidden rounded-3xl p-3" style={{ background: '#FFFFFF', boxShadow: 'var(--hx-shadow-2)' }}>
+            <Shot photo={PHOTOS.diamondStage} priority sizes="(min-width: 1024px) 420px, 100vw" />
+          </Tilt>
         }
       >
         <CtaPair secondary={{ label: 'See our results', href: '/evidence' }} />
@@ -98,6 +108,24 @@ export default function FirmPage() {
                 <p key={para.slice(0, 24)}>{para}</p>
               ))}
             </div>
+            <h3 className="hx-h3 m-0 mt-12">Before ChatGPT</h3>
+            <p className="m-0 mt-3 text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
+              Public dates: the domain registration and the upload dates on the channel.
+            </p>
+            <ol className="m-0 mt-6 flex list-none flex-col gap-4 p-0">
+              {EARLY_YEARS.map((y) => (
+                <li key={y.year} className="grid grid-cols-[4.5rem_1fr] gap-4">
+                  <span className="hx-serif text-[26px] leading-none" style={{ color: 'var(--hx-teal)' }}>
+                    {y.year}
+                  </span>
+                  <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[16px] leading-relaxed" style={{ color: 'var(--hx-ink-2)' }}>
+                    {y.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
           </div>
           <div data-enter="up" style={delay(120)}>
             <Tilt max={3} className="hx-card" style={{ background: 'var(--hx-cyan-soft)' }}>
@@ -185,46 +213,128 @@ export default function FirmPage() {
       </section>
 
       <section aria-labelledby="awards" className="hx-wrap py-28">
-        <div className="grid gap-14 lg:grid-cols-2">
-          <div>
-            <SectionHead id="awards" kicker="Recognition" title="Awards and nominations." />
-            <ul className="m-0 mt-10 flex list-none flex-col gap-3 p-0">
-              {AWARDS.map((a, i) => (
-                <li key={a.title + a.year} data-enter="up" style={delay(i * 70)} className="flex items-center gap-5 rounded-2xl p-5">
-                  <span className="hx-serif text-[22px]" style={{ color: 'var(--hx-cyan)' }}>
-                    {a.year}
+        <SectionHead
+          id="awards"
+          kicker="Recognition"
+          title={
+            <>
+              Awarded by HighLevel, <span className="hx-mark">three years running.</span>
+            </>
+          }
+          text="SaaSpreneur awards count the client accounts an agency runs on HighLevel: Platinum for 500+, Diamond for 1,000+. Affilionaire awards are for referring new HighLevel customers."
+        />
+        <div className="mt-14 flex flex-col gap-16">
+          {AWARD_YEARS.map((y) => (
+            <div key={y.year} className="grid gap-8 lg:grid-cols-[0.32fr_1fr]" data-enter="up">
+              <div>
+                <p className="hx-serif m-0 text-[48px] leading-none" style={{ color: 'var(--hx-teal)' }}>
+                  {y.year}
+                </p>
+                <ul className="m-0 mt-5 flex list-none flex-col gap-3 p-0">
+                  {y.items.map((it) => (
+                    <li key={it} className="flex gap-3 text-[16px] leading-relaxed">
+                      <span aria-hidden="true" style={{ color: 'var(--hx-teal)' }}>✓</span>
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="grid items-start gap-5 sm:grid-cols-3">
+                {y.photos.map((p) => (
+                  <Shot key={p.src} photo={p} sizes="(min-width: 1024px) 260px, (min-width: 640px) 33vw, 100vw" />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="introduced" style={{ background: 'var(--hx-cyan-soft)' }}>
+        <div className="hx-wrap grid gap-14 py-24 lg:grid-cols-[1.2fr_0.8fr]">
+          <div data-enter="up">
+            <p className="hx-kicker m-0 mb-4">In HighLevel&rsquo;s words</p>
+            <h2 id="introduced" className="hx-h2 m-0">How HighLevel introduces Hamza.</h2>
+            <blockquote className="hx-serif m-0 mt-8 border-l-4 pl-6 text-[22px] leading-snug" style={{ borderColor: 'var(--hx-teal)' }}>
+              &ldquo;{HIGHLEVEL_BIO.quote}&rdquo;
+            </blockquote>
+            <p className="m-0 mt-4 text-[14px]" style={{ color: 'var(--hx-ink-3)' }}>
+              From his speaker profile on{' '}
+              <a className="hx-link" href={HIGHLEVEL_BIO.source} rel="noopener">
+                HighLevel&rsquo;s LevelUp 2026 site
+              </a>
+              , read {HIGHLEVEL_BIO.read}.
+            </p>
+          </div>
+          <div data-enter="up" style={delay(120)}>
+            <h3 className="hx-h3 m-0">Nominations</h3>
+            <ul className="m-0 mt-6 flex list-none flex-col gap-3 p-0">
+              {NOMINATIONS.map((n) => (
+                <li key={n.title} className="flex items-center gap-5 rounded-2xl p-5" style={{ background: '#FFFFFF' }}>
+                  <span className="hx-serif text-[22px]" style={{ color: 'var(--hx-teal)' }}>
+                    {n.year}
                   </span>
                   <span>
-                    <span className="block text-[17px] font-semibold">
-                      {a.href ? (
-                        <a href={a.href} className="hx-link" rel="noopener noreferrer">
-                          {a.title}
-                        </a>
-                      ) : (
-                        a.title
-                      )}
-                    </span>
+                    <span className="block text-[17px] font-semibold">{n.title}</span>
                     <span className="block text-[15px]" style={{ color: 'var(--hx-ink-3)' }}>
-                      {a.detail}
+                      {n.who}, nominated
                     </span>
                   </span>
                 </li>
               ))}
             </ul>
           </div>
-          <div>
-            <SectionHead kicker="Key facts" title="Hexona at a glance." />
-            <dl className="m-0 mt-10 overflow-hidden rounded-3xl" style={{ border: '1px solid var(--hx-line)' }} data-enter="up">
-              {KEY_FACTS.map((f, i) => (
-                <div key={f.field} className="grid gap-1 px-6 py-4 sm:grid-cols-[0.8fr_1.2fr]" style={{ background: i % 2 ? '#FFFFFF' : 'var(--hx-cyan-soft)' }}>
-                  <dt className="text-[15px] font-semibold">{f.field}</dt>
-                  <dd className="m-0 text-[15px]" style={{ color: 'var(--hx-ink-2)' }}>
-                    {f.value}
-                  </dd>
-                </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="outside" className="hx-wrap py-28">
+        <div className="grid gap-14 lg:grid-cols-[1fr_1fr]">
+          <div data-enter="up">
+            <SectionHead id="outside" kicker="Outside HighLevel" title="Who Hamza has worked and learned with." />
+            <ul className="m-0 mt-8 flex list-none flex-col gap-3 p-0">
+              {WORKED_WITH.items.map((it) => (
+                <li key={it} className="flex gap-3 text-[16px] leading-relaxed">
+                  <span aria-hidden="true" style={{ color: 'var(--hx-teal)' }}>✓</span>
+                  <span>{it}</span>
+                </li>
               ))}
-            </dl>
+            </ul>
+            <h3 className="hx-h3 m-0 mt-14">Interviews and podcasts</h3>
+            <ul className="m-0 mt-6 flex list-none flex-col gap-4 p-0">
+              {INTERVIEWS.map((i) => (
+                <li key={i.href} className="text-[16px] leading-relaxed">
+                  <a className="hx-link font-semibold" href={i.href} rel="noopener">
+                    {i.show}
+                  </a>{' '}
+                  <span style={{ color: 'var(--hx-ink-3)' }}>
+                    ({i.date}): {i.topic}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
+          <div className="grid items-start gap-5 sm:grid-cols-2" data-enter="up" style={delay(120)}>
+            {WORKED_WITH.photos.map((p) => (
+              <Shot key={p.src} photo={p} sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="facts" className="hx-wrap pb-28">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <SectionHead id="facts" kicker="Key facts" title="Hexona at a glance." />
+          </div>
+          <dl className="m-0 overflow-hidden rounded-3xl" style={{ border: '1px solid var(--hx-line)' }} data-enter="up">
+            {KEY_FACTS.map((f, i) => (
+              <div key={f.field} className="grid gap-1 px-6 py-4 sm:grid-cols-[0.8fr_1.2fr]" style={{ background: i % 2 ? '#FFFFFF' : 'var(--hx-cyan-soft)' }}>
+                <dt className="text-[15px] font-semibold">{f.field}</dt>
+                <dd className="m-0 text-[15px]" style={{ color: 'var(--hx-ink-2)' }}>
+                  {f.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

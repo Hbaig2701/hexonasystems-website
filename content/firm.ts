@@ -373,48 +373,7 @@ export const KEY_FACTS: { field: string; value: string }[] = [
   { field: 'Contact', value: FIRM.email },
 ].filter((r) => r.value && r.value.trim().length > 0);
 
-export const AWARDS = [
-  {
-    year: '2026',
-    title: 'Diamond SaaSPreneur Award',
-    detail: 'Awarded to the firm',
-    href: '',
-  },
-  {
-    year: '2025',
-    title: 'Diamond SaaSPreneur Award',
-    detail: 'Awarded to the firm',
-    href: '',
-  },
-  {
-    year: '2025',
-    title: 'Canadian Tech Business of the Year',
-    detail: 'Nominated',
-    /* Deliberately unlinked. It is not a GoHighLevel award, so the GoHighLevel
-       awards page would have been a false attribution on the one page whose
-       whole job is standing. An unlinked award is weaker than a linked one and
-       far better than a wrong one. The renderer handles an empty href. */
-    href: '',
-  },
-  {
-    year: '2024',
-    title: 'Platinum SaaSPreneur Award',
-    detail: 'Awarded to the firm',
-    href: 'https://awards.gohighlevel.com/',
-  },
-  {
-    year: '2024',
-    title: 'Technopreneur of the Year',
-    detail: 'Hamza Baig, nominated',
-    href: 'https://awards.gohighlevel.com/',
-  },
-  {
-    year: '2024',
-    title: 'Young Entrepreneur of the Year',
-    detail: 'Hamza Baig, nominated',
-    href: 'https://awards.gohighlevel.com/',
-  },
-];
+/* Awards, nominations, press and photos live in content/recognition.ts. */
 
 /* ===========================================================================
    /firm — the entity-source sections.

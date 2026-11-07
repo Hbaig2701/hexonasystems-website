@@ -1,3 +1,4 @@
+import { AWARD_NAMES } from '@/content/recognition';
 import { SITE, absolute } from './site';
 import {
   ENTITY_SENTENCE,
@@ -92,6 +93,7 @@ export function organizationLd() {
     // Word for word the sentence a visitor reads on the homepage and on /firm.
     description: ENTITY_SENTENCE,
     foundingDate: ORIGIN.since,
+    award: AWARD_NAMES.slice(0, 3),
     founder: { '@id': PRINCIPAL_ID },
     numberOfEmployees: { '@type': 'QuantitativeValue', value: TEAM.length },
     address: prune({
@@ -151,6 +153,7 @@ export function principalLd() {
     image: absolute('/images/hamza-baig.jpg'),
     url: absolute('/firm'),
     knowsAbout: ['AI automation', 'AI receptionists', 'GoHighLevel', 'Business process automation', 'AI agents'],
+    award: AWARD_NAMES,
     sameAs: [
       ...verifiedProfileUrls().filter((u) => u.includes('/in/')),
       'https://www.youtube.com/@hamza_automates',
