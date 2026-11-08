@@ -20,7 +20,7 @@ const article: Article = {
   description:
     'Where ChatGPT and Google’s AI answers get local business recommendations, and the eight things a service business can do this month to show up in them.',
   datePublished: '2026-11-06',
-  dateModified: '2026-11-06',
+  dateModified: '2026-11-08',
   lastChecked: '2026-11-06',
   cover: {
     style: 'chat',
@@ -210,7 +210,7 @@ const article: Article = {
       note: 'Ads test for US Free and Go users from Feb 9, 2026, and OpenAI’s statement that ads do not influence answers. Read Nov 6, 2026.',
     },
   ],
-  related: ['how-to-get-more-google-reviews', 'google-ai-mode-home-services-booking-links', 'what-is-an-ai-agent'],
+  related: ['chatgpt-business-hub', 'how-to-get-more-google-reviews', 'google-ai-mode-home-services-booking-links'],
   queries: [
     'how to get recommended by chatgpt',
     'how to show up in chatgpt',
