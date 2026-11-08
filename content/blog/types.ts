@@ -94,4 +94,10 @@ export interface Article {
   related: string[];
   /** The searches this page is written for. Not rendered; used for planning and reporting. */
   queries: string[];
+  /**
+   * Optional closing call to action, shown after the last section. Write it for
+   * this article's reader, tie it to what Hexona builds, and never promise a
+   * ranking or a result nobody controls.
+   */
+  cta?: { title: string; text: string };
 }

@@ -174,6 +174,8 @@ export function ArticleView({ article: a }: { article: BlogArticle }) {
             </div>
           ))}
 
+          {a.cta && <ConsultBox title={a.cta.title} text={a.cta.text} />}
+
           {a.faq.length > 0 && (
             <section aria-labelledby="faq" className="mb-14 scroll-mt-28">
               <h2 id="faq" className="hx-h2 m-0 mb-6" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.15rem)' }}>
@@ -331,13 +333,16 @@ function ArticleFigure({ figure: f }: { figure: Figure }) {
   );
 }
 
-function ConsultBox() {
+function ConsultBox({
+  title = 'Want this set up for you?',
+  text = 'We build and run AI employees for service businesses. A free one-hour consult tells you which one would pay back first.',
+}: { title?: string; text?: string }) {
   return (
     <aside className="mb-12 grid gap-5 rounded-3xl p-7 sm:grid-cols-[1fr_auto] sm:items-center" style={{ background: 'var(--hx-teal-deep)', color: '#FFFFFF' }}>
       <div>
-        <p className="hx-serif m-0 text-[24px] leading-snug">Want this set up for you?</p>
+        <p className="hx-serif m-0 text-[24px] leading-snug">{title}</p>
         <p className="m-0 mt-2 text-[15px] leading-relaxed" style={{ color: 'var(--hx-on-teal)' }}>
-          We build and run AI employees for service businesses. A free one-hour consult tells you which one would pay back first.
+          {text}
         </p>
       </div>
       <Link href="/book" className="hx-btn hx-btn-cyan">

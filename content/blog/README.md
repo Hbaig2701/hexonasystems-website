@@ -77,6 +77,7 @@ or take the Value Score without being pushy about it.
   - `/industries/<slug>` → "AI for construction and contractors" (etc.)
   - `/evidence/<slug>` → "the tire and seasonal automotive service case study" (etc.)
   - `/book` → "book a free consult", `/firm` → "about Hexona"
+- Optional `cta: { title, text }` adds a closing book-a-consult box written for that article's reader. Say we will help; never promise a ranking or result.
   - Do not link `/score`: the Value Score is hidden from the public until it is ready.
   So write the sentence for the label: "If you want it built for you, /book." reads as "If you want it built for you, book a free consult."
 - Link 2 to 4 site pages from the body of every article, where they fit the sentence. Always include at least one AI employee or industry page.
