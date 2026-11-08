@@ -131,6 +131,14 @@ const REDIRECTS = [
 ];
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Inline the (small, Tailwind) stylesheet into each page's <head>. Two
+    // reasons: no render-blocking CSS request on first load, and Microsoft
+    // Clarity replays keep their styling after a redeploy. Clarity re-fetches
+    // a recording's <link> stylesheet at replay time, and each deploy renames
+    // it, so every session recorded before a deploy replayed unstyled.
+    inlineCss: true,
+  },
   async redirects() {
     return REDIRECTS;
   },
