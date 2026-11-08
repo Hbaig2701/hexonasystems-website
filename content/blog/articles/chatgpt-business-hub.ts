@@ -203,6 +203,10 @@ const article: Article = {
     },
   ],
   related: ['how-to-get-recommended-by-chatgpt', 'google-ai-mode-home-services-booking-links', 'speed-to-lead'],
+  cta: {
+    title: 'Want help getting ranked on ChatGPT?',
+    text: 'Book a free consult and we will help you get ranked in ChatGPT and Google AI Mode. We check how your business shows up today, work on what is holding it back, and make sure every enquiry they send gets answered and booked, day or night.',
+  },
   queries: ['chatgpt business hub', 'claim your business on chatgpt', 'chatgpt business profile', 'how to get my business on chatgpt', 'chatgpt search console'],
 };
 
