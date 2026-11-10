@@ -7,6 +7,9 @@
 // only for two direct OpenAI quotes. Not stated anywhere we could open: a list
 // of eligible service categories, booking links, photos, Google Business
 // Profile involvement. Said so in the text.
+// Nov 10, 2026, first-hand: Hamza tried to claim Hexona (an online business) in
+// Business Hub and was told online businesses are not supported yet. Added to the
+// eligibility section, table and FAQ; it contradicts Reuters on agents, so both are stated.
 // Target: "claim your business on chatgpt", "chatgpt business hub",
 // "businesses in chatgpt", "chatgpt business profile", "chatgpt business agent".
 
@@ -33,7 +36,7 @@ const article: Article = {
     'Launched Nov 10, 2026 in beta: Business Hub (claim and manage your profile), Insights (mentions, views and website clicks) and Business Agents (a chat assistant for your business).',
     'Verify by a call or text to your main business number, or a DNS record. Shopify stores can connect their store instead.',
     'Free for now. OpenAI says claiming does not guarantee higher placement, and it does not show you the prompts people typed.',
-    'Business Agents start with US e-commerce and online service businesses. Local service businesses can claim a profile and see Insights, but the agent is not open to them yet.',
+    'Local businesses can claim a profile and see Insights now. When we tried on launch day, online-only businesses could not claim yet. Business Agents start with eligible US businesses, per Reuters e-commerce and online services first.',
   ],
   sections: [
     {
@@ -50,7 +53,7 @@ const article: Article = {
           { key: 'who', label: 'Who can use it' },
         ],
         rows: [
-          { part: 'Business Hub', what: 'Claim and verify your business, update key details, add product feeds; claimed profiles get a blue check', who: 'Eligible businesses with a website, where ChatGPT is available' },
+          { part: 'Business Hub', what: 'Claim and verify your business, update key details, add product feeds; claimed profiles get a blue check', who: 'Eligible businesses with a website. In our test on Nov 10, online-only businesses could not claim yet' },
           { part: 'Insights', what: 'Mentions, views and website clicks, plus common themes in conversations where your site is cited', who: 'Claimed businesses, once there is enough activity to report' },
           { part: 'Business Agents', what: 'A chat assistant built by OpenAI from your instructions that customers can choose to talk to inside ChatGPT', who: 'Eligible US e-commerce and online service businesses first' },
           { part: 'Sponsored agents', what: 'The same agent, promoted as the destination for ChatGPT ads and labelled as sponsored', who: 'Advertisers' },
@@ -76,6 +79,7 @@ const article: Article = {
       heading: 'Can a local service business claim a ChatGPT profile?',
       paragraphs: [
         'Partly, and it is worth doing now. OpenAI says eligibility “depends on factors including industry, location, and our verification and integrity checks” and that “not every business can create or claim a profile”, as quoted from its product and policy pages. Its Insights already define a mention for local businesses (when ChatGPT shows a result for that location), according to an OpenAI spokesperson speaking to Digiday, so local businesses are clearly in scope for profiles and Insights.',
+        'One thing we found first-hand: when we tried to claim Hexona’s own profile on launch day, Business Hub told us online businesses are not supported yet. So at launch it is aimed at businesses with a real-world location or service area, which is good news for a contractor or clinic and bad news for anyone who only sells online. Expect this to change as OpenAI widens the beta.',
         'The Business Agent is a different story. Reuters reports it is rolling out first to eligible e-commerce and online service businesses in the US. A plumber, HVAC company, med spa or property manager should expect a profile and Insights now and an agent later. OpenAI has not published a list of eligible categories, so the only way to know for your business is to try claiming it.',
       ],
     },
@@ -130,7 +134,7 @@ const article: Article = {
     {
       question: 'Can local service businesses use Businesses in ChatGPT?',
       answer:
-        'They can claim a profile and get Insights where they are eligible; OpenAI defines a mention for local businesses as ChatGPT showing a result for that location. Business Agents are rolling out first to US e-commerce and online service businesses, so most local service businesses will not have an agent yet.',
+        'Yes, and they are the ones it suits at launch. They can claim a profile and get Insights where they are eligible (when we tried on November 10, 2026, online-only businesses were not supported yet); OpenAI defines a mention for local businesses as ChatGPT showing a result for that location. Business Agents are rolling out first to US e-commerce and online service businesses, so most local service businesses will not have an agent yet.',
     },
     {
       question: 'Does claiming my business help it rank higher in ChatGPT?',
