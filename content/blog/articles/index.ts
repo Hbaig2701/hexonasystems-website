@@ -11,6 +11,7 @@
 import type { Article } from '../types';
 import whatIsAnAiAgent from './what-is-an-ai-agent';
 import chatgptBusinessHub from './chatgpt-business-hub';
+import howToClaimYourBusinessOnChatgpt from './how-to-claim-your-business-on-chatgpt';
 import batch1 from './batch-1';
 import batch2 from './batch-2';
 import batch3 from './batch-3';
@@ -23,6 +24,7 @@ import batch8 from './batch-8';
 export const ARTICLE_FILES: Article[] = [
   whatIsAnAiAgent,
   chatgptBusinessHub,
+  howToClaimYourBusinessOnChatgpt,
   ...batch1,
   ...batch2,
   ...batch3,
