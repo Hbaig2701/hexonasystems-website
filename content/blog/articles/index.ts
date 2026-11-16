@@ -6,6 +6,10 @@
  * batch-*.ts files exist so several writers can register articles at the same
  * time without editing the same file. New articles can go in any batch file or
  * directly in the list below.
+ *
+ * Articles written in the Hexona Sanity dataset are synced at build time into
+ * sanity.generated.json (see scripts/sync-sanity.mjs) and appended after the
+ * hand-written ones. A hand-written slug always wins over a Sanity slug.
  */
 
 import type { Article } from '../types';
@@ -20,8 +24,9 @@ import batch5 from './batch-5';
 import batch6 from './batch-6';
 import batch7 from './batch-7';
 import batch8 from './batch-8';
+import sanityArticles from './sanity';
 
-export const ARTICLE_FILES: Article[] = [
+const HAND_WRITTEN: Article[] = [
   whatIsAnAiAgent,
   chatgptBusinessHub,
   howToClaimYourBusinessOnChatgpt,
@@ -33,4 +38,11 @@ export const ARTICLE_FILES: Article[] = [
   ...batch6,
   ...batch7,
   ...batch8,
+];
+
+const taken = new Set(HAND_WRITTEN.map((a) => a.slug));
+
+export const ARTICLE_FILES: Article[] = [
+  ...HAND_WRITTEN,
+  ...sanityArticles.filter((a) => !taken.has(a.slug)),
 ];
