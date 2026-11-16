@@ -1,17 +1,14 @@
+'use client'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './schemaTypes'
 
-// Project 3uamydx4 (Hexona Systems Blog) is a separate project from hamzaautomates.com.
-// Do not reuse the hamzaautomates.com project or dataset.
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '3uamydx4'
-const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
-
 export default defineConfig({
   name: 'hexona-blog',
   title: 'Hexona Systems Blog',
-  projectId,
-  dataset,
+  basePath: '/admincontrol',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID || '3uamydx4',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production',
   plugins: [structureTool()],
   schema: {types: schemaTypes},
 })
