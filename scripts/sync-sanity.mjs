@@ -63,9 +63,18 @@ function cover(d) {
 
 function figure(f) {
   if (!f?.kind) return undefined
-  if (f.kind === 'stats') return {kind: 'stats', caption: f.caption, items: f.stats ?? []}
-  if (f.kind === 'bars') return {kind: 'bars', caption: f.caption, items: f.bars ?? []}
-  if (f.kind === 'steps') return {kind: 'steps', caption: f.caption, items: f.stepItems ?? []}
+  const stats = f.stats ?? []
+  const bars = f.bars ?? []
+  const num = (v) => parseFloat(String(v ?? '').replace(/[^0-9.]/g, '')) || 0
+  if (f.kind === 'stats') {
+    const items = stats.length ? stats : bars.map((b) => ({value: b.display || String(b.value ?? ''), label: b.label}))
+    return items.length ? {kind: 'stats', caption: f.caption, items} : undefined
+  }
+  if (f.kind === 'bars') {
+    const items = bars.length ? bars : stats.map((s) => ({label: s.label, value: num(s.value), display: String(s.value ?? '')}))
+    return items.length ? {kind: 'bars', caption: f.caption, items} : undefined
+  }
+  if (f.kind === 'steps') return (f.stepItems ?? []).length ? {kind: 'steps', caption: f.caption, items: f.stepItems} : undefined
   return undefined
 }
 
