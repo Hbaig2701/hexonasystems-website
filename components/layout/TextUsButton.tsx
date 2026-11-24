@@ -1,6 +1,9 @@
 import Script from 'next/script';
 
 /**
+ * NOT RENDERED (Nov 24, 2026): removed from app/layout.tsx until the SnapMe
+ * button is live. To restore, render <TextUsButton /> before <Analytics />.
+ *
  * SnapMe "Text us" button, pinned bottom-right on every page.
  *
  * SnapMe's loader (embed.js) turns the placeholder div into a 90px-tall iframe
